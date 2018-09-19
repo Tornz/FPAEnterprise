@@ -1,0 +1,25 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" (click)="onTab(1)">FPA</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" (click)="onTab(2)">Estimation</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" (click)="onTab(3)">Implementation</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <ng-template [ngIf]="activeTab==1">
+        <app-backlogs></app-backlogs>
+    </ng-template>
+    <ng-template [ngIf]="activeTab==2">
+       <app-estimation></app-estimation>
+    </ng-template>
+    <ng-template [ngIf]="activeTab==3">
+       <app-implementation></app-implementation>
+    </ng-template>
+
+</div>
