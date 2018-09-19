@@ -10,9 +10,9 @@ const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'projects', loadChildren: './project/project.module#ProjectModule' },
-            { path: 'bdoc', loadChildren: './tables/tables.module#TablesModule' },
+            { path: 'bdoc', loadChildren: './biddocument/biddocument.module#BidDocumentModule' },
             { path: 'phasing', loadChildren: './phasing/phasing.module#PhasingModule' },
-            { path: 'sysb', loadChildren: './bs-element/bs-element.module#BsElementModule' },
+            { path: 'sysb', loadChildren: './systemdiagram/systemdiagram.module#SystemDiagramModule' },
             { path: 'cmodel', loadChildren: './grid/grid.module#GridModule' },
             { path: 'reports', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' }
