@@ -10,8 +10,115 @@
         </div>
     </div>
 </div>
-<div class="row" >
+<!--<div class="row" >
     <div class="col-md-12" style="max-height:600px;height:600px;width:100%;overflow:auto">
         <div id="fpa-table" class="hot handsontable"></div>
+    </div>
+</div>-->
+
+<div class="row">
+    <div class="col-md-12 table-responsive table-hover ">
+        <table class="table myTable" >
+            <thead class="myTableHeader">
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="3" style="text-align:center">ILF</td>
+                    <td colspan="3" style="text-align:center">EIF</td>
+                    <td colspan="3" style="text-align:center">EO</td>
+                    <td colspan="3" style="text-align:center">EI</td>
+                    <td colspan="3" style="text-align:center">EQ</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="width:120px">Module</td>
+                    <td  style="width:200px">Description</td>
+                    <td  style="width:100px">RET</td>
+                    <td  style="width:100px">DET</td>
+                    <td  style="width:100px">Technology</td>
+                    <td  style="width:100px">RET</td>
+                    <td  style="width:100px">DET</td>
+                    <td  style="width:100px">Technology</td>
+                    <td  style="width:100px">RET</td>
+                    <td style="width:100px">DET</td>
+                    <td  style="width:100px">Technology</td>
+                    <td  style="width:100px">RET</td>
+                    <td  style="width:100px">DET</td>
+                    <td  style="width:100px">Technology</td>
+                    <td  style="width:100px">RET</td>
+                    <td  style="width:100px">DET</td>
+                    <td  style="width:100px">Technology</td>
+                    <td  style="width:100px">Action</td>
+                </tr>
+            </thead>
+            <tbody class="tableBody">
+                <tr *ngFor="let item of backlogs;let i=index">
+                    <td style="width:120px" *ngIf="item.id===editRowID"><input class="form-control" style="width:120px !important" type="text" [(ngModel)]="item.module" /></td>
+                    <td style="width:120px" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.module}}</td>
+                    <td style="width:200px" *ngIf="item.id===editRowID"><input class="form-control" style="width:200px !important" type="text" [(ngModel)]="item.description" /></td>
+                    <td style="width:200px" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.description}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control  inputsize" type="text" [(ngModel)]="item.ilf_ret" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.ilf_ret}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.ilf_det" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.ilf_det}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID">
+                        <select2 [data]="frontendOption"
+                                 [options]="selectOptions"
+                                 [value]="1"
+                                 (valueChanged)="ilfChanged($event,i)"></select2>                                
+                    </td>
+                    <td style="width:100px" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.ilf_technology}}</td>
+
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.eif_ret" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eif_ret}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.eif_det" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eif_det}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID">
+                        <select2 [data]="frontendOption"
+                                 [options]="selectOptions"
+                                 [value]="1"
+                                 (valueChanged)="eifChanged($event,i)"></select2>          
+                    </td>
+                    <td style="width:100px" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eif_technology}}</td>
+
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.ei_ftr" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.ei_ftr}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.ei_det" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.ei_det}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID">
+                        <select2 [data]="frontendOption"
+                                 [options]="selectOptions"
+                                 [value]="1"
+                                 (valueChanged)="eiChanged($event,i)"></select2>      
+                    </td>
+                    <td style="width:100px" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.ei_technology}}</td>
+
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.eo_ftr" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eo_ftr}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.eo_det" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eo_det}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID">
+                        <select2 [data]="frontendOption"
+                                 [options]="selectOptions"
+                                 [value]="1"
+                                 (valueChanged)="eoChanged($event,i)"></select2>      
+                    </td>
+                    <td style="width:100px" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eo_technology}}</td>
+
+
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.eq_ftr" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eq_ftr}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.eq_det" /></td>
+                    <td class="tdsize" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eq_det}}</td>
+                    <td class="tdsize" *ngIf="item.id===editRowID">
+                        <select2 [data]="frontendOption"
+                                 [options]="selectOptions"
+                                 [value]="1"
+                                 (valueChanged)="eqChanged($event,i)"></select2> 
+                    </td>
+                    <td style="width:100px" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eq_technology}}</td>
+                    <td><a title="Function"> <i class="fa fa-list fa-lg mypointer" aria-hidden="true"></i> &nbsp; </a>  <a title="Delete"><i class="fa fa-trash-o fa-lg mypointer"  aria-hidden="true"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
