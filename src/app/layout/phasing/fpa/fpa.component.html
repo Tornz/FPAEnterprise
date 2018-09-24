@@ -10,6 +10,9 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" (click)="onTab(3)">Implementation</a>
     </li>
+    <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" (click)="onTab(4)">User Story</a>
+        </li>
 </ul>
 
 <!-- Tab panes -->
@@ -23,5 +26,7 @@
     <ng-template [ngIf]="activeTab==3">
         <app-implementation></app-implementation>
     </ng-template>
-
+    <ng-template [ngIf]="activeTab==4">
+        <app-user></app-user>
+    </ng-template>
 </div>
