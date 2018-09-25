@@ -8,6 +8,7 @@ import { BackLogsComponent } from './fpa/backlogs/backlogs.component';
 import { EstimationComponent } from './fpa/estimation/estimation.component';
 import { ImplementationComponent } from './fpa/implementation/implementation.component';
 import { HotTableModule } from '@handsontable/angular';
+import { ComponentsComponent } from './fpa/components/components.component';
 
 @NgModule({
     imports: [CommonModule, PhasingRoutingModule, HotTableModule],
@@ -15,6 +16,7 @@ import { HotTableModule } from '@handsontable/angular';
         FPAComponent,
         BackLogsComponent,
         EstimationComponent,
-        ImplementationComponent]
+        ImplementationComponent,
+        ComponentsComponent]
 })
 export class PhasingModule {}

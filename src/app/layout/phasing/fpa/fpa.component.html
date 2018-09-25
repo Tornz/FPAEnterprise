@@ -2,13 +2,16 @@
 <br />
 <ul class="nav nav-tabs">
     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" (click)="onTab(1)">FPA</a>
+        <a [class]="(activeTab==1) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(1)">FPA</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" (click)="onTab(2)">Estimation</a>
+        <a [class]="(activeTab==2) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(2)">Estimation</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" (click)="onTab(3)">Implementation</a>
+        <a [class]="(activeTab==3) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(3)">Implementation</a>
+    </li>
+    <li class="nav-item">
+        <a [class]="(activeTab==4) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(4)">Components</a>
     </li>
 </ul>
 
@@ -23,5 +26,7 @@
     <ng-template [ngIf]="activeTab==3">
         <app-implementation></app-implementation>
     </ng-template>
-
+    <ng-template [ngIf]="activeTab==4">
+        <app-components></app-components>
+    </ng-template>
 </div>
