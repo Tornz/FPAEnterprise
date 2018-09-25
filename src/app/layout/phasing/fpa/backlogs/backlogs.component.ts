@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select2OptionData } from 'ng2-select2';
+import {  Subscription } from 'rxjs';
 import * as $ from 'jquery';
 import { log } from 'util';
 import * as Handsontable from 'handsontable';
@@ -24,12 +25,18 @@ export class BackLogsComponent implements OnInit {
     reportingOption: Array<Select2OptionData>;
     storageOption: Array<Select2OptionData>;
     selectOptions = {};
+    backlogSubscription: Subscription;
 
     constructor(private backServices: BacklogServices) { }
     
 
     ngOnInit() {
-        this.backlogs = this.backServices.getBacklog();
+        this.backlogs = this.backServices.getBacklog();        
+        this.backlogSubscription = this.backServices.backlogChanged
+            .subscribe((backlogs: Backlog[]) => {
+                this.backlogs = backlogs;
+                
+            });
         this.frontendOption = this.assignOptionValue(this.backServices.getFrontend()); 
         this.selectOptions = {
             placeholder: { id: '', text: 'Select Record' },
@@ -215,13 +222,18 @@ export class BackLogsComponent implements OnInit {
         }
     }
     onAdd() {
-        var count = this.backlogs.length + 1;
-        const newitem = new Backlog(count, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>');
+        var count = this.backlogs.length ;
+        const newitem = new Backlog(0, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>');
         this.backlogs.push(newitem);
         this.editRowID = count;
     }
-    onDelete(index: number) {
+    onDelete(item:Backlog,index: number) {        
+        this.backServices.deleteBacklog(index);        
         this.backlogs.splice(index, 1);
+    }
+    onSave() {        
+        const saveBacklogs = this.backlogs.filter(x => x.id == 0);             
+        this.backServices.saveBacklog(saveBacklogs);
     }
    
 }
