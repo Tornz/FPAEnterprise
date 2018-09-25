@@ -8,13 +8,16 @@ import { BackLogsComponent } from './fpa/backlogs/backlogs.component';
 import { EstimationComponent } from './fpa/estimation/estimation.component';
 import { ImplementationComponent } from './fpa/implementation/implementation.component';
 import { HotTableModule } from '@handsontable/angular';
+import { FunctionsComponent } from './fpa/functions/functions.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-    imports: [CommonModule, PhasingRoutingModule, HotTableModule],
+    imports: [CommonModule, PhasingRoutingModule, HotTableModule, NgbModule.forRoot()],
     declarations: [PhasingComponent,
         FPAComponent,
         BackLogsComponent,
         EstimationComponent,
-        ImplementationComponent]
+        ImplementationComponent,
+        FunctionsComponent]
 })
 export class PhasingModule {}
