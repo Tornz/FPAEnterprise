@@ -18,6 +18,8 @@ import { Backlog } from '../../../../model/backlog.model';
 
 export class BackLogsComponent implements OnInit {
     activeTab = [];
+    display = 'none';
+    modalLabel = "";
     backlogs: Backlog[] = [];
     editRowID: any='';
     frontendOption: Array<Select2OptionData>;
@@ -32,18 +34,17 @@ export class BackLogsComponent implements OnInit {
 
     ngOnInit() {
         this.backlogs = this.backServices.getBacklog();        
-        this.backlogSubscription = this.backServices.backlogChanged
-            .subscribe((backlogs: Backlog[]) => {
-                this.backlogs = backlogs;
-                
-            });
+        //this.backlogSubscription = this.backServices.backlogChanged
+        //    .subscribe((backlogs: Backlog[]) => {
+        //        this.backlogs = backlogs;                
+        //    });
         this.frontendOption = this.assignOptionValue(this.backServices.getFrontend()); 
         this.selectOptions = {
             placeholder: { id: '', text: 'Select Record' },
             width: "100px",
             name: 'empPosition'
         }
-        this.EditRow(1);
+        this.EditRow(0);
 
         //const temp = this.backServices.getBacklog();
         //$(document).ready(function () {
@@ -179,6 +180,7 @@ export class BackLogsComponent implements OnInit {
     }
     EditRow(val) {
         this.editRowID = val;
+        this.backlogs[val].edited = true;
     }
 
     ilfChanged(e: any, index: number): void {   
@@ -223,7 +225,7 @@ export class BackLogsComponent implements OnInit {
     }
     onAdd() {
         var count = this.backlogs.length ;
-        const newitem = new Backlog(0, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>');
+        const newitem = new Backlog(0, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>',false);
         this.backlogs.push(newitem);
         this.editRowID = count;
     }
@@ -232,8 +234,20 @@ export class BackLogsComponent implements OnInit {
         this.backlogs.splice(index, 1);
     }
     onSave() {        
-        const saveBacklogs = this.backlogs.filter(x => x.id == 0);             
+        const saveBacklogs = this.backlogs.filter(x => x.id == 0);
+        const editBacklogs = this.backlogs.filter(x => x.edited == true);        
         this.backServices.saveBacklog(saveBacklogs);
+        this.backServices.saveEditBacklog(editBacklogs);
+        if (saveBacklogs.length > 0 || editBacklogs.length > 0) {
+    
+            this.display = 'block';
+            this.modalLabel = "Record Saved!!";
+        }
+     
+       
+    }
+    onCloseHandled() {
+        this.display = 'none';
     }
    
 }

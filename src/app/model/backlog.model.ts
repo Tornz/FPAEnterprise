@@ -18,12 +18,13 @@ export class Backlog {
     public eq_det: number;
     public eq_technology: string;
     public reusePercentage: string;
+    public edited: boolean;
 
 
     constructor(id: number, module: string, description: string, ilf_ret: number, ilf_det: number, ilf_technology: string
         , eif_ret: number, eif_det: number, eif_technology: string, ei_ftr: number, ei_det: number
         , ei_technology: string, eo_ftr: number, eo_det: number, eo_technology: string, eq_ftr: number
-        , eq_det: number, eq_technology: string, reusePercentage: string) {
+        , eq_det: number, eq_technology: string, reusePercentage: string, edited:boolean) {
 
         this.id = id;
         this.module = module;
@@ -44,6 +45,7 @@ export class Backlog {
         this.eq_det = eq_det;
         this.eq_technology = eq_technology;
         this.reusePercentage = reusePercentage;
+        this.edited = edited;
     }
 
 
