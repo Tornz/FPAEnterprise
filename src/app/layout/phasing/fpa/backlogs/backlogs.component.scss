@@ -1,3 +1,6 @@
+.body{
+    font-size:11px !important;
+}
 .handsontable table.htCore {
     border-collapse: separate;
     border-spacing: 0;
@@ -16,4 +19,63 @@
 .card {
     padding: 0px !important;
     margin: 0px !important;
+}
+
+.myTable {
+    font-size: 11px !important;
+}
+.myTableHeader{
+    font-weight:bold;
+}
+
+.form-control {
+    font-size: 11px !important;
+    padding: 0.3rem 0rem !important;
+    width:100px;
+    margin:0px !important;
+    border-radius:3px !important;
+}
+
+
+.select2-container {
+    font-size: 11px !important;
+}
+
+.select2-results {
+    font-size: 11px !important;
+}
+
+
+.select2-selection--single {
+    height: 34px !important;
+}
+
+.select2-selection__rendered {
+    line-height: 30px !important;   
+}
+
+.select2-search__field {
+    font-size: 11px !important;
+}
+
+.inputsize{
+    width:100% !important;
+}
+
+.tdsize {
+    width: 20px !important;
+}
+
+
+.table td{
+    padding-left: 1px !important;
+    padding-right: 0px !important;
+}
+
+.mypointer{
+    cursor:pointer;
+}
+
+.btn {
+    line-height: 1 !important;
 }

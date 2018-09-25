@@ -1,0 +1,96 @@
+<div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card border-dark mb-3">
+        <p class="card-header">Frontend Technologies</p>
+        <div class="card-body">
+          <div class="input-group">
+            <select class="custom-select" id="fTSelect">
+              <option selected disabled>Choose Technology</option>
+              <option *ngFor="let tech of frontTechs">{{tech}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" (click)="addFT()">Add</button>
+            </div>
+          </div>
+          <div>
+            <div class="text-muted selectedItems">Selected Items:
+              <span class="badge badge-pill badge-primary" *ngFor="let ft of selectedFront">
+                {{ft}}
+                <i class="fa fa-times" (click)="removeFT(ft)"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card border-dark mb-3">
+        <p class="card-header">Backend Technologies</p>
+        <div class="card-body">
+          <div class="input-group">
+            <select class="custom-select" id="bTSelect">
+              <option selected disabled>Choose Technology</option>
+              <option *ngFor="let tech of backTechs">{{tech}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" (click)="addBT()">Add</button>
+            </div>
+          </div>
+          <div class="text-muted selectedItems">Selected Items:
+            <span class="badge badge-pill badge-primary" *ngFor="let bt of selectedBack">
+              {{bt}}
+              <i class="fa fa-times" (click)="removeBT(bt)"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card border-dark mb-3">
+        <p class="card-header">Reporting Technologies</p>
+        <div class="card-body">
+          <div class="input-group">
+            <select class="custom-select" id="rTSelect">
+              <option selected disabled>Choose Technology</option>
+              <option *ngFor="let tech of reportTechs">{{tech}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" (click)="addRT()">Add</button>
+            </div>
+          </div>
+          <div class="text-muted selectedItems">Selected Items:
+            <span class="badge badge-pill badge-primary" *ngFor="let rt of selectedReport">
+              {{rt}}
+              <i class="fa fa-times" (click)="removeRT(rt)"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card border-dark mb-3">
+        <p class="card-header">Storage Technologies</p>
+        <div class="card-body">
+          <div class="input-group">
+            <select class="custom-select" id="sTSelect">
+              <option selected disabled>Choose Technology</option>
+              <option *ngFor="let tech of storageTechs">{{tech}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" (click)="addST()">Add</button>
+            </div>
+          </div>
+          <div class="text-muted selectedItems">Selected Items:
+            <span class="badge badge-pill badge-primary" *ngFor="let st of selectedStorage">
+              {{st}}
+              <i class="fa fa-times" (click)="removeST(st)"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
