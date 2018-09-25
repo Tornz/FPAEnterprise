@@ -214,6 +214,15 @@ export class BackLogsComponent implements OnInit {
             console.log(e.data[0].text);
         }
     }
-
+    onAdd() {
+        var count = this.backlogs.length + 1;
+        const newitem = new Backlog(count, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>');
+        this.backlogs.push(newitem);
+        this.editRowID = count;
+    }
+    onDelete(index: number) {
+        this.backlogs.splice(index, 1);
+    }
+   
 }
     

@@ -2,11 +2,15 @@
 <br />
 <div class="row" style="padding-bottom:10px">
     <div class="col-md-12 ">
-        <div class="col-md-4 pull-right">
-            <button type="button" id="btn-export" class="btn btn-outline-primary btn-fpa">Export<i class="fa fa-cloud-download" aria-hidden="true" style="margin-left: 10px"></i></button>
-            <button type="button" class="btn btn-outline-primary btn-fpa">Import<i class="fa fa-cloud-upload" aria-hidden="true" style="margin-left: 10px"></i></button>
-            <button type="button" class="btn btn-outline-primary btn-fpa">Print<i class="fa fa-print" aria-hidden="true" style="margin-left: 10px"></i></button>
+        <div class="col-md-3 pull-left">
+            <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa" (click)="onAdd()">ADD<i class="fa fa-plus" aria-hidden="true"></i></button>
             <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa">Save<i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 10px"></i></button>
+        </div>
+        <div class="col-md-9 pull-right">
+            <button type="button" id="btn-export" class="btn btn-outline-primary pull-right">Export<i class="fa fa-cloud-download" aria-hidden="true" style="margin-left: 10px"></i></button> 
+            <button type="button" class="btn btn-outline-primary pull-right">Import<i class="fa fa-cloud-upload" aria-hidden="true" style="margin-left: 10px"></i></button>
+            <button type="button" class="btn btn-outline-primary pull-right">Print<i class="fa fa-print" aria-hidden="true" style="margin-left: 10px"></i></button>
+           
         </div>
     </div>
 </div>
@@ -116,7 +120,7 @@
                                  (valueChanged)="eqChanged($event,i)"></select2> 
                     </td>
                     <td style="width:100px" *ngIf="item.id !== editRowID" (click)="EditRow(item.id)">{{item.eq_technology}}</td>
-                    <td><a title="Function"> <i class="fa fa-list fa-lg mypointer" aria-hidden="true"></i> &nbsp; </a>  <a title="Delete"><i class="fa fa-trash-o fa-lg mypointer"  aria-hidden="true"></i></a></td>
+                    <td><a title="Function"> &nbsp;<i class="fa fa-list fa-lg mypointer" aria-hidden="true"></i> &nbsp; </a>  <a title="Delete" (click)="onDelete(i)"><i class="fa fa-trash-o fa-lg mypointer"  aria-hidden="true"></i></a></td>
                 </tr>
             </tbody>
         </table>
