@@ -15,6 +15,7 @@ import { UserStoryComponent } from './fpa/user-story/user-story.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FpaServices } from '../../services/fpa.services'
 import { BacklogServices } from '../../data-services/backlog.services';
+import { TechComponentServices } from '../../data-services/techComponent.services';
 
 
 
@@ -27,6 +28,6 @@ import { BacklogServices } from '../../data-services/backlog.services';
                 ImplementationComponent,
                 ComponentsComponent,
                 UserStoryComponent],
-        providers: [BacklogServices]
+        providers: [BacklogServices, TechComponentServices]
 })
 export class PhasingModule { }
