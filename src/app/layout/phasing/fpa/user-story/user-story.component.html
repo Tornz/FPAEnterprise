@@ -8,7 +8,7 @@
             <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
         </div>
         <div class="pl-2">
-            <button type="button" class="btn btn-primary" (click)="addProj()"k>Add User Story {{text}}</button>
+            <button type="button" class="btn btn-outline-primary" (click)="addProj()"k>Add User Story {{text}}</button>
         </div>
     </div>
     <div class="card mb-3">
@@ -29,7 +29,8 @@
                         <th scope="row">{{data.id}}</th>
                     <th scope="row">{{data.userStory }}</th>
                     <th scope="row">{{data.dateCreated | date:'mediumDate'}}</th>
-                    <th scope="row"><button class="btn btn-primary" (click)="addBacklog(data)">Add Backlog</button><button class="btn btn-info" (click)="editUser(data)">Edit</button><button class="btn btn-danger" (click)="deleteuser(data)">Delete</button></th>
+                    <th scope="row">{{data.dateUpdated | date:'mediumDate'}}</th>
+                    <th scope="row"><button class="btn btn-outline-primary" (click)="addBacklog(data)">Add Backlog</button><button class="btn btn-outline-info" (click)="editUser(data)">Edit</button><button class="btn btn-outline-danger" (click)="deleteuser(data)">Delete</button></th>
 
                     <!-- <td>Project1</td>
                     <td>Otto</td>
@@ -69,20 +70,20 @@
             <form [formGroup]="userForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()">   
             <div class="modal-body">
                 
-                    <div class="form-group">
-                        <label for="project">User Story Name</label>
-                        <input type="text" class="form-control" formControlName="user" [(ngModel)]="users.userStory" placeholder="User Story">
-                        <div class="error-message" *ngIf="!userForm.controls.user.dirty && myForm.submitted">
+                    <div class="form-group" >
+                        <label for="project">User Story</label>
+                        <textarea type="text" class="form-control" formControlName="user" placeholder="User Story"></textarea>
+                        <!-- <div class="error-message" *ngIf="userForm.controls.user.invalid && myForm.submitted">
 
                                 <i class="fa fa-close"></i> Please enter a valid User Story
-                            </div>
+                            </div> -->
                     </div>
                   
                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"  (click)="onCloseHandled()" >Close</button>
-                <button type="submit" class="btn btn-primary" >Save</button>
+                <button type="button" class="btn btn-outline-secondary"  (click)="onCloseHandled()" >Close</button>
+                <button type="submit" class="btn btn-outline-primary" >Save</button>
             </div>
         </form>
         </div>
@@ -98,16 +99,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form [formGroup]="userForm" #myForm='ngForm' (ngSubmit)="onEditUser()">   
+            <form [formGroup]="userForm" #myForm='ngForm' (ngSubmit)="onEditUser(users)">   
             <div class="modal-body">
                 
                     <div class="form-group">
                         <label for="project">User Story Name</label>
                         <input type="text" class="form-control" formControlName="user"  [value]="users.userStory">
-                        <div class="error-message" *ngIf="!userForm.controls.user.valid && myForm.submitted">
-
-                                <i class="fa fa-close"></i> Please enter a valid User Story
-                            </div>
                     </div>
                   
                

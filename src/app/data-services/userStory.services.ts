@@ -5,15 +5,12 @@ import { HttpClient } from '@angular/common/http';
 // import { Observable } from 'rxjs';
 
 
-// import { Role } from '../_models/index';
+import { User } from '../model/user.model';
 // import { FunctionComponent } from 'app/_models/fncomponent';
 import { environment } from '../../environments/environment';
 @Injectable()
-export class FpaServices {
-    public userStory = [
-        { id: 1, userStory: 'Project A', dateCreated: new Date() },
-        { id: 2, userStory: 'Project A', dateCreated: new Date() },
-    ];
+export class UserStoryServices {
+    public userStory = [];
     constructor(
         private http: HttpClient) {
     }
@@ -24,6 +21,17 @@ export class FpaServices {
         // return this.http.get<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
         // .toPromise();
         return this.userStory;
+    }
+
+    addBacklogperUser(id: any, data: any){
+        console.log("Data from backlogs", data)
+        for(var i in this.userStory){
+            if(this.userStory[i].id == id){
+                this.userStory[i].backlog = data
+                this.userStory[i].dateUpdated = new Date();
+                return true;
+            }
+        }
     }
 
     addUserStory(data) {
@@ -48,9 +56,14 @@ export class FpaServices {
         for(var i in this.userStory){
             if(this.userStory[i].id == id){
                 this.userStory[i].userStory = data.userStory
+                this.userStory[i].dateUpdated = new Date();
                 return true;
             }
         }
+    }
+
+    updateTab(data: any){
+        console.log("Data tab",data)
     }
 
 

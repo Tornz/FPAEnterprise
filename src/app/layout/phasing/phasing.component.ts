@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { Router } from '@angular/router';
+import { ProjectServices } from '../../data-services/project.services'
 
 @Component({
     selector: 'app-phasing',
@@ -10,17 +11,22 @@ import { Router } from '@angular/router';
 })
 export class PhasingComponent implements OnInit {
     project: any;
-    constructor(private router: Router) {}
+    constructor(private router: Router, private proj: ProjectServices) {
+     
+    }
 
     public tabler = [
-        { header: 'ID', id: 1, projname: 'Project A', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' },
-        { header: 'Project Name', id: 2, projname: 'Project B', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' },
-        { header: 'Description', id: 3, projname: 'Project C', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' },
-        { header: 'Date Created', id: 4, projname: 'Project D', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' },
-        { header: 'Action', id: 4, projname: 'Project E', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' }
-    ];
+        ];
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.loadData();
+      
+    }
+
+    loadData(){
+        this.project = this.proj.getProjects();
+        console.log("Project", this.project.length)
+    }
     onPhaseLoad() {
         this.router.navigate(['/phasing/fpa']);
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Select2OptionData } from 'ng2-select2';
 import {  Subscription } from 'rxjs';
 import * as $ from 'jquery';
@@ -7,6 +7,7 @@ import * as Handsontable from 'handsontable';
 import { BacklogServices } from '../../../../data-services/backlog.services';
 import { TechnologyItem } from '../../../../model/TechnolonogyItem.model';
 import { Backlog } from '../../../../model/backlog.model';
+import { UserStoryServices } from '../../../../data-services/userStory.services'
 
 
 
@@ -28,12 +29,21 @@ export class BackLogsComponent implements OnInit {
     storageOption: Array<Select2OptionData>;
     selectOptions = {};
     backlogSubscription: Subscription;
+    @Input() data: any;
 
-    constructor(private backServices: BacklogServices) { }
+    constructor(private backServices: BacklogServices, private fpaSrv: UserStoryServices) { }
     
 
     ngOnInit() {
-        this.backlogs = this.backServices.getBacklog();        
+        console.log("Id", this.data)
+        // this.backlogs = this.backServices.getBacklog();  
+        if(this.data != null){
+            this.backlogs = this.data.backlog;
+        }else{
+               this.backlogs = this.backServices.getBacklog();  
+        }
+      
+        console.log("Id", this.backlogs)
         //this.backlogSubscription = this.backServices.backlogChanged
         //    .subscribe((backlogs: Backlog[]) => {
         //        this.backlogs = backlogs;                
@@ -243,6 +253,9 @@ export class BackLogsComponent implements OnInit {
             this.display = 'block';
             this.modalLabel = "Record Saved!!";
         }
+        console.log("Saved", this.backlogs)
+        console.log("Data", editBacklogs)
+        this.fpaSrv.addBacklogperUser(this.data.id, this.backlogs)
      
        
     }

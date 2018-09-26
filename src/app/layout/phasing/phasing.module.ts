@@ -14,8 +14,9 @@ import { FunctionsComponent } from './fpa/functions/functions.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComponentsComponent } from './fpa/components/components.component';
 import { UserStoryComponent } from './fpa/user-story/user-story.component';
+import {UserStoryServices} from '../../data-services/userStory.services'
+import {ProjectServices} from '../../data-services/project.services'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FpaServices } from '../../services/fpa.services'
 import { BacklogServices } from '../../data-services/backlog.services';
 
 @NgModule({
@@ -28,6 +29,6 @@ import { BacklogServices } from '../../data-services/backlog.services';
                 ComponentsComponent,
                 UserStoryComponent,
                 FunctionsComponent],
-        providers: [BacklogServices]
+        providers: [BacklogServices,UserStoryServices,ProjectServices]
 })
 export class PhasingModule { }

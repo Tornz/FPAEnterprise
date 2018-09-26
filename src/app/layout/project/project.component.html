@@ -1,21 +1,29 @@
 <div [@routerTransition]>
     <!-- <app-page-header [heading]="'Charts'" [icon]="'fa-bar-chart-o'"></app-page-header> -->
     <div class="form-group input-group col-4" style="padding-left: 0px;">
-        <input type="text" class="form-control" placeholder="Search" >
+        <form [formGroup]="searchForm" (ngSubmit)="searchProject()">
             <!-- <input type="text" name="text" [(ngModel)]="text" id="form1" class="form-control"> -->
-        <div class="input-group-append">
-            <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-        </div>
+            <div class="input-group-append">
+
+
+                <input type="text" class="form-control" formControlName="search" (ngModelChange)="filter($event)" placeholder="Search">
+                <button class="btn btn-secondary" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+
+            </div>
+        </form>
         <div class="pl-2">
             <button type="button" class="btn btn-primary" (click)="addProj()">New Project {{text}}</button>
         </div>
+
     </div>
     <div class="card mb-3">
         <!-- <div class="card-header">Projects</div> -->
         <table class="card-body table table-hover">
             <thead class="card-header" style="background-color: #cce5ff;">
                 <tr>
-                    <th *ngFor="let data of tabler">{{data.header}}</th>
+                    <th *ngFor="let data of cols">{{data.header}}</th>
                     <!-- <th>Project Name</th>
                     <th>Col</th>
                     <th>Col</th>
@@ -24,12 +32,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of tabler">
+                <tr *ngFor="let data of project">
                     <th scope="row">{{data.id}}</th>
-                    <th scope="row">{{data.projname}}</th>
-                    <th scope="row">{{data.desc}}</th>
-                    <th scope="row">{{data.datecreated}}</th>
-                    <th scope="row"><button type="button" class="btn btn-outline-success">{{data.edit}}</button></th>
+                    <th scope="row">{{data.projectName}}</th>
+                    <th scope="row">{{data.description}}</th>
+                    <th scope="row">{{data.phaseNumber}}</th>
+                    <!-- <th scope="row">{{data.technology}}</th> -->
+                    <th scope="row">{{data.methodology}}</th>
+                    <th scope="row">{{data.dateCreated | date:'mediumDate'}}</th>
+                    <th scope="row">{{data.dateUpdated | date:'mediumDate'}}</th>
+                    <th scope="row">
+                        <button type="button" class="btn btn-outline-success" (click)="editProj(data)">Edit</button>
+                    </th>
                     <!-- <td>Project1</td>
                     <td>Otto</td>
                     <td>@mdo</td> -->
@@ -48,7 +62,7 @@
             </tbody>
         </table>
     </div>
-    <div class="row" *ngIf="false">
+    <!-- <div class="row" *ngIf="false">
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
@@ -131,12 +145,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
 
-<div class="modal" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal" *ngIf="modal == 'add'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -146,34 +160,80 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            <form [formGroup]="projectForm" (ngSubmit)="addProject()">
+                <div class="modal-body">
+
                     <div class="form-group">
                         <label for="project">Project Name</label>
-                        <input type="text" class="form-control" id="project" placeholder="Project Name">
+                        <input type="text" class="form-control" formControlName="project" placeholder="Project Name">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea type="text" class="form-control" id="description" placeholder="Description"></textarea>
+                        <textarea type="text" class="form-control" formControlName="description" placeholder="Description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="phaseNo">Phase Number</label>
-                        <textarea type="text" class="form-control" id="phaseNo" placeholder="Phase Number"></textarea>
+                        <input type="number" class="form-control" formControlName="phaseNo" placeholder="Phase Number">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="technology">Technology</label>
-                        <textarea type="text" class="form-control" id="technology" placeholder="Technology"></textarea>
-                    </div>
+                        <textarea type="text" class="form-control" formControlName="technology" placeholder="Technology"></textarea>
+                    </div> -->
                     <div class="form-group">
                         <label for="methodology">Methodology</label>
-                        <textarea type="text" class="form-control" id="methodology" placeholder="Methodology"></textarea>
+                        <textarea type="text" class="form-control" formControlName="methodology" placeholder="Methodology"></textarea>
                     </div>
-                </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" *ngIf="modal == 'edit'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
-                <button type="button" class="btn btn-primary" (click)="onCloseHandled()">Save</button>
-            </div>
+            <form [formGroup]="projectForm" (ngSubmit)="editProject()">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="project">Project Name</label>
+                        <input type="text" class="form-control" formControlName="project" [(ngModel)]="proj.projectName" placeholder="Project Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea type="text" class="form-control" formControlName="description" [(ngModel)]="proj.description" placeholder="Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="phaseNo">Phase Number</label>
+                        <textarea type="text" class="form-control" formControlName="phaseNo" [(ngModel)]="proj.phaseNumber" placeholder="Phase Number"></textarea>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="technology">Technology</label>
+                        <textarea type="text" class="form-control" formControlName="technology" [(ngModel)]="proj.technology" placeholder="Technology"></textarea>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="methodology">Methodology</label>
+                        <textarea type="text" class="form-control" formControlName="methodology" [(ngModel)]="proj.methodology" placeholder="Methodology"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
