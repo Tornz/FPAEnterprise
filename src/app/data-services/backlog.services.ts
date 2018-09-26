@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Backlog } from "../model/backlog.model";
 import { TechnologyItem } from "../model/TechnolonogyItem.model";
 import { Subject } from "rxjs";
-import { forEach } from "@angular/router/src/utils/collection";
+
 
 
 @Injectable()

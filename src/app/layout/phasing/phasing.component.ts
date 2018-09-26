@@ -25,7 +25,7 @@ export class PhasingComponent implements OnInit {
 
     loadData(){
         this.project = this.proj.getProjects();
-        console.log("Project", this.project.length)
+        //console.log("Project", this.project.length)
     }
     onPhaseLoad() {
         this.router.navigate(['/phasing/fpa']);

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+
 import { routerTransition } from '../../router.animations';
 import { ProjectServices } from '../../data-services/project.services';
 import { Project } from '../../model/project.model';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { from } from 'rxjs';
+import { Subscription } from 'rxjs';
+
 @Component({
     selector: 'app-project',
     templateUrl: './project.component.html',
@@ -18,6 +20,7 @@ export class ProjectComponent implements OnInit {
     projectForm: FormGroup;
     searchForm: FormGroup;
     modal: any;
+    projectSubscription: Subscription;
     public cols = [{ header: 'Id' },
     { header: 'Project Name' },
     { header: 'Description' },
@@ -43,14 +46,16 @@ export class ProjectComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        console.log("Project Name", this.proj.projectName);
         this.loadData();
+        this.projectSubscription = this.projSrv.projectChanged
+            .subscribe((project: any) => {
+                this.project = project;
+            });
     }
 
     loadData(search?: any) {
         this.project = this.projSrv.getProjects();
-        console.log("Project data", this.project)
+       
         // if(search != null){
         //     console.log("Searchs", search)
         //     // this.project = this.projSrv.getProjects();
@@ -100,7 +105,7 @@ export class ProjectComponent implements OnInit {
 
     addProject() {
 
-        console.log("Add Project", this.projectForm.controls.project.value)
+        
         this.proj.id = 1;
         this.proj.dateCreated = new Date();
         this.proj.dateUpdated = new Date();
@@ -109,7 +114,7 @@ export class ProjectComponent implements OnInit {
         this.proj.methodology = this.projectForm.controls.methodology.value;
         this.proj.phaseNumber = this.projectForm.controls.phaseNo.value;
         this.proj.description = this.projectForm.controls.description.value;
-        this.projSrv.addProject(this.proj)
+        this.projSrv.addProject(this.proj);
         this.display = 'none';
         this.projectForm.reset();
     }

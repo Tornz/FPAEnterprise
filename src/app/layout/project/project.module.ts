@@ -13,6 +13,6 @@ import {ProjectServices} from '../../data-services/project.services'
 @NgModule({
     imports: [CommonModule, Ng2Charts, ProjectRoutingModule, PageHeaderModule,ReactiveFormsModule, FormsModule ],
     declarations: [ProjectComponent],
-    providers: [ProjectServices]
+    providers: []
 })
 export class ProjectModule {}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { Subject } from "rxjs";
 
 import { HttpClient } from '@angular/common/http';
 // import { Observable } from 'rxjs';
@@ -10,7 +10,8 @@ import { Project } from '../model/project.model';
 import { environment } from '../../environments/environment';
 @Injectable()
 export class ProjectServices {
-    public project = [];
+    private project = [];
+    projectChanged = new Subject<any>();
     constructor(
         private http: HttpClient) {
     }
@@ -20,7 +21,8 @@ export class ProjectServices {
         //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
         // return this.http.get<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
         // .toPromise();
-        return this.project;
+        console.log(this.project.slice());
+        return this.project.slice();
     }
 
     addProject(data) {
@@ -30,8 +32,8 @@ export class ProjectServices {
         // FunctionComponent for model of data
         // return this.http.post<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
         // .toPromise();
-
-        this.project.push(data);
+        this.project.push(data);        
+        this.projectChanged.next(this.project.slice());
     }
 
     editProject(id: any, data: any) {
