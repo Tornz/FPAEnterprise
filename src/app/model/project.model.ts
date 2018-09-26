@@ -2,7 +2,7 @@ export class Project{
     id: number;
     projectName: string;
     description: Text;
-    phaseNumber: string;
+    phaseNumber = [];
     technology: string;
     methodology: string;
     dateCreated: Date;
