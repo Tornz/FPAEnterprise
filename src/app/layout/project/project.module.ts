@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartsModule as Ng2Charts } from 'ng2-charts';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { PageHeaderModule } from '../../shared';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
 
+//Services
+import {ProjectServices} from '../../data-services/project.services'
+
 @NgModule({
-    imports: [CommonModule, Ng2Charts, ProjectRoutingModule, PageHeaderModule],
-    declarations: [ProjectComponent]
+    imports: [CommonModule, Ng2Charts, ProjectRoutingModule, PageHeaderModule,ReactiveFormsModule, FormsModule ],
+    declarations: [ProjectComponent],
+    providers: []
 })
 export class ProjectModule {}

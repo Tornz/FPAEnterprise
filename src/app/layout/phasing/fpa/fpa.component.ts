@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { UserStoryServices } from '../../../data-services/userStory.services'
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,13 +10,14 @@ import { Router } from '@angular/router';
 })
 export class FPAComponent implements OnInit {
     activeTab: number=1;
-
-    constructor(private router: Router) { }
+    @Input() data: any;
+    constructor(private router: Router, public fpaSrv: UserStoryServices) { }
 
     ngOnInit() { }
 
-    onTab(index:number) {
+    onTab(index:number, data?: any) {
         this.activeTab = index;
+        this.data = data;
     }
 
 }

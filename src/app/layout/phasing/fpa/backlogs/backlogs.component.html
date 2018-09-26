@@ -51,7 +51,7 @@
                     <td style="width:100px">RET</td>
                     <td style="width:100px">DET</td>
                     <td style="width:100px">Technology</td>
-                    <td style="width:100px">Action</td>
+                    <td style="width:110px;min-width:100px;">Action</td>
                 </tr>
             </thead>
             <tbody class="tableBody">
@@ -119,8 +119,8 @@
                                  [value]="1"
                                  (valueChanged)="eqChanged($event,i)"></select2>
                     </td>
-                    <td style="width:100px" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.eq_technology}}</td>
-                    <td><a title="Function"> &nbsp;<i class="fa fa-list fa-lg mypointer" aria-hidden="true"></i> &nbsp; </a>  <a title="Delete" (click)="onDelete(item,i)"><i class="fa fa-trash-o fa-lg mypointer" aria-hidden="true"></i></a></td>
+                    <td style="width:110px; min-width:100px;" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.eq_technology}}</td>
+                    <td><a title="Delete" (click)="onDelete(item,i)"><i class="fa fa-trash-o fa-lg mypointer" aria-hidden="true"></i></a></td>
                 </tr>
             </tbody>
         </table>
