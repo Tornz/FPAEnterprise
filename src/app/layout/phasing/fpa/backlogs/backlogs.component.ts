@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Select2OptionData } from 'ng2-select2';
 import {  Subscription } from 'rxjs';
 import * as $ from 'jquery';
@@ -7,6 +7,7 @@ import * as Handsontable from 'handsontable';
 import { BacklogServices } from '../../../../data-services/backlog.services';
 import { TechnologyItem } from '../../../../model/TechnolonogyItem.model';
 import { Backlog } from '../../../../model/backlog.model';
+import { UserStoryServices } from '../../../../data-services/userStory.services'
 
 
 
@@ -18,6 +19,8 @@ import { Backlog } from '../../../../model/backlog.model';
 
 export class BackLogsComponent implements OnInit {
     activeTab = [];
+    display = 'none';
+    modalLabel = "";
     backlogs: Backlog[] = [];
     editRowID: any='';
     frontendOption: Array<Select2OptionData>;
@@ -26,24 +29,32 @@ export class BackLogsComponent implements OnInit {
     storageOption: Array<Select2OptionData>;
     selectOptions = {};
     backlogSubscription: Subscription;
+    @Input() data: any;
 
-    constructor(private backServices: BacklogServices) { }
+    constructor(private backServices: BacklogServices, private fpaSrv: UserStoryServices) { }
     
 
     ngOnInit() {
-        this.backlogs = this.backServices.getBacklog();        
-        this.backlogSubscription = this.backServices.backlogChanged
-            .subscribe((backlogs: Backlog[]) => {
-                this.backlogs = backlogs;
-                
-            });
+        console.log("Id", this.data)
+        // this.backlogs = this.backServices.getBacklog();  
+        if(this.data != null){
+            this.backlogs = this.data.backlog;
+        }else{
+               this.backlogs = this.backServices.getBacklog();  
+        }
+      
+        console.log("Id", this.backlogs)
+        //this.backlogSubscription = this.backServices.backlogChanged
+        //    .subscribe((backlogs: Backlog[]) => {
+        //        this.backlogs = backlogs;                
+        //    });
         this.frontendOption = this.assignOptionValue(this.backServices.getFrontend()); 
         this.selectOptions = {
             placeholder: { id: '', text: 'Select Record' },
             width: "100px",
             name: 'empPosition'
         }
-        this.EditRow(1);
+        this.EditRow(0);
 
         //const temp = this.backServices.getBacklog();
         //$(document).ready(function () {
@@ -179,6 +190,7 @@ export class BackLogsComponent implements OnInit {
     }
     EditRow(val) {
         this.editRowID = val;
+        this.backlogs[val].edited = true;
     }
 
     ilfChanged(e: any, index: number): void {   
@@ -223,7 +235,7 @@ export class BackLogsComponent implements OnInit {
     }
     onAdd() {
         var count = this.backlogs.length ;
-        const newitem = new Backlog(0, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>');
+        const newitem = new Backlog(0, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>',false);
         this.backlogs.push(newitem);
         this.editRowID = count;
     }
@@ -232,8 +244,23 @@ export class BackLogsComponent implements OnInit {
         this.backlogs.splice(index, 1);
     }
     onSave() {        
-        const saveBacklogs = this.backlogs.filter(x => x.id == 0);             
+        const saveBacklogs = this.backlogs.filter(x => x.id == 0);
+        const editBacklogs = this.backlogs.filter(x => x.edited == true);        
         this.backServices.saveBacklog(saveBacklogs);
+        this.backServices.saveEditBacklog(editBacklogs);
+        if (saveBacklogs.length > 0 || editBacklogs.length > 0) {
+    
+            this.display = 'block';
+            this.modalLabel = "Record Saved!!";
+        }
+        console.log("Saved", this.backlogs)
+        console.log("Data", editBacklogs)
+        this.fpaSrv.addBacklogperUser(this.data.id, this.backlogs)
+     
+       
+    }
+    onCloseHandled() {
+        this.display = 'none';
     }
    
 }

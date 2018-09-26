@@ -10,24 +10,25 @@ import { BackLogsComponent } from './fpa/backlogs/backlogs.component';
 import { EstimationComponent } from './fpa/estimation/estimation.component';
 import { ImplementationComponent } from './fpa/implementation/implementation.component';
 import { HotTableModule } from '@handsontable/angular';
+import { FunctionsComponent } from './fpa/functions/functions.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComponentsComponent } from './fpa/components/components.component';
 import { UserStoryComponent } from './fpa/user-story/user-story.component';
+import { UserStoryServices } from '../../data-services/userStory.services'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FpaServices } from '../../services/fpa.services'
 import { BacklogServices } from '../../data-services/backlog.services';
 import { TechComponentServices } from '../../data-services/techComponent.services';
 
-
-
 @NgModule({
-        imports: [CommonModule, PhasingRoutingModule, HotTableModule, FormsModule, ReactiveFormsModule, Select2Module],
+        imports: [CommonModule, PhasingRoutingModule, HotTableModule, FormsModule, ReactiveFormsModule, Select2Module, NgbModule.forRoot()],
         declarations: [PhasingComponent,
                 FPAComponent,
                 BackLogsComponent,
                 EstimationComponent,
                 ImplementationComponent,
                 ComponentsComponent,
-                UserStoryComponent],
-        providers: [BacklogServices, TechComponentServices]
+                UserStoryComponent,
+                FunctionsComponent],
+        providers: [BacklogServices, UserStoryServices, TechComponentServices]
 })
 export class PhasingModule { }

@@ -3,16 +3,16 @@ import { Injectable } from "@angular/core";
 import { Backlog } from "../model/backlog.model";
 import { TechnologyItem } from "../model/TechnolonogyItem.model";
 import { Subject } from "rxjs";
-import { forEach } from "@angular/router/src/utils/collection";
+
 
 
 @Injectable()
 export class BacklogServices{
     backlogChanged = new Subject<Backlog[]>();
     private backloglist : Backlog[] = [
-        new Backlog(1,'Registration', 'Registration System', 1, 2, 'Angular/Ionic', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', '<a (click)="onFunction()">Function</a>'),
-        new Backlog(2, 'Synchonization', 'Synchonization System', 1, 2, 'Angular/Ionic', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', '<button class="btn btn-default btn-sm" (click)="onFunction()"><i class="fa fa-list" aria-hidden="true"></i></button>'),
-        new Backlog(3, 'CustomerSPA', 'SPA', 1, 2, 'Angular/Ionic', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', '<button class="btn btn-default btn-sm" (click)="onFunction()"><i class="fa fa-list" aria-hidden="true"></i></button>')
+        new Backlog(1,'Registration', 'Registration System', 1, 2, 'Angular/Ionic', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', '',false),
+        new Backlog(2, 'Synchonization', 'Synchonization System', 1, 2, 'Angular/Ionic', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', '',false),
+        new Backlog(3, 'CustomerSPA', 'SPA', 1, 2, 'Angular/Ionic', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', '',false)
     ];
 
     private frontend: TechnologyItem[] = [new TechnologyItem(1, "Angular/Ionic"),
@@ -49,6 +49,13 @@ export class BacklogServices{
     saveBacklog(item: Backlog[]) {
         item.forEach(element => {
             this.backloglist.push(element);
+        });
+    }
+
+    saveEditBacklog(item: Backlog[]) {
+        item.forEach(element => {
+            var index = this.backloglist.findIndex(x => x.id == element.id);
+            this.backloglist[index] = element;
         });
     }
 }
