@@ -8,6 +8,8 @@ import { BacklogServices } from '../../../../data-services/backlog.services';
 import { TechnologyItem } from '../../../../model/TechnolonogyItem.model';
 import { Backlog } from '../../../../model/backlog.model';
 import { UserStoryServices } from '../../../../data-services/userStory.services'
+import { TechComponentServices } from '../../../../data-services/techComponent.services';
+import { TechComponents } from '../../../../model/techComponents.model';
 
 
 
@@ -29,13 +31,14 @@ export class BackLogsComponent implements OnInit {
     storageOption: Array<Select2OptionData>;
     selectOptions = {};
     backlogSubscription: Subscription;
+    componentSubscription: Subscription;
     @Input() data: any;
 
-    constructor(private backServices: BacklogServices, private fpaSrv: UserStoryServices) { }
+    constructor(private backServices: BacklogServices, private fpaSrv: UserStoryServices, private techService: TechComponentServices) { }
     
 
     ngOnInit() {
-        console.log("Id", this.data)
+        //console.log("Id", this.data)
         // this.backlogs = this.backServices.getBacklog();  
         if(this.data != null){
             this.backlogs = this.data.backlog;
@@ -43,12 +46,27 @@ export class BackLogsComponent implements OnInit {
                this.backlogs = this.backServices.getBacklog();  
         }
       
-        console.log("Id", this.backlogs)
+        //console.log("Id", this.backlogs)
         //this.backlogSubscription = this.backServices.backlogChanged
         //    .subscribe((backlogs: Backlog[]) => {
         //        this.backlogs = backlogs;                
         //    });
-        this.frontendOption = this.assignOptionValue(this.backServices.getFrontend()); 
+        this.frontendOption = this.assignOptionValue(this.techService.getComponents().frontend);
+        this.backendOption = this.assignOptionValue(this.techService.getComponents().backend);
+        this.storageOption = this.assignOptionValue(this.techService.getComponents().storage);
+        this.reportingOption = this.assignOptionValue(this.techService.getComponents().report);
+        console.log("onInit");
+        this.componentSubscription = this.techService.componentsChanged
+            .subscribe((componentList: TechComponents) => {
+                this.frontendOption = this.assignOptionValue(componentList.frontend);
+                this.backendOption = this.assignOptionValue(componentList.backend);
+                this.storageOption = this.assignOptionValue(componentList.storage);
+                this.reportingOption = this.assignOptionValue(componentList.report);
+                console.log("backlogs")
+                console.log(componentList);
+            });
+
+
         this.selectOptions = {
             placeholder: { id: '', text: 'Select Record' },
             width: "100px",

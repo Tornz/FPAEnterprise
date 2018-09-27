@@ -10,7 +10,55 @@ import { Project } from '../model/project.model';
 import { environment } from '../../environments/environment';
 @Injectable()
 export class ProjectServices {
-    private project = [];
+
+    private project = [
+        {
+            id: 1,
+            projectName: "Project A",
+            description: "Description",
+            phaseNumber: ["Web Application", "Mobile Application"],
+            technology: "",
+            methodology: "Agile",
+            dateUpdated: new Date()
+        },
+        {
+            id: 2,
+            projectName: "Project B",
+            description: "Description",
+            phaseNumber: ["Web Application", "Mobile Application"],
+            technology: "",
+            methodology: "Agile",
+            dateUpdated: new Date()
+        },
+        {
+            id: 3,
+            projectName: "Project C",
+            description: "Description",
+            phaseNumber: ["Web Application", "Mobile Application"],
+            technology: "",
+            methodology: "Agile",
+            dateUpdated: new Date()
+        },
+        {
+            id: 3,
+            projectName: "Project D",
+            description: "Description",
+            phaseNumber: ["Web Application", "Mobile Application"],
+            technology: "",
+            methodology: "Agile",
+            dateUpdated: new Date()
+        },
+        {
+            id: 3,
+            projectName: "Project E",
+            description: "Description",
+            phaseNumber: ["Web Application", "Mobile Application"],
+            technology: "",
+            methodology: "Agile",
+            dateUpdated: new Date()
+        }
+    ];
+    
     projectChanged = new Subject<any>();
     constructor(
         private http: HttpClient) {

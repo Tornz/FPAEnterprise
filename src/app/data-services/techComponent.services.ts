@@ -55,9 +55,13 @@ export class TechComponentServices {
         new TechnologyItem(9, "SQL Server Integration Service")
     ];
 
-    getComponents() {
+    getComponents() {        
         return this.technologies;
     }
+
+
+
+
     getFrontend() {
         return this.frontend.slice();
     }
@@ -76,6 +80,9 @@ export class TechComponentServices {
         this.technologies.backend = item.backend.slice();
         this.technologies.report = item.report.slice();
         this.technologies.storage = item.storage.slice();
+        this.componentsChanged.next(this.technologies);
+        
+        
     }
 }
 

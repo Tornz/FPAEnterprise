@@ -13,7 +13,7 @@ const routes: Routes = [
             { path: 'bdoc', loadChildren: './biddocument/biddocument.module#BidDocumentModule' },
             { path: 'phasing', loadChildren: './phasing/phasing.module#PhasingModule' },
             { path: 'sysb', loadChildren: './systemdiagram/systemdiagram.module#SystemDiagramModule' },
-            { path: 'cmodel', loadChildren: './grid/grid.module#GridModule' },
+            { path: 'cmodel', loadChildren: './costmodel/costmodel.module#CostModelModule' },
             { path: 'reports', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' }
         ]
