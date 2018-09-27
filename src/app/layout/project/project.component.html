@@ -171,9 +171,15 @@
                         <label for="description">Description</label>
                         <textarea type="text" class="form-control" formControlName="description" placeholder="Description"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="phaseNo">Phase Number</label>
-                        <input type="number" class="form-control" formControlName="phaseNo" placeholder="Phase Number">
+                    <div class="form-group" formArrayName="phase">
+                        <ng-container *ngFor="let ph of phase.controls; let i = index">
+                            <label style="padding-right: 20px">Phase {{i+1}}</label><a style="color: red" (click)="deletePhase(i)">X</a>
+                         <input type="text" class="form-control" [formControlName]="i" placeholder="Phase Name">
+                       
+                        </ng-container><br>
+                        <!-- <label for="phaseNo" style="padding-right: 20px">Add Phase</label> -->
+                        <button type="button" class="btn btn-outline-primary" (click)="addPhase()">Add Phase</button>
+                        <!-- <input type="number" class="form-control" formControlName="phaseNo" placeholder="Phase Number"> -->
                     </div>
                     <!-- <div class="form-group">
                         <label for="technology">Technology</label>

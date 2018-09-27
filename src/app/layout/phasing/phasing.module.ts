@@ -17,6 +17,7 @@ import { UserStoryComponent } from './fpa/user-story/user-story.component';
 import { UserStoryServices } from '../../data-services/userStory.services'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BacklogServices } from '../../data-services/backlog.services';
+import { FunctionsServices } from '../../data-services/functions.services';
 import { TechComponentServices } from '../../data-services/techComponent.services';
 
 @NgModule({
@@ -29,6 +30,6 @@ import { TechComponentServices } from '../../data-services/techComponent.service
                 ComponentsComponent,
                 UserStoryComponent,
                 FunctionsComponent],
-        providers: [BacklogServices, UserStoryServices, TechComponentServices]
+        providers: [BacklogServices, UserStoryServices, TechComponentServices, FunctionsServices]
 })
 export class PhasingModule { }

@@ -1,101 +1,97 @@
 <div>
     <br />
-    <div class="form-group input-group col-4" style="padding-left: 0px;">
-        <input type="text" class="form-control" placeholder="Search" >            
+    <div class="form-group input-group col-4" style="padding-left: 10px;">
+        <input type="text" class="form-control" placeholder="Search">
         <div class="input-group-append">
             <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
         </div>
-        <div class="pl-2">
-            <button type="button" class="btn btn-primary" (click)="addProj()">Add {{text}} <i class="fa fa-plus"></i></button>
+        <div class="row-md-3" style="padding-left: 10px;">
+            <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa" (click)="addFunction()">Add {{text}}<i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa" (click)="onSave()">Save<i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 10px"></i></button>
         </div>
     </div>
 
-    <div class="card mb-3">
-        <table class="card-body table table-hover">
-            <thead class="card-header" style="background-color: #cce5ff;">
-                <tr>
-                    <th *ngFor="let data of tabler">{{data.header}}</th>
-                    <!-- <th>Project Name</th>
-                        <th>Col</th>
-                        <th>Col</th>
-                        <th>Col</th>
-                        <th>Col</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let data of tabler">
-                    <th scope="row">{{data.id}}</th>
-                    <th scope="row">{{data.description}}</th>
-                    <th scope="row">{{data.dateCreated}}</th>
-                    <th scope="row">{{data.dateCompleted}}</th>
-                    <th scope="row">{{data.createdBy}}</th>
-                    <th scope="row">{{data.completedBy}}</th>
-                    <th scope="row">
-                        <button type="button" class="btn btn-outline-success">{{data.edit}} <i class="fa fa-edit"></i></button>
-                    </th>
-                    <th scope="row">
-                        <button type="button" class="btn btn-outline-success">{{data.delete}} <i class="fa fa-trash"></i></button>
-                    </th>
+    <div class="row">
+        <div class="col-md-12 table-responsive table-hover ">
+            <table class="table myTable">
+                <thead class="myTableHeader">
+                    <tr>
+                        <td style="width:200px">Description</td>
+                        <td style="width:200px">Date Created</td>
+                        <td style="width:200px">Date Completed</td>
+                        <td style="width:200px">Created By</td>
+                        <td style="width:200px">Completed By</td>
+                        <td style="width:150px">Action</td>
+                    </tr>
+                </thead>
+                <tbody class="tableBody">
+                    <tr *ngFor="let item of functions;let i=index">
 
-                </tr>
-            </tbody>
-        </table>
+                        <td style="width:200px" *ngIf="i===editRowID">
+                            <input class="form-control" style="width:200px !important" type="text" [(ngModel)]="item.description" />
+                        </td>
+                        <td style="width:200px" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.description}}</td>
+
+                        <td style="width:200px" *ngIf="i===editRowID">
+                                <input class="form-control" style="width:200px !important" type="text" [(ngModel)]="item.dateCreated" />
+                            </td>
+                        <td style="width:200px" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.dateCreated}}</td>
+                            
+                        <!-- <td style="width:200px" *ngIf="i===editRowID">
+                            <input class="form-control datePickerCreate"id="dateCreated" style="width:200px !important" type="text" [(ngModel)]="item.dateCreated" 
+                             name="dp" ngbDatepicker #create="ngbDatepicker"/>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary btn-fpa" (click)="create.toggle()" type="button">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <td style="width:200px" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.dateCreated}}</td> -->
+
+
+                        <td style="width:200px" *ngIf="i===editRowID">
+                            <input class="form-control" style="width:200px !important" type="text" [(ngModel)]="item.dateCompleted" />
+                        </td>
+                        <td style="width:200px" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.dateCompleted}}</td>
+
+                        <td style="width:200px" *ngIf="i===editRowID">
+                            <input class="form-control" style="width:200px !important" type="text" [(ngModel)]="item.createdBy" />
+                        </td>
+                        <td style="width:200px" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.createdBy}}</td>
+
+                        <td style="width:200px" *ngIf="i===editRowID">
+                                <input class="form-control" style="width:200px !important" type="text" [(ngModel)]="item.completedBy" />
+                            </td>
+                        <td style="width:200px" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.completedBy}}</td>
+
+                        <td>
+                            <a title="Edit" (click)="onEdit(item,i)">
+                                <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>  &nbsp; </a>
+                            <a title="Delete" (click)="onDelete(item,i)">  &nbsp; 
+                                <i class="fa fa-trash-o fa-lg mypointer" aria-hidden="true"></i> &nbsp; </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
-<div class="backdrop" [ngStyle]="{'display':display}"></div>
-
 <div class="modal" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New Function</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Information</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="id">ID</label>
-                        <input type="text" class="form-control" id="id" placeholder="ID">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea type="text" class="form-control" id="description" placeholder="Description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                        <label for="dateCreated">Date Created</label>
-                        <input class="form-control datePickerCreate" id="dateCreated" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #create="ngbDatepicker">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary btn-fpa" (click)="create.toggle()" type="button"><i class="fa fa-calendar"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                        <label for="dateCompleted">Date Completed</label>
-                        <input class="form-control datePickerComplete" id="dateCompleted" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #complete="ngbDatepicker">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary btn-fpa" (click)="complete.toggle()" type="button"><i class="fa fa-calendar"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="createdBy">Created By</label>
-                        <textarea type="text" class="form-control" id="createdBy" placeholder="Created By"></textarea>
-                    </div>
-                    <div class="form-group">
-                            <label for="completedBy">Completed By</label>
-                            <textarea type="text" class="form-control" id="completedBy" placeholder="Completed By"></textarea>
-                        </div>
-                </form>
+                <p>{{modalLabel}}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
-                <button type="button" class="btn btn-primary" (click)="onCloseHandled()">Save</button>
+                <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">OK</button>
             </div>
         </div>
     </div>

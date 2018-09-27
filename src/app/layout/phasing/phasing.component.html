@@ -15,7 +15,7 @@
             <div class="box">
                 <div class="container">
                     <div class="row">
-
+                        <ng-container *ngFor="let proj of project">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 
                             <div class="box-part">
@@ -23,16 +23,19 @@
                                     <div class="col-md-3"><i class="fa fa-building fa-3x" aria-hidden="true"></i></div>
                                     <div class="col-md-9">
                                         <div class="title">
-                                            <h4>Project A</h4>
+                                            <h4>{{proj.projectName}}</h4>
                                         </div>
-                                        <p (click)="onPhaseLoad()">Phase 1 Web Application</p>
-                                        <p>Phase 2 Mobile Integration</p>
+                                        <ng-container *ngFor="let phase of proj.phaseNumber">
+                                        <p (click)="onPhaseLoad(phase)">{{phase}}</p>
+                                        </ng-container>
+                                   
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </ng-container>
 
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="box-part">
                                 <div class="row">
                                     <div class="col-md-3"><i class="fa fa-building fa-3x" aria-hidden="true"></i></div>
@@ -45,9 +48,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="box-part">
                                 <div class="row">
                                     <div class="col-md-3"><i class="fa fa-building fa-3x" aria-hidden="true"></i></div>
@@ -60,10 +63,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="box-part">
                                 <div class="row">
                                     <div class="col-md-3"><i class="fa fa-building fa-3x" aria-hidden="true"></i></div>
@@ -76,7 +79,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>

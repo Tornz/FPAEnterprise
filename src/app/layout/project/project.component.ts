@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { ProjectServices } from '../../data-services/project.services';
 import { Project } from '../../model/project.model';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,6 +20,7 @@ export class ProjectComponent implements OnInit {
     projectForm: FormGroup;
     searchForm: FormGroup;
     modal: any;
+    // phase = [];
     projectSubscription: Subscription;
     public cols = [{ header: 'Id' },
     { header: 'Project Name' },
@@ -34,7 +35,7 @@ export class ProjectComponent implements OnInit {
         this.projectForm = this.form.group({
             'project': new FormControl('', Validators.required),
             'description': new FormControl('', Validators.required),
-            'phaseNo': new FormControl('', Validators.required),
+            'phase': new FormArray([]),
             // 'technology': new FormControl('', Validators.required),
             'methodology': new FormControl('', Validators.required)
         })
@@ -52,7 +53,7 @@ export class ProjectComponent implements OnInit {
                 this.project = project;
             });
     }
-
+    get phase(): FormArray { return this.projectForm.get('phase') as FormArray; }
     loadData(search?: any) {
         this.project = this.projSrv.getProjects();
        
@@ -105,20 +106,32 @@ export class ProjectComponent implements OnInit {
 
     addProject() {
 
-        
+        console.log("Project", this.phase.value);
         this.proj.id = 1;
         this.proj.dateCreated = new Date();
         this.proj.dateUpdated = new Date();
         this.proj.projectName = this.projectForm.controls.project.value;
         // this.proj.technology =  this.projectForm.controls.technology.value;
         this.proj.methodology = this.projectForm.controls.methodology.value;
-        this.proj.phaseNumber = this.projectForm.controls.phaseNo.value;
+        this.proj.phaseNumber = this.phase.value;
         this.proj.description = this.projectForm.controls.description.value;
+
+       
         this.projSrv.addProject(this.proj);
         this.display = 'none';
         this.projectForm.reset();
     }
 
+    addPhase(){
+        console.log("Add new phase");
+        this.phase.push(new FormControl());
+        // let phaseData = 0
+        // this.phase.push(phaseData)
+    }
+
+    deletePhase(index: any){
+        this.phase.removeAt(index)
+    }
     editProj(data: any) {
         this.proj = data;
         this.display = 'block';
