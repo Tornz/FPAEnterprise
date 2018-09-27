@@ -1,0 +1,42 @@
+<div [@routerTransition]>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group input-group col-md-3 pull-right">
+                <input type="text" class="form-control" placeholder="Search By Project Name">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="container">
+                    <div class="row">
+                        <ng-container *ngFor="let proj of project">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="cursor:pointer" (click)="gotoCostModelDetails()">
+
+                                <div class="box-part">
+                                    <div class="row">
+                                        <div class="col-md-3"><i class="fa fa-building fa-3x" aria-hidden="true"></i></div>
+                                        <div class="col-md-9">
+                                            <div class="title">
+                                                <h4>{{proj.projectName}}</h4>
+                                            </div>
+                                            <div style="font-size:11px;"><span style="font-weight:bold">Total Phase: </span> 2</div>
+                                            <div style="font-size:11px;"><span style="font-weight:bold">Duration: </span>5Months</div>
+                                            <div style="font-size:11px;"><span style="font-weight:bold">Head Count: </span>8</div>
+                                            <div style="font-size:11px;"><span style="font-weight:bold">Total Cost: </span>$1,000,000</div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
