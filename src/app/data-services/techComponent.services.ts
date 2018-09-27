@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-
-import { Backlog } from "../model/backlog.model";
 import { TechComponents } from "../model/techComponents.model";
 import { TechnologyItem } from "../model/TechnolonogyItem.model";
 import { Subject } from "rxjs";
