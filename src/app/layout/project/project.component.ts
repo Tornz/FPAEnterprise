@@ -30,6 +30,7 @@ export class ProjectComponent implements OnInit {
     { header: 'Date Created' },
     { header: 'Date Updated' },
     { header: 'Action' }]
+    public method = [{id: 1, title:"Agile"},{id: 2, title:"Waterfall"},{id: 3, title:"Scrum"}]
     constructor(public projSrv: ProjectServices, private form: FormBuilder, private forms: FormBuilder) {
 
         this.projectForm = this.form.group({

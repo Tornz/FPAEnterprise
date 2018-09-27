@@ -56,9 +56,14 @@ export class ComponentsComponent implements OnInit {
       });
   }
 
-  sortTechItemArr(techArr: TechnologyItem[]){
+  searchFromArray(arr: TechnologyItem[], option) {
+    return $.grep(arr, obj => { return obj.technologyItemId == option });
+  }
+
+  sortTechItemArr(techArr: TechnologyItem[]) {
     techArr.sort(function (a, b) {
-      var x = a.description; var y = b.description;
+      var x = a.description;
+      var y = b.description;
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
@@ -66,9 +71,7 @@ export class ComponentsComponent implements OnInit {
   addFT() {
     let ft = $("#fTSelect option:selected");
     if (ft.is(":enabled")) {
-      let tech = $.grep(this.selectedFront, function (obj) {
-        return obj.technologyItemId == ft.val()
-      });
+      let tech = this.searchFromArray(this.selectedFront, ft.val());
       if (tech.length == 0) {
         this.selectedFront.push(new TechnologyItem(ft.val(), ft.text()));
         this.sortTechItemArr(this.selectedFront);
@@ -79,9 +82,7 @@ export class ComponentsComponent implements OnInit {
   addBT() {
     let bt = $("#bTSelect option:selected");
     if (bt.is(":enabled")) {
-      let tech = $.grep(this.selectedBack, obj => {
-        return obj.technologyItemId == bt.val()
-      });
+      let tech = this.searchFromArray(this.selectedBack, bt.val());
       if (tech.length == 0) {
         this.selectedBack.push(new TechnologyItem(bt.val(), bt.text()));
         this.sortTechItemArr(this.selectedBack);
@@ -92,9 +93,7 @@ export class ComponentsComponent implements OnInit {
   addRT() {
     let rt = $("#rTSelect option:selected");
     if (rt.is(":enabled")) {
-      let tech = $.grep(this.selectedReport, function (obj) {
-        return obj.technologyItemId == rt.val()
-      });
+      let tech = this.searchFromArray(this.selectedReport, rt.val());
       if (tech.length == 0) {
         this.selectedReport.push(new TechnologyItem(rt.val(), rt.text()));
         this.sortTechItemArr(this.selectedReport);
@@ -105,9 +104,7 @@ export class ComponentsComponent implements OnInit {
   addST() {
     let st = $("#sTSelect option:selected");
     if (st.is(":enabled")) {
-      let tech = $.grep(this.selectedStorage, function (obj) {
-        return obj.technologyItemId == st.val()
-      });
+      let tech = this.searchFromArray(this.selectedStorage, st.val());
       if (tech.length == 0) {
         this.selectedStorage.push(new TechnologyItem(st.val(), st.text()));
         this.sortTechItemArr(this.selectedStorage);

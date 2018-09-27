@@ -1,34 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { ProjectServices } from '../../data-services/project.services';
 import { Router } from '@angular/router';
-import { ProjectServices } from '../../data-services/project.services'
-
-
 
 @Component({
-    selector: 'app-phasing',
-    templateUrl: './phasing.component.html',
-    styleUrls: ['./phasing.component.scss'],
+    selector: 'app-costmodel',
+    templateUrl: './costmodel.component.html',
+    styleUrls: ['./costmodel.component.scss'],
     animations: [routerTransition()]
 })
-export class PhasingComponent implements OnInit {
+export class CostModelComponent implements OnInit {
     project: any;
     constructor(private router: Router, private proj: ProjectServices) {
 
     }
 
-    public tabler = [];
+    public tabler = [
+    ];
 
     ngOnInit() {
         this.loadData();
+
     }
 
     loadData() {
         this.project = this.proj.getProjects();
         console.log("Project", this.project)
     }
-    onPhaseLoad(phase) {
-        this.router.navigate(['/phasing/fpa'], { queryParams: { phase: phase } });
-       
+
+    gotoCostModelDetails() {
+        this.router.navigate(['/cmodel/costmodeldetails']);
     }
+   
+
+    
 }

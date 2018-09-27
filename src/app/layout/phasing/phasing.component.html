@@ -26,7 +26,7 @@
                                             <h4>{{proj.projectName}}</h4>
                                         </div>
                                         <ng-container *ngFor="let phase of proj.phaseNumber">
-                                        <p (click)="onPhaseLoad(phase)">{{phase}}</p>
+                                        <p (click)="onPhaseLoad(proj)">{{phase}}</p>
                                         </ng-container>
                                    
                                     </div>

@@ -15,7 +15,4 @@ export class TechComponents {
         this.report = report.slice();
         this.storage = storage.slice();
     }
-
-
-
 }

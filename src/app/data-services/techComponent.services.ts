@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-
-import { Backlog } from "../model/backlog.model";
 import { TechComponents } from "../model/techComponents.model";
 import { TechnologyItem } from "../model/TechnolonogyItem.model";
 import { Subject } from "rxjs";
@@ -55,9 +53,13 @@ export class TechComponentServices {
         new TechnologyItem(9, "SQL Server Integration Service")
     ];
 
-    getComponents() {
+    getComponents() {        
         return this.technologies;
     }
+
+
+
+
     getFrontend() {
         return this.frontend.slice();
     }
@@ -76,6 +78,9 @@ export class TechComponentServices {
         this.technologies.backend = item.backend.slice();
         this.technologies.report = item.report.slice();
         this.technologies.storage = item.storage.slice();
+        this.componentsChanged.next(this.technologies);
+        
+        
     }
 }
 

@@ -65,7 +65,7 @@
                     <td class="tdsize" *ngIf="i===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.ilf_det" /></td>
                     <td class="tdsize" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.ilf_det}}</td>
                     <td class="tdsize" *ngIf="i===editRowID">
-                        <select2 [data]="frontendOption"
+                        <select2 [data]="storageOption"
                                  [options]="selectOptions"
                                  [value]="1"
                                  (valueChanged)="ilfChanged($event,i)"></select2>
@@ -75,9 +75,9 @@
                     <td class="tdsize" *ngIf="i===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.eif_ret" /></td>
                     <td class="tdsize" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.eif_ret}}</td>
                     <td class="tdsize" *ngIf="i===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.eif_det" /></td>
-                    <td class="tdsize" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.eif_det}}</td>
+                    <td class="tdsize" *ngIf="i !== editRowID" (click)="EditRowfont(i)">{{item.eif_det}}</td>
                     <td class="tdsize" *ngIf="i===editRowID">
-                        <select2 [data]="frontendOption"
+                        <select2 [data]="storageOption"
                                  [options]="selectOptions"
                                  [value]="1"
                                  (valueChanged)="eifChanged($event,i)"></select2>
@@ -114,7 +114,7 @@
                     <td class="tdsize" *ngIf="i===editRowID"><input class="form-control inputsize" type="text" [(ngModel)]="item.eq_det" /></td>
                     <td class="tdsize" *ngIf="i !== editRowID" (click)="EditRow(i)">{{item.eq_det}}</td>
                     <td class="tdsize" *ngIf="i===editRowID">
-                        <select2 [data]="frontendOption"
+                        <select2 [data]="reportingOption"
                                  [options]="selectOptions"
                                  [value]="1"
                                  (valueChanged)="eqChanged($event,i)"></select2>

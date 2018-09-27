@@ -9,8 +9,7 @@ const routes: Routes = [
         path: '',
         component: PhasingComponent,
     },
-    { path: 'fpa', component: FPAComponent },
-    { path: 'backlogs', component: BackLogsComponent }
+    { path: 'fpa', component: FPAComponent }    
    
 ];
 
