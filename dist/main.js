@@ -14,6 +14,7 @@ var map = {
 	],
 	"./biddocument/biddocument.module": [
 		"./src/app/layout/biddocument/biddocument.module.ts",
+		"common",
 		"biddocument-biddocument-module"
 	],
 	"./blank-page/blank-page.module": [
@@ -22,25 +23,30 @@ var map = {
 	],
 	"./bs-component/bs-component.module": [
 		"./src/app/layout/bs-component/bs-component.module.ts",
-		"bs-component-bs-component-module~dashboard-dashboard-module~layout-layout-module",
+		"bs-component-bs-component-module~dashboard-dashboard-module~layout-layout-module~phasing-phasing-mod~092fd13d",
+		"common",
 		"bs-component-bs-component-module"
+	],
+	"./costmodel/costmodel.module": [
+		"./src/app/layout/costmodel/costmodel.module.ts",
+		"common",
+		"costmodel-costmodel-module"
 	],
 	"./dashboard/dashboard.module": [
 		"./src/app/layout/dashboard/dashboard.module.ts",
-		"bs-component-bs-component-module~dashboard-dashboard-module~layout-layout-module",
+		"bs-component-bs-component-module~dashboard-dashboard-module~layout-layout-module~phasing-phasing-mod~092fd13d",
+		"common",
 		"dashboard-dashboard-module"
-	],
-	"./grid/grid.module": [
-		"./src/app/layout/grid/grid.module.ts",
-		"grid-grid-module"
 	],
 	"./layout/layout.module": [
 		"./src/app/layout/layout.module.ts",
-		"bs-component-bs-component-module~dashboard-dashboard-module~layout-layout-module",
+		"bs-component-bs-component-module~dashboard-dashboard-module~layout-layout-module~phasing-phasing-mod~092fd13d",
+		"common",
 		"layout-layout-module"
 	],
 	"./login/login.module": [
 		"./src/app/login/login.module.ts",
+		"common",
 		"login-login-module"
 	],
 	"./not-found/not-found.module": [
@@ -49,12 +55,15 @@ var map = {
 	],
 	"./phasing/phasing.module": [
 		"./src/app/layout/phasing/phasing.module.ts",
+		"bs-component-bs-component-module~dashboard-dashboard-module~layout-layout-module~phasing-phasing-mod~092fd13d",
 		"phasing-phasing-module~project-project-module",
+		"common",
 		"phasing-phasing-module"
 	],
 	"./project/project.module": [
 		"./src/app/layout/project/project.module.ts",
 		"phasing-phasing-module~project-project-module",
+		"common",
 		"project-project-module"
 	],
 	"./server-error/server-error.module": [
@@ -63,10 +72,12 @@ var map = {
 	],
 	"./signup/signup.module": [
 		"./src/app/signup/signup.module.ts",
+		"common",
 		"signup-signup-module"
 	],
 	"./systemdiagram/systemdiagram.module": [
 		"./src/app/layout/systemdiagram/systemdiagram.module.ts",
+		"common",
 		"systemdiagram-systemdiagram-module"
 	]
 };

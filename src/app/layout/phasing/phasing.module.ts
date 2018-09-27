@@ -10,15 +10,15 @@ import { BackLogsComponent } from './fpa/backlogs/backlogs.component';
 import { EstimationComponent } from './fpa/estimation/estimation.component';
 import { ImplementationComponent } from './fpa/implementation/implementation.component';
 import { HotTableModule } from '@handsontable/angular';
-import { FunctionsComponent } from './fpa/functions/functions.component';
+import { LogicalContainerComponent } from './fpa/logicalContainer/logicalContainer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComponentsComponent } from './fpa/components/components.component';
 import { UserStoryComponent } from './fpa/user-story/user-story.component';
 import { UserStoryServices } from '../../data-services/userStory.services'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BacklogServices } from '../../data-services/backlog.services';
-import { FunctionsServices } from '../../data-services/functions.services';
 import { TechComponentServices } from '../../data-services/techComponent.services';
+import { LogicalContainerServices } from '../../data-services/logicalContainer.services';
 
 @NgModule({
         imports: [CommonModule, PhasingRoutingModule, HotTableModule, FormsModule, ReactiveFormsModule, Select2Module, NgbModule.forRoot()],
@@ -29,7 +29,7 @@ import { TechComponentServices } from '../../data-services/techComponent.service
                 ImplementationComponent,
                 ComponentsComponent,
                 UserStoryComponent,
-                FunctionsComponent],
-        providers: [BacklogServices, UserStoryServices, TechComponentServices, FunctionsServices]
+                LogicalContainerComponent],
+        providers: [BacklogServices, UserStoryServices, TechComponentServices, LogicalContainerServices]
 })
 export class PhasingModule { }

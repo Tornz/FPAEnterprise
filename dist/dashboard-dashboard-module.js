@@ -326,12 +326,20 @@ var DashboardComponent = /** @class */ (function () {
         });
         this.alerts.push({
             id: 1,
-            type: 'success',
-            message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n                Voluptates est animi quibusdam praesentium quam, et perspiciatis,\n                consectetur velit culpa molestias dignissimos\n                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum"
+            type: 'warning',
+            message: "Jamie Medrano created a new project, Sunlife Inventory System"
         }, {
             id: 2,
             type: 'warning',
-            message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n                Voluptates est animi quibusdam praesentium quam, et perspiciatis,\n                consectetur velit culpa molestias dignissimos\n                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum"
+            message: "Joji Angas uploaded a new document for Digital Store project."
+        }, {
+            id: 2,
+            type: 'success',
+            message: "Richard Santiago assigned a new task to you."
+        }, {
+            id: 3,
+            type: 'danger',
+            message: "ERD document pending for review and approval."
         });
     }
     DashboardComponent.prototype.chartHovered = function (e) {

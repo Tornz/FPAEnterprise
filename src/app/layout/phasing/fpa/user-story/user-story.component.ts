@@ -28,7 +28,11 @@ export class UserStoryComponent implements OnInit {
         })
     }
 
-    public cols = [{ header: 'Id' }, { header: 'User Story' }, { header: 'Date Created' }, { header: 'Date Updated' }, { header: 'Action' }]
+    public cols = [{ header: 'Id' }, 
+    { header: 'User Story' }, 
+    { header: 'Date Created' },
+    { header: 'Date Updated' }, 
+    { header: 'Action' }]
     public userStory = [];
 
     ngOnInit() {
@@ -49,25 +53,6 @@ export class UserStoryComponent implements OnInit {
 
     onSubmitAdd() {
         let i = 1;
-        // // let firstelement;
-        // // if(this.userStory.length > 0){
-        // //     i = 1;
-        // //     firstelement = this.userStory.sort()[0];
-        // // }else{
-        // //     i = firstelement;
-        // // }
-        // if(i > 1){
-        //    i += 1;
-        // }else{
-        //     i++;
-        // }
-        
-        // console.log("User", i)
-        // if(i = 1){
-        
-        // }else{
-            
-        // }
         let newUserStory = this.userForm.controls.user.value;
         console.log("User", )
         // if (this.userForm.valid) {
@@ -76,13 +61,6 @@ export class UserStoryComponent implements OnInit {
             this.display = 'none';
             this.loadData();
             this.userForm.reset();
-        // } else {
-        //     console.log("Error user")
-        //     this.display = "error";
-        //     this.error = true;
-        //     this.userForm.reset();
-        // }
-
     }
     onCloseHandled() {
         this.display = 'none';
@@ -110,7 +88,7 @@ export class UserStoryComponent implements OnInit {
         // }
     }
     addBacklog(data){
-        this.fpa.onTab(1, data)
+        this.fpa.onTab(2, data)
         // this.data = data
     }
 
