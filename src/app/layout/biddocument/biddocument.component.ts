@@ -15,8 +15,8 @@ import { Subscription } from '../../../../node_modules/rxjs';
     animations: [routerTransition()]
 })
 export class BidDocumentComponent implements OnInit {
-    projects: Project[] = [];
-    bidDocuments: Documents[] = [];
+    projects = {};
+    bidDocuments = [];
     projSubscription: Subscription;
     docSubscription: Subscription;
 
