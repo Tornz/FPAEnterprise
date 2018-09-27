@@ -3,6 +3,8 @@ import { routerTransition } from '../../router.animations';
 import { Router } from '@angular/router';
 import { ProjectServices } from '../../data-services/project.services'
 
+
+
 @Component({
     selector: 'app-phasing',
     templateUrl: './phasing.component.html',
@@ -12,24 +14,21 @@ import { ProjectServices } from '../../data-services/project.services'
 export class PhasingComponent implements OnInit {
     project: any;
     constructor(private router: Router, private proj: ProjectServices) {
-     
+
     }
 
-    public tabler = [
-        ];
+    public tabler = [];
 
-    ngOnInit() { 
+    ngOnInit() {
         this.loadData();
-      
     }
 
-    loadData(){
+    loadData() {
         this.project = this.proj.getProjects();
         console.log("Project", this.project)
     }
     onPhaseLoad(phase) {
-        this.router.navigate(['/phasing/fpa'], phase);
-
-        // this.router.navigate(['/user-story']);
+        this.router.navigate(['/phasing/fpa'], { queryParams: { phase: phase } });
+       
     }
 }

@@ -30,7 +30,10 @@
                     <th scope="row">{{data.userStory }}</th>
                     <th scope="row">{{data.dateCreated | date:'mediumDate'}}</th>
                     <th scope="row">{{data.dateUpdated | date:'mediumDate'}}</th>
-                    <th scope="row"><button class="btn btn-outline-primary" (click)="addBacklog(data)">Add Backlog</button><button class="btn btn-outline-info" (click)="editUser(data)">Edit</button><button class="btn btn-outline-danger" (click)="deleteuser(data)">Delete</button></th>
+                    <th scope="row"><button class="btn btn-outline-primary" (click)="addBacklog(data)">Add Backlog</button>
+                        <button class="btn btn-outline-info" (click)="editUser(data)">Edit</button>
+                        <!-- <button class="btn btn-outline-danger" (click)="deleteuser(data)">Delete</button> -->
+                    </th>
 
                     <!-- <td>Project1</td>
                     <td>Otto</td>
