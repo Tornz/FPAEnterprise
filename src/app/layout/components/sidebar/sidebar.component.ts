@@ -45,6 +45,7 @@ export class SidebarComponent {
     }
 
     toggleCollapsed() {
+        console.log("Class", this.collapsed)
         this.collapsed = !this.collapsed;
         this.collapsedEvent.emit(this.collapsed);
     }

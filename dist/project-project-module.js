@@ -15316,7 +15316,7 @@ var ProjectRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [@routerTransition]>\r\n    <!-- <app-page-header [heading]=\"'Charts'\" [icon]=\"'fa-bar-chart-o'\"></app-page-header> -->\r\n    <div class=\"form-group input-group col-4\" style=\"padding-left: 0px;\">\r\n        <input type=\"text\" class=\"form-control\" placeholder=\"Search\" >\r\n            <!-- <input type=\"text\" name=\"text\" [(ngModel)]=\"text\" id=\"form1\" class=\"form-control\"> -->\r\n        <div class=\"input-group-append\">\r\n            <button class=\"btn btn-secondary\" type=\"button\"><i class=\"fa fa-search\"></i></button>\r\n        </div>\r\n        <div class=\"pl-2\">\r\n            <button type=\"button\" class=\"btn btn-primary\" (click)=\"addProj()\">New Project {{text}}</button>\r\n        </div>\r\n    </div>\r\n    <div class=\"card mb-3\">\r\n        <!-- <div class=\"card-header\">Projects</div> -->\r\n        <table class=\"card-body table table-hover\">\r\n            <thead class=\"card-header\" style=\"background-color: #cce5ff;\">\r\n                <tr>\r\n                    <th *ngFor=\"let data of tabler\">{{data.header}}</th>\r\n                    <!-- <th>Project Name</th>\r\n                    <th>Col</th>\r\n                    <th>Col</th>\r\n                    <th>Col</th>\r\n                    <th>Col</th> -->\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let data of tabler\">\r\n                    <th scope=\"row\">{{data.id}}</th>\r\n                    <th scope=\"row\">{{data.projname}}</th>\r\n                    <th scope=\"row\">{{data.desc}}</th>\r\n                    <th scope=\"row\">{{data.datecreated}}</th>\r\n                    <th scope=\"row\"><button type=\"button\" class=\"btn btn-outline-success\">{{data.edit}}</button></th>\r\n                    <!-- <td>Project1</td>\r\n                    <td>Otto</td>\r\n                    <td>@mdo</td> -->\r\n                </tr>\r\n                <!-- <tr>\r\n                    <th scope=\"row\">2</th>\r\n                    <td>Jacob</td>\r\n                    <td>Thornton</td>\r\n                    <td>@fat</td>\r\n                </tr>\r\n                <tr>\r\n                    <th scope=\"row\">3</th>\r\n                    <td colspan=\"2\">Larry the Bird</td>\r\n                    <td>@twitter</td>\r\n                </tr> -->\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n    <div class=\"row\" *ngIf=\"false\">\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Bar Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart [datasets]=\"barChartData\" [labels]=\"barChartLabels\" [options]=\"barChartOptions\"\r\n                        [legend]=\"barChartLegend\" [chartType]=\"barChartType\" (chartHover)=\"chartHovered($event)\"\r\n                        (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <button class=\"btn btn-info btn-sm\" (click)=\"randomize()\">Update</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Doughnut Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"180px\" [data]=\"doughnutChartData\" [labels]=\"doughnutChartLabels\"\r\n                        [chartType]=\"doughnutChartType\" (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\" *ngIf=\"false\">\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Radar Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"150px\" [datasets]=\"radarChartData\" [labels]=\"radarChartLabels\"\r\n                        [chartType]=\"radarChartType\" (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Pie Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"150px\" [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [chartType]=\"pieChartType\"\r\n                        (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\" *ngIf=\"false\">\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Polar Area Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"130px\" [data]=\"polarAreaChartData\" [labels]=\"polarAreaChartLabels\"\r\n                        [legend]=\"polarAreaLegend\" [chartType]=\"polarAreaChartType\" (chartHover)=\"chartHovered($event)\"\r\n                        (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Line Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"130\" [datasets]=\"lineChartData\" [labels]=\"lineChartLabels\" [options]=\"lineChartOptions\"\r\n                        [colors]=\"lineChartColors\" [legend]=\"lineChartLegend\" [chartType]=\"lineChartType\" (chartHover)=\"chartHovered($event)\"\r\n                        (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"backdrop\" [ngStyle]=\"{'display':display}\"></div>\r\n\r\n<div class=\"modal\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">New Project</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <form>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"project\">Project Name</label>\r\n                        <input type=\"text\" class=\"form-control\" id=\"project\" placeholder=\"Project Name\">\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"description\">Description</label>\r\n                        <textarea type=\"text\" class=\"form-control\" id=\"description\" placeholder=\"Description\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"phaseNo\">Phase Number</label>\r\n                        <textarea type=\"text\" class=\"form-control\" id=\"phaseNo\" placeholder=\"Phase Number\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"technology\">Technology</label>\r\n                        <textarea type=\"text\" class=\"form-control\" id=\"technology\" placeholder=\"Technology\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"methodology\">Methodology</label>\r\n                        <textarea type=\"text\" class=\"form-control\" id=\"methodology\" placeholder=\"Methodology\"></textarea>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onCloseHandled()\">Close</button>\r\n                <button type=\"button\" class=\"btn btn-primary\" (click)=\"onCloseHandled()\">Save</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div [@routerTransition]>\r\n    <!-- <app-page-header [heading]=\"'Charts'\" [icon]=\"'fa-bar-chart-o'\"></app-page-header> -->\r\n    <div class=\"form-group input-group col-4\" style=\"padding-left: 0px;\">\r\n        <form [formGroup]=\"searchForm\" (ngSubmit)=\"searchProject()\">\r\n            <!-- <input type=\"text\" name=\"text\" [(ngModel)]=\"text\" id=\"form1\" class=\"form-control\"> -->\r\n            <div class=\"input-group-append\">\r\n\r\n\r\n                <input type=\"text\" class=\"form-control\" formControlName=\"search\" (ngModelChange)=\"filter($event)\" placeholder=\"Search\">\r\n                <button class=\"btn btn-secondary\" type=\"submit\">\r\n                    <i class=\"fa fa-search\"></i>\r\n                </button>\r\n\r\n            </div>\r\n        </form>\r\n        <div class=\"pl-2\">\r\n            <button type=\"button\" class=\"btn btn-primary\" (click)=\"addProj()\">New Project {{text}}</button>\r\n        </div>\r\n\r\n    </div>\r\n    <div class=\"card mb-3\">\r\n        <!-- <div class=\"card-header\">Projects</div> -->\r\n        <table class=\"card-body table table-hover\">\r\n            <thead class=\"card-header\" style=\"background-color: #cce5ff;\">\r\n                <tr>\r\n                    <th *ngFor=\"let data of cols\">{{data.header}}</th>\r\n                    <!-- <th>Project Name</th>\r\n                    <th>Col</th>\r\n                    <th>Col</th>\r\n                    <th>Col</th>\r\n                    <th>Col</th> -->\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let data of project\">\r\n                    <th scope=\"row\">{{data.id}}</th>\r\n                    <th scope=\"row\">{{data.projectName}}</th>\r\n                    <th scope=\"row\">{{data.description}}</th>\r\n                    <th scope=\"row\">{{data.phaseNumber}}</th>\r\n                    <!-- <th scope=\"row\">{{data.technology}}</th> -->\r\n                    <th scope=\"row\">{{data.methodology}}</th>\r\n                    <th scope=\"row\">{{data.dateCreated | date:'mediumDate'}}</th>\r\n                    <th scope=\"row\">{{data.dateUpdated | date:'mediumDate'}}</th>\r\n                    <th scope=\"row\">\r\n                        <!-- <button type=\"button\" class=\"btn btn-outline-success\" (click)=\"editProj(data)\">Edit</button> -->\r\n                    </th>\r\n                    <!-- <td>Project1</td>\r\n                    <td>Otto</td>\r\n                    <td>@mdo</td> -->\r\n                </tr>\r\n                <!-- <tr>\r\n                    <th scope=\"row\">2</th>\r\n                    <td>Jacob</td>\r\n                    <td>Thornton</td>\r\n                    <td>@fat</td>\r\n                </tr>\r\n                <tr>\r\n                    <th scope=\"row\">3</th>\r\n                    <td colspan=\"2\">Larry the Bird</td>\r\n                    <td>@twitter</td>\r\n                </tr> -->\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n    <!-- <div class=\"row\" *ngIf=\"false\">\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Bar Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart [datasets]=\"barChartData\" [labels]=\"barChartLabels\" [options]=\"barChartOptions\"\r\n                        [legend]=\"barChartLegend\" [chartType]=\"barChartType\" (chartHover)=\"chartHovered($event)\"\r\n                        (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <button class=\"btn btn-info btn-sm\" (click)=\"randomize()\">Update</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Doughnut Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"180px\" [data]=\"doughnutChartData\" [labels]=\"doughnutChartLabels\"\r\n                        [chartType]=\"doughnutChartType\" (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\" *ngIf=\"false\">\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Radar Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"150px\" [datasets]=\"radarChartData\" [labels]=\"radarChartLabels\"\r\n                        [chartType]=\"radarChartType\" (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Pie Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"150px\" [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [chartType]=\"pieChartType\"\r\n                        (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\" *ngIf=\"false\">\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Polar Area Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"130px\" [data]=\"polarAreaChartData\" [labels]=\"polarAreaChartLabels\"\r\n                        [legend]=\"polarAreaLegend\" [chartType]=\"polarAreaChartType\" (chartHover)=\"chartHovered($event)\"\r\n                        (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col col-sm-6\">\r\n            <div class=\"card mb-3\">\r\n                <div class=\"card-header\">\r\n                    Line Chart\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <canvas baseChart height=\"130\" [datasets]=\"lineChartData\" [labels]=\"lineChartLabels\" [options]=\"lineChartOptions\"\r\n                        [colors]=\"lineChartColors\" [legend]=\"lineChartLegend\" [chartType]=\"lineChartType\" (chartHover)=\"chartHovered($event)\"\r\n                        (chartClick)=\"chartClicked($event)\">\r\n                    </canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div> -->\r\n</div>\r\n\r\n<div class=\"backdrop\" [ngStyle]=\"{'display':display}\"></div>\r\n\r\n<div class=\"modal\" *ngIf=\"modal == 'add'\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">New Project</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <form [formGroup]=\"projectForm\" (ngSubmit)=\"addProject()\">\r\n                <div class=\"modal-body\">\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"project\">Project Name</label>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"project\" placeholder=\"Project Name\">\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"description\">Description</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"description\" placeholder=\"Description\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group\" formArrayName=\"phase\">\r\n                        <ng-container *ngFor=\"let ph of phase.controls; let i = index\">\r\n                            <label style=\"padding-right: 20px\">Phase {{i+1}}</label><a style=\"color: red\" (click)=\"deletePhase(i)\">X</a>\r\n                         <input type=\"text\" class=\"form-control\" [formControlName]=\"i\" placeholder=\"Phase Name\">\r\n                       \r\n                        </ng-container><br>\r\n                        <!-- <label for=\"phaseNo\" style=\"padding-right: 20px\">Add Phase</label> -->\r\n                        <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"addPhase()\">Add Phase</button>\r\n                        <!-- <input type=\"number\" class=\"form-control\" formControlName=\"phaseNo\" placeholder=\"Phase Number\"> -->\r\n                    </div>\r\n                    <!-- <div class=\"form-group\">\r\n                        <label for=\"technology\">Technology</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"technology\" placeholder=\"Technology\"></textarea>\r\n                    </div> -->\r\n                    <div class=\"form-group\">\r\n                        <label for=\"methodology\">Methodology</label>\r\n                        <select class=\"custom-select\" id=\"bTSelect\" formControlName=\"methodology\">\r\n                            \r\n                                <option selected disabled>Choose Methodology</option>\r\n                                <option *ngFor=\"let tech of method\" [value]=\"tech.title\" >{{tech.title}}</option>\r\n                              </select>\r\n                        <!-- <textarea type=\"text\" class=\"form-control\" formControlName=\"methodology\" placeholder=\"Methodology\"></textarea> -->\r\n                    </div>\r\n\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onCloseHandled()\">Close</button>\r\n                    <button type=\"submit\" class=\"btn btn-primary\">Save</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"modal\" *ngIf=\"modal == 'edit'\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\"\r\n    aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">New Project</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <form [formGroup]=\"projectForm\" (ngSubmit)=\"editProject()\">\r\n                <div class=\"modal-body\">\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"project\">Project Name</label>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"project\" [(ngModel)]=\"proj.projectName\" placeholder=\"Project Name\">\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"description\">Description</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"description\" [(ngModel)]=\"proj.description\" placeholder=\"Description\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group\" formArrayName=\"phase\">\r\n                            <ng-container *ngFor=\"let ph of phase.controls; let i = index\">\r\n                                <label style=\"padding-right: 20px\">Phase {{i+1}}</label><a style=\"color: red\" (click)=\"deletePhase(i)\">X</a>\r\n                             <input type=\"text\" class=\"form-control\" [formControlName]=\"i\" [value]=\"ph[i]\" placeholder=\"Phase Name\">\r\n                           \r\n                            </ng-container><br>\r\n                            <!-- <label for=\"phaseNo\" style=\"padding-right: 20px\">Add Phase</label> -->\r\n                            <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"addPhase()\">Add Phase</button>\r\n                            <!-- <input type=\"number\" class=\"form-control\" formControlName=\"phaseNo\" placeholder=\"Phase Number\"> -->\r\n                        </div>\r\n                    <!-- <div class=\"form-group\">\r\n                        <label for=\"technology\">Technology</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"technology\" [(ngModel)]=\"proj.technology\" placeholder=\"Technology\"></textarea>\r\n                    </div> -->\r\n                    <div class=\"form-group\">\r\n                        <label for=\"methodology\">Methodology</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"methodology\" [(ngModel)]=\"proj.methodology\" placeholder=\"Methodology\"></textarea>\r\n                    </div>\r\n\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onCloseHandled()\">Close</button>\r\n                    <button type=\"submit\" class=\"btn btn-primary\">Save</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -15343,6 +15343,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProjectComponent", function() { return ProjectComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _router_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../router.animations */ "./src/app/router.animations.ts");
+/* harmony import */ var _data_services_project_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../data-services/project.services */ "./src/app/data-services/project.services.ts");
+/* harmony import */ var _model_project_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/project.model */ "./src/app/model/project.model.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -15354,160 +15357,127 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
+
 var ProjectComponent = /** @class */ (function () {
-    function ProjectComponent() {
-        // bar chart
-        this.barChartOptions = {
-            scaleShowVerticalLines: false,
-            responsive: true
-        };
-        this.tabler = [
-            { header: 'ID', id: 1, projname: 'Project A', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' },
-            { header: 'Project Name', id: 2, projname: 'Project B', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' },
-            { header: 'Description', id: 3, projname: 'Project C', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' },
-            { header: 'Date Created', id: 4, projname: 'Project D', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' },
-            { header: 'Action', id: 4, projname: 'Project E', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit', datecreated: '09/14/2018', edit: 'Edit' }
-        ];
-        this.barChartLabels = [
-            '2006',
-            '2007',
-            '2008',
-            '2009',
-            '2010',
-            '2011',
-            '2012'
-        ];
-        this.barChartType = 'bar';
-        this.barChartLegend = true;
-        this.barChartData = [
-            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-        ];
-        // Doughnut
-        this.doughnutChartLabels = [
-            'Download Sales',
-            'In-Store Sales',
-            'Mail-Order Sales'
-        ];
-        this.doughnutChartData = [350, 450, 100];
-        this.doughnutChartType = 'doughnut';
-        // Radar
-        this.radarChartLabels = [
-            'Eating',
-            'Drinking',
-            'Sleeping',
-            'Designing',
-            'Coding',
-            'Cycling',
-            'Running'
-        ];
-        this.radarChartData = [
-            { data: [65, 59, 90, 81, 56, 55, 40], label: 'Series A' },
-            { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
-        ];
-        this.radarChartType = 'radar';
-        // Pie
-        this.pieChartLabels = [
-            'Download Sales',
-            'In-Store Sales',
-            'Mail Sales'
-        ];
-        this.pieChartData = [300, 500, 100];
-        this.pieChartType = 'pie';
-        // PolarArea
-        this.polarAreaChartLabels = [
-            'Download Sales',
-            'In-Store Sales',
-            'Mail Sales',
-            'Telesales',
-            'Corporate Sales'
-        ];
-        this.polarAreaChartData = [300, 500, 100, 40, 120];
-        this.polarAreaLegend = true;
-        this.polarAreaChartType = 'polarArea';
-        // lineChart
-        this.lineChartData = [
-            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-            { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
-        ];
-        this.lineChartLabels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July'
-        ];
-        this.lineChartOptions = {
-            responsive: true
-        };
-        this.lineChartColors = [
-            {
-                // grey
-                backgroundColor: 'rgba(148,159,177,0.2)',
-                borderColor: 'rgba(148,159,177,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-            },
-            {
-                // dark grey
-                backgroundColor: 'rgba(77,83,96,0.2)',
-                borderColor: 'rgba(77,83,96,1)',
-                pointBackgroundColor: 'rgba(77,83,96,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(77,83,96,1)'
-            },
-            {
-                // grey
-                backgroundColor: 'rgba(148,159,177,0.2)',
-                borderColor: 'rgba(148,159,177,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-            }
-        ];
-        this.lineChartLegend = true;
-        this.lineChartType = 'line';
-        // myVARS
+    function ProjectComponent(projSrv, form, forms) {
+        this.projSrv = projSrv;
+        this.form = form;
+        this.forms = forms;
         this.display = 'none';
+        this.project = [];
+        this.cols = [{ header: 'Id' },
+            { header: 'Project Name' },
+            { header: 'Description' },
+            { header: 'Phase Number' },
+            { header: 'Methodology' },
+            { header: 'Date Created' },
+            { header: 'Date Updated' },
+            { header: 'Action' }];
+        this.method = [{ id: 1, title: "Agile" }, { id: 2, title: "Waterfall" }, { id: 3, title: "Scrum" }];
+        this.projectForm = this.form.group({
+            'project': new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required),
+            'description': new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required),
+            'phase': new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormArray"]([]),
+            // 'technology': new FormControl('', Validators.required),
+            'methodology': new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required)
+        });
+        this.searchForm = this.forms.group({
+            'search': new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required)
+        });
+        this.proj = new _model_project_model__WEBPACK_IMPORTED_MODULE_3__["Project"];
     }
-    // events
-    ProjectComponent.prototype.chartClicked = function (e) {
-        // console.log(e);
+    ProjectComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.loadData();
+        this.projectSubscription = this.projSrv.projectChanged
+            .subscribe(function (project) {
+            _this.project = project;
+        });
     };
-    ProjectComponent.prototype.chartHovered = function (e) {
-        // console.log(e);
+    Object.defineProperty(ProjectComponent.prototype, "phase", {
+        get: function () { return this.projectForm.get('phase'); },
+        enumerable: true,
+        configurable: true
+    });
+    ProjectComponent.prototype.loadData = function (search) {
+        this.project = this.projSrv.getProjects();
+        // if(search != null){
+        //     console.log("Searchs", search)
+        //     // this.project = this.projSrv.getProjects();
+        //     let filterProj = this.projSrv.getProjects();
+        //     filterProj.forEach(i =>{
+        //         console.log("Search", i)
+        //         if(i.projectName === search){
+        //             this.project = i;
+        //         }
+        //     })
+        // }else{
+        // }
     };
-    ProjectComponent.prototype.randomize = function () {
-        // Only Change 3 values
-        var data = [
-            Math.round(Math.random() * 100),
-            59,
-            80,
-            Math.random() * 100,
-            56,
-            Math.random() * 100,
-            40
-        ];
-        var clone = JSON.parse(JSON.stringify(this.barChartData));
-        clone[0].data = data;
-        this.barChartData = clone;
-        /**
-         * (My guess), for Angular to recognize the change in the dataset
-         * it has to change the dataset variable directly,
-         * so one way around it, is to clone the data, change it and then
-         * assign it;
-         */
+    ProjectComponent.prototype.filter = function (event) {
+        var search;
+        console.log("Filter", event);
+        this.project = this.project.filter(function (proj) { return proj.projectName == event; });
+        // .distinctUntilChanged().
+        // .filter(item => item.Type === 5)
+        // search =  this.project.filter();
+        // this.project = search;
     };
-    ProjectComponent.prototype.ngOnInit = function () { };
+    ProjectComponent.prototype.searchProject = function () {
+        var searchData = this.searchForm.controls.search.value;
+        var search;
+        console.log("will search", searchData);
+        if (searchData != null || searchData != "") {
+            console.log("will search");
+            search = this.project.filter(function (proj) { return proj.projectName == searchData; });
+            this.project = search;
+        }
+        else {
+            console.log("No search");
+            this.loadData();
+        }
+    };
     ProjectComponent.prototype.addProj = function () {
+        this.proj = new _model_project_model__WEBPACK_IMPORTED_MODULE_3__["Project"];
         this.display = 'block';
+        this.modal = 'add';
+        this.projectForm.reset();
+    };
+    ProjectComponent.prototype.addProject = function () {
+        console.log("Project", this.phase.value);
+        this.proj.id = 1;
+        this.proj.dateCreated = new Date();
+        this.proj.dateUpdated = new Date();
+        this.proj.projectName = this.projectForm.controls.project.value;
+        // this.proj.technology =  this.projectForm.controls.technology.value;
+        this.proj.methodology = this.projectForm.controls.methodology.value;
+        this.proj.phaseNumber = this.phase.value;
+        this.proj.description = this.projectForm.controls.description.value;
+        this.projSrv.addProject(this.proj);
+        this.display = 'none';
+        this.projectForm.reset();
+    };
+    ProjectComponent.prototype.addPhase = function () {
+        console.log("Add new phase");
+        this.phase.push(new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]());
+        // let phaseData = 0
+        // this.phase.push(phaseData)
+    };
+    ProjectComponent.prototype.deletePhase = function (index) {
+        this.phase.removeAt(index);
+    };
+    ProjectComponent.prototype.editProj = function (data) {
+        this.proj = data;
+        this.display = 'block';
+        this.modal = 'edit';
+    };
+    ProjectComponent.prototype.editProject = function () {
+        console.log("Edit");
+        this.projSrv.editProject(this.proj.id, this.proj);
+        this.display = 'none';
+        //   this.projectForm.reset();
     };
     ProjectComponent.prototype.onCloseHandled = function () {
         this.display = 'none';
@@ -15522,7 +15492,7 @@ var ProjectComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./project.component.scss */ "./src/app/layout/project/project.component.scss")],
             animations: [Object(_router_animations__WEBPACK_IMPORTED_MODULE_1__["routerTransition"])()]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_data_services_project_services__WEBPACK_IMPORTED_MODULE_2__["ProjectServices"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]])
     ], ProjectComponent);
     return ProjectComponent;
 }());
@@ -15545,9 +15515,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/index.js");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ng2_charts__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared */ "./src/app/shared/index.ts");
-/* harmony import */ var _project_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./project-routing.module */ "./src/app/layout/project/project-routing.module.ts");
-/* harmony import */ var _project_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./project.component */ "./src/app/layout/project/project.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared */ "./src/app/shared/index.ts");
+/* harmony import */ var _project_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./project-routing.module */ "./src/app/layout/project/project-routing.module.ts");
+/* harmony import */ var _project_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./project.component */ "./src/app/layout/project/project.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -15560,16 +15531,39 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var ProjectModule = /** @class */ (function () {
     function ProjectModule() {
     }
     ProjectModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], ng2_charts__WEBPACK_IMPORTED_MODULE_2__["ChartsModule"], _project_routing_module__WEBPACK_IMPORTED_MODULE_4__["ProjectRoutingModule"], _shared__WEBPACK_IMPORTED_MODULE_3__["PageHeaderModule"]],
-            declarations: [_project_component__WEBPACK_IMPORTED_MODULE_5__["ProjectComponent"]]
+            imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], ng2_charts__WEBPACK_IMPORTED_MODULE_2__["ChartsModule"], _project_routing_module__WEBPACK_IMPORTED_MODULE_5__["ProjectRoutingModule"], _shared__WEBPACK_IMPORTED_MODULE_4__["PageHeaderModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]],
+            declarations: [_project_component__WEBPACK_IMPORTED_MODULE_6__["ProjectComponent"]],
+            providers: []
         })
     ], ProjectModule);
     return ProjectModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/project.model.ts":
+/*!****************************************!*\
+  !*** ./src/app/model/project.model.ts ***!
+  \****************************************/
+/*! exports provided: Project */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Project", function() { return Project; });
+var Project = /** @class */ (function () {
+    function Project() {
+        this.phaseNumber = [];
+    }
+    return Project;
 }());
 
 

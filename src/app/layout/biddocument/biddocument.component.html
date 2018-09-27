@@ -4,16 +4,18 @@
         <input type="text" class="form-control" placeholder="Search">
         <!-- <input type="text" name="text" [(ngModel)]="text" id="form1" class="form-control"> -->
         <div class="input-group-append">
-            <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+            <button class="btn btn-secondary" type="button">
+                <i class="fa fa-search"></i>
+            </button>
         </div>
         <div class="pl-2">
             <!-- <button type="button" class="btn btn-primary" (click)="addProj()">New Project {{text}}</button> -->
         </div>
     </div>
     <div class="row">
-        <div class="col col-sm-6 col-md-4 col-lg-3" *ngFor="let doc of bidDocuments">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick(doc.projectId)">
-                <p class="card-header" style="background-color: #cce5ff;">{{doc.projectName}}</p>
+        <div class="col col-sm-6 col-md-4 col-lg-3" *ngFor="let proj of projects">
+            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick(proj)">
+                <p class="card-header" style="background-color: #cce5ff;">{{proj.projectName}}</p>
                 <div class="card-body">
                     <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
                 </div>
@@ -27,44 +29,56 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{projName}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{proj.projectName}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Title</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                        </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleFormControlFile1">Upload File</label>
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <table class="card-body table table-hover table-bordered">
+                        <thead class="card-header" style="background-color: #cce5ff;">
+                            <tr>
+                                <th>Description</th>
+                                <th>Upload Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let file of fileUploads">
+                                <td>{{file.description}}</td>
+                                <td>{{file.uploadDate}}</td>
+                                <td>
+                                    <a type="button" class="btn btn-outline-info" [download]="file.name" [href]="file.file"><i class="fa fa-download"></i></a>
+                                    <button type="button" class="btn btn-outline-danger" (click)="deleteFile(file)"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="card card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="fileDesc"> Description </label>
                             </div>
-                        </form>
-                        <table class="card-body table table-hover table-bordered">
-                            <thead class="card-header" style="background-color: #cce5ff;">
-                                <tr>
-                                    <th>File Name</th>
-                                    <th>Upload Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let file of fileUploads">
-                                    <td>{{file.description}}</td>
-                                    <td>{{file.uploadDate}}</td>
-                                    <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                            <input type="text" class="form-control" id="fileDesc" placeholder="Description">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="fileUpload"> Upload File </label>
+                                <input type="file" style="display: none" id="fileUpload">
+                            </div>
+                            <input type="text" class="form-control" id="fileName" placeholder='Choose a file...' (click)="selectFile()" onkeypress="return false;"
+                            />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-warning" id="btn-reset" type="button" (click)="resetFileInput()">Reset</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
-                    <button type="button" class="btn btn-primary" (click)="onCloseHandled()">Save</button>
+                    <button type="button" class="btn btn-primary" (click)="saveFile()">Upload</button>
                 </div>
             </div>
         </div>

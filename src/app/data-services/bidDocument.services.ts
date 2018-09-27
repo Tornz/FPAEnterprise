@@ -1,28 +1,40 @@
-import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Injectable, OnInit } from "@angular/core";
+import { Subject, Subscription } from "rxjs";
 import { Documents } from "../model/documents.model";
 import { FileUpload } from "../model/fileUpload.model";
+import * as $ from 'jquery';
 
 
 @Injectable()
 export class BidDocumentServices {
+    private bidDocuments: Documents[] = [];
     bidDocsChanged = new Subject<Documents[]>();
 
-    private bidDocuments: Documents[] = [
-        new Documents(1, "Project A", []), new Documents(2, "Project B", []),
-        new Documents(3, "Project C", []), new Documents(4, "Project D", [])
-    ];
+    constructor() { }
 
     getDocuments() {
         return this.bidDocuments.slice();
     }
 
-    // saveComponents(item: TechComponents) {
-    //     this.technologies.frontend = item.frontend.slice();
-    //     this.technologies.backend = item.backend.slice();
-    //     this.technologies.report = item.report.slice();
-    //     this.technologies.storage = item.storage.slice();
-    // }
+    saveFile(id: number, file: FileUpload) {
+        var doc = $.grep(this.bidDocuments, obj => { return obj.projectId == id });
+        if (doc.length > 0) {
+            doc[0].files.push(file);
+        } else {
+            this.bidDocuments.push(new Documents(id, [file]));
+        }
+    }
+
+    deleteFile(id: number, file: FileUpload) {
+        var doc = $.grep(this.bidDocuments, obj => { return obj.projectId == id });
+        if (doc.length > 0) {
+            let f = $.grep(doc[0].files, obj => { return obj == file });
+            if (f.length > 0) {
+                let index = doc[0].files.indexOf(f[0], 0);
+                doc[0].files.splice(index, 1);
+            }
+        }
+    }
 }
 
 
