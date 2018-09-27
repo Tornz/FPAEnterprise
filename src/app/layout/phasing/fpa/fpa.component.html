@@ -2,10 +2,10 @@
 <br />
 <ul class="nav nav-tabs">
         <li class="nav-item">
-                <a [class]="(activeTab==4) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(1)">User Story</a>
+                <a [class]="(activeTab==1) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(1)">User Story</a>
             </li>
     <li class="nav-item">
-        <a [class]="(activeTab==1) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(2)">Functions</a>
+        <a [class]="(activeTab==2) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(2)">Functions</a>
     </li>
     <!-- <li class="nav-item">
         <a [class]="(activeTab==2) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(2)">Estimation</a>
@@ -15,11 +15,11 @@
     </li> -->
   
     <li class="nav-item">
-        <a [class]="(activeTab==5) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(3)">Components</a>
+        <a [class]="(activeTab==3) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(3)">Components</a>
     </li>
-    <!-- <li class="nav-item">
-        <a [class]="(activeTab==6) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(6)">Logical Container</a>
-    </li> -->
+    <li class="nav-item">
+        <a [class]="(activeTab==4) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(4)">Logical Container</a>
+    </li>
 </ul>
 
 <!-- Tab panes -->
@@ -39,7 +39,7 @@
     <ng-template [ngIf]="activeTab==3">
         <app-components></app-components>
     </ng-template>
-    <!-- <ng-template [ngIf]="activeTab==6">
-        <app-functions></app-functions>
-    </ng-template> -->
+    <ng-template [ngIf]="activeTab==4">
+        <app-logicalContainer></app-logicalContainer>
+    </ng-template>
 </div>

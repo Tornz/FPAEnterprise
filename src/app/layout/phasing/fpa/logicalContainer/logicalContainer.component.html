@@ -1,0 +1,165 @@
+<div [@routerTransition]>>
+    <br />
+    <div class="form-group input-group col-4" style="padding-left: 10px;">
+        <input type="text" class="form-control" placeholder="Search">
+        <div class="input-group-append">
+            <button class="btn btn-secondary" type="button">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+        <div class="row-md-3" style="padding-left: 10px;">
+            <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa" (click)="addProj()">Add {{text}}
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+            <!-- <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa" (click)="onSave()">Save<i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 10px"></i></button> -->
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <!-- <div class="card-header">Projects</div> -->
+        <table class="card-body table table-hover">
+            <thead class="card-header" style="background-color: #cce5ff;">
+                <tr>
+                    <th *ngFor="let data of cols">{{data.header}}</th>
+                    <!-- <th>Project Name</th>
+                        <th>Col</th>
+                        <th>Col</th>
+                        <th>Col</th>
+                        <th>Col</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of logicalContainer, let i=index">
+                    <th scope="row">{{data.id}}</th>
+                    <th scope="row">{{data.description }}</th>
+                    <th scope="row">{{data.dateCreated | date:'mediumDate'}}</th>
+                    <th scope="row">{{data.dateUpdated | date:'mediumDate'}}</th>
+                    <th scope="row">{{data.createdBy}}</th>
+                    <th scope="row">{{data.updatedBy}}</th>
+                    <th scope="row">{{data.appServer}}</th>
+                    <th scope="row">{{data.dbServer}}</th>
+                    <th scope="row">{{data.msServer}}</th>
+                    <th scope="row">{{data.type}}</th>
+                    <th scope="row">
+                        <button class="btn btn-outline-info" (click)="editLogicalContainer(data)">Edit 
+                            <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" (click)="onDelete(data,i)">Delete
+                            <i class="fa fa-trash-o fa-lg mypointer" aria-hidden="true"></i>
+                        </button>
+
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<div class="modal" *ngIf="modal == 'add'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Logical Container</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="logicalContainerForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="project">Description</label>
+                        <textarea type="text" class="form-control" formControlName="description" placeholder="Description"></textarea>
+                     
+                        <label for="project">Created By</label>
+                        <textarea type="text" class="form-control" formControlName="createdBy" placeholder="Created By"></textarea>
+                       
+                        <label for="project">Type</label>
+                        <textarea type="text" class="form-control" formControlName="type" placeholder="Prod/UAT"></textarea>
+
+                        <label for="project">App Server</label>
+                        <textarea type="text" class="form-control" formControlName="appServer" placeholder="App Server"></textarea>
+                        
+                        <label for="project">DB Server</label>
+                        <textarea type="text" class="form-control" formControlName="dbServer" placeholder="DB Server"></textarea>
+                       
+                        <label for="project">MS Server</label>
+                        <textarea type="text" class="form-control" formControlName="msServer" placeholder="MS Server"></textarea>
+                       <!-- <div class="error-message" *ngIf="userForm.controls.user.invalid && myForm.submitted">
+                            <i class="fa fa-close"></i> Please enter a valid Logical Container
+                        </div> -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" (click)="onCloseHandled()">Close</button>
+                    <button type="submit" class="btn btn-outline-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" *ngIf="modal == 'edit'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Logical Container</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="logicalContainerForm" #myForm='ngForm' (ngSubmit)="onEditLogicalContainer(logicCon)">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="project">Description</label>
+                        <input type="text" class="form-control" formControlName="description" [value]="logicCon.description">
+                        
+                        <label for="project">Updated By</label>
+                        <input type="text" class="form-control" formControlName="createdBy" [value]="logicCon.createdBy">
+                        
+                        <label for="project">Type</label>
+                        <input type="text" class="form-control" formControlName="type" [value]="logicCon.type">
+                        
+                        <label for="project">App Server</label>
+                        <input type="text" class="form-control" formControlName="appServer" [value]="logicCon.appServer">
+                        
+                        <label for="project">DB Server</label>
+                        <input type="text" class="form-control" formControlName="dbServer" [value]="logicCon.dbServer">
+                       
+                        <label for="project">MS Server</label>
+                        <input type="text" class="form-control" formControlName="msServer" [value]="logicCon.msServer">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" *ngIf="modal == 'error'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Error Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Error!</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
