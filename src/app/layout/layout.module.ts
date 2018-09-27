@@ -9,6 +9,7 @@ import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProjectServices } from '../data-services/project.services';
+import { BidDocumentServices } from '../data-services/bidDocument.services';
 
 @NgModule({
     imports: [
@@ -18,6 +19,6 @@ import { ProjectServices } from '../data-services/project.services';
         NgbDropdownModule.forRoot()
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent],
-    providers:[ProjectServices]
+    providers:[ProjectServices, BidDocumentServices]
 })
 export class LayoutModule {}
