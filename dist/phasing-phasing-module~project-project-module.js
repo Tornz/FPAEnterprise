@@ -17167,6 +17167,131 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./src/app/data-services/project.services.ts":
+/*!***************************************************!*\
+  !*** ./src/app/data-services/project.services.ts ***!
+  \***************************************************/
+/*! exports provided: ProjectServices */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProjectServices", function() { return ProjectServices; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ProjectServices = /** @class */ (function () {
+    function ProjectServices(http) {
+        this.http = http;
+        this.project = [
+            {
+                id: 1,
+                projectName: "Project A",
+                description: "Description",
+                phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
+                technology: "",
+                methodology: "Agile",
+                dateUpdated: new Date()
+            },
+            {
+                id: 2,
+                projectName: "Project B",
+                description: "Description",
+                phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
+                technology: "",
+                methodology: "Agile",
+                dateUpdated: new Date()
+            },
+            {
+                id: 3,
+                projectName: "Project C",
+                description: "Description",
+                phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
+                technology: "",
+                methodology: "Agile",
+                dateUpdated: new Date()
+            },
+            {
+                id: 4,
+                projectName: "Project D",
+                description: "Description",
+                phaseNumber: ["Web Application", "Mobile Application"],
+                technology: "",
+                methodology: "Agile",
+                dateUpdated: new Date()
+            },
+            {
+                id: 5,
+                projectName: "Project E",
+                description: "Description",
+                phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
+                technology: "",
+                methodology: "Agile",
+                dateUpdated: new Date()
+            }
+        ];
+        this.projectChanged = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+    }
+    ProjectServices.prototype.getProjects = function () {
+        //NOTE:
+        //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
+        // return this.http.get<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
+        // .toPromise();
+        console.log(this.project.slice());
+        return this.project.slice();
+    };
+    ProjectServices.prototype.addProject = function (data) {
+        //NOTE:
+        //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
+        // environment.REST_API_URL FOR API URL
+        // FunctionComponent for model of data
+        // return this.http.post<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
+        // .toPromise();
+        this.project.push(data);
+        this.projectChanged.next(this.project.slice());
+    };
+    ProjectServices.prototype.editProject = function (id, data) {
+        //NOTE:
+        //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
+        // environment.REST_API_URL FOR API URL
+        // FunctionComponent for model of data
+        // return this.http.post<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
+        // .toPromise();
+        for (var i in this.project) {
+            if (this.project[i].id == id) {
+                this.project[i].projectName = data.projectName;
+                this.project[i].description = data.description;
+                this.project[i].phaseNumber = data.phaseNumber;
+                this.project[i].technology = data.technology;
+                this.project[i].methodology = data.methodology;
+                this.project[i].dateUpdated = new Date();
+                return true;
+            }
+        }
+    };
+    ProjectServices = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ProjectServices);
+    return ProjectServices;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/router.animations.ts":
 /*!**************************************!*\
   !*** ./src/app/router.animations.ts ***!

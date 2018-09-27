@@ -75490,40 +75490,6 @@ return hooks;
 
 /***/ }),
 
-/***/ "./node_modules/inherits/inherits_browser.js":
-/*!***************************************************!*\
-  !*** ./node_modules/inherits/inherits_browser.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
-  }
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
@@ -85900,6 +85866,303 @@ return jQuery;
 
 /***/ }),
 
+/***/ "./node_modules/ng2-select2/ng2-select2.component.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/ng2-select2/ng2-select2.component.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
+    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var Select2Component = (function () {
+    function Select2Component(renderer) {
+        this.renderer = renderer;
+        // enable / disable default style for select2
+        this.cssImport = false;
+        // enable / disable select2
+        this.disabled = false;
+        // emitter when value is changed
+        this.valueChanged = new core_1.EventEmitter();
+        this.element = undefined;
+        this.check = false;
+        this.style = ".select2-container{box-sizing:border-box;display:inline-block;margin:0;position:relative;vertical-align:middle;min-width:100px}.select2-container .select2-selection--single{box-sizing:border-box;cursor:pointer;display:block;height:28px;user-select:none;-webkit-user-select:none}.select2-container .select2-selection--single .select2-selection__rendered{display:block;padding-left:8px;padding-right:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.select2-container .select2-selection--single .select2-selection__clear{position:relative}.select2-container[dir=rtl] .select2-selection--single .select2-selection__rendered{padding-right:8px;padding-left:20px}.select2-container .select2-selection--multiple{box-sizing:border-box;cursor:pointer;display:block;min-height:32px;user-select:none;-webkit-user-select:none}.select2-container .select2-selection--multiple .select2-selection__rendered{display:inline-block;overflow:hidden;padding-left:8px;text-overflow:ellipsis;white-space:nowrap}.select2-container .select2-search--inline{float:left}.select2-container .select2-search--inline .select2-search__field{box-sizing:border-box;border:none;font-size:100%;margin-top:5px;padding:0}.select2-container .select2-search--inline .select2-search__field::-webkit-search-cancel-button{-webkit-appearance:none}.select2-dropdown{background-color:#fff;border:1px solid #aaa;border-radius:4px;box-sizing:border-box;display:block;position:absolute;left:-100000px;width:100%;z-index:1051}.select2-results{display:block}.select2-results__options{list-style:none;margin:0;padding:0}.select2-results__option{padding:6px;user-select:none;-webkit-user-select:none}.select2-results__option[aria-selected]{cursor:pointer}.select2-container--open .select2-dropdown{left:0}.select2-container--open .select2-dropdown--above{border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0}.select2-container--open .select2-dropdown--below{border-top:none;border-top-left-radius:0;border-top-right-radius:0}.select2-search--dropdown{display:block;padding:4px}.select2-search--dropdown .select2-search__field{padding:4px;width:100%;box-sizing:border-box}.select2-search--dropdown .select2-search__field::-webkit-search-cancel-button{-webkit-appearance:none}.select2-search--dropdown.select2-search--hide{display:none}.select2-close-mask{border:0;margin:0;padding:0;display:block;position:fixed;left:0;top:0;min-height:100%;min-width:100%;height:auto;width:auto;opacity:0;z-index:99;background-color:#fff;filter:alpha(opacity=0)}.select2-hidden-accessible{border:0!important;clip:rect(0 0 0 0)!important;height:1px!important;margin:-1px!important;overflow:hidden!important;padding:0!important;position:absolute!important;width:1px!important}.select2-container--classic .select2-results>.select2-results__options,.select2-container--default .select2-results>.select2-results__options{max-height:200px;overflow-y:auto}.select2-container--default .select2-selection--single{background-color:#fff;border:1px solid #aaa;border-radius:4px}.select2-container--default .select2-selection--single .select2-selection__rendered{color:#444;line-height:28px}.select2-container--default .select2-selection--single .select2-selection__clear{cursor:pointer;float:right;font-weight:700}.select2-container--default .select2-selection--single .select2-selection__placeholder{color:#999}.select2-container--default .select2-selection--single .select2-selection__arrow{height:26px;position:absolute;top:1px;right:1px;width:20px}.select2-container--default .select2-selection--single .select2-selection__arrow b{border-color:#888 transparent transparent;border-style:solid;border-width:5px 4px 0;height:0;left:50%;margin-left:-4px;margin-top:-2px;position:absolute;top:50%;width:0}.select2-container--default[dir=rtl] .select2-selection--single .select2-selection__clear{float:left}.select2-container--default[dir=rtl] .select2-selection--single .select2-selection__arrow{left:1px;right:auto}.select2-container--default.select2-container--disabled .select2-selection--single{background-color:#eee;cursor:default}.select2-container--default.select2-container--disabled .select2-selection--single .select2-selection__clear{display:none}.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b{border-color:transparent transparent #888;border-width:0 4px 5px}.select2-container--default .select2-selection--multiple{background-color:#fff;border:1px solid #aaa;border-radius:4px;cursor:text}.select2-container--default .select2-selection--multiple .select2-selection__rendered{box-sizing:border-box;list-style:none;margin:0;padding:0 5px;width:100%}.select2-container--default .select2-selection--multiple .select2-selection__rendered li{list-style:none}.select2-container--default .select2-selection--multiple .select2-selection__placeholder{color:#999;margin-top:5px;float:left}.select2-container--default .select2-selection--multiple .select2-selection__clear{cursor:pointer;float:right;font-weight:700;margin-top:5px;margin-right:10px}.select2-container--default .select2-selection--multiple .select2-selection__choice{background-color:#e4e4e4;border:1px solid #aaa;border-radius:4px;cursor:default;float:left;margin-right:5px;margin-top:5px;padding:0 5px}.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{color:#999;cursor:pointer;display:inline-block;font-weight:700;margin-right:2px}.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover{color:#333}.select2-container--default[dir=rtl] .select2-selection--multiple .select2-search--inline,.select2-container--default[dir=rtl] .select2-selection--multiple .select2-selection__choice,.select2-container--default[dir=rtl] .select2-selection--multiple .select2-selection__placeholder{float:right}.select2-container--default[dir=rtl] .select2-selection--multiple .select2-selection__choice{margin-left:5px;margin-right:auto}.select2-container--default[dir=rtl] .select2-selection--multiple .select2-selection__choice__remove{margin-left:2px;margin-right:auto}.select2-container--default.select2-container--focus .select2-selection--multiple{border:1px solid #000;outline:0}.select2-container--default.select2-container--disabled .select2-selection--multiple{background-color:#eee;cursor:default}.select2-container--default.select2-container--disabled .select2-selection__choice__remove{display:none}.select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple,.select2-container--default.select2-container--open.select2-container--above .select2-selection--single{border-top-left-radius:0;border-top-right-radius:0}.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple,.select2-container--default.select2-container--open.select2-container--below .select2-selection--single{border-bottom-left-radius:0;border-bottom-right-radius:0}.select2-container--default .select2-search--dropdown .select2-search__field{border:1px solid #aaa}.select2-container--default .select2-search--inline .select2-search__field{background:0 0;border:none;outline:0;box-shadow:none;-webkit-appearance:textfield}.select2-container--default .select2-results__option[role=group]{padding:0}.select2-container--default .select2-results__option[aria-disabled=true]{color:#999}.select2-container--default .select2-results__option[aria-selected=true]{background-color:#ddd}.select2-container--default .select2-results__option .select2-results__option{padding-left:1em}.select2-container--default .select2-results__option .select2-results__option .select2-results__group{padding-left:0}.select2-container--default .select2-results__option .select2-results__option .select2-results__option{margin-left:-1em;padding-left:2em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-2em;padding-left:3em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-3em;padding-left:4em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-4em;padding-left:5em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-5em;padding-left:6em}.select2-container--default .select2-results__option--highlighted[aria-selected]{background-color:#5897fb;color:#fff}.select2-container--default .select2-results__group{cursor:default;display:block;padding:6px}.select2-container--classic .select2-selection--single{background-color:#f7f7f7;border:1px solid #aaa;border-radius:4px;outline:0;background-image:-webkit-linear-gradient(top,#fff 50%,#eee 100%);background-image:-o-linear-gradient(top,#fff 50%,#eee 100%);background-image:linear-gradient(to bottom,#fff 50%,#eee 100%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0)}.select2-container--classic .select2-selection--single:focus{border:1px solid #5897fb}.select2-container--classic .select2-selection--single .select2-selection__rendered{color:#444;line-height:28px}.select2-container--classic .select2-selection--single .select2-selection__clear{cursor:pointer;float:right;font-weight:700;margin-right:10px}.select2-container--classic .select2-selection--single .select2-selection__placeholder{color:#999}.select2-container--classic .select2-selection--single .select2-selection__arrow{background-color:#ddd;border:none;border-left:1px solid #aaa;border-top-right-radius:4px;border-bottom-right-radius:4px;height:26px;position:absolute;top:1px;right:1px;width:20px;background-image:-webkit-linear-gradient(top,#eee 50%,#ccc 100%);background-image:-o-linear-gradient(top,#eee 50%,#ccc 100%);background-image:linear-gradient(to bottom,#eee 50%,#ccc 100%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFCCCCCC', GradientType=0)}.select2-container--classic .select2-selection--single .select2-selection__arrow b{border-color:#888 transparent transparent;border-style:solid;border-width:5px 4px 0;height:0;left:50%;margin-left:-4px;margin-top:-2px;position:absolute;top:50%;width:0}.select2-container--classic[dir=rtl] .select2-selection--single .select2-selection__clear{float:left}.select2-container--classic[dir=rtl] .select2-selection--single .select2-selection__arrow{border:none;border-right:1px solid #aaa;border-radius:4px 0 0 4px;left:1px;right:auto}.select2-container--classic.select2-container--open .select2-selection--single{border:1px solid #5897fb}.select2-container--classic.select2-container--open .select2-selection--single .select2-selection__arrow{background:0 0;border:none}.select2-container--classic.select2-container--open .select2-selection--single .select2-selection__arrow b{border-color:transparent transparent #888;border-width:0 4px 5px}.select2-container--classic.select2-container--open.select2-container--above .select2-selection--single{border-top:none;border-top-left-radius:0;border-top-right-radius:0;background-image:-webkit-linear-gradient(top,#fff 0,#eee 50%);background-image:-o-linear-gradient(top,#fff 0,#eee 50%);background-image:linear-gradient(to bottom,#fff 0,#eee 50%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0)}.select2-container--classic.select2-container--open.select2-container--below .select2-selection--single{border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0;background-image:-webkit-linear-gradient(top,#eee 50%,#fff 100%);background-image:-o-linear-gradient(top,#eee 50%,#fff 100%);background-image:linear-gradient(to bottom,#eee 50%,#fff 100%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFFFFFFF', GradientType=0)}.select2-container--classic .select2-selection--multiple{background-color:#fff;border:1px solid #aaa;border-radius:4px;cursor:text;outline:0}.select2-container--classic .select2-selection--multiple:focus{border:1px solid #5897fb}.select2-container--classic .select2-selection--multiple .select2-selection__rendered{list-style:none;margin:0;padding:0 5px}.select2-container--classic .select2-selection--multiple .select2-selection__clear{display:none}.select2-container--classic .select2-selection--multiple .select2-selection__choice{background-color:#e4e4e4;border:1px solid #aaa;border-radius:4px;cursor:default;float:left;margin-right:5px;margin-top:5px;padding:0 5px}.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove{color:#888;cursor:pointer;display:inline-block;font-weight:700;margin-right:2px}.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove:hover{color:#555}.select2-container--classic[dir=rtl] .select2-selection--multiple .select2-selection__choice{float:right;margin-left:5px;margin-right:auto}.select2-container--classic[dir=rtl] .select2-selection--multiple .select2-selection__choice__remove{margin-left:2px;margin-right:auto}.select2-container--classic.select2-container--open .select2-selection--multiple{border:1px solid #5897fb}.select2-container--classic.select2-container--open.select2-container--above .select2-selection--multiple{border-top:none;border-top-left-radius:0;border-top-right-radius:0}.select2-container--classic.select2-container--open.select2-container--below .select2-selection--multiple{border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0}.select2-container--classic .select2-search--dropdown .select2-search__field{border:1px solid #aaa;outline:0}.select2-container--classic .select2-search--inline .select2-search__field{outline:0;box-shadow:none}.select2-container--classic .select2-dropdown{background-color:#fff;border:1px solid transparent}.select2-container--classic .select2-dropdown--above{border-bottom:none}.select2-container--classic .select2-dropdown--below{border-top:none}.select2-container--classic .select2-results__option[role=group]{padding:0}.select2-container--classic .select2-results__option[aria-disabled=true]{color:grey}.select2-container--classic .select2-results__option--highlighted[aria-selected]{background-color:#3875d7;color:#fff}.select2-container--classic .select2-results__group{cursor:default;display:block;padding:6px}.select2-container--classic.select2-container--open .select2-dropdown{border-color:#5897fb}";
+    }
+    Select2Component.prototype.ngOnInit = function () {
+        if (this.cssImport) {
+            var head = document.getElementsByTagName('head')[0];
+            var link = head.children[head.children.length - 1];
+            if (!link.version) {
+                var newLink = this.renderer.createElement(head, 'style');
+                this.renderer.setElementProperty(newLink, 'type', 'text/css');
+                this.renderer.setElementProperty(newLink, 'version', 'select2');
+                this.renderer.setElementProperty(newLink, 'innerHTML', this.style);
+            }
+        }
+    };
+    Select2Component.prototype.ngOnChanges = function (changes) {
+        return __awaiter(this, void 0, void 0, function () {
+            var newValue, newValue;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.element) {
+                            return [2 /*return*/];
+                        }
+                        if (!(changes['data'] && JSON.stringify(changes['data'].previousValue) !== JSON.stringify(changes['data'].currentValue))) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.initPlugin()];
+                    case 1:
+                        _a.sent();
+                        newValue = this.element.val();
+                        this.valueChanged.emit({
+                            value: newValue,
+                            data: this.element.select2('data')
+                        });
+                        _a.label = 2;
+                    case 2:
+                        if (changes['value'] && changes['value'].previousValue !== changes['value'].currentValue) {
+                            newValue = changes['value'].currentValue;
+                            this.setElementValue(newValue);
+                            this.valueChanged.emit({
+                                value: newValue,
+                                data: this.element.select2('data')
+                            });
+                        }
+                        if (changes['disabled'] && changes['disabled'].previousValue !== changes['disabled'].currentValue) {
+                            this.renderer.setElementProperty(this.selector.nativeElement, 'disabled', this.disabled);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Select2Component.prototype.ngAfterViewInit = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.element = jQuery(this.selector.nativeElement);
+                        return [4 /*yield*/, this.initPlugin()];
+                    case 1:
+                        _a.sent();
+                        if (typeof this.value !== 'undefined') {
+                            this.setElementValue(this.value);
+                        }
+                        this.element.on('select2:select select2:unselect', function () {
+                            _this.valueChanged.emit({
+                                value: _this.element.val(),
+                                data: _this.element.select2('data')
+                            });
+                        });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Select2Component.prototype.ngOnDestroy = function () {
+        if (this.element && this.element.off) {
+            this.element.off("select2:select");
+        }
+    };
+    Select2Component.prototype.initPlugin = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var options, oldMatcher;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.element.select2) {
+                            if (!this.check) {
+                                this.check = true;
+                                console.log("Please add Select2 library (js file) to the project. You can download it from https://github.com/select2/select2/tree/master/dist/js.");
+                            }
+                            return [2 /*return*/];
+                        }
+                        // If select2 already initialized remove him and remove all tags inside
+                        if (this.element.hasClass('select2-hidden-accessible') == true) {
+                            this.element.select2('destroy');
+                            this.renderer.setElementProperty(this.selector.nativeElement, 'innerHTML', '');
+                        }
+                        options = {
+                            data: this.data,
+                            width: (this.width) ? this.width : 'resolve'
+                        };
+                        Object.assign(options, this.options);
+                        if (!options.matcher) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.requireOldMatcher()];
+                    case 1:
+                        oldMatcher = _a.sent();
+                        options.matcher = oldMatcher(options.matcher);
+                        this.element.select2(options);
+                        if (typeof this.value !== 'undefined') {
+                            this.setElementValue(this.value);
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        this.element.select2(options);
+                        _a.label = 3;
+                    case 3:
+                        if (this.disabled) {
+                            this.renderer.setElementProperty(this.selector.nativeElement, 'disabled', this.disabled);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Select2Component.prototype.requireOldMatcher = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (resolve) {
+                        jQuery.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
+                            resolve(oldMatcher);
+                        });
+                    })];
+            });
+        });
+    };
+    Select2Component.prototype.setElementValue = function (newValue) {
+        if (Array.isArray(newValue)) {
+            for (var _i = 0, _a = this.selector.nativeElement.options; _i < _a.length; _i++) {
+                var option = _a[_i];
+                if (newValue.indexOf(option.value) > -1) {
+                    this.renderer.setElementProperty(option, 'selected', 'true');
+                }
+            }
+        }
+        else {
+            this.renderer.setElementProperty(this.selector.nativeElement, 'value', newValue);
+        }
+        this.element.trigger('change.select2');
+    };
+    return Select2Component;
+}());
+__decorate([
+    core_1.ViewChild('selector'),
+    __metadata("design:type", core_1.ElementRef)
+], Select2Component.prototype, "selector", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], Select2Component.prototype, "data", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], Select2Component.prototype, "value", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], Select2Component.prototype, "cssImport", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], Select2Component.prototype, "width", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], Select2Component.prototype, "disabled", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], Select2Component.prototype, "options", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], Select2Component.prototype, "valueChanged", void 0);
+Select2Component = __decorate([
+    core_1.Component({
+        selector: 'select2',
+        template: "\n        <select #selector>\n            <ng-content select=\"option, optgroup\">\n            </ng-content>\n        </select>",
+        encapsulation: core_1.ViewEncapsulation.None,
+        changeDetection: core_1.ChangeDetectionStrategy.OnPush
+    }),
+    __metadata("design:paramtypes", [core_1.Renderer])
+], Select2Component);
+exports.Select2Component = Select2Component;
+//# sourceMappingURL=ng2-select2.component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ng2-select2/ng2-select2.js":
+/*!*************************************************!*\
+  !*** ./node_modules/ng2-select2/ng2-select2.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var ng2_select2_component_1 = __webpack_require__(/*! ./ng2-select2.component */ "./node_modules/ng2-select2/ng2-select2.component.js");
+var ng2_select2_component_2 = __webpack_require__(/*! ./ng2-select2.component */ "./node_modules/ng2-select2/ng2-select2.component.js");
+exports.Select2Component = ng2_select2_component_2.Select2Component;
+var Select2Module = (function () {
+    function Select2Module() {
+    }
+    return Select2Module;
+}());
+Select2Module = __decorate([
+    core_1.NgModule({
+        declarations: [ng2_select2_component_1.Select2Component],
+        exports: [ng2_select2_component_1.Select2Component]
+    })
+], Select2Module);
+exports.Select2Module = Select2Module;
+//# sourceMappingURL=ng2-select2.js.map
+
+/***/ }),
+
 /***/ "./node_modules/numbro/dist/numbro.min.js":
 /*!************************************************!*\
   !*** ./node_modules/numbro/dist/numbro.min.js ***!
@@ -87106,649 +87369,360 @@ var require;var require;!function(e){if(true)module.exports=e();else {}}(functio
 
 /***/ }),
 
-/***/ "./node_modules/util/support/isBufferBrowser.js":
-/*!******************************************************!*\
-  !*** ./node_modules/util/support/isBufferBrowser.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = function isBuffer(arg) {
-  return arg && typeof arg === 'object'
-    && typeof arg.copy === 'function'
-    && typeof arg.fill === 'function'
-    && typeof arg.readUInt8 === 'function';
-}
-
-/***/ }),
-
-/***/ "./node_modules/util/util.js":
-/*!***********************************!*\
-  !*** ./node_modules/util/util.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-var formatRegExp = /%[sdj%]/g;
-exports.format = function(f) {
-  if (!isString(f)) {
-    var objects = [];
-    for (var i = 0; i < arguments.length; i++) {
-      objects.push(inspect(arguments[i]));
-    }
-    return objects.join(' ');
-  }
-
-  var i = 1;
-  var args = arguments;
-  var len = args.length;
-  var str = String(f).replace(formatRegExp, function(x) {
-    if (x === '%%') return '%';
-    if (i >= len) return x;
-    switch (x) {
-      case '%s': return String(args[i++]);
-      case '%d': return Number(args[i++]);
-      case '%j':
-        try {
-          return JSON.stringify(args[i++]);
-        } catch (_) {
-          return '[Circular]';
-        }
-      default:
-        return x;
-    }
-  });
-  for (var x = args[i]; i < len; x = args[++i]) {
-    if (isNull(x) || !isObject(x)) {
-      str += ' ' + x;
-    } else {
-      str += ' ' + inspect(x);
-    }
-  }
-  return str;
-};
-
-
-// Mark that a method should not be used.
-// Returns a modified function which warns once by default.
-// If --no-deprecation is set, then it is a no-op.
-exports.deprecate = function(fn, msg) {
-  // Allow for deprecating things in the process of starting up.
-  if (isUndefined(global.process)) {
-    return function() {
-      return exports.deprecate(fn, msg).apply(this, arguments);
-    };
-  }
-
-  if (process.noDeprecation === true) {
-    return fn;
-  }
-
-  var warned = false;
-  function deprecated() {
-    if (!warned) {
-      if (process.throwDeprecation) {
-        throw new Error(msg);
-      } else if (process.traceDeprecation) {
-        console.trace(msg);
-      } else {
-        console.error(msg);
-      }
-      warned = true;
-    }
-    return fn.apply(this, arguments);
-  }
-
-  return deprecated;
-};
-
-
-var debugs = {};
-var debugEnviron;
-exports.debuglog = function(set) {
-  if (isUndefined(debugEnviron))
-    debugEnviron = process.env.NODE_DEBUG || '';
-  set = set.toUpperCase();
-  if (!debugs[set]) {
-    if (new RegExp('\\b' + set + '\\b', 'i').test(debugEnviron)) {
-      var pid = process.pid;
-      debugs[set] = function() {
-        var msg = exports.format.apply(exports, arguments);
-        console.error('%s %d: %s', set, pid, msg);
-      };
-    } else {
-      debugs[set] = function() {};
-    }
-  }
-  return debugs[set];
-};
-
-
-/**
- * Echos the value of a value. Trys to print the value out
- * in the best way possible given the different types.
- *
- * @param {Object} obj The object to print out.
- * @param {Object} opts Optional options object that alters the output.
- */
-/* legacy: obj, showHidden, depth, colors*/
-function inspect(obj, opts) {
-  // default options
-  var ctx = {
-    seen: [],
-    stylize: stylizeNoColor
-  };
-  // legacy...
-  if (arguments.length >= 3) ctx.depth = arguments[2];
-  if (arguments.length >= 4) ctx.colors = arguments[3];
-  if (isBoolean(opts)) {
-    // legacy...
-    ctx.showHidden = opts;
-  } else if (opts) {
-    // got an "options" object
-    exports._extend(ctx, opts);
-  }
-  // set default options
-  if (isUndefined(ctx.showHidden)) ctx.showHidden = false;
-  if (isUndefined(ctx.depth)) ctx.depth = 2;
-  if (isUndefined(ctx.colors)) ctx.colors = false;
-  if (isUndefined(ctx.customInspect)) ctx.customInspect = true;
-  if (ctx.colors) ctx.stylize = stylizeWithColor;
-  return formatValue(ctx, obj, ctx.depth);
-}
-exports.inspect = inspect;
-
-
-// http://en.wikipedia.org/wiki/ANSI_escape_code#graphics
-inspect.colors = {
-  'bold' : [1, 22],
-  'italic' : [3, 23],
-  'underline' : [4, 24],
-  'inverse' : [7, 27],
-  'white' : [37, 39],
-  'grey' : [90, 39],
-  'black' : [30, 39],
-  'blue' : [34, 39],
-  'cyan' : [36, 39],
-  'green' : [32, 39],
-  'magenta' : [35, 39],
-  'red' : [31, 39],
-  'yellow' : [33, 39]
-};
-
-// Don't use 'blue' not visible on cmd.exe
-inspect.styles = {
-  'special': 'cyan',
-  'number': 'yellow',
-  'boolean': 'yellow',
-  'undefined': 'grey',
-  'null': 'bold',
-  'string': 'green',
-  'date': 'magenta',
-  // "name": intentionally not styling
-  'regexp': 'red'
-};
-
-
-function stylizeWithColor(str, styleType) {
-  var style = inspect.styles[styleType];
-
-  if (style) {
-    return '\u001b[' + inspect.colors[style][0] + 'm' + str +
-           '\u001b[' + inspect.colors[style][1] + 'm';
-  } else {
-    return str;
-  }
-}
-
-
-function stylizeNoColor(str, styleType) {
-  return str;
-}
-
-
-function arrayToHash(array) {
-  var hash = {};
-
-  array.forEach(function(val, idx) {
-    hash[val] = true;
-  });
-
-  return hash;
-}
-
-
-function formatValue(ctx, value, recurseTimes) {
-  // Provide a hook for user-specified inspect functions.
-  // Check that value is an object with an inspect function on it
-  if (ctx.customInspect &&
-      value &&
-      isFunction(value.inspect) &&
-      // Filter out the util module, it's inspect function is special
-      value.inspect !== exports.inspect &&
-      // Also filter out any prototype objects using the circular check.
-      !(value.constructor && value.constructor.prototype === value)) {
-    var ret = value.inspect(recurseTimes, ctx);
-    if (!isString(ret)) {
-      ret = formatValue(ctx, ret, recurseTimes);
-    }
-    return ret;
-  }
-
-  // Primitive types cannot have properties
-  var primitive = formatPrimitive(ctx, value);
-  if (primitive) {
-    return primitive;
-  }
-
-  // Look up the keys of the object.
-  var keys = Object.keys(value);
-  var visibleKeys = arrayToHash(keys);
-
-  if (ctx.showHidden) {
-    keys = Object.getOwnPropertyNames(value);
-  }
-
-  // IE doesn't make error fields non-enumerable
-  // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
-  if (isError(value)
-      && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
-    return formatError(value);
-  }
-
-  // Some type of object without properties can be shortcutted.
-  if (keys.length === 0) {
-    if (isFunction(value)) {
-      var name = value.name ? ': ' + value.name : '';
-      return ctx.stylize('[Function' + name + ']', 'special');
-    }
-    if (isRegExp(value)) {
-      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
-    }
-    if (isDate(value)) {
-      return ctx.stylize(Date.prototype.toString.call(value), 'date');
-    }
-    if (isError(value)) {
-      return formatError(value);
-    }
-  }
-
-  var base = '', array = false, braces = ['{', '}'];
-
-  // Make Array say that they are Array
-  if (isArray(value)) {
-    array = true;
-    braces = ['[', ']'];
-  }
-
-  // Make functions say that they are functions
-  if (isFunction(value)) {
-    var n = value.name ? ': ' + value.name : '';
-    base = ' [Function' + n + ']';
-  }
-
-  // Make RegExps say that they are RegExps
-  if (isRegExp(value)) {
-    base = ' ' + RegExp.prototype.toString.call(value);
-  }
-
-  // Make dates with properties first say the date
-  if (isDate(value)) {
-    base = ' ' + Date.prototype.toUTCString.call(value);
-  }
-
-  // Make error with message first say the error
-  if (isError(value)) {
-    base = ' ' + formatError(value);
-  }
-
-  if (keys.length === 0 && (!array || value.length == 0)) {
-    return braces[0] + base + braces[1];
-  }
-
-  if (recurseTimes < 0) {
-    if (isRegExp(value)) {
-      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
-    } else {
-      return ctx.stylize('[Object]', 'special');
-    }
-  }
-
-  ctx.seen.push(value);
-
-  var output;
-  if (array) {
-    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);
-  } else {
-    output = keys.map(function(key) {
-      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
-    });
-  }
-
-  ctx.seen.pop();
-
-  return reduceToSingleString(output, base, braces);
-}
-
-
-function formatPrimitive(ctx, value) {
-  if (isUndefined(value))
-    return ctx.stylize('undefined', 'undefined');
-  if (isString(value)) {
-    var simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '')
-                                             .replace(/'/g, "\\'")
-                                             .replace(/\\"/g, '"') + '\'';
-    return ctx.stylize(simple, 'string');
-  }
-  if (isNumber(value))
-    return ctx.stylize('' + value, 'number');
-  if (isBoolean(value))
-    return ctx.stylize('' + value, 'boolean');
-  // For some reason typeof null is "object", so special case here.
-  if (isNull(value))
-    return ctx.stylize('null', 'null');
-}
-
-
-function formatError(value) {
-  return '[' + Error.prototype.toString.call(value) + ']';
-}
-
-
-function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
-  var output = [];
-  for (var i = 0, l = value.length; i < l; ++i) {
-    if (hasOwnProperty(value, String(i))) {
-      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
-          String(i), true));
-    } else {
-      output.push('');
-    }
-  }
-  keys.forEach(function(key) {
-    if (!key.match(/^\d+$/)) {
-      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
-          key, true));
-    }
-  });
-  return output;
-}
-
-
-function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
-  var name, str, desc;
-  desc = Object.getOwnPropertyDescriptor(value, key) || { value: value[key] };
-  if (desc.get) {
-    if (desc.set) {
-      str = ctx.stylize('[Getter/Setter]', 'special');
-    } else {
-      str = ctx.stylize('[Getter]', 'special');
-    }
-  } else {
-    if (desc.set) {
-      str = ctx.stylize('[Setter]', 'special');
-    }
-  }
-  if (!hasOwnProperty(visibleKeys, key)) {
-    name = '[' + key + ']';
-  }
-  if (!str) {
-    if (ctx.seen.indexOf(desc.value) < 0) {
-      if (isNull(recurseTimes)) {
-        str = formatValue(ctx, desc.value, null);
-      } else {
-        str = formatValue(ctx, desc.value, recurseTimes - 1);
-      }
-      if (str.indexOf('\n') > -1) {
-        if (array) {
-          str = str.split('\n').map(function(line) {
-            return '  ' + line;
-          }).join('\n').substr(2);
-        } else {
-          str = '\n' + str.split('\n').map(function(line) {
-            return '   ' + line;
-          }).join('\n');
-        }
-      }
-    } else {
-      str = ctx.stylize('[Circular]', 'special');
-    }
-  }
-  if (isUndefined(name)) {
-    if (array && key.match(/^\d+$/)) {
-      return str;
-    }
-    name = JSON.stringify('' + key);
-    if (name.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
-      name = name.substr(1, name.length - 2);
-      name = ctx.stylize(name, 'name');
-    } else {
-      name = name.replace(/'/g, "\\'")
-                 .replace(/\\"/g, '"')
-                 .replace(/(^"|"$)/g, "'");
-      name = ctx.stylize(name, 'string');
-    }
-  }
-
-  return name + ': ' + str;
-}
-
-
-function reduceToSingleString(output, base, braces) {
-  var numLinesEst = 0;
-  var length = output.reduce(function(prev, cur) {
-    numLinesEst++;
-    if (cur.indexOf('\n') >= 0) numLinesEst++;
-    return prev + cur.replace(/\u001b\[\d\d?m/g, '').length + 1;
-  }, 0);
-
-  if (length > 60) {
-    return braces[0] +
-           (base === '' ? '' : base + '\n ') +
-           ' ' +
-           output.join(',\n  ') +
-           ' ' +
-           braces[1];
-  }
-
-  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];
-}
-
-
-// NOTE: These type checking functions intentionally don't use `instanceof`
-// because it is fragile and can be easily faked with `Object.create()`.
-function isArray(ar) {
-  return Array.isArray(ar);
-}
-exports.isArray = isArray;
-
-function isBoolean(arg) {
-  return typeof arg === 'boolean';
-}
-exports.isBoolean = isBoolean;
-
-function isNull(arg) {
-  return arg === null;
-}
-exports.isNull = isNull;
-
-function isNullOrUndefined(arg) {
-  return arg == null;
-}
-exports.isNullOrUndefined = isNullOrUndefined;
-
-function isNumber(arg) {
-  return typeof arg === 'number';
-}
-exports.isNumber = isNumber;
-
-function isString(arg) {
-  return typeof arg === 'string';
-}
-exports.isString = isString;
-
-function isSymbol(arg) {
-  return typeof arg === 'symbol';
-}
-exports.isSymbol = isSymbol;
-
-function isUndefined(arg) {
-  return arg === void 0;
-}
-exports.isUndefined = isUndefined;
-
-function isRegExp(re) {
-  return isObject(re) && objectToString(re) === '[object RegExp]';
-}
-exports.isRegExp = isRegExp;
-
-function isObject(arg) {
-  return typeof arg === 'object' && arg !== null;
-}
-exports.isObject = isObject;
-
-function isDate(d) {
-  return isObject(d) && objectToString(d) === '[object Date]';
-}
-exports.isDate = isDate;
-
-function isError(e) {
-  return isObject(e) &&
-      (objectToString(e) === '[object Error]' || e instanceof Error);
-}
-exports.isError = isError;
-
-function isFunction(arg) {
-  return typeof arg === 'function';
-}
-exports.isFunction = isFunction;
-
-function isPrimitive(arg) {
-  return arg === null ||
-         typeof arg === 'boolean' ||
-         typeof arg === 'number' ||
-         typeof arg === 'string' ||
-         typeof arg === 'symbol' ||  // ES6 symbol
-         typeof arg === 'undefined';
-}
-exports.isPrimitive = isPrimitive;
-
-exports.isBuffer = __webpack_require__(/*! ./support/isBuffer */ "./node_modules/util/support/isBufferBrowser.js");
-
-function objectToString(o) {
-  return Object.prototype.toString.call(o);
-}
-
-
-function pad(n) {
-  return n < 10 ? '0' + n.toString(10) : n.toString(10);
-}
-
-
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
-              'Oct', 'Nov', 'Dec'];
-
-// 26 Feb 16:19:34
-function timestamp() {
-  var d = new Date();
-  var time = [pad(d.getHours()),
-              pad(d.getMinutes()),
-              pad(d.getSeconds())].join(':');
-  return [d.getDate(), months[d.getMonth()], time].join(' ');
-}
-
-
-// log is just a thin wrapper to console.log that prepends a timestamp
-exports.log = function() {
-  console.log('%s - %s', timestamp(), exports.format.apply(exports, arguments));
-};
-
-
-/**
- * Inherit the prototype methods from one constructor into another.
- *
- * The Function.prototype.inherits from lang.js rewritten as a standalone
- * function (not on Function.prototype). NOTE: If this file is to be loaded
- * during bootstrapping this function needs to be rewritten using some native
- * functions as prototype setup using normal JavaScript does not work as
- * expected during bootstrapping (see mirror.js in r114903).
- *
- * @param {function} ctor Constructor function which needs to inherit the
- *     prototype.
- * @param {function} superCtor Constructor function to inherit prototype from.
- */
-exports.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
-
-exports._extend = function(origin, add) {
-  // Don't do anything if add isn't an object
-  if (!add || !isObject(add)) return origin;
-
-  var keys = Object.keys(add);
-  var i = keys.length;
-  while (i--) {
-    origin[keys[i]] = add[keys[i]];
-  }
-  return origin;
-};
-
-function hasOwnProperty(obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-
-
-/***/ }),
-
-/***/ "./src/app/data-services/fpa.services.ts":
-/*!***********************************************!*\
-  !*** ./src/app/data-services/fpa.services.ts ***!
-  \***********************************************/
-/*! exports provided: FPAs */
+/***/ "./src/app/data-services/backlog.services.ts":
+/*!***************************************************!*\
+  !*** ./src/app/data-services/backlog.services.ts ***!
+  \***************************************************/
+/*! exports provided: BacklogServices */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FPAs", function() { return FPAs; });
-var FPAs = [
-    { id: 1, module: 'Registration', description: 'Registration System',
-        ilf_ret: 1, ilf_det: 2, ilf_technology: 'Java',
-        eif_ret: 2, eif_det: 3, eif_technology: 'XML',
-        ei_ftr: 1, ei_det: 1, ei_technology: 'NodeJS',
-        eo_ftr: 2, eo_det: 1, eo_technology: 'Java',
-        eq_ftr: 1, eq_det: 3, eq_technology: 'XML', reusePercentage: 30 },
-    { id: 2, module: 'Synchonization', description: 'Synchonization System',
-        ilf_ret: 1, ilf_det: 2, ilf_technology: 'Java',
-        eif_ret: 2, eif_det: 3, eif_technology: 'XML',
-        ei_ftr: 1, ei_det: 1, ei_technology: 'NodeJS',
-        eo_ftr: 2, eo_det: 1, eo_technology: 'Java',
-        eq_ftr: 1, eq_det: 3, eq_technology: 'XML', reusePercentage: 30 },
-    { id: 3, module: 'CustomerSPA', description: 'SPA',
-        ilf_ret: 1, ilf_det: 2, ilf_technology: 'Java',
-        eif_ret: 2, eif_det: 3, eif_technology: 'XML',
-        ei_ftr: 1, ei_det: 1, ei_technology: 'NodeJS',
-        eo_ftr: 2, eo_det: 1, eo_technology: 'Java',
-        eq_ftr: 1, eq_det: 3, eq_technology: 'XML', reusePercentage: 30 }
-];
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BacklogServices", function() { return BacklogServices; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _model_backlog_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../model/backlog.model */ "./src/app/model/backlog.model.ts");
+/* harmony import */ var _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/TechnolonogyItem.model */ "./src/app/model/TechnolonogyItem.model.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var BacklogServices = /** @class */ (function () {
+    function BacklogServices() {
+        this.backlogChanged = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
+        this.backloglist = [
+            new _model_backlog_model__WEBPACK_IMPORTED_MODULE_1__["Backlog"](1, 'Registration', 'Registration System', 1, 2, 'Angular/Ionic', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', '', false),
+            new _model_backlog_model__WEBPACK_IMPORTED_MODULE_1__["Backlog"](2, 'Synchonization', 'Synchonization System', 1, 2, 'Angular/Ionic', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', '', false),
+            new _model_backlog_model__WEBPACK_IMPORTED_MODULE_1__["Backlog"](3, 'CustomerSPA', 'SPA', 1, 2, 'Angular/Ionic', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', '', false)
+        ];
+        this.frontend = [new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](1, "Angular/Ionic"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](2, "Html5"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](3, "Jquery"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](4, "ExtJS"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](5, "ReactJS"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](6, "VueJS"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](7, "Android"),
+        ];
+        this.backend = [];
+        this.storage = [];
+        this.reporting = [];
+    }
+    BacklogServices.prototype.getBacklog = function () {
+        return this.backloglist.slice();
+    };
+    BacklogServices.prototype.getFrontend = function () {
+        return this.frontend.slice();
+    };
+    BacklogServices.prototype.getBackend = function () {
+        return this.backend.slice();
+    };
+    BacklogServices.prototype.getStorage = function () {
+        return this.storage.slice();
+    };
+    BacklogServices.prototype.getReporting = function () {
+        return this.reporting.slice();
+    };
+    BacklogServices.prototype.deleteBacklog = function (index) {
+        this.backloglist.splice(index, 1);
+        //  this.backlogChanged.next(this.backloglist.slice());
+    };
+    BacklogServices.prototype.saveBacklog = function (item) {
+        var _this = this;
+        item.forEach(function (element) {
+            _this.backloglist.push(element);
+        });
+    };
+    BacklogServices.prototype.saveEditBacklog = function (item) {
+        var _this = this;
+        item.forEach(function (element) {
+            var index = _this.backloglist.findIndex(function (x) { return x.id == element.id; });
+            _this.backloglist[index] = element;
+        });
+    };
+    BacklogServices = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
+    ], BacklogServices);
+    return BacklogServices;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/data-services/logicalContainer.services.ts":
+/*!************************************************************!*\
+  !*** ./src/app/data-services/logicalContainer.services.ts ***!
+  \************************************************************/
+/*! exports provided: LogicalContainerServices */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogicalContainerServices", function() { return LogicalContainerServices; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var LogicalContainerServices = /** @class */ (function () {
+    function LogicalContainerServices(http) {
+        this.http = http;
+        this.logicalContainer = [];
+        this.logicCount = 1;
+    }
+    LogicalContainerServices.prototype.getLogicalContainer = function () {
+        //NOTE:
+        //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
+        // return this.http.get<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
+        // .toPromise();
+        return this.logicalContainer;
+    };
+    // addBacklogperUser(id: any, data: any){
+    //     console.log("Data from logicalContainer", data)
+    //     for(var i in this.logicalContainer){
+    //         if(this.logicalContainer[i].id == id){
+    //             this.logicalContainer[i].description = data;
+    //             this.logicalContainer[i].dateCreated = new Date();
+    //             this.logicalContainer[i].dateUpdated = new Date();
+    //             this.logicalContainer[i].createdBy = data;
+    //             this.logicalContainer[i].updatedBy = data;
+    //             return true;
+    //         }
+    //     }
+    // }
+    LogicalContainerServices.prototype.addLogicalContainer = function (data) {
+        //NOTE:
+        //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
+        // environment.REST_API_URL FOR API URL
+        // FunctionComponent for model of data
+        // return this.http.post<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
+        // .toPromise();
+        this.logicalContainer.push(data);
+    };
+    LogicalContainerServices.prototype.editLogicalContainer = function (id, data) {
+        //NOTE:
+        //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
+        // environment.REST_API_URL FOR API URL
+        // FunctionComponent for model of data
+        // return this.http.post<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
+        // .toPromise();
+        for (var i in this.logicalContainer) {
+            if (this.logicalContainer[i].id == id) {
+                this.logicalContainer[i].description = data.description;
+                this.logicalContainer[i].dateUpdated = new Date();
+                this.logicalContainer[i].createdBy = data.createdBy;
+                this.logicalContainer[i].updatedBy = data.updatedBy;
+                this.logicalContainer[i].type = data.type;
+                this.logicalContainer[i].appServer = data.appServer;
+                this.logicalContainer[i].dbServer = data.dbServer;
+                this.logicalContainer[i].msServer = data.msServer;
+                return true;
+            }
+        }
+    };
+    LogicalContainerServices.prototype.updateTab = function (data) {
+        console.log("Data tab", data);
+    };
+    LogicalContainerServices = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], LogicalContainerServices);
+    return LogicalContainerServices;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/data-services/techComponent.services.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/data-services/techComponent.services.ts ***!
+  \*********************************************************/
+/*! exports provided: TechComponentServices */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TechComponentServices", function() { return TechComponentServices; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _model_techComponents_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../model/techComponents.model */ "./src/app/model/techComponents.model.ts");
+/* harmony import */ var _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/TechnolonogyItem.model */ "./src/app/model/TechnolonogyItem.model.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var TechComponentServices = /** @class */ (function () {
+    function TechComponentServices() {
+        this.componentsChanged = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
+        this.technologies = new _model_techComponents_model__WEBPACK_IMPORTED_MODULE_1__["TechComponents"]([
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](1, "Angular/Ionic"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](2, "Html5"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](3, "Jquery"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](7, "Android")
+        ], [
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](1, "ASP.Net"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](2, "C/C++"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](3, "J2EE/Java")
+        ], [
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](1, "OBIEE"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](2, "Qilk"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](3, "Cognos")
+        ], [
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](1, "RDBMS"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](2, "Postgres"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](3, "DB2")
+        ]);
+        this.frontend = [
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](1, "Angular/Ionic"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](2, "Html5"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](3, "Jquery"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](4, "ExtJS"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](5, "ReactJS"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](6, "VueJS"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](7, "Android")
+        ];
+        this.backend = [
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](1, "ASP.Net"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](2, "C/C++"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](3, "J2EE/Java"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](4, "NodeJS"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](5, "Phyton"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](6, "PowerBuilder"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](7, "Unix Script")
+        ];
+        this.reporting = [
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](1, "OBIEE"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](2, "Qilk"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](3, "Cognos"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](4, "SAS"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](5, "Crystal Report"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](6, "Oracle Report"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](7, "Jasper Report"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](8, "RPG"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](9, "SQL Server Reporting Service")
+        ];
+        this.storage = [
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](1, "RDBMS"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](2, "Postgres"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](3, "DB2"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](4, "MSSQL"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](5, "MongoDB"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](6, "Redis Cache"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](7, "NoSQL DB"), new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](8, "Ruby on Rails"),
+            new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_2__["TechnologyItem"](9, "SQL Server Integration Service")
+        ];
+    }
+    TechComponentServices.prototype.getComponents = function () {
+        return this.technologies;
+    };
+    TechComponentServices.prototype.getFrontend = function () {
+        return this.frontend.slice();
+    };
+    TechComponentServices.prototype.getBackend = function () {
+        return this.backend.slice();
+    };
+    TechComponentServices.prototype.getStorage = function () {
+        return this.storage.slice();
+    };
+    TechComponentServices.prototype.getReporting = function () {
+        return this.reporting.slice();
+    };
+    TechComponentServices.prototype.saveComponents = function (item) {
+        this.technologies.frontend = item.frontend.slice();
+        this.technologies.backend = item.backend.slice();
+        this.technologies.report = item.report.slice();
+        this.technologies.storage = item.storage.slice();
+        this.componentsChanged.next(this.technologies);
+    };
+    TechComponentServices = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
+    ], TechComponentServices);
+    return TechComponentServices;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/data-services/userStory.services.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/data-services/userStory.services.ts ***!
+  \*****************************************************/
+/*! exports provided: UserStoryServices */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserStoryServices", function() { return UserStoryServices; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var UserStoryServices = /** @class */ (function () {
+    function UserStoryServices(http) {
+        this.http = http;
+        this.userStory = [];
+    }
+    UserStoryServices.prototype.getUserStory = function () {
+        //NOTE:
+        //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
+        // return this.http.get<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
+        // .toPromise();
+        return this.userStory;
+    };
+    UserStoryServices.prototype.addBacklogperUser = function (id, data) {
+        console.log("Data from backlogs", data);
+        for (var i in this.userStory) {
+            if (this.userStory[i].id == id) {
+                this.userStory[i].backlog = data;
+                this.userStory[i].dateUpdated = new Date();
+                return true;
+            }
+        }
+    };
+    UserStoryServices.prototype.addUserStory = function (data) {
+        //NOTE:
+        //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
+        // environment.REST_API_URL FOR API URL
+        // FunctionComponent for model of data
+        // return this.http.post<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
+        // .toPromise();
+        this.userStory.push(data);
+    };
+    UserStoryServices.prototype.editUserStory = function (id, data) {
+        //NOTE:
+        //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
+        // environment.REST_API_URL FOR API URL
+        // FunctionComponent for model of data
+        // return this.http.post<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
+        // .toPromise();
+        for (var i in this.userStory) {
+            if (this.userStory[i].id == id) {
+                this.userStory[i].userStory = data.userStory;
+                this.userStory[i].dateUpdated = new Date();
+                return true;
+            }
+        }
+    };
+    UserStoryServices.prototype.updateTab = function (data) {
+        console.log("Data tab", data);
+    };
+    UserStoryServices = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], UserStoryServices);
+    return UserStoryServices;
+}());
+
 
 
 /***/ }),
@@ -87760,7 +87734,7 @@ var FPAs = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<br />\r\n<div class=\"row\" style=\"padding-bottom:10px\">\r\n    <div class=\"col-md-12 \">\r\n        <div class=\"col-md-4 pull-right\">\r\n            <button type=\"button\" id=\"btn-export\" class=\"btn btn-outline-primary btn-fpa\">Export<i class=\"fa fa-cloud-download\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i></button>\r\n            <button type=\"button\" class=\"btn btn-outline-primary btn-fpa\">Import<i class=\"fa fa-cloud-upload\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i></button>\r\n            <button type=\"button\" class=\"btn btn-outline-primary btn-fpa\">Print<i class=\"fa fa-print\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i></button>\r\n            <button type=\"button\" id=\"btn-save\" class=\"btn btn-outline-primary btn-fpa\">Save<i class=\"fa fa-floppy-o\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i></button>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"row\" >\r\n    <div class=\"col-md-12\" style=\"max-height:600px;height:600px;width:100%;overflow:auto\">\r\n        <div id=\"fpa-table\" class=\"hot handsontable\"></div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "\r\n<br />\r\n<div class=\"row\" style=\"padding-bottom:10px\">\r\n    <div class=\"col-md-12 \">\r\n        <div class=\"col-md-3 pull-left\">\r\n            <button type=\"button\" id=\"btn-save\" class=\"btn btn-outline-primary btn-fpa\" (click)=\"onAdd()\">ADD<i class=\"fa fa-plus\" aria-hidden=\"true\"></i></button>\r\n            <button type=\"button\" id=\"btn-save\" class=\"btn btn-outline-primary btn-fpa\" (click)=\"onSave()\">Save<i class=\"fa fa-floppy-o\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i></button>\r\n        </div>\r\n        <div class=\"col-md-9 pull-right\">\r\n            <button type=\"button\" id=\"btn-export\" class=\"btn btn-outline-primary pull-right\">Export<i class=\"fa fa-cloud-download\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i></button>\r\n            <button type=\"button\" class=\"btn btn-outline-primary pull-right\">Import<i class=\"fa fa-cloud-upload\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i></button>\r\n            <button type=\"button\" class=\"btn btn-outline-primary pull-right\">Print<i class=\"fa fa-print\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i></button>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n<!--<div class=\"row\" >\r\n    <div class=\"col-md-12\" style=\"max-height:600px;height:600px;width:100%;overflow:auto\">\r\n        <div id=\"fpa-table\" class=\"hot handsontable\"></div>\r\n    </div>\r\n</div>-->\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-12 table-responsive table-hover \">\r\n        <table class=\"table myTable\">\r\n            <thead class=\"myTableHeader\">\r\n                <tr>\r\n                    <td colspan=\"2\"></td>\r\n                    <td colspan=\"3\" style=\"text-align:center\">ILF</td>\r\n                    <td colspan=\"3\" style=\"text-align:center\">EIF</td>\r\n                    <td colspan=\"3\" style=\"text-align:center\">EO</td>\r\n                    <td colspan=\"3\" style=\"text-align:center\">EI</td>\r\n                    <td colspan=\"3\" style=\"text-align:center\">EQ</td>\r\n                    <td></td>\r\n                </tr>\r\n                <tr>\r\n                    <td style=\"width:120px\">Module</td>\r\n                    <td style=\"width:200px\">Description</td>\r\n                    <td style=\"width:100px\">RET</td>\r\n                    <td style=\"width:100px\">DET</td>\r\n                    <td style=\"width:100px\">Technology</td>\r\n                    <td style=\"width:100px\">RET</td>\r\n                    <td style=\"width:100px\">DET</td>\r\n                    <td style=\"width:100px\">Technology</td>\r\n                    <td style=\"width:100px\">RET</td>\r\n                    <td style=\"width:100px\">DET</td>\r\n                    <td style=\"width:100px\">Technology</td>\r\n                    <td style=\"width:100px\">RET</td>\r\n                    <td style=\"width:100px\">DET</td>\r\n                    <td style=\"width:100px\">Technology</td>\r\n                    <td style=\"width:100px\">RET</td>\r\n                    <td style=\"width:100px\">DET</td>\r\n                    <td style=\"width:100px\">Technology</td>\r\n                    <td style=\"width:110px;min-width:100px;\">Action</td>\r\n                </tr>\r\n            </thead>\r\n            <tbody class=\"tableBody\">\r\n                <tr *ngFor=\"let item of backlogs;let i=index\">\r\n                    <td style=\"width:120px\" *ngIf=\"i===editRowID\"><input class=\"form-control\" style=\"width:120px !important\" type=\"text\" [(ngModel)]=\"item.module\" /></td>\r\n                    <td style=\"width:120px\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.module}}</td>\r\n                    <td style=\"width:200px\" *ngIf=\"i===editRowID\"><input class=\"form-control\" style=\"width:200px !important\" type=\"text\" [(ngModel)]=\"item.description\" /></td>\r\n                    <td style=\"width:200px\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.description}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control  inputsize\" type=\"text\" [(ngModel)]=\"item.ilf_ret\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.ilf_ret}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control inputsize\" type=\"text\" [(ngModel)]=\"item.ilf_det\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.ilf_det}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\">\r\n                        <select2 [data]=\"storageOption\"\r\n                                 [options]=\"selectOptions\"\r\n                                 [value]=\"1\"\r\n                                 (valueChanged)=\"ilfChanged($event,i)\"></select2>\r\n                    </td>\r\n                    <td style=\"width:100px\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.ilf_technology}}</td>\r\n\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control inputsize\" type=\"text\" [(ngModel)]=\"item.eif_ret\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.eif_ret}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control inputsize\" type=\"text\" [(ngModel)]=\"item.eif_det\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRowfont(i)\">{{item.eif_det}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\">\r\n                        <select2 [data]=\"storageOption\"\r\n                                 [options]=\"selectOptions\"\r\n                                 [value]=\"1\"\r\n                                 (valueChanged)=\"eifChanged($event,i)\"></select2>\r\n                    </td>\r\n                    <td style=\"width:100px\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.eif_technology}}</td>\r\n\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control inputsize\" type=\"text\" [(ngModel)]=\"item.ei_ftr\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.ei_ftr}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control inputsize\" type=\"text\" [(ngModel)]=\"item.ei_det\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.ei_det}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\">\r\n                        <select2 [data]=\"frontendOption\"\r\n                                 [options]=\"selectOptions\"\r\n                                 [value]=\"1\"\r\n                                 (valueChanged)=\"eiChanged($event,i)\"></select2>\r\n                    </td>\r\n                    <td style=\"width:100px\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.ei_technology}}</td>\r\n\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control inputsize\" type=\"text\" [(ngModel)]=\"item.eo_ftr\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.eo_ftr}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control inputsize\" type=\"text\" [(ngModel)]=\"item.eo_det\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.eo_det}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\">\r\n                        <select2 [data]=\"frontendOption\"\r\n                                 [options]=\"selectOptions\"\r\n                                 [value]=\"1\"\r\n                                 (valueChanged)=\"eoChanged($event,i)\"></select2>\r\n                    </td>\r\n                    <td style=\"width:100px\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.eo_technology}}</td>\r\n\r\n\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control inputsize\" type=\"text\" [(ngModel)]=\"item.eq_ftr\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.eq_ftr}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\"><input class=\"form-control inputsize\" type=\"text\" [(ngModel)]=\"item.eq_det\" /></td>\r\n                    <td class=\"tdsize\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.eq_det}}</td>\r\n                    <td class=\"tdsize\" *ngIf=\"i===editRowID\">\r\n                        <select2 [data]=\"reportingOption\"\r\n                                 [options]=\"selectOptions\"\r\n                                 [value]=\"1\"\r\n                                 (valueChanged)=\"eqChanged($event,i)\"></select2>\r\n                    </td>\r\n                    <td style=\"width:110px; min-width:100px;\" *ngIf=\"i !== editRowID\" (click)=\"EditRow(i)\">{{item.eq_technology}}</td>\r\n                    <td><a title=\"Delete\" (click)=\"onDelete(item,i)\"><i class=\"fa fa-trash-o fa-lg mypointer\" aria-hidden=\"true\"></i></a></td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\r\n     aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">Information</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <p>{{modalLabel}}</p>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onCloseHandled()\">Ok</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -87771,7 +87745,7 @@ module.exports = "\r\n<br />\r\n<div class=\"row\" style=\"padding-bottom:10px\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".handsontable table.htCore {\n  border-collapse: separate;\n  border-spacing: 0;\n  margin: 0;\n  border-width: 0;\n  table-layout: fixed;\n  width: 1200px;\n  outline-width: 0;\n  cursor: default;\n  /* max-width: none; */\n  max-height: none;\n  font-size: 40px; }\n\n.card {\n  padding: 0px !important;\n  margin: 0px !important; }\n"
+module.exports = ".body {\n  font-size: 11px !important; }\n\n.handsontable table.htCore {\n  border-collapse: separate;\n  border-spacing: 0;\n  margin: 0;\n  border-width: 0;\n  table-layout: fixed;\n  width: 1200px;\n  outline-width: 0;\n  cursor: default;\n  /* max-width: none; */\n  max-height: none;\n  font-size: 40px; }\n\n.card {\n  padding: 0px !important;\n  margin: 0px !important; }\n\n.myTable {\n  font-size: 11px !important; }\n\n.myTableHeader {\n  font-weight: bold; }\n\n.form-control {\n  font-size: 11px !important;\n  padding: 0.3rem 0rem !important;\n  width: 100px;\n  margin: 0px !important;\n  border-radius: 3px !important; }\n\n.select2-container {\n  font-size: 11px !important; }\n\n.select2-results {\n  font-size: 11px !important; }\n\n.select2-selection--single {\n  height: 34px !important; }\n\n.select2-selection__rendered {\n  line-height: 30px !important; }\n\n.select2-search__field {\n  font-size: 11px !important; }\n\n.inputsize {\n  width: 100% !important; }\n\n.tdsize {\n  width: 20px !important; }\n\n.table td {\n  padding-left: 1px !important;\n  padding-right: 0px !important; }\n\n.mypointer {\n  cursor: pointer; }\n\n.btn {\n  line-height: 1 !important; }\n"
 
 /***/ }),
 
@@ -87786,13 +87760,10 @@ module.exports = ".handsontable table.htCore {\n  border-collapse: separate;\n  
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BackLogsComponent", function() { return BackLogsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _data_services_fpa_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../data-services/fpa.services */ "./src/app/data-services/fpa.services.ts");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! util */ "./node_modules/util/util.js");
-/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var handsontable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! handsontable */ "./node_modules/handsontable/dist/handsontable.js");
-/* harmony import */ var handsontable__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(handsontable__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _data_services_backlog_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../data-services/backlog.services */ "./src/app/data-services/backlog.services.ts");
+/* harmony import */ var _model_backlog_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../model/backlog.model */ "./src/app/model/backlog.model.ts");
+/* harmony import */ var _data_services_userStory_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../data-services/userStory.services */ "./src/app/data-services/userStory.services.ts");
+/* harmony import */ var _data_services_techComponent_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../data-services/techComponent.services */ "./src/app/data-services/techComponent.services.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -87808,144 +87779,432 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var BackLogsComponent = /** @class */ (function () {
-    function BackLogsComponent() {
+    function BackLogsComponent(backServices, fpaSrv, techService) {
+        this.backServices = backServices;
+        this.fpaSrv = fpaSrv;
+        this.techService = techService;
         this.activeTab = [];
-        this.dataset = _data_services_fpa_services__WEBPACK_IMPORTED_MODULE_1__["FPAs"];
+        this.display = 'none';
+        this.modalLabel = "";
+        this.backlogs = [];
+        this.editRowID = '';
+        this.selectOptions = {};
     }
     BackLogsComponent.prototype.ngOnInit = function () {
-        jquery__WEBPACK_IMPORTED_MODULE_2__(document).ready(function () {
-            var data = [];
-            var mainHead = ['', '', 'ILF', '', '', 'ELF', '', '', 'EI', '', '', 'EO', '', '', 'EQ', '', '', ''];
-            var subData = ['Module', 'Description', 'RET', 'DET', 'Technology', 'RET', 'DET', 'Technology',
-                'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'Reuse %'];
-            var values = [
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['CustomerSPA', 'SPA', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Registration', 'Registration System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30],
-                ['Synchonization', 'Synchonization System', 1, 2, 'Java', 2, 3, 'XML', 1, 1, 'NodeJS', 2, 1, 'Java', 1, 3, 'XML', 30]
-            ];
-            data.push(mainHead);
-            data.push(subData);
-            jquery__WEBPACK_IMPORTED_MODULE_2__["each"](values, function (i) {
-                data.push(values[i]);
-            });
-            var technologies = ['XML', 'Java', 'JSON', 'NodeJS'];
-            var defColumn = [
-                {}, {}, {}, {}, { editor: 'select', selectOptions: technologies },
-                {}, {}, { editor: 'select', selectOptions: technologies },
-                {}, {}, { editor: 'select', selectOptions: technologies },
-                {}, {}, { editor: 'select', selectOptions: technologies },
-                {}, {}, { editor: 'select', selectOptions: technologies },
-                {}
-            ];
-            var container = document.getElementById('fpa-table');
-            var hot = new handsontable__WEBPACK_IMPORTED_MODULE_4__(container, {
-                data: data,
-                columns: defColumn,
-                fixedRowsTop: 2,
-                stretchH: 'all',
-                rowHeaders: true,
-                colHeaders: true,
-                cells: function (row, col, prop) { return (row === 1 || row === 0) ? { readOnly: true } : { readOnly: false }; },
-                dropdownMenu: true,
-                contextMenu: true,
-                afterChange: util__WEBPACK_IMPORTED_MODULE_3__["log"].bind(this, 'afterChange'),
-                afterRemoveRow: util__WEBPACK_IMPORTED_MODULE_3__["log"].bind(this, 'removeRow'),
-                afterRemoveCol: util__WEBPACK_IMPORTED_MODULE_3__["log"].bind(this, 'removeCol'),
-                afterCreateRow: util__WEBPACK_IMPORTED_MODULE_3__["log"].bind(this, 'createRow'),
-                afterCreateCol: util__WEBPACK_IMPORTED_MODULE_3__["log"].bind(this, 'createCol'),
-                mergeCells: [
-                    { row: 0, col: 2, rowspan: 1, colspan: 3 },
-                    { row: 0, col: 5, rowspan: 1, colspan: 3 },
-                    { row: 0, col: 8, rowspan: 1, colspan: 3 },
-                    { row: 0, col: 11, rowspan: 1, colspan: 3 },
-                    { row: 0, col: 14, rowspan: 1, colspan: 3 }
-                ],
-                // className: "htCenter",
-                cell: [
-                    { row: 0, col: 2, className: "htCenter" },
-                    { row: 0, col: 5, className: "htCenter" },
-                    { row: 0, col: 8, className: "htCenter" },
-                    { row: 0, col: 11, className: "htCenter" },
-                    { row: 0, col: 14, className: "htCenter" },
-                    { row: 1, col: 2, className: "htCenter" },
-                    { row: 1, col: 3, className: "htCenter" },
-                    { row: 1, col: 5, className: "htCenter" },
-                    { row: 1, col: 6, className: "htCenter" },
-                    { row: 1, col: 8, className: "htCenter" },
-                    { row: 1, col: 9, className: "htCenter" },
-                    { row: 1, col: 11, className: "htCenter" },
-                    { row: 1, col: 12, className: "htCenter" },
-                    { row: 1, col: 14, className: "htCenter" },
-                    { row: 1, col: 15, className: "htCenter" },
-                    { row: 1, col: 17, className: "htCenter" }
-                ]
-            });
-            jquery__WEBPACK_IMPORTED_MODULE_2__("#btn-save").click(function () {
-                // alert( hot.countRows());
-                // alert( hot.countCols());
-                // alert(hot.getDataAtRow(3));
-                var rowCount = hot.countRows();
-                var colCount = hot.countCols();
-                alert(prepareData(rowCount, colCount));
-            });
-            function prepareData(rowCount, colCount) {
-                var fpaArray = [];
-                for (var i = 2; i < rowCount; i++) {
-                    var fpaObj = {};
-                    for (var c = 0; c < colCount; c++) {
-                        var objNotation = hot.getDataAtCell(0, c) + hot.getDataAtCell(1, c);
-                    }
-                    fpaArray.push(hot.getDataAtRow(i));
-                }
-                return JSON.stringify(fpaArray);
-            }
-        }); // end of document ready
+        var _this = this;
+        //console.log("Id", this.data)
+        // this.backlogs = this.backServices.getBacklog();  
+        if (this.data != null) {
+            this.backlogs = this.data.backlog;
+        }
+        else {
+            this.backlogs = this.backServices.getBacklog();
+        }
+        //console.log("Id", this.backlogs)
+        //this.backlogSubscription = this.backServices.backlogChanged
+        //    .subscribe((backlogs: Backlog[]) => {
+        //        this.backlogs = backlogs;                
+        //    });
+        this.frontendOption = this.assignOptionValue(this.techService.getComponents().frontend);
+        this.backendOption = this.assignOptionValue(this.techService.getComponents().backend);
+        this.storageOption = this.assignOptionValue(this.techService.getComponents().storage);
+        this.reportingOption = this.assignOptionValue(this.techService.getComponents().report);
+        console.log("onInit");
+        this.componentSubscription = this.techService.componentsChanged
+            .subscribe(function (componentList) {
+            _this.frontendOption = _this.assignOptionValue(componentList.frontend);
+            _this.backendOption = _this.assignOptionValue(componentList.backend);
+            _this.storageOption = _this.assignOptionValue(componentList.storage);
+            _this.reportingOption = _this.assignOptionValue(componentList.report);
+            console.log("backlogs");
+            console.log(componentList);
+        });
+        this.selectOptions = {
+            placeholder: { id: '', text: 'Select Record' },
+            width: "100px",
+            name: 'empPosition'
+        };
+        this.EditRow(0);
+        //const temp = this.backServices.getBacklog();
+        //$(document).ready(function () {
+        //    var data = [];
+        //    var mainHead = ['', '', 'ILF', '', '', 'ELF', '', '', 'EI', '', '', 'EO', '', '', 'EQ', '', '', ''];
+        //    var subData = ['Module', 'Description', 'RET', 'DET', 'Technology', 'RET', 'DET', 'Technology'
+        //        , 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', ''];
+        //    var values = temp;                 
+        //    data.push(mainHead);
+        //    data.push(subData);
+        //    $.each(values, function (i) {        
+        //        var item = [values[i].module,values[i].description, values[i].ilf_ret,
+        //        values[i].ilf_det,
+        //        values[i].ilf_technology,
+        //        values[i].eif_ret,
+        //        values[i].eif_det,
+        //        values[i].eif_technology,
+        //        values[i].ei_ftr,
+        //        values[i].ei_det,
+        //        values[i].ei_technology,
+        //        values[i].eo_ftr,
+        //        values[i].eo_det,
+        //        values[i].eo_technology,
+        //        values[i].eq_ftr,
+        //        values[i].eq_det,
+        //        values[i].eq_technology,values[i].reusePercentage];                                  
+        //        data.push(item);
+        //    });
+        //    var technologies = ['XML', 'Java', 'JSON', 'NodeJS'];
+        //    var defColumn = [
+        //        {}, {}, {}, {}, { editor: 'select', selectOptions: technologies },
+        //        {}, {}, { editor: 'select', selectOptions: technologies },
+        //        {}, {}, { editor: 'select', selectOptions: technologies },
+        //        {}, {}, { editor: 'select', selectOptions: technologies },
+        //        {}, {}, { editor: 'select', selectOptions: technologies },  
+        //        { renderer: "html"}
+        //    ];
+        //    var container = document.getElementById('fpa-table');
+        //    var hot = new Handsontable(container, {
+        //        data: data,
+        //        columns: defColumn,
+        //        fixedRowsTop: 2,
+        //        stretchH: 'all',
+        //        rowHeaders: true,
+        //        colHeaders: true,
+        //        cells: function (row, col, prop) { return (row === 1 || row === 0) ? { readOnly: true } : { readOnly: false }; },
+        //        dropdownMenu: true,
+        //        contextMenu: true,
+        //        afterChange: log.bind(this, 'afterChange'),
+        //        afterRemoveRow: log.bind(this, 'removeRow'),
+        //        afterRemoveCol: log.bind(this, 'removeCol'),
+        //        afterCreateRow: log.bind(this, 'createRow'),
+        //        afterCreateCol: log.bind(this, 'createCol'),
+        //        mergeCells: [
+        //            { row: 0, col: 2, rowspan: 1, colspan: 3 },
+        //            { row: 0, col: 5, rowspan: 1, colspan: 3 },
+        //            { row: 0, col: 8, rowspan: 1, colspan: 3 },
+        //            { row: 0, col: 11, rowspan: 1, colspan: 3 },
+        //            { row: 0, col: 14, rowspan: 1, colspan: 3 }
+        //        ],
+        //        // className: "htCenter",
+        //        cell: [
+        //            { row: 0, col: 2, className: "htCenter" },
+        //            { row: 0, col: 5, className: "htCenter" },
+        //            { row: 0, col: 8, className: "htCenter" },
+        //            { row: 0, col: 11, className: "htCenter" },
+        //            { row: 0, col: 14, className: "htCenter" },
+        //            { row: 1, col: 2, className: "htCenter" },
+        //            { row: 1, col: 3, className: "htCenter" },
+        //            { row: 1, col: 5, className: "htCenter" },
+        //            { row: 1, col: 6, className: "htCenter" },
+        //            { row: 1, col: 8, className: "htCenter" },
+        //            { row: 1, col: 9, className: "htCenter" },
+        //            { row: 1, col: 11, className: "htCenter" },
+        //            { row: 1, col: 12, className: "htCenter" },
+        //            { row: 1, col: 14, className: "htCenter" },
+        //            { row: 1, col: 15, className: "htCenter" },
+        //            { row: 1, col: 17, className: "htCenter" }
+        //        ]
+        //    });
+        //    $("#btn-save").click(function () {
+        //        // alert( hot.countRows());
+        //        // alert( hot.countCols());
+        //        // alert(hot.getDataAtRow(3));
+        //        let rowCount = hot.countRows();
+        //        let colCount = hot.countCols();
+        //        alert(prepareData(rowCount, colCount));
+        //    });
+        //    function prepareData(rowCount, colCount) {
+        //        var fpaArray = [];
+        //        for (var i = 2; i < rowCount; i++) {
+        //            var fpaObj = {};
+        //            for (var c = 0; c < colCount; c++) {
+        //                var objNotation = hot.getDataAtCell(0, c) + hot.getDataAtCell(1, c);
+        //            }
+        //            fpaArray.push(hot.getDataAtRow(i));
+        //        }
+        //        return JSON.stringify(fpaArray);
+        //    }
+        //}); // end of document ready
     };
+    BackLogsComponent.prototype.assignOptionValue = function (item) {
+        var tempData = [];
+        var data = {
+            'id': '',
+            'text': ''
+        };
+        tempData.push(data);
+        item.forEach(function (element) {
+            var data = {
+                'id': element.technologyItemId,
+                'text': element.description
+            };
+            tempData.push(data);
+        });
+        return tempData;
+    };
+    BackLogsComponent.prototype.onFunction = function () {
+        console.log('Go to Function');
+    };
+    BackLogsComponent.prototype.EditRow = function (val) {
+        this.editRowID = val;
+        this.backlogs[val].edited = true;
+    };
+    BackLogsComponent.prototype.ilfChanged = function (e, index) {
+        if (e.data[0].text.length > 0) {
+            //const item = new TechnologyItem(e.data[0].id, e.data[0].text)
+            this.backlogs[index].ilf_technology = e.data[0].text;
+            console.log(e.data[0].text);
+        }
+    };
+    BackLogsComponent.prototype.eifChanged = function (e, index) {
+        if (e.data[0].text.length > 0) {
+            //const item = new TechnologyItem(e.data[0].id, e.data[0].text)
+            this.backlogs[index].eif_technology = e.data[0].text;
+            console.log(e.data[0].text);
+        }
+    };
+    BackLogsComponent.prototype.eoChanged = function (e, index) {
+        if (e.data[0].text.length > 0) {
+            //const item = new TechnologyItem(e.data[0].id, e.data[0].text)
+            this.backlogs[index].eo_technology = e.data[0].text;
+            console.log(e.data[0].text);
+        }
+    };
+    BackLogsComponent.prototype.eiChanged = function (e, index) {
+        if (e.data[0].text.length > 0) {
+            //const item = new TechnologyItem(e.data[0].id, e.data[0].text)
+            this.backlogs[index].ei_technology = e.data[0].text;
+            console.log(e.data[0].text);
+        }
+    };
+    BackLogsComponent.prototype.eqChanged = function (e, index) {
+        if (e.data[0].text.length > 0) {
+            //const item = new TechnologyItem(e.data[0].id, e.data[0].text)
+            this.backlogs[index].eq_technology = e.data[0].text;
+            console.log(e.data[0].text);
+        }
+    };
+    BackLogsComponent.prototype.onAdd = function () {
+        var count = this.backlogs.length;
+        var newitem = new _model_backlog_model__WEBPACK_IMPORTED_MODULE_2__["Backlog"](0, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>', false);
+        this.backlogs.push(newitem);
+        this.editRowID = count;
+    };
+    BackLogsComponent.prototype.onDelete = function (item, index) {
+        this.backServices.deleteBacklog(index);
+        this.backlogs.splice(index, 1);
+    };
+    BackLogsComponent.prototype.onSave = function () {
+        var saveBacklogs = this.backlogs.filter(function (x) { return x.id == 0; });
+        var editBacklogs = this.backlogs.filter(function (x) { return x.edited == true; });
+        this.backServices.saveBacklog(saveBacklogs);
+        this.backServices.saveEditBacklog(editBacklogs);
+        if (saveBacklogs.length > 0 || editBacklogs.length > 0) {
+            this.display = 'block';
+            this.modalLabel = "Record Saved!!";
+        }
+        console.log("Saved", this.backlogs);
+        console.log("Data", editBacklogs);
+        this.fpaSrv.addBacklogperUser(this.data.id, this.backlogs);
+    };
+    BackLogsComponent.prototype.onCloseHandled = function () {
+        this.display = 'none';
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], BackLogsComponent.prototype, "data", void 0);
     BackLogsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-backlogs',
             template: __webpack_require__(/*! ./backlogs.component.html */ "./src/app/layout/phasing/fpa/backlogs/backlogs.component.html"),
             styles: [__webpack_require__(/*! ./backlogs.component.scss */ "./src/app/layout/phasing/fpa/backlogs/backlogs.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_data_services_backlog_services__WEBPACK_IMPORTED_MODULE_1__["BacklogServices"], _data_services_userStory_services__WEBPACK_IMPORTED_MODULE_3__["UserStoryServices"], _data_services_techComponent_services__WEBPACK_IMPORTED_MODULE_4__["TechComponentServices"]])
     ], BackLogsComponent);
     return BackLogsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/layout/phasing/fpa/components/components.component.html":
+/*!*************************************************************************!*\
+  !*** ./src/app/layout/phasing/fpa/components/components.component.html ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<br />\r\n<div class=\"row\" style=\"padding-bottom:10px\">\r\n  <div class=\"col-md-12 \">\r\n    <div class=\"col-md-9 pull-right\">\r\n      <button type=\"button\" id=\"btn-save\" class=\"btn btn-outline-primary pull-right\" (click)=\"onSave()\">Save\r\n          <i class=\"fa fa-floppy-o\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i>\r\n        </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-6\">\r\n    <div class=\"card border-dark mb-3\">\r\n      <p class=\"card-header\">Frontend Technologies</p>\r\n      <div class=\"card-body\">\r\n        <div class=\"input-group\">\r\n          <select class=\"custom-select\" id=\"fTSelect\">\r\n            <option selected disabled>Choose Technology</option>\r\n            <option *ngFor=\"let tech of frontTechs\" [value]=\"tech.technologyItemId\">{{tech.description}}</option>\r\n          </select>\r\n          <div class=\"input-group-append\">\r\n            <button class=\"btn btn-outline-primary\" type=\"button\" (click)=\"addFT()\">Add</button>\r\n          </div>\r\n        </div>\r\n        <div>\r\n          <div class=\"text-muted selectedItems\">Selected Items:\r\n            <span class=\"badge badge-pill badge-primary\" *ngFor=\"let tech of selectedFront\">\r\n              {{tech.description}}\r\n              <i class=\"fa fa-times\" (click)=\"removeFT(tech)\"></i>\r\n            </span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-sm-6\">\r\n    <div class=\"card border-dark mb-3\">\r\n      <p class=\"card-header\">Backend Technologies</p>\r\n      <div class=\"card-body\">\r\n        <div class=\"input-group\">\r\n          <select class=\"custom-select\" id=\"bTSelect\">\r\n            <option selected disabled>Choose Technology</option>\r\n            <option *ngFor=\"let tech of backTechs\" [value]=\"tech.technologyItemId\">{{tech.description}}</option>\r\n          </select>\r\n          <div class=\"input-group-append\">\r\n            <button class=\"btn btn-outline-primary\" type=\"button\" (click)=\"addBT()\">Add</button>\r\n          </div>\r\n        </div>\r\n        <div class=\"text-muted selectedItems\">Selected Items:\r\n          <span class=\"badge badge-pill badge-primary\" *ngFor=\"let tech of selectedBack\">\r\n            {{tech.description}}\r\n            <i class=\"fa fa-times\" (click)=\"removeBT(tech)\"></i>\r\n          </span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"col-sm-6\">\r\n    <div class=\"card border-dark mb-3\">\r\n      <p class=\"card-header\">Reporting Technologies</p>\r\n      <div class=\"card-body\">\r\n        <div class=\"input-group\">\r\n          <select class=\"custom-select\" id=\"rTSelect\">\r\n            <option selected disabled>Choose Technology</option>\r\n            <option *ngFor=\"let tech of reportTechs\" [value]=\"tech.technologyItemId\">{{tech.description}}</option>\r\n          </select>\r\n          <div class=\"input-group-append\">\r\n            <button class=\"btn btn-outline-primary\" type=\"button\" (click)=\"addRT()\">Add</button>\r\n          </div>\r\n        </div>\r\n        <div class=\"text-muted selectedItems\">Selected Items:\r\n          <span class=\"badge badge-pill badge-primary\" *ngFor=\"let tech of selectedReport\">\r\n            {{tech.description}}\r\n            <i class=\"fa fa-times\" (click)=\"removeRT(tech)\"></i>\r\n          </span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-sm-6\">\r\n    <div class=\"card border-dark mb-3\">\r\n      <p class=\"card-header\">Storage Technologies</p>\r\n      <div class=\"card-body\">\r\n        <div class=\"input-group\">\r\n          <select class=\"custom-select\" id=\"sTSelect\">\r\n            <option selected disabled>Choose Technology</option>\r\n            <option *ngFor=\"let tech of storageTechs\" [value]=\"tech.technologyItemId\">{{tech.description}}</option>\r\n          </select>\r\n          <div class=\"input-group-append\">\r\n            <button class=\"btn btn-outline-primary\" type=\"button\" (click)=\"addST()\">Add</button>\r\n          </div>\r\n        </div>\r\n        <div class=\"text-muted selectedItems\">Selected Items:\r\n          <span class=\"badge badge-pill badge-primary\" *ngFor=\"let tech of selectedStorage\">\r\n            {{tech.description}}\r\n            <i class=\"fa fa-times\" (click)=\"removeST(tech)\"></i>\r\n          </span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/layout/phasing/fpa/components/components.component.scss":
+/*!*************************************************************************!*\
+  !*** ./src/app/layout/phasing/fpa/components/components.component.scss ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".card-header {\n  background-color: #cce5ff; }\n\n.fa-times:hover {\n  color: #007BFF;\n  background-color: white;\n  border-radius: 5px; }\n\n.selectedItems {\n  margin-top: 10px; }\n"
+
+/***/ }),
+
+/***/ "./src/app/layout/phasing/fpa/components/components.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/layout/phasing/fpa/components/components.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: ComponentsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponentsComponent", function() { return ComponentsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _data_services_techComponent_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../data-services/techComponent.services */ "./src/app/data-services/techComponent.services.ts");
+/* harmony import */ var _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../model/TechnolonogyItem.model */ "./src/app/model/TechnolonogyItem.model.ts");
+/* harmony import */ var _model_techComponents_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../model/techComponents.model */ "./src/app/model/techComponents.model.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ComponentsComponent = /** @class */ (function () {
+    function ComponentsComponent(techComponentServices) {
+        this.techComponentServices = techComponentServices;
+        /* Technologies */
+        this.frontTechs = [];
+        this.backTechs = [];
+        this.reportTechs = [];
+        this.storageTechs = [];
+        /* Selected Technologies */
+        this.selectedFront = [];
+        this.selectedBack = [];
+        this.selectedReport = [];
+        this.selectedStorage = [];
+    }
+    ComponentsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.technologies = this.techComponentServices.getComponents();
+        this.selectedFront = this.technologies.frontend.slice();
+        this.selectedBack = this.technologies.backend.slice();
+        this.selectedReport = this.technologies.report.slice();
+        this.selectedStorage = this.technologies.storage.slice();
+        this.frontTechs = this.techComponentServices.getFrontend();
+        this.backTechs = this.techComponentServices.getBackend();
+        this.reportTechs = this.techComponentServices.getReporting();
+        this.storageTechs = this.techComponentServices.getStorage();
+        this.sortTechItemArr(this.frontTechs);
+        this.sortTechItemArr(this.backTechs);
+        this.sortTechItemArr(this.reportTechs);
+        this.sortTechItemArr(this.storageTechs);
+        this.sortTechItemArr(this.selectedFront);
+        this.sortTechItemArr(this.selectedBack);
+        this.sortTechItemArr(this.selectedReport);
+        this.sortTechItemArr(this.selectedStorage);
+        this.techComponentsSubscription = this.techComponentServices.componentsChanged
+            .subscribe(function (technologies) {
+            _this.technologies = technologies;
+        });
+    };
+    ComponentsComponent.prototype.searchFromArray = function (arr, option) {
+        return jquery__WEBPACK_IMPORTED_MODULE_1__["grep"](arr, function (obj) { return obj.technologyItemId == option; });
+    };
+    ComponentsComponent.prototype.sortTechItemArr = function (techArr) {
+        techArr.sort(function (a, b) {
+            var x = a.description;
+            var y = b.description;
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        });
+    };
+    ComponentsComponent.prototype.addFT = function () {
+        var ft = jquery__WEBPACK_IMPORTED_MODULE_1__("#fTSelect option:selected");
+        if (ft.is(":enabled")) {
+            var tech = this.searchFromArray(this.selectedFront, ft.val());
+            if (tech.length == 0) {
+                this.selectedFront.push(new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_3__["TechnologyItem"](ft.val(), ft.text()));
+                this.sortTechItemArr(this.selectedFront);
+            }
+        }
+    };
+    ComponentsComponent.prototype.addBT = function () {
+        var bt = jquery__WEBPACK_IMPORTED_MODULE_1__("#bTSelect option:selected");
+        if (bt.is(":enabled")) {
+            var tech = this.searchFromArray(this.selectedBack, bt.val());
+            if (tech.length == 0) {
+                this.selectedBack.push(new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_3__["TechnologyItem"](bt.val(), bt.text()));
+                this.sortTechItemArr(this.selectedBack);
+            }
+        }
+    };
+    ComponentsComponent.prototype.addRT = function () {
+        var rt = jquery__WEBPACK_IMPORTED_MODULE_1__("#rTSelect option:selected");
+        if (rt.is(":enabled")) {
+            var tech = this.searchFromArray(this.selectedReport, rt.val());
+            if (tech.length == 0) {
+                this.selectedReport.push(new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_3__["TechnologyItem"](rt.val(), rt.text()));
+                this.sortTechItemArr(this.selectedReport);
+            }
+        }
+    };
+    ComponentsComponent.prototype.addST = function () {
+        var st = jquery__WEBPACK_IMPORTED_MODULE_1__("#sTSelect option:selected");
+        if (st.is(":enabled")) {
+            var tech = this.searchFromArray(this.selectedStorage, st.val());
+            if (tech.length == 0) {
+                this.selectedStorage.push(new _model_TechnolonogyItem_model__WEBPACK_IMPORTED_MODULE_3__["TechnologyItem"](st.val(), st.text()));
+                this.sortTechItemArr(this.selectedStorage);
+            }
+        }
+    };
+    ComponentsComponent.prototype.removeFT = function (tech) {
+        var index = this.selectedFront.indexOf(tech, 0);
+        if (index > -1) {
+            this.selectedFront.splice(index, 1);
+        }
+    };
+    ComponentsComponent.prototype.removeBT = function (tech) {
+        var index = this.selectedBack.indexOf(tech, 0);
+        if (index > -1) {
+            this.selectedBack.splice(index, 1);
+        }
+    };
+    ComponentsComponent.prototype.removeRT = function (tech) {
+        var index = this.selectedReport.indexOf(tech, 0);
+        if (index > -1) {
+            this.selectedReport.splice(index, 1);
+        }
+    };
+    ComponentsComponent.prototype.removeST = function (tech) {
+        var index = this.selectedStorage.indexOf(tech, 0);
+        if (index > -1) {
+            this.selectedStorage.splice(index, 1);
+        }
+    };
+    ComponentsComponent.prototype.onSave = function () {
+        this.technologies = new _model_techComponents_model__WEBPACK_IMPORTED_MODULE_4__["TechComponents"](this.selectedFront.slice(), this.selectedBack.slice(), this.selectedReport.slice(), this.selectedStorage.slice());
+        this.techComponentServices.saveComponents(this.technologies);
+    };
+    ComponentsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-components',
+            template: __webpack_require__(/*! ./components.component.html */ "./src/app/layout/phasing/fpa/components/components.component.html"),
+            styles: [__webpack_require__(/*! ./components.component.scss */ "./src/app/layout/phasing/fpa/components/components.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_data_services_techComponent_services__WEBPACK_IMPORTED_MODULE_2__["TechComponentServices"]])
+    ], ComponentsComponent);
+    return ComponentsComponent;
 }());
 
 
@@ -88022,7 +88281,7 @@ var EstimationComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>Project 1 (Phase 1 Web Application)</div>\r\n<br />\r\n<ul class=\"nav nav-tabs\">\r\n    <li class=\"nav-item\">\r\n        <a class=\"nav-link active\" data-toggle=\"tab\" (click)=\"onTab(1)\">FPA</a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n        <a class=\"nav-link\" data-toggle=\"tab\" (click)=\"onTab(2)\">Estimation</a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n        <a class=\"nav-link\" data-toggle=\"tab\" (click)=\"onTab(3)\">Implementation</a>\r\n    </li>\r\n</ul>\r\n\r\n<!-- Tab panes -->\r\n<div class=\"tab-content\">\r\n    <ng-template [ngIf]=\"activeTab==1\">\r\n        <app-backlogs></app-backlogs>\r\n    </ng-template>\r\n    <ng-template [ngIf]=\"activeTab==2\">\r\n        <app-estimation></app-estimation>\r\n    </ng-template>\r\n    <ng-template [ngIf]=\"activeTab==3\">\r\n        <app-implementation></app-implementation>\r\n    </ng-template>\r\n\r\n</div>\r\n"
+module.exports = "<div>Project A (Phase 1 Web Application)</div>\r\n<br />\r\n<ul class=\"nav nav-tabs\">\r\n    <li class=\"nav-item\">\r\n        <a [class]=\"(activeTab==1) ? 'nav-link active': 'nav-link'\" data-toggle=\"tab\" (click)=\"onTab(1)\">User Story</a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n        <a [class]=\"(activeTab==2) ? 'nav-link active' : 'nav-link'\" data-toggle=\"tab\" (click)=\"onTab(2)\">Functions</a>\r\n    </li>\r\n    <!-- <li class=\"nav-item\">\r\n        <a [class]=\"(activeTab==2) ? 'nav-link active' : 'nav-link'\" data-toggle=\"tab\" (click)=\"onTab(2)\">Estimation</a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n        <a [class]=\"(activeTab==3) ? 'nav-link active': 'nav-link'\" data-toggle=\"tab\" (click)=\"onTab(3)\">Implementation</a>\r\n    </li> -->\r\n\r\n    <li class=\"nav-item\">\r\n        <a [class]=\"(activeTab==3) ? 'nav-link active': 'nav-link'\" data-toggle=\"tab\" (click)=\"onTab(3)\">Components</a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n        <a [class]=\"(activeTab==4) ? 'nav-link active': 'nav-link'\" data-toggle=\"tab\" (click)=\"onTab(4)\">Logical Container</a>\r\n    </li>\r\n</ul>\r\n\r\n<!-- Tab panes -->\r\n<div class=\"tab-content\">\r\n    <ng-template [ngIf]=\"activeTab==2\">\r\n        <app-backlogs [data]=\"data\"></app-backlogs>\r\n    </ng-template>\r\n    <!-- <ng-template [ngIf]=\"activeTab==2\">\r\n        <app-estimation></app-estimation>\r\n    </ng-template> -->\r\n    <!-- <ng-template [ngIf]=\"activeTab==3\">\r\n        <app-implementation></app-implementation>\r\n    </ng-template> -->\r\n    <ng-template [ngIf]=\"activeTab==1\">\r\n        <app-user [data]=\"data\"></app-user>\r\n    </ng-template>\r\n    <ng-template [ngIf]=\"activeTab==3\">\r\n        <app-components></app-components>\r\n    </ng-template>\r\n    <ng-template [ngIf]=\"activeTab==4\">\r\n        <app-logicalContainer></app-logicalContainer>\r\n    </ng-template>\r\n</div>"
 
 /***/ }),
 
@@ -88048,7 +88307,8 @@ module.exports = ".nav-link {\n  color: #626b76 !important; }\n\n.active {\n  co
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FPAComponent", function() { return FPAComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _data_services_userStory_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../data-services/userStory.services */ "./src/app/data-services/userStory.services.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -88060,22 +88320,35 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var FPAComponent = /** @class */ (function () {
-    function FPAComponent(router) {
+    function FPAComponent(router, route, fpaSrv) {
         this.router = router;
+        this.route = route;
+        this.fpaSrv = fpaSrv;
         this.activeTab = 1;
     }
-    FPAComponent.prototype.ngOnInit = function () { };
-    FPAComponent.prototype.onTab = function (index) {
-        this.activeTab = index;
+    FPAComponent.prototype.ngOnInit = function () {
+        // this.proj = JSON.parse(this.route.snapshot.queryParamMap.get('phase'))
+        console.log("Data from phase", this.proj);
     };
+    FPAComponent.prototype.onTab = function (index, data) {
+        // console.log("Data from phase", this.thirdSubscription)
+        // this.proj = this.thirdSubscription;
+        this.activeTab = index;
+        this.data = data;
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], FPAComponent.prototype, "data", void 0);
     FPAComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-fpa',
             template: __webpack_require__(/*! ./fpa.component.html */ "./src/app/layout/phasing/fpa/fpa.component.html"),
             styles: [__webpack_require__(/*! ./fpa.component.scss */ "./src/app/layout/phasing/fpa/fpa.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _data_services_userStory_services__WEBPACK_IMPORTED_MODULE_1__["UserStoryServices"]])
     ], FPAComponent);
     return FPAComponent;
 }());
@@ -88147,6 +88420,335 @@ var ImplementationComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/layout/phasing/fpa/logicalContainer/logicalContainer.component.html":
+/*!*************************************************************************************!*\
+  !*** ./src/app/layout/phasing/fpa/logicalContainer/logicalContainer.component.html ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div [@routerTransition]>\r\n    <br />\r\n    <div class=\"form-group input-group col-4\" style=\"padding-left: 10px;\">\r\n        <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\r\n        <div class=\"input-group-append\">\r\n            <button class=\"btn btn-secondary\" type=\"button\">\r\n                <i class=\"fa fa-search\"></i>\r\n            </button>\r\n        </div>\r\n        <div class=\"row-md-3\" style=\"padding-left: 10px;\">\r\n            <button type=\"button\" id=\"btn-save\" class=\"btn btn-outline-primary btn-fpa\" (click)=\"addProj()\">Add {{text}}\r\n                <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\r\n            </button>\r\n            <!-- <button type=\"button\" id=\"btn-save\" class=\"btn btn-outline-primary btn-fpa\" (click)=\"onSave()\">Save<i class=\"fa fa-floppy-o\" aria-hidden=\"true\" style=\"margin-left: 10px\"></i></button> -->\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"card mb-3\">\r\n        <!-- <div class=\"card-header\">Projects</div> -->\r\n        <table class=\"card-body table table-hover\">\r\n            <thead class=\"card-header\" style=\"background-color: #cce5ff;\">\r\n                <tr>\r\n                    <th *ngFor=\"let data of cols\">{{data.header}}</th>\r\n                    <!-- <th>Project Name</th>\r\n                        <th>Col</th>\r\n                        <th>Col</th>\r\n                        <th>Col</th>\r\n                        <th>Col</th> -->\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let data of logicalContainer, let i=index\">\r\n                    <th scope=\"row\">{{data.id}}</th>\r\n                    <th scope=\"row\">{{data.description }}</th>\r\n                    <th scope=\"row\">{{data.dateCreated | date:'mediumDate'}}</th>\r\n                    <th scope=\"row\">{{data.dateUpdated | date:'mediumDate'}}</th>\r\n                    <th scope=\"row\">{{data.createdBy}}</th>\r\n                    <th scope=\"row\">{{data.updatedBy}}</th>\r\n                    <th scope=\"row\">{{data.appServer}}</th>\r\n                    <th scope=\"row\">{{data.dbServer}}</th>\r\n                    <th scope=\"row\">{{data.msServer}}</th>\r\n                    <th scope=\"row\">{{data.type}}</th>\r\n                    <th scope=\"row\">\r\n                        <button class=\"btn btn-outline-info\" (click)=\"editLogicalContainer(data)\">Edit \r\n                            <i class=\"fa fa-edit fa-lg mypointer\" aria-hidden=\"true\"></i>\r\n                        </button>\r\n                        <button class=\"btn btn-outline-danger\" (click)=\"onDelete(data,i)\">Delete\r\n                            <i class=\"fa fa-trash-o fa-lg mypointer\" aria-hidden=\"true\"></i>\r\n                        </button>\r\n\r\n                    </th>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"backdrop\" [ngStyle]=\"{'display':display}\"></div>\r\n\r\n<div class=\"modal\" *ngIf=\"modal == 'add'\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">New Logical Container</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <form [formGroup]=\"logicalContainerForm\" #myForm='ngForm' (ngSubmit)=\"onSubmitAdd()\">\r\n                <div class=\"modal-body\">\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"project\">Description</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"description\" placeholder=\"Description\"></textarea>\r\n                     \r\n                        <label for=\"project\">Created By</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"createdBy\" placeholder=\"Created By\"></textarea>\r\n                       \r\n                        <label for=\"project\">Type</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"type\" placeholder=\"Prod/UAT\"></textarea>\r\n\r\n                        <label for=\"project\">App Server</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"appServer\" placeholder=\"App Server\"></textarea>\r\n                        \r\n                        <label for=\"project\">DB Server</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"dbServer\" placeholder=\"DB Server\"></textarea>\r\n                       \r\n                        <label for=\"project\">MS Server</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"msServer\" placeholder=\"MS Server\"></textarea>\r\n                       <!-- <div class=\"error-message\" *ngIf=\"userForm.controls.user.invalid && myForm.submitted\">\r\n                            <i class=\"fa fa-close\"></i> Please enter a valid Logical Container\r\n                        </div> -->\r\n                    </div>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"onCloseHandled()\">Close</button>\r\n                    <button type=\"submit\" class=\"btn btn-outline-primary\">Save</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"modal\" *ngIf=\"modal == 'edit'\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\"\r\n    aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">Edit Logical Container</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <form [formGroup]=\"logicalContainerForm\" #myForm='ngForm' (ngSubmit)=\"onEditLogicalContainer(logicCon)\">\r\n                <div class=\"modal-body\">\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"project\">Description</label>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"description\" [value]=\"logicCon.description\">\r\n                        \r\n                        <label for=\"project\">Updated By</label>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"createdBy\" [value]=\"logicCon.createdBy\">\r\n                        \r\n                        <label for=\"project\">Type</label>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"type\" [value]=\"logicCon.type\">\r\n                        \r\n                        <label for=\"project\">App Server</label>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"appServer\" [value]=\"logicCon.appServer\">\r\n                        \r\n                        <label for=\"project\">DB Server</label>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"dbServer\" [value]=\"logicCon.dbServer\">\r\n                       \r\n                        <label for=\"project\">MS Server</label>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"msServer\" [value]=\"logicCon.msServer\">\r\n                    </div>\r\n\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onCloseHandled()\">Close</button>\r\n                    <button type=\"submit\" class=\"btn btn-primary\">Edit</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"modal\" *ngIf=\"modal == 'error'\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\"\r\n    aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">Error Message</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <h3>Error!</h3>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onCloseHandled()\">Close</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/layout/phasing/fpa/logicalContainer/logicalContainer.component.scss":
+/*!*************************************************************************************!*\
+  !*** ./src/app/layout/phasing/fpa/logicalContainer/logicalContainer.component.scss ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".handsontable table.htCore {\n  border-collapse: separate;\n  border-spacing: 0;\n  margin: 0;\n  border-width: 0;\n  table-layout: fixed;\n  width: 1200px;\n  outline-width: 0;\n  cursor: default;\n  /* max-width: none; */\n  max-height: none;\n  font-size: 40px; }\n\n.datePickerCreate {\n  margin-left: 2.45rem;\n  flex: 0 1 auto;\n  width: 27%; }\n\n.datePickerComplete {\n  margin-left: 1rem;\n  flex: 0 1 auto;\n  width: 27%; }\n\n.card {\n  padding: 0px !important;\n  margin: 0px !important; }\n\n.backdrop {\n  background-color: rgba(0, 0, 0, 0.6);\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh; }\n"
+
+/***/ }),
+
+/***/ "./src/app/layout/phasing/fpa/logicalContainer/logicalContainer.component.ts":
+/*!***********************************************************************************!*\
+  !*** ./src/app/layout/phasing/fpa/logicalContainer/logicalContainer.component.ts ***!
+  \***********************************************************************************/
+/*! exports provided: LogicalContainerComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogicalContainerComponent", function() { return LogicalContainerComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _router_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../router.animations */ "./src/app/router.animations.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _data_services_logicalContainer_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../data-services/logicalContainer.services */ "./src/app/data-services/logicalContainer.services.ts");
+/* harmony import */ var _fpa_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../fpa.component */ "./src/app/layout/phasing/fpa/fpa.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var LogicalContainerComponent = /** @class */ (function () {
+    function LogicalContainerComponent(router, form, fpaSrv, fpa) {
+        this.router = router;
+        this.form = form;
+        this.fpaSrv = fpaSrv;
+        this.fpa = fpa;
+        // project: any;
+        // myVARS
+        this.display = 'none';
+        this.error = false;
+        this.cols = [{ header: 'Id' }, { header: 'Description' }, { header: 'Date Created' },
+            { header: 'Date Updated' }, { header: 'Created By' }, { header: 'Updated By' },
+            { header: 'Type' }, { header: 'App Server' }, { header: 'DB Server' }, { header: 'MS Server' },
+            { header: 'Action' }];
+        this.logicalContainer = [];
+        this.logicalContainerForm = this.form.group({
+            'description': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            'createdBy': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            'updatedBy': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            'dateUpdated': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            'type': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            'appServer': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            'dbServer': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            'msServer': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required)
+        });
+    }
+    LogicalContainerComponent.prototype.ngOnInit = function () {
+        console.log("Data from services", this.fpaSrv.getLogicalContainer());
+        this.loadData();
+    };
+    LogicalContainerComponent.prototype.loadData = function () {
+        this.logicalContainer = this.fpaSrv.getLogicalContainer();
+    };
+    LogicalContainerComponent.prototype.addProj = function () {
+        console.log("Modal");
+        this.modal = 'add';
+        this.display = 'block';
+    };
+    LogicalContainerComponent.prototype.onSubmitAdd = function () {
+        var i = this.fpaSrv.logicCount;
+        // // let firstelement;
+        // // if(this.userStory.length > 0){
+        // //     i = 1;
+        // //     firstelement = this.userStory.sort()[0];
+        // // }else{
+        // //     i = firstelement;
+        // // }
+        // if(i > 1){
+        //    i += 1;
+        // }else{
+        //     i++;
+        // }
+        // console.log("User", i)
+        // if(i = 1){
+        // }else{
+        // }
+        var newDesc = this.logicalContainerForm.controls.description.value;
+        var newCreatedBy = this.logicalContainerForm.controls.createdBy.value;
+        var newType = this.logicalContainerForm.controls.type.value;
+        var newAppServer = this.logicalContainerForm.controls.appServer.value;
+        var newDbServer = this.logicalContainerForm.controls.dbServer.value;
+        var newMsServer = this.logicalContainerForm.controls.msServer.value;
+        console.log("Description", newDesc);
+        console.log("Created By", newCreatedBy);
+        //console.log("Updated By", newCreatedBy);
+        // if (this.userForm.valid) {
+        var newLogicCon = { id: i, description: newDesc, dateCreated: new Date(), createdBy: newCreatedBy,
+            type: newType, appServer: newAppServer, dbServer: newDbServer, msServer: newMsServer };
+        this.fpaSrv.addLogicalContainer(newLogicCon);
+        this.display = 'none';
+        this.loadData();
+        this.logicalContainerForm.reset();
+        this.fpaSrv.logicCount = this.fpaSrv.logicCount + 1;
+        // } else {
+        //     console.log("Error logical container")
+        //     this.display = "error";
+        //     this.error = true;
+        //     this.logicalContainerForm.reset();
+        // }
+    };
+    LogicalContainerComponent.prototype.onCloseHandled = function () {
+        this.display = 'none';
+    };
+    LogicalContainerComponent.prototype.editLogicalContainer = function (data) {
+        console.log("Edit Modal", data);
+        this.logicCon = data;
+        this.modal = 'edit';
+        this.display = 'block';
+    };
+    LogicalContainerComponent.prototype.onEditLogicalContainer = function (data) {
+        this.logicCon.description = this.logicalContainerForm.controls.description.value;
+        this.logicCon.updatedBy = this.logicalContainerForm.controls.createdBy.value;
+        this.logicCon.type = this.logicalContainerForm.controls.type.value;
+        this.logicCon.appServer = this.logicalContainerForm.controls.appServer.value;
+        this.logicCon.dbServer = this.logicalContainerForm.controls.dbServer.value;
+        this.logicCon.msServer = this.logicalContainerForm.controls.msServer.value;
+        console.log("Edit updated by: ", this.logicCon.updatedBy);
+        this.logicCon.dateUpdated = this.logicalContainerForm.controls.dateUpdated.value;
+        console.log("Edit datte updated: ", this.logicCon.dateUpdated);
+        // if (this.logicalContainerForm.valid) {
+        console.log("Edit Logical Container", data);
+        this.fpaSrv.editLogicalContainer(this.logicCon.id, this.logicCon);
+        this.display = 'none';
+        this.loadData();
+        // } else {
+        //     console.log("Error user")
+        //     this.display = "error";
+        //     this.error = true;
+        // }
+    };
+    LogicalContainerComponent.prototype.addBLogicalContainer = function (data) {
+        this.fpa.onTab(1, data);
+        // this.data = data
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], LogicalContainerComponent.prototype, "data", void 0);
+    LogicalContainerComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-logicalContainer',
+            template: __webpack_require__(/*! ./logicalContainer.component.html */ "./src/app/layout/phasing/fpa/logicalContainer/logicalContainer.component.html"),
+            styles: [__webpack_require__(/*! ./logicalContainer.component.scss */ "./src/app/layout/phasing/fpa/logicalContainer/logicalContainer.component.scss")],
+            animations: [Object(_router_animations__WEBPACK_IMPORTED_MODULE_1__["routerTransition"])()]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _data_services_logicalContainer_services__WEBPACK_IMPORTED_MODULE_4__["LogicalContainerServices"], _fpa_component__WEBPACK_IMPORTED_MODULE_5__["FPAComponent"]])
+    ], LogicalContainerComponent);
+    return LogicalContainerComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/layout/phasing/fpa/user-story/user-story.component.html":
+/*!*************************************************************************!*\
+  !*** ./src/app/layout/phasing/fpa/user-story/user-story.component.html ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div [@routerTransition]>\r\n       \r\n    <!-- <app-page-header [heading]=\"'Charts'\" [icon]=\"'fa-bar-chart-o'\"></app-page-header> -->\r\n    <div class=\"form-group input-group col-4\" style=\"padding-left: 0px;\">\r\n        <input type=\"text\" class=\"form-control\" placeholder=\"Search\" >\r\n            <!-- <input type=\"text\" name=\"text\" [(ngModel)]=\"text\" id=\"form1\" class=\"form-control\"> -->\r\n        <div class=\"input-group-append\">\r\n            <button class=\"btn btn-secondary\" type=\"button\"><i class=\"fa fa-search\"></i></button>\r\n        </div>\r\n        <div class=\"pl-2\">\r\n            <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"addProj()\"k>Add User Story {{text}}</button>\r\n        </div>\r\n    </div>\r\n    <div class=\"card mb-3\">\r\n        <!-- <div class=\"card-header\">Projects</div> -->\r\n        <table class=\"card-body table table-hover\">\r\n            <thead class=\"card-header\" style=\"background-color: #cce5ff;\">\r\n                <tr>\r\n                    <th *ngFor=\"let data of cols\">{{data.header}}</th>\r\n                    <!-- <th>Project Name</th>\r\n                    <th>Col</th>\r\n                    <th>Col</th>\r\n                    <th>Col</th>\r\n                    <th>Col</th> -->\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let data of userStory\">\r\n                        <th scope=\"row\">{{data.id}}</th>\r\n                    <th scope=\"row\">{{data.userStory }}</th>\r\n                    <th scope=\"row\">{{data.dateCreated | date:'mediumDate'}}</th>\r\n                    <th scope=\"row\">{{data.dateUpdated | date:'mediumDate'}}</th>\r\n                    <th scope=\"row\"><button class=\"btn btn-outline-primary\" (click)=\"addBacklog(data)\">Add Functions</button>\r\n                        <button class=\"btn btn-outline-info\" (click)=\"editUser(data)\">Edit</button>\r\n                        <!-- <button class=\"btn btn-outline-danger\" (click)=\"deleteuser(data)\">Delete</button> -->\r\n                    </th>\r\n\r\n                    <!-- <td>Project1</td>\r\n                    <td>Otto</td>\r\n                    <td>@mdo</td> -->\r\n                </tr>\r\n                <!-- <tr>\r\n                    <th scope=\"row\">2</th>\r\n                    <td>Jacob</td>\r\n                    <td>Thornton</td>\r\n                    <td>@fat</td>\r\n                </tr>\r\n                <tr>\r\n                    <th scope=\"row\">3</th>\r\n                    <td colspan=\"2\">Larry the Bird</td>\r\n                    <td>@twitter</td>\r\n                </tr> -->\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n   \r\n    \r\n    \r\n</div>\r\n\r\n <div class=\"backdrop\" [ngStyle]=\"{'display':display}\"></div>\r\n\r\n<div class=\"modal\" *ngIf=\"modal == 'add'\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">New User Story</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <form [formGroup]=\"userForm\" #myForm='ngForm' (ngSubmit)=\"onSubmitAdd()\">   \r\n            <div class=\"modal-body\">\r\n                \r\n                    <div class=\"form-group\" >\r\n                        <label for=\"project\">User Story</label>\r\n                        <textarea type=\"text\" class=\"form-control\" formControlName=\"user\" placeholder=\"User Story\"></textarea>\r\n                        <!-- <div class=\"error-message\" *ngIf=\"userForm.controls.user.invalid && myForm.submitted\">\r\n\r\n                                <i class=\"fa fa-close\"></i> Please enter a valid User Story\r\n                            </div> -->\r\n                    </div>\r\n                  \r\n               \r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-outline-secondary\"  (click)=\"onCloseHandled()\" >Close</button>\r\n                <button type=\"submit\" class=\"btn btn-outline-primary\" >Save</button>\r\n            </div>\r\n        </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"modal\"  *ngIf=\"modal == 'edit'\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">Edit User Story</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <form [formGroup]=\"userForm\" #myForm='ngForm' (ngSubmit)=\"onEditUser(users)\">   \r\n            <div class=\"modal-body\">\r\n                \r\n                    <div class=\"form-group\">\r\n                        <label for=\"project\">User Story Name</label>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"user\"  [value]=\"users.userStory\">\r\n                    </div>\r\n                  \r\n               \r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onCloseHandled()\" >Close</button>\r\n                <button type=\"submit\" class=\"btn btn-primary\" >Edit</button>\r\n            </div>\r\n        </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"modal\"  *ngIf=\"modal == 'error'\" [ngStyle]=\"{'display':display}\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h5 class=\"modal-title\" id=\"exampleModalLabel\">Error Message</h5>\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onCloseHandled()\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>  \r\n            <div class=\"modal-body\">\r\n                <h3>Error!</h3>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onCloseHandled()\" >Close</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/layout/phasing/fpa/user-story/user-story.component.scss":
+/*!*************************************************************************!*\
+  !*** ./src/app/layout/phasing/fpa/user-story/user-story.component.scss ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".error-message {\n  color: red; }\n\n.has-danger {\n  border: 1px solid red; }\n\n.has-success {\n  border: 1px solid green; }\n"
+
+/***/ }),
+
+/***/ "./src/app/layout/phasing/fpa/user-story/user-story.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/layout/phasing/fpa/user-story/user-story.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: UserStoryComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserStoryComponent", function() { return UserStoryComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _router_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../router.animations */ "./src/app/router.animations.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _data_services_userStory_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../data-services/userStory.services */ "./src/app/data-services/userStory.services.ts");
+/* harmony import */ var _fpa_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../fpa.component */ "./src/app/layout/phasing/fpa/fpa.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var UserStoryComponent = /** @class */ (function () {
+    function UserStoryComponent(router, form, fpaSrv, fpa) {
+        this.router = router;
+        this.form = form;
+        this.fpaSrv = fpaSrv;
+        this.fpa = fpa;
+        // project: any;
+        // myVARS
+        this.display = 'none';
+        this.error = false;
+        this.cols = [{ header: 'Id' },
+            { header: 'User Story' },
+            { header: 'Date Created' },
+            { header: 'Date Updated' },
+            { header: 'Action' }];
+        this.userStory = [];
+        this.userForm = this.form.group({
+            'user': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required)
+        });
+    }
+    UserStoryComponent.prototype.ngOnInit = function () {
+        console.log("Data from services", this.fpaSrv.getUserStory());
+        this.loadData();
+    };
+    UserStoryComponent.prototype.loadData = function () {
+        this.userStory = this.fpaSrv.getUserStory();
+    };
+    UserStoryComponent.prototype.addProj = function () {
+        console.log("Modal");
+        this.modal = 'add';
+        this.display = 'block';
+    };
+    UserStoryComponent.prototype.onSubmitAdd = function () {
+        var i = 1;
+        var newUserStory = this.userForm.controls.user.value;
+        console.log("User");
+        // if (this.userForm.valid) {
+        var newUser = { id: i, userStory: newUserStory, dateCreated: new Date(), backlog: [] };
+        this.fpaSrv.addUserStory(newUser);
+        this.display = 'none';
+        this.loadData();
+        this.userForm.reset();
+    };
+    UserStoryComponent.prototype.onCloseHandled = function () {
+        this.display = 'none';
+    };
+    UserStoryComponent.prototype.editUser = function (data) {
+        console.log("Edit Modal", data);
+        this.users = data;
+        this.modal = 'edit';
+        this.display = 'block';
+    };
+    UserStoryComponent.prototype.onEditUser = function (data) {
+        this.users.userStory = this.userForm.controls.user.value;
+        // if (this.userForm.valid) {
+        console.log("Edit User Story", data);
+        this.fpaSrv.editUserStory(this.users.id, this.users);
+        this.display = 'none';
+        this.loadData();
+        // } else {
+        //     console.log("Error user")
+        //     this.display = "error";
+        //     this.error = true;
+        // }
+    };
+    UserStoryComponent.prototype.addBacklog = function (data) {
+        this.fpa.onTab(2, data);
+        // this.data = data
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], UserStoryComponent.prototype, "data", void 0);
+    UserStoryComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-user',
+            template: __webpack_require__(/*! ./user-story.component.html */ "./src/app/layout/phasing/fpa/user-story/user-story.component.html"),
+            styles: [__webpack_require__(/*! ./user-story.component.scss */ "./src/app/layout/phasing/fpa/user-story/user-story.component.scss")],
+            animations: [Object(_router_animations__WEBPACK_IMPORTED_MODULE_1__["routerTransition"])()]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _data_services_userStory_services__WEBPACK_IMPORTED_MODULE_4__["UserStoryServices"], _fpa_component__WEBPACK_IMPORTED_MODULE_5__["FPAComponent"]])
+    ], UserStoryComponent);
+    return UserStoryComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/layout/phasing/phasing-routing.module.ts":
 /*!**********************************************************!*\
   !*** ./src/app/layout/phasing/phasing-routing.module.ts ***!
@@ -88161,7 +88763,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _phasing_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./phasing.component */ "./src/app/layout/phasing/phasing.component.ts");
 /* harmony import */ var _fpa_fpa_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fpa/fpa.component */ "./src/app/layout/phasing/fpa/fpa.component.ts");
-/* harmony import */ var _fpa_backlogs_backlogs_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./fpa/backlogs/backlogs.component */ "./src/app/layout/phasing/fpa/backlogs/backlogs.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -88172,14 +88773,12 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
 var routes = [
     {
         path: '',
         component: _phasing_component__WEBPACK_IMPORTED_MODULE_2__["PhasingComponent"],
     },
-    { path: 'fpa', component: _fpa_fpa_component__WEBPACK_IMPORTED_MODULE_3__["FPAComponent"] },
-    { path: 'backlogs', component: _fpa_backlogs_backlogs_component__WEBPACK_IMPORTED_MODULE_4__["BackLogsComponent"] }
+    { path: 'fpa', component: _fpa_fpa_component__WEBPACK_IMPORTED_MODULE_3__["FPAComponent"] }
 ];
 var PhasingRoutingModule = /** @class */ (function () {
     function PhasingRoutingModule() {
@@ -88204,7 +88803,7 @@ var PhasingRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [@routerTransition]>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"form-group input-group col-md-3 pull-right\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search By Project Name\">\r\n                <div class=\"input-group-append\">\r\n                    <button class=\"btn btn-secondary\" type=\"button\"><i class=\"fa fa-search\"></i></button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"box\">\r\n                <div class=\"container\">\r\n                    <div class=\"row\">\r\n\r\n                        <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12\">\r\n\r\n                            <div class=\"box-part\">\r\n                                <div class=\"row\">\r\n                                    <div class=\"col-md-3\"><i class=\"fa fa-building fa-3x\" aria-hidden=\"true\"></i></div>\r\n                                    <div class=\"col-md-9\">\r\n                                        <div class=\"title\">\r\n                                            <h4>Project 1</h4>\r\n                                        </div>\r\n                                        <p (click)=\"onPhaseLoad()\">Phase 1 Web Application</p>\r\n                                        <p>Phase 2 Mobile Integration</p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12\">\r\n                            <div class=\"box-part\">\r\n                                <div class=\"row\">\r\n                                    <div class=\"col-md-3\"><i class=\"fa fa-building fa-3x\" aria-hidden=\"true\"></i></div>\r\n                                    <div class=\"col-md-9\">\r\n                                        <div class=\"title\">\r\n                                            <h4>Project 2</h4>\r\n                                        </div>\r\n                                        <p>Phase 1 Web Application</p>\r\n                                        <p>Phase 2 Mobile Integration</p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12\">\r\n                            <div class=\"box-part\">\r\n                                <div class=\"row\">\r\n                                    <div class=\"col-md-3\"><i class=\"fa fa-building fa-3x\" aria-hidden=\"true\"></i></div>\r\n                                    <div class=\"col-md-9\">\r\n                                        <div class=\"title\">\r\n                                            <h4>Project 3</h4>\r\n                                        </div>\r\n                                        <p>Phase 1 Web Application</p>\r\n                                        <p>Phase 2 Mobile Integration</p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12\">\r\n                            <div class=\"box-part\">\r\n                                <div class=\"row\">\r\n                                    <div class=\"col-md-3\"><i class=\"fa fa-building fa-3x\" aria-hidden=\"true\"></i></div>\r\n                                    <div class=\"col-md-9\">\r\n                                        <div class=\"title\">\r\n                                            <h4>Project 3</h4>\r\n                                        </div>\r\n                                        <p>Phase 1 Web Application</p>\r\n                                        <p>Phase 2 Mobile Integration</p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div [@routerTransition]>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"form-group input-group col-md-3 pull-right\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search By Project Name\">\r\n                <div class=\"input-group-append\">\r\n                    <button class=\"btn btn-secondary\" type=\"button\"><i class=\"fa fa-search\"></i></button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"box\">\r\n                <div class=\"container\">\r\n                    <div class=\"row\">\r\n                        <ng-container *ngFor=\"let proj of project\">\r\n                        <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12\">\r\n\r\n                            <div class=\"box-part\">\r\n                                <div class=\"row\">\r\n                                    <div class=\"col-md-3\"><i class=\"fa fa-building fa-3x\" aria-hidden=\"true\"></i></div>\r\n                                    <div class=\"col-md-9\">\r\n                                        <div class=\"title\">\r\n                                            <h4>{{proj.projectName}}</h4>\r\n                                        </div>\r\n                                        <ng-container *ngFor=\"let phase of proj.phaseNumber\">\r\n                                        <p (click)=\"onPhaseLoad(proj)\">{{phase}}</p>\r\n                                        </ng-container>\r\n                                   \r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        </ng-container>\r\n\r\n                        <!-- <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12\">\r\n                            <div class=\"box-part\">\r\n                                <div class=\"row\">\r\n                                    <div class=\"col-md-3\"><i class=\"fa fa-building fa-3x\" aria-hidden=\"true\"></i></div>\r\n                                    <div class=\"col-md-9\">\r\n                                        <div class=\"title\">\r\n                                            <h4>Project B</h4>\r\n                                        </div>\r\n                                        <p>Phase 1 Web Application</p>\r\n                                        <p>Phase 2 Mobile Integration</p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div> -->\r\n\r\n                        <!-- <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12\">\r\n                            <div class=\"box-part\">\r\n                                <div class=\"row\">\r\n                                    <div class=\"col-md-3\"><i class=\"fa fa-building fa-3x\" aria-hidden=\"true\"></i></div>\r\n                                    <div class=\"col-md-9\">\r\n                                        <div class=\"title\">\r\n                                            <h4>Project C</h4>\r\n                                        </div>\r\n                                        <p>Phase 1 Web Application</p>\r\n                                        <p>Phase 2 Mobile Integration</p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div> -->\r\n\r\n\r\n                        <!-- <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-12\">\r\n                            <div class=\"box-part\">\r\n                                <div class=\"row\">\r\n                                    <div class=\"col-md-3\"><i class=\"fa fa-building fa-3x\" aria-hidden=\"true\"></i></div>\r\n                                    <div class=\"col-md-9\">\r\n                                        <div class=\"title\">\r\n                                            <h4>Project D</h4>\r\n                                        </div>\r\n                                        <p>Phase 1 Web Application</p>\r\n                                        <p>Phase 2 Mobile Integration</p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div> -->\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -88232,6 +88831,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _router_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../router.animations */ "./src/app/router.animations.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _data_services_project_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../data-services/project.services */ "./src/app/data-services/project.services.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -88244,13 +88844,22 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var PhasingComponent = /** @class */ (function () {
-    function PhasingComponent(router) {
+    function PhasingComponent(router, proj) {
         this.router = router;
+        this.proj = proj;
+        this.tabler = [];
     }
-    PhasingComponent.prototype.ngOnInit = function () { };
-    PhasingComponent.prototype.onPhaseLoad = function () {
-        this.router.navigate(['/phasing/fpa']);
+    PhasingComponent.prototype.ngOnInit = function () {
+        this.loadData();
+    };
+    PhasingComponent.prototype.loadData = function () {
+        this.project = this.proj.getProjects();
+        console.log("Project", this.project);
+    };
+    PhasingComponent.prototype.onPhaseLoad = function (phase) {
+        this.router.navigate(['/phasing/fpa'], { queryParams: { phase: phase } });
     };
     PhasingComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -88259,7 +88868,7 @@ var PhasingComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./phasing.component.scss */ "./src/app/layout/phasing/phasing.component.scss")],
             animations: [Object(_router_animations__WEBPACK_IMPORTED_MODULE_1__["routerTransition"])()]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _data_services_project_services__WEBPACK_IMPORTED_MODULE_3__["ProjectServices"]])
     ], PhasingComponent);
     return PhasingComponent;
 }());
@@ -88280,13 +88889,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PhasingModule", function() { return PhasingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _phasing_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./phasing-routing.module */ "./src/app/layout/phasing/phasing-routing.module.ts");
-/* harmony import */ var _phasing_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./phasing.component */ "./src/app/layout/phasing/phasing.component.ts");
-/* harmony import */ var _fpa_fpa_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./fpa/fpa.component */ "./src/app/layout/phasing/fpa/fpa.component.ts");
-/* harmony import */ var _fpa_backlogs_backlogs_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./fpa/backlogs/backlogs.component */ "./src/app/layout/phasing/fpa/backlogs/backlogs.component.ts");
-/* harmony import */ var _fpa_estimation_estimation_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fpa/estimation/estimation.component */ "./src/app/layout/phasing/fpa/estimation/estimation.component.ts");
-/* harmony import */ var _fpa_implementation_implementation_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fpa/implementation/implementation.component */ "./src/app/layout/phasing/fpa/implementation/implementation.component.ts");
-/* harmony import */ var _handsontable_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @handsontable/angular */ "./node_modules/@handsontable/angular/fesm5/handsontable-angular.js");
+/* harmony import */ var ng2_select2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng2-select2 */ "./node_modules/ng2-select2/ng2-select2.js");
+/* harmony import */ var ng2_select2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ng2_select2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _phasing_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./phasing-routing.module */ "./src/app/layout/phasing/phasing-routing.module.ts");
+/* harmony import */ var _phasing_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./phasing.component */ "./src/app/layout/phasing/phasing.component.ts");
+/* harmony import */ var _fpa_fpa_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./fpa/fpa.component */ "./src/app/layout/phasing/fpa/fpa.component.ts");
+/* harmony import */ var _fpa_backlogs_backlogs_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fpa/backlogs/backlogs.component */ "./src/app/layout/phasing/fpa/backlogs/backlogs.component.ts");
+/* harmony import */ var _fpa_estimation_estimation_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fpa/estimation/estimation.component */ "./src/app/layout/phasing/fpa/estimation/estimation.component.ts");
+/* harmony import */ var _fpa_implementation_implementation_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fpa/implementation/implementation.component */ "./src/app/layout/phasing/fpa/implementation/implementation.component.ts");
+/* harmony import */ var _handsontable_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @handsontable/angular */ "./node_modules/@handsontable/angular/fesm5/handsontable-angular.js");
+/* harmony import */ var _fpa_logicalContainer_logicalContainer_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./fpa/logicalContainer/logicalContainer.component */ "./src/app/layout/phasing/fpa/logicalContainer/logicalContainer.component.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var _fpa_components_components_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fpa/components/components.component */ "./src/app/layout/phasing/fpa/components/components.component.ts");
+/* harmony import */ var _fpa_user_story_user_story_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fpa/user-story/user-story.component */ "./src/app/layout/phasing/fpa/user-story/user-story.component.ts");
+/* harmony import */ var _data_services_userStory_services__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../data-services/userStory.services */ "./src/app/data-services/userStory.services.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _data_services_backlog_services__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../data-services/backlog.services */ "./src/app/data-services/backlog.services.ts");
+/* harmony import */ var _data_services_techComponent_services__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../data-services/techComponent.services */ "./src/app/data-services/techComponent.services.ts");
+/* harmony import */ var _data_services_logicalContainer_services__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../data-services/logicalContainer.services */ "./src/app/data-services/logicalContainer.services.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -88302,20 +88922,120 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
+
+
+
+
+
+
+
 var PhasingModule = /** @class */ (function () {
     function PhasingModule() {
     }
     PhasingModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _phasing_routing_module__WEBPACK_IMPORTED_MODULE_2__["PhasingRoutingModule"], _handsontable_angular__WEBPACK_IMPORTED_MODULE_8__["HotTableModule"]],
-            declarations: [_phasing_component__WEBPACK_IMPORTED_MODULE_3__["PhasingComponent"],
-                _fpa_fpa_component__WEBPACK_IMPORTED_MODULE_4__["FPAComponent"],
-                _fpa_backlogs_backlogs_component__WEBPACK_IMPORTED_MODULE_5__["BackLogsComponent"],
-                _fpa_estimation_estimation_component__WEBPACK_IMPORTED_MODULE_6__["EstimationComponent"],
-                _fpa_implementation_implementation_component__WEBPACK_IMPORTED_MODULE_7__["ImplementationComponent"]]
+            imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _phasing_routing_module__WEBPACK_IMPORTED_MODULE_3__["PhasingRoutingModule"], _handsontable_angular__WEBPACK_IMPORTED_MODULE_9__["HotTableModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_15__["ReactiveFormsModule"], ng2_select2__WEBPACK_IMPORTED_MODULE_2__["Select2Module"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__["NgbModule"].forRoot()],
+            declarations: [_phasing_component__WEBPACK_IMPORTED_MODULE_4__["PhasingComponent"],
+                _fpa_fpa_component__WEBPACK_IMPORTED_MODULE_5__["FPAComponent"],
+                _fpa_backlogs_backlogs_component__WEBPACK_IMPORTED_MODULE_6__["BackLogsComponent"],
+                _fpa_estimation_estimation_component__WEBPACK_IMPORTED_MODULE_7__["EstimationComponent"],
+                _fpa_implementation_implementation_component__WEBPACK_IMPORTED_MODULE_8__["ImplementationComponent"],
+                _fpa_components_components_component__WEBPACK_IMPORTED_MODULE_12__["ComponentsComponent"],
+                _fpa_user_story_user_story_component__WEBPACK_IMPORTED_MODULE_13__["UserStoryComponent"],
+                _fpa_logicalContainer_logicalContainer_component__WEBPACK_IMPORTED_MODULE_10__["LogicalContainerComponent"]],
+            providers: [_data_services_backlog_services__WEBPACK_IMPORTED_MODULE_16__["BacklogServices"], _data_services_userStory_services__WEBPACK_IMPORTED_MODULE_14__["UserStoryServices"], _data_services_techComponent_services__WEBPACK_IMPORTED_MODULE_17__["TechComponentServices"], _data_services_logicalContainer_services__WEBPACK_IMPORTED_MODULE_18__["LogicalContainerServices"]]
         })
     ], PhasingModule);
     return PhasingModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/TechnolonogyItem.model.ts":
+/*!*************************************************!*\
+  !*** ./src/app/model/TechnolonogyItem.model.ts ***!
+  \*************************************************/
+/*! exports provided: TechnologyItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TechnologyItem", function() { return TechnologyItem; });
+var TechnologyItem = /** @class */ (function () {
+    function TechnologyItem(technologyItemId, description) {
+        this.technologyItemId = technologyItemId;
+        this.description = description;
+    }
+    return TechnologyItem;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/backlog.model.ts":
+/*!****************************************!*\
+  !*** ./src/app/model/backlog.model.ts ***!
+  \****************************************/
+/*! exports provided: Backlog */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Backlog", function() { return Backlog; });
+var Backlog = /** @class */ (function () {
+    function Backlog(id, module, description, ilf_ret, ilf_det, ilf_technology, eif_ret, eif_det, eif_technology, ei_ftr, ei_det, ei_technology, eo_ftr, eo_det, eo_technology, eq_ftr, eq_det, eq_technology, reusePercentage, edited) {
+        this.id = id;
+        this.module = module;
+        this.description = description;
+        this.ilf_ret = ilf_ret;
+        this.ilf_det = ilf_det;
+        this.ilf_technology = ilf_technology;
+        this.eif_ret = eif_ret;
+        this.eif_det = eif_det;
+        this.eif_technology = eif_technology;
+        this.ei_ftr = ei_ftr;
+        this.ei_det = ei_det;
+        this.ei_technology = ei_technology;
+        this.eo_ftr = eo_ftr;
+        this.eo_det = eo_det;
+        this.eo_technology = eo_technology;
+        this.eq_ftr = eq_ftr;
+        this.eq_det = eq_det;
+        this.eq_technology = eq_technology;
+        this.reusePercentage = reusePercentage;
+        this.edited = edited;
+    }
+    return Backlog;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/techComponents.model.ts":
+/*!***********************************************!*\
+  !*** ./src/app/model/techComponents.model.ts ***!
+  \***********************************************/
+/*! exports provided: TechComponents */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TechComponents", function() { return TechComponents; });
+var TechComponents = /** @class */ (function () {
+    function TechComponents(frontend, backend, report, storage) {
+        this.frontend = frontend.slice();
+        this.backend = backend.slice();
+        this.report = report.slice();
+        this.storage = storage.slice();
+    }
+    return TechComponents;
 }());
 
 

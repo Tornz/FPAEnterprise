@@ -16,7 +16,7 @@ export class ProjectServices {
             id: 1,
             projectName: "Project A",
             description: "Description",
-            phaseNumber: ["Web Application", "Mobile Application"],
+            phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
             technology: "",
             methodology: "Agile",
             dateUpdated: new Date()
@@ -25,7 +25,7 @@ export class ProjectServices {
             id: 2,
             projectName: "Project B",
             description: "Description",
-            phaseNumber: ["Web Application", "Mobile Application"],
+            phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
             technology: "",
             methodology: "Agile",
             dateUpdated: new Date()
@@ -34,13 +34,13 @@ export class ProjectServices {
             id: 3,
             projectName: "Project C",
             description: "Description",
-            phaseNumber: ["Web Application", "Mobile Application"],
+            phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
             technology: "",
             methodology: "Agile",
             dateUpdated: new Date()
         },
         {
-            id: 3,
+            id: 4,
             projectName: "Project D",
             description: "Description",
             phaseNumber: ["Web Application", "Mobile Application"],
@@ -49,10 +49,10 @@ export class ProjectServices {
             dateUpdated: new Date()
         },
         {
-            id: 3,
+            id: 5,
             projectName: "Project E",
             description: "Description",
-            phaseNumber: ["Web Application", "Mobile Application"],
+            phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
             technology: "",
             methodology: "Agile",
             dateUpdated: new Date()
