@@ -11,12 +11,10 @@
             <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa" (click)="addProj()">Add {{text}}
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
-            <!-- <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa" (click)="onSave()">Save<i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 10px"></i></button> -->
         </div>
     </div>
 
     <div class="card mb-3">
-        <!-- <div class="card-header">Projects</div> -->
         <table class="card-body table table-hover">
             <thead class="card-header" style="background-color: #cce5ff;">
                 <tr>
@@ -29,7 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of logicalContainer, let i=index">
+                <tr *ngFor="let data of logicalContainer">
                     <th scope="row">{{data.id}}</th>
                     <th scope="row">{{data.description }}</th>
                     <th scope="row">{{data.dateCreated | date:'mediumDate'}}</th>
@@ -41,10 +39,10 @@
                     <th scope="row">{{data.dbServer}}</th>
                     <th scope="row">{{data.msServer}}</th>
                     <th scope="row">
-                        <button class="btn btn-outline-info" (click)="editLogicalContainer(data)">Edit 
+                        <button class="btn btn-outline-info" (click)="editLogicalContainer(data)">Edit
                             <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>
                         </button>
-                        <button class="btn btn-outline-danger" (click)="onDelete(data,i)">Delete
+                        <button class="btn btn-outline-danger" (click)="onDelete(data)">Delete
                             <i class="fa fa-trash-o fa-lg mypointer" aria-hidden="true"></i>
                         </button>
 
@@ -73,24 +71,25 @@
                     <div class="form-group">
                         <label for="project">Description</label>
                         <textarea type="text" class="form-control" formControlName="description" placeholder="Description"></textarea>
-                     
+
                         <label for="project">Created By</label>
                         <textarea type="text" class="form-control" formControlName="createdBy" placeholder="Created By"></textarea>
-                       
+
                         <label for="project">Type</label>
-                        <textarea type="text" class="form-control" formControlName="type" placeholder="Prod/UAT"></textarea>
+                        <!-- <textarea type="text" class="form-control" formControlName="type" placeholder="Prod/UAT"></textarea> -->
+                        <select class="custom-select" id="bTSelect" formControlName="type" placeholder="PROD/UAT">
+                            <option selected disabled>PROD/UAT</option>
+                            <option *ngFor="let type of typeList" [value]="type.item">{{type.item}}</option>
+                        </select>
 
                         <label for="project">App Server</label>
                         <textarea type="text" class="form-control" formControlName="appServer" placeholder="App Server"></textarea>
-                        
+
                         <label for="project">DB Server</label>
                         <textarea type="text" class="form-control" formControlName="dbServer" placeholder="DB Server"></textarea>
-                       
+
                         <label for="project">MS Server</label>
                         <textarea type="text" class="form-control" formControlName="msServer" placeholder="MS Server"></textarea>
-                       <!-- <div class="error-message" *ngIf="userForm.controls.user.invalid && myForm.submitted">
-                            <i class="fa fa-close"></i> Please enter a valid Logical Container
-                        </div> -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -117,19 +116,23 @@
                     <div class="form-group">
                         <label for="project">Description</label>
                         <input type="text" class="form-control" formControlName="description" [value]="logicCon.description">
-                        
+
                         <label for="project">Updated By</label>
                         <input type="text" class="form-control" formControlName="createdBy" [value]="logicCon.createdBy">
-                        
+
                         <label for="project">Type</label>
-                        <input type="text" class="form-control" formControlName="type" [value]="logicCon.type">
-                        
+                        <!-- <input type="text" class="form-control" formControlName="type" [value]="logicCon.type"> -->
+                        <select class="custom-select" id="bTSelect" formControlName="type" [value]="logicCon.type">
+                            <option selected disabled>PROD/UAT</option>
+                            <option *ngFor="let type of typeList" [value]="type.item">{{type.item}}</option>
+                        </select>
+
                         <label for="project">App Server</label>
                         <input type="text" class="form-control" formControlName="appServer" [value]="logicCon.appServer">
-                        
+
                         <label for="project">DB Server</label>
                         <input type="text" class="form-control" formControlName="dbServer" [value]="logicCon.dbServer">
-                       
+
                         <label for="project">MS Server</label>
                         <input type="text" class="form-control" formControlName="msServer" [value]="logicCon.msServer">
                     </div>
