@@ -16,7 +16,7 @@
                 <div class="container">
                     <div class="row">
                         <ng-container *ngFor="let proj of project">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
 
                             <div class="box-part">
                                 <div class="row">
@@ -25,8 +25,8 @@
                                         <div class="title">
                                             <h4>{{proj.projectName}}</h4>
                                         </div>
-                                        <ng-container *ngFor="let phase of proj.phaseNumber">
-                                        <p (click)="onPhaseLoad(proj)">{{phase}}</p>
+                                        <ng-container *ngFor="let phase of proj.phases; let i = index">
+                                        <p (click)="onPhaseLoad(proj)">Phase {{i+1}} {{phase.phase}}</p>
                                         </ng-container>
                                    
                                     </div>
