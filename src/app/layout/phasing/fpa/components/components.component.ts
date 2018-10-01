@@ -1,149 +1,70 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
-import { TechComponentServices } from '../../../../data-services/techComponent.services';
-import { TechnologyItem } from '../../../../model/TechnolonogyItem.model';
-import { TechComponents } from '../../../../model/techComponents.model';
-import { Subscription } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ComponentServices } from '../../../../data-services/component.services';
+import { ContainerComponent } from '../../../../model/container-component.model';
+import { routerTransition } from '../../../../router.animations';
 
 @Component({
   selector: 'app-components',
   templateUrl: './components.component.html',
-  styleUrls: ['./components.component.scss']
+  styleUrls: ['./components.component.scss'],
+  animations: [routerTransition()]
 })
 export class ComponentsComponent implements OnInit {
-  /* Components */
-  technologies: TechComponents;
-  techComponentsSubscription: Subscription;
+  searchString: string;
+  components: ContainerComponent[];
+  tableHeaders = [
+    { name: 'ID' },
+    { name: 'Name' },
+    { name: 'Action'}
+  ];
+  display = 'none';
+  modal: any;
+  componentForm: FormGroup;
+  selectedData: ContainerComponent = new ContainerComponent(''); 
 
-  /* Technologies */
-  frontTechs: TechnologyItem[] = [];
-  backTechs: TechnologyItem[] = [];
-  reportTechs: TechnologyItem[] = [];
-  storageTechs: TechnologyItem[] = [];
-
-  /* Selected Technologies */
-  selectedFront: TechnologyItem[] = [];
-  selectedBack: TechnologyItem[] = [];
-  selectedReport: TechnologyItem[] = [];
-  selectedStorage: TechnologyItem[] = [];
-
-  constructor(private techComponentServices: TechComponentServices) { }
+  constructor(private componentService: ComponentServices, private form: FormBuilder) {
+    this.componentForm = this.form.group({
+      'name': new FormControl(this.selectedData.name , Validators.required)
+    });
+    }
 
   ngOnInit() {
-    this.technologies = this.techComponentServices.getComponents();
-    this.selectedFront = this.technologies.frontend.slice();
-    this.selectedBack = this.technologies.backend.slice();
-    this.selectedReport = this.technologies.report.slice();
-    this.selectedStorage = this.technologies.storage.slice();
-
-    this.frontTechs = this.techComponentServices.getFrontend();
-    this.backTechs = this.techComponentServices.getBackend();
-    this.reportTechs = this.techComponentServices.getReporting();
-    this.storageTechs = this.techComponentServices.getStorage();
-
-    this.sortTechItemArr(this.frontTechs);
-    this.sortTechItemArr(this.backTechs);
-    this.sortTechItemArr(this.reportTechs);
-    this.sortTechItemArr(this.storageTechs);
-    this.sortTechItemArr(this.selectedFront);
-    this.sortTechItemArr(this.selectedBack);
-    this.sortTechItemArr(this.selectedReport);
-    this.sortTechItemArr(this.selectedStorage);
-
-    this.techComponentsSubscription = this.techComponentServices.componentsChanged
-      .subscribe((technologies: TechComponents) => {
-        this.technologies = technologies;
-      });
-  }
-
-  searchFromArray(arr: TechnologyItem[], option) {
-    return $.grep(arr, obj => { return obj.technologyItemId == option });
-  }
-
-  sortTechItemArr(techArr: TechnologyItem[]) {
-    techArr.sort(function (a, b) {
-      var x = a.description;
-      var y = b.description;
-      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    });
-  }
-
-  addFT() {
-    let ft = $("#fTSelect option:selected");
-    if (ft.is(":enabled")) {
-      let tech = this.searchFromArray(this.selectedFront, ft.val());
-      if (tech.length == 0) {
-        this.selectedFront.push(new TechnologyItem(ft.val(), ft.text()));
-        this.sortTechItemArr(this.selectedFront);
+    this.components = this.componentService.getComponents();
+    this.componentService.componentListChanged.subscribe(
+      (componentList) => {
+        this.components = componentList;
+        this.searchString = '';
       }
-    }
+    );
   }
 
-  addBT() {
-    let bt = $("#bTSelect option:selected");
-    if (bt.is(":enabled")) {
-      let tech = this.searchFromArray(this.selectedBack, bt.val());
-      if (tech.length == 0) {
-        this.selectedBack.push(new TechnologyItem(bt.val(), bt.text()));
-        this.sortTechItemArr(this.selectedBack);
-      }
-    }
+  onModalOpen(modalName: string, selectedData: ContainerComponent) {
+    this.modal = modalName;
+    this.display = 'block';
+    this.selectedData = selectedData;
   }
 
-  addRT() {
-    let rt = $("#rTSelect option:selected");
-    if (rt.is(":enabled")) {
-      let tech = this.searchFromArray(this.selectedReport, rt.val());
-      if (tech.length == 0) {
-        this.selectedReport.push(new TechnologyItem(rt.val(), rt.text()));
-        this.sortTechItemArr(this.selectedReport);
-      }
-    }
+  onSubmitAdd() {
+    const componentName = this.componentForm.controls.name.value
+    this.componentService.createComponent(componentName);
+    this.onModalClose();
   }
 
-  addST() {
-    let st = $("#sTSelect option:selected");
-    if (st.is(":enabled")) {
-      let tech = this.searchFromArray(this.selectedStorage, st.val());
-      if (tech.length == 0) {
-        this.selectedStorage.push(new TechnologyItem(st.val(), st.text()));
-        this.sortTechItemArr(this.selectedStorage);
-      }
-    }
+  onSubmitEdit() {
+    const componentName = this.componentForm.controls.name.value
+    this.selectedData.name = componentName;
+    this.componentService.saveComponent(this.selectedData);
+    this.onModalClose();
   }
 
-  removeFT(tech: TechnologyItem) {
-    let index = this.selectedFront.indexOf(tech, 0);
-    if (index > -1) {
-      this.selectedFront.splice(index, 1);
-    }
+  onSubmitDelete(){
+    this.componentService.deleteComponent(this.selectedData);
+    this.onModalClose();
   }
 
-  removeBT(tech: TechnologyItem) {
-    let index = this.selectedBack.indexOf(tech, 0);
-    if (index > -1) {
-      this.selectedBack.splice(index, 1);
-    }
-  }
-
-  removeRT(tech: TechnologyItem) {
-    let index = this.selectedReport.indexOf(tech, 0);
-    if (index > -1) {
-      this.selectedReport.splice(index, 1);
-    }
-  }
-
-  removeST(tech: TechnologyItem) {
-    let index = this.selectedStorage.indexOf(tech, 0);
-    if (index > -1) {
-      this.selectedStorage.splice(index, 1);
-    }
-  }
-
-  onSave() {
-    this.technologies = new TechComponents(this.selectedFront.slice(),
-      this.selectedBack.slice(), this.selectedReport.slice(),
-      this.selectedStorage.slice());
-    this.techComponentServices.saveComponents(this.technologies);
+  onModalClose() {
+    this.display = 'none';
+    this.componentForm.reset();
   }
 }
