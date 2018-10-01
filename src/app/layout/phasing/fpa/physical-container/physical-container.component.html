@@ -1,0 +1,105 @@
+<br />
+<div class="row" style="padding-bottom:10px">
+  <div class="col-md-12 ">
+    <div class="col-md-9 pull-right">
+      <button type="button" id="btn-save" class="btn btn-outline-primary pull-right" (click)="onSave()">Save
+          <i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 10px"></i>
+        </button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card border-dark mb-3">
+      <p class="card-header">Frontend Technologies</p>
+      <div class="card-body">
+        <div class="input-group">
+          <select class="custom-select" id="fTSelect">
+            <option selected disabled>Choose Technology</option>
+            <option *ngFor="let tech of frontTechs" [value]="tech.technologyItemId">{{tech.description}}</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" (click)="addFT()">Add</button>
+          </div>
+        </div>
+        <div>
+          <div class="text-muted selectedItems">Selected Items:
+            <span class="badge badge-pill badge-primary" *ngFor="let tech of selectedFront">
+              {{tech.description}}
+              <i class="fa fa-times" (click)="removeFT(tech)"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card border-dark mb-3">
+      <p class="card-header">Backend Technologies</p>
+      <div class="card-body">
+        <div class="input-group">
+          <select class="custom-select" id="bTSelect">
+            <option selected disabled>Choose Technology</option>
+            <option *ngFor="let tech of backTechs" [value]="tech.technologyItemId">{{tech.description}}</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" (click)="addBT()">Add</button>
+          </div>
+        </div>
+        <div class="text-muted selectedItems">Selected Items:
+          <span class="badge badge-pill badge-primary" *ngFor="let tech of selectedBack">
+            {{tech.description}}
+            <i class="fa fa-times" (click)="removeBT(tech)"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card border-dark mb-3">
+      <p class="card-header">Reporting Technologies</p>
+      <div class="card-body">
+        <div class="input-group">
+          <select class="custom-select" id="rTSelect">
+            <option selected disabled>Choose Technology</option>
+            <option *ngFor="let tech of reportTechs" [value]="tech.technologyItemId">{{tech.description}}</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" (click)="addRT()">Add</button>
+          </div>
+        </div>
+        <div class="text-muted selectedItems">Selected Items:
+          <span class="badge badge-pill badge-primary" *ngFor="let tech of selectedReport">
+            {{tech.description}}
+            <i class="fa fa-times" (click)="removeRT(tech)"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card border-dark mb-3">
+      <p class="card-header">Storage Technologies</p>
+      <div class="card-body">
+        <div class="input-group">
+          <select class="custom-select" id="sTSelect">
+            <option selected disabled>Choose Technology</option>
+            <option *ngFor="let tech of storageTechs" [value]="tech.technologyItemId">{{tech.description}}</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" (click)="addST()">Add</button>
+          </div>
+        </div>
+        <div class="text-muted selectedItems">Selected Items:
+          <span class="badge badge-pill badge-primary" *ngFor="let tech of selectedStorage">
+            {{tech.description}}
+            <i class="fa fa-times" (click)="removeST(tech)"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

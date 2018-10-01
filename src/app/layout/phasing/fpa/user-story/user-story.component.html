@@ -1,64 +1,113 @@
 <div [@routerTransition]>
-       
-    <!-- <app-page-header [heading]="'Charts'" [icon]="'fa-bar-chart-o'"></app-page-header> -->
-    <div class="form-group input-group col-4" style="padding-left: 0px;">
-        <input type="text" class="form-control" placeholder="Search" >
-            <!-- <input type="text" name="text" [(ngModel)]="text" id="form1" class="form-control"> -->
-        <div class="input-group-append">
-            <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-        </div>
-        <div class="pl-2">
-            <button type="button" class="btn btn-outline-primary" (click)="addProj()"k>Add User Story {{text}}</button>
-        </div>
+    <div class="row">
+            <div class="col-md-3 pull-left">
+                    <!-- <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa" (click)="onAdd()">ADD<i class="fa fa-plus" aria-hidden="true"></i></button> -->
+                    <button type="button" id="btn-save-user" class="btn btn-outline-primary btn-fpa" (click)="onSave()">Save<i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 10px"></i></button>
+                </div>
+                <div class="col-md-9 pull-right">
+                    <button type="button" id="btn-export" class="btn btn-outline-primary pull-right">Export<i class="fa fa-cloud-download" aria-hidden="true" style="margin-left: 10px"></i></button>
+                    <button type="button" class="btn btn-outline-primary pull-right">Import<i class="fa fa-cloud-upload" aria-hidden="true" style="margin-left: 10px"></i></button>
+                    <button type="button" class="btn btn-outline-primary pull-right">Print<i class="fa fa-print" aria-hidden="true" style="margin-left: 10px"></i></button>
+        
+                </div>
+        <div class="col-md-12">
+            <!-- <div class="pl-2" style="padding-top:20px">
+                <button type="button" class="btn btn-outline-primary" (click)="addProj()" k>Add User Story</button>
+            </div> -->
+                    
+    <div class="row" >
+    <div class="col-md-12" style="max-height:600px;height:600px;width:100%;overflow:auto">
+        <!-- <hot-table [data]="userStory"  [colHeaders]="true"
+        [rowHeaders]="true" [width]="1306" [autoWrapRow]="true" [height]="487" [minSpareRows] ="1" [maxRows]="100" [stretchH]="all">
+        <hot-column data="id"  title="ID"></hot-column>
+        <hot-column data="user" title="User"></hot-column>
+        <hot-column data="userStory" title="User Story"></hot-column>
+        <hot-column data="epic" title="Epic"></hot-column>
+        <hot-column data="importance" title="Importance"></hot-column>
+        <hot-column data="conversation" title="Conversation"></hot-column>
+        <hot-column data="integration" title="Integration"></hot-column>
+        <hot-column data="storyPoints" title="Story Points"></hot-column>
+        <hot-column data="dateCreated" title="Date Created" ></hot-column>
+        <hot-column data="dateUpdated" title="Date Updated" ></hot-column>
+    </hot-table> -->
+        <div id="user-table" class="hot handsontable"></div>
     </div>
-    <div class="card mb-3">
-        <!-- <div class="card-header">Projects</div> -->
-        <table class="card-body table table-hover">
-            <thead class="card-header" style="background-color: #cce5ff;">
-                <tr>
-                    <th *ngFor="let data of cols">{{data.header}}</th>
-                    <!-- <th>Project Name</th>
-                    <th>Col</th>
-                    <th>Col</th>
-                    <th>Col</th>
-                    <th>Col</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let data of userStory">
-                        <th scope="row">{{data.id}}</th>
-                    <th scope="row">{{data.userStory }}</th>
-                    <th scope="row">{{data.dateCreated | date:'mediumDate'}}</th>
-                    <th scope="row">{{data.dateUpdated | date:'mediumDate'}}</th>
-                    <th scope="row"><button class="btn btn-outline-primary" (click)="addBacklog(data)">Add Functions</button>
-                        <button class="btn btn-outline-info" (click)="editUser(data)">Edit</button>
-                        <!-- <button class="btn btn-outline-danger" (click)="deleteuser(data)">Delete</button> -->
-                    </th>
+</div>
+            <!-- <div class="box">
+                <div class="container">
+                    <div class="row">
+                        <ng-container *ngFor="let data of userStory">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-bottom: 10px;">
 
-                    <!-- <td>Project1</td>
-                    <td>Otto</td>
-                    <td>@mdo</td> -->
-                </tr>
-                <!-- <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr> -->
-            </tbody>
-        </table>
+                                <div class="box-part">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <i class="fa fa-id-badge fa-3x" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="title">
+                                                <h3>User Story {{data.id }}</h3>
+                                                
+                                               
+                                            </div>
+                                            <div class="container" style="font-size: 12px">
+                                                    <div class="col-md-12">
+                                                            <b>User</b>: {{data.user }}
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                            <b>Story</b>: {{data.userStory }}
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                            <b>Importance</b>: {{data.importance }}
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                            <b>Date Created</b>: {{data.dateCreated | date:'mediumDate' }}
+                                                    </div>
+                                            </div>
+                                            
+                                          
+                                            <p><b>Importance</b>: {{data.importance }}</p>
+                                            <p><strong>Date Created</strong>: {{data.dateCreated | date:'mediumDate' }}</p>
+                                            <p><strong>Date Updated</strong>: {{data.dateUpdated | date:'mediumDate'}}</p>
+                                            <p><strong>Epic</strong>: {{data.epic }}</p>
+                                            <p><strong>Story Points</strong>: {{data.storyPoints }}</p>
+                                            <div class="container">
+                                                    <div class="row">
+                                                            <div class="col-3" style="font-size: 12px">
+                                                                    <button type="button" class="btn btn-info btn-sm">View</button>
+                                                            </div>
+                                                            <div class="col-3" style="font-size: 12px">
+                                                                    <button type="button" class="btn btn-primary btn-sm" (click)="editUser(data)">Edit</button>
+                                                            </div>
+                                                            <div class="col-6" style="font-size: 12px">
+                                                                    <button type="button" (click)="addBacklog(data)" class="btn btn-success btn-sm">Add function</button>
+                                                            </div>
+                                                          </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                              
+                                        </div>
+                                        
+                                    </div>
+
+
+                                </div>
+                            </div>
+                    </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div> -->
     </div>
-   
-    
-    
 </div>
 
- <div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+
+
+
+</div>
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
 
 <div class="modal" *ngIf="modal == 'add'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -70,10 +119,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form [formGroup]="userForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()">   
-            <div class="modal-body">
-                
-                    <div class="form-group" >
+            <form [formGroup]="userForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()">
+                <div class="modal-body">
+
+                    <div class="form-group">
                         <label for="project">User Story</label>
                         <textarea type="text" class="form-control" formControlName="user" placeholder="User Story"></textarea>
                         <!-- <div class="error-message" *ngIf="userForm.controls.user.invalid && myForm.submitted">
@@ -81,19 +130,19 @@
                                 <i class="fa fa-close"></i> Please enter a valid User Story
                             </div> -->
                     </div>
-                  
-               
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary"  (click)="onCloseHandled()" >Close</button>
-                <button type="submit" class="btn btn-outline-primary" >Save</button>
-            </div>
-        </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" (click)="onCloseHandled()">Close</button>
+                    <button type="submit" class="btn btn-outline-primary">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-<div class="modal"  *ngIf="modal == 'edit'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal" *ngIf="modal == 'edit'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -102,27 +151,27 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form [formGroup]="userForm" #myForm='ngForm' (ngSubmit)="onEditUser(users)">   
-            <div class="modal-body">
-                
+            <form [formGroup]="userForm" #myForm='ngForm' (ngSubmit)="onEditUser(users)">
+                <div class="modal-body">
+
                     <div class="form-group">
                         <label for="project">User Story Name</label>
-                        <input type="text" class="form-control" formControlName="user"  [value]="users.userStory">
+                        <input type="text" class="form-control" formControlName="user" [value]="users.userStory">
                     </div>
-                  
-               
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="onCloseHandled()" >Close</button>
-                <button type="submit" class="btn btn-primary" >Edit</button>
-            </div>
-        </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-<div class="modal"  *ngIf="modal == 'error'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal" *ngIf="modal == 'error'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -130,12 +179,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>  
+            </div>
             <div class="modal-body">
                 <h3>Error!</h3>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="onCloseHandled()" >Close</button>
+                <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
             </div>
         </div>
     </div>

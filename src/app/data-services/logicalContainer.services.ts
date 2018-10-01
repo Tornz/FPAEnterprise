@@ -76,6 +76,14 @@ export class LogicalContainerServices {
         console.log("Data tab",data)
     }
 
+    deleteLogicalContainer(id: any, data: any) {    
+        //for(var i in this.logicalContainer) {
+        let index = this.logicalContainer.indexOf(data, 0);
+        if (index > -1) {
+           this.logicalContainer.splice(index, 1);           
+        }
+    }
+
 
     // getComponents(): Promise<Array<FunctionComponent>>  {
     //     return this.http.get<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')

@@ -1,104 +1,200 @@
 <br />
-<div class="row" style="padding-bottom:10px">
-  <div class="col-md-12 ">
-    <div class="col-md-9 pull-right">
-      <button type="button" id="btn-save" class="btn btn-outline-primary pull-right" (click)="onSave()">Save
-          <i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 10px"></i>
+<div [@routerTransition]>
+  <div class="form-group input-group col-4" style="padding-left: 0px;">
+    <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString">
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+    </div>
+    <div class="pl-2">
+      <button type="button" class="btn btn-outline-primary" (click)="onModalOpen('add')">Add Component</button>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <table class="card-body table table-hover">
+      <thead class="card-header" style="background-color: #cce5ff;">
+        <tr>
+          <th *ngFor="let tableHeader of tableHeaders">{{ tableHeader.name }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let component of components | filter: 'name' : searchString">
+          <td scope="row">{{ component.id }}</td>
+          <td scope="row">{{ component.name }}</td>
+          <td scope="row">{{ component.softwareCategory }}</td>
+          <td scope="row">{{ component.recommendedVersion }}</td>
+          <td scope="row">{{ component.openSource }}</td>
+          <td scope="row">{{ component.license }}</td>
+          <td scope="row">
+            <button class="btn btn-outline-info" (click)="onModalOpen('edit', component)">Edit
+              <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>
+            </button>&nbsp;
+            <button class="btn btn-outline-danger" (click)="onModalOpen('delete', component)">Delete
+              <i class="fa fa-trash-o fa-lg mypointer" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<div class="modal" *ngIf="modal === 'add'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Component</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onModalClose()">
+          <span aria-hidden="true">&times;</span>
         </button>
+      </div>
+      <form [formGroup]="componentForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()" ngNativeValidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <textarea 
+              type="text" 
+              class="form-control" 
+              formControlName="name" 
+              placeholder="Component name" 
+              id="name" 
+              required>
+            </textarea>
+
+            <label for="software-category">Software Category</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="softwareCategory"
+              placeholder="Software category"
+              id="software-category">
+            </textarea>
+
+            <label for="recommended-version">Recommended Version</label>
+            <textarea 
+              type="text" 
+              class="form-control" 
+              formControlName="recommendedVersion" 
+              placeholder="Recommended software" 
+              id="recommended-version">
+            </textarea>
+
+            <label for="open-source">Open Source</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="openSource"
+              placeholder="Open source"
+              id="open-source">
+            </textarea>
+
+            <label for="license">License</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="license"
+              placeholder="License"
+              id="license">
+            </textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="onModalClose()">Close</button>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card border-dark mb-3">
-      <p class="card-header">Frontend Technologies</p>
-      <div class="card-body">
-        <div class="input-group">
-          <select class="custom-select" id="fTSelect">
-            <option selected disabled>Choose Technology</option>
-            <option *ngFor="let tech of frontTechs" [value]="tech.technologyItemId">{{tech.description}}</option>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-outline-primary" type="button" (click)="addFT()">Add</button>
-          </div>
-        </div>
-        <div>
-          <div class="text-muted selectedItems">Selected Items:
-            <span class="badge badge-pill badge-primary" *ngFor="let tech of selectedFront">
-              {{tech.description}}
-              <i class="fa fa-times" (click)="removeFT(tech)"></i>
-            </span>
-          </div>
-        </div>
+<div class="modal" *ngIf="modal === 'edit'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Component</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onModalClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card border-dark mb-3">
-      <p class="card-header">Backend Technologies</p>
-      <div class="card-body">
-        <div class="input-group">
-          <select class="custom-select" id="bTSelect">
-            <option selected disabled>Choose Technology</option>
-            <option *ngFor="let tech of backTechs" [value]="tech.technologyItemId">{{tech.description}}</option>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-outline-primary" type="button" (click)="addBT()">Add</button>
+      <form [formGroup]="componentForm" (ngSubmit)="onSubmitEdit()" ngNativeValidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <textarea 
+              type="text" 
+              class="form-control" 
+              formControlName="name" 
+              placeholder="Component name" 
+              id="name"
+              required>
+            </textarea>
+
+            <label for="software-category">Software Category</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="softwareCategory"
+              placeholder="Software category"
+              id="software-category">
+            </textarea>
+
+            <label for="recommended-version">Recommended Version</label>
+            <textarea 
+              type="text" 
+              class="form-control" 
+              formControlName="recommendedVersion" 
+              placeholder="Recommended software" 
+              id="recommended-version">
+            </textarea>
+
+            <label for="open-source">Open Source</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="openSource"
+              placeholder="Open source"
+              id="open-source">
+            </textarea>
+
+            <label for="license">License</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="license"
+              placeholder="License"
+              id="license">
+            </textarea>
           </div>
         </div>
-        <div class="text-muted selectedItems">Selected Items:
-          <span class="badge badge-pill badge-primary" *ngFor="let tech of selectedBack">
-            {{tech.description}}
-            <i class="fa fa-times" (click)="removeBT(tech)"></i>
-          </span>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="onModalClose()">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card border-dark mb-3">
-      <p class="card-header">Reporting Technologies</p>
-      <div class="card-body">
-        <div class="input-group">
-          <select class="custom-select" id="rTSelect">
-            <option selected disabled>Choose Technology</option>
-            <option *ngFor="let tech of reportTechs" [value]="tech.technologyItemId">{{tech.description}}</option>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-outline-primary" type="button" (click)="addRT()">Add</button>
-          </div>
-        </div>
-        <div class="text-muted selectedItems">Selected Items:
-          <span class="badge badge-pill badge-primary" *ngFor="let tech of selectedReport">
-            {{tech.description}}
-            <i class="fa fa-times" (click)="removeRT(tech)"></i>
-          </span>
-        </div>
+
+<div class="modal" *ngIf="modal === 'delete'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Component</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onModalClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card border-dark mb-3">
-      <p class="card-header">Storage Technologies</p>
-      <div class="card-body">
-        <div class="input-group">
-          <select class="custom-select" id="sTSelect">
-            <option selected disabled>Choose Technology</option>
-            <option *ngFor="let tech of storageTechs" [value]="tech.technologyItemId">{{tech.description}}</option>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-outline-primary" type="button" (click)="addST()">Add</button>
-          </div>
-        </div>
-        <div class="text-muted selectedItems">Selected Items:
-          <span class="badge badge-pill badge-primary" *ngFor="let tech of selectedStorage">
-            {{tech.description}}
-            <i class="fa fa-times" (click)="removeST(tech)"></i>
-          </span>
-        </div>
+      <div class="modal-body">
+        <h3>Are you sure you want to delete '{{ selectedData.name }}'?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onModalClose()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmitDelete()">Ok</button>
       </div>
     </div>
   </div>

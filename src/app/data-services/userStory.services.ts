@@ -10,7 +10,49 @@ import { User } from '../model/user.model';
 import { environment } from '../../environments/environment';
 @Injectable()
 export class UserStoryServices {
-    public userStory = [];
+    
+    public userStory = 
+    [
+        {
+        id: 1, 
+        user: "Customer",
+        userStory:"As a user, i can add items", 
+        dateUpdated: new Date(), 
+        dateCreated: new Date(), 
+        importance:"02 - Optional",
+        storyPoints: 6,
+        conversation: "This feature could potentially be on TP instead - to discuss with vendor on best solution",
+        integration:"Elements",
+        epic:"Incentive",
+        backlog: []
+        },
+        {
+        id: 2, 
+        user: "System Admin",
+        userStory:"As a admin, i can manage users", 
+        dateUpdated: new Date(), 
+        dateCreated: new Date(), 
+        importance:"02 - Optional",
+        storyPoints: 8,
+        conversation: "Could be applied to Finance and Cluster officers and escalated to relevant parties based on duration outstanding",
+        integration:"Elements",
+        epic:"Incentive",
+        backlog: []
+        },
+        {
+        id: 3, 
+        user: "IT Admin",
+        userStory:"As a user, i can add products to the cart",
+        dateUpdated: new Date(), 
+        dateCreated:  new Date(),
+        importance:"01 - Mandatory",
+        storyPoints: 4,
+        conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
+        integration:"Elements",
+        epic:"Incentive",
+        backlog: []
+        }
+    ];
     constructor(
         private http: HttpClient) {
     }
@@ -28,7 +70,7 @@ export class UserStoryServices {
         for(var i in this.userStory){
             if(this.userStory[i].id == id){
                 this.userStory[i].backlog = data
-                this.userStory[i].dateUpdated = new Date();
+                // this.userStory[i].dateUpdated =09/10/2018;
                 return true;
             }
         }
@@ -56,15 +98,15 @@ export class UserStoryServices {
         for(var i in this.userStory){
             if(this.userStory[i].id == id){
                 this.userStory[i].userStory = data.userStory
-                this.userStory[i].dateUpdated = new Date();
+                // this.userStory[i].dateUpdated = 09/10/2018;
                 return true;
             }
         }
     }
 
-    updateTab(data: any){
-        console.log("Data tab",data)
-    }
+    // updateTab(data: any){
+    //     console.log("Data tab",data)
+    // }
 
 
     // getComponents(): Promise<Array<FunctionComponent>>  {
