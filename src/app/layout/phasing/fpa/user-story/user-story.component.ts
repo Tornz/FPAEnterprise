@@ -5,6 +5,9 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { UserStoryServices } from '../../../../data-services/userStory.services'
 import { User } from '../../../../model/user.model'
 import { FPAComponent } from '../fpa.component'
+import * as $ from 'jquery';
+import { log } from 'util';
+import * as Handsontable from 'handsontable';
 
 @Component({
     selector: 'app-user',
@@ -38,9 +41,106 @@ export class UserStoryComponent implements OnInit {
     ngOnInit() {
         console.log("Data from services", this.fpaSrv.getUserStory())
         this.loadData();
+        
+        const temp = this.fpaSrv.getUserStory();
+        $(document).ready(function () {
+           var data = [];
+           var mainHead = [];
+           var subData = ['Id', 'Epic', 'User', 'User Story', 'Importance', 'Story Points', 'Conversation'
+               , 'Integrations'];
 
+           var values = temp;                 
+        //    data.push(mainHead);
+        //    data.push(subData);
+
+           $.each(values, function (i) {        
+               var item = [values[i].id,values[i].user, values[i].userStory,
+               values[i].epic,
+               values[i].importance,
+               values[i].storyPoints,
+               values[i].conversation,
+               values[i].integration,
+               values[i].dateCreated,
+               values[i].dateUpdated,
+              ]                              
+               data.push(item);
+           });
+
+
+        //    var technologies = ['XML', 'Java', 'JSON', 'NodeJS'];
+
+        //    var defColumn = [
+        //        {}, {}, {}, {}, { editor: 'select', selectOptions: technologies },
+        //        {}, {}, { editor: 'select', selectOptions: technologies },
+        //        {}, {}, { editor: 'select', selectOptions: technologies },
+        //        {}, {}, { editor: 'select', selectOptions: technologies },
+        //        {}, {}, { editor: 'select', selectOptions: technologies },  
+        //        { renderer: "html"}
+        //    ];
+           var container = document.getElementById('user-table');
+           var hot = new Handsontable(container, {
+               data: data,
+               colHeaders: ['Id', 'User', 'User Story', 'Epic', 'Importance', 'Story Points', 'Conversation'
+               , 'Integrations','Date Created','Date Updated'],
+               fixedRowsTop: 2,
+               stretchH: 'all',
+               rowHeaders: true,
+               width: 1306,
+               autoWrapRow: true,
+               height: 487,
+               maxRows: 100,
+               manualRowResize: true,
+               manualColumnResize: true,
+            //    colHeaders: true,
+               dropdownMenu: true,
+               contextMenu: true,
+               manualRowMove: true,
+                manualColumnMove: true,
+                filters: true,
+                fixedRowsBottom: 2,
+                minSpareRows: 1,
+               
+               // className: "htCenter",
+              
+           });
+
+
+           $("#btn-save-user").click(function () {
+               // alert( hot.countRows());
+               // alert( hot.countCols());
+               // alert(hot.getDataAtRow(3));
+               let rowCount = hot.countRows();
+               let colCount = hot.countCols();
+               alert(prepareData(rowCount, colCount));
+           });
+
+           function prepareData(rowCount, colCount) {
+               var fpaArray = [];
+               for (var i = 2; i < rowCount; i++) {
+                   var fpaObj = {};
+                   for (var c = 0; c < colCount; c++) {
+                       var objNotation = hot.getDataAtCell(0, c) + hot.getDataAtCell(1, c);
+                   }
+                   data.push(hot.getDataAtRow(i));
+               }
+               return JSON.stringify(fpaArray);
+           }
+
+        }); // end of document ready
     }
 
+    onAdd(){
+        console.log("Enter")
+        let newUser = { id:1, userStory: '', dateCreated: new Date(), backlog: [] }
+        this.fpaSrv.addUserStory(newUser);
+        this.loadData()
+    }
+
+    onSave(){
+        const saveUser = this.userStory.filter(x => x.id == 0);
+        const editUser = this.userStory.filter(x => x.edited == true);
+        this.fpaSrv.addUserStory(this.userStory)    
+    }
     loadData(){
         this.userStory = this.fpaSrv.getUserStory();
     }
