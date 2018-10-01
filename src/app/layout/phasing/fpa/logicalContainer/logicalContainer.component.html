@@ -1,7 +1,7 @@
 <div [@routerTransition]>
     <br />
     <div class="form-group input-group col-4" style="padding-left: 10px;">
-        <input type="text" class="form-control" placeholder="Search">
+        <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString">
         <div class="input-group-append">
             <button class="btn btn-secondary" type="button">
                 <i class="fa fa-search"></i>
@@ -27,17 +27,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of logicalContainer">
+                <tr *ngFor="let data of logicalContainers | filter: 'server' : searchString">
                     <th scope="row">{{data.id}}</th>
-                    <th scope="row">{{data.description }}</th>
-                    <th scope="row">{{data.dateCreated | date:'mediumDate'}}</th>
-                    <th scope="row">{{data.dateUpdated | date:'mediumDate'}}</th>
-                    <th scope="row">{{data.createdBy}}</th>
-                    <th scope="row">{{data.updatedBy}}</th>
-                    <th scope="row">{{data.type}}</th>
-                    <th scope="row">{{data.appServer}}</th>
-                    <th scope="row">{{data.dbServer}}</th>
-                    <th scope="row">{{data.msServer}}</th>
+                    <th scope="row">{{data.server }}</th>
+                    <th scope="row">{{data.vCpu}}</th>
+                    <th scope="row">{{data.ram}}</th>
+                    <th scope="row">{{data.dataStorage}}</th>
+                    <th scope="row">{{data.prodQuantity}}</th>
+                    <th scope="row">{{data.drQuantity}}</th>
+                    <th scope="row">{{data.uatQuantity}}</th>
+                    <th scope="row">{{data.sitDevQuantity}}</th>
+                    <th scope="row">{{data.totalQuantity}}</th>
                     <th scope="row">
                         <button class="btn btn-outline-info" (click)="editLogicalContainer(data)">Edit
                             <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>
@@ -69,27 +69,34 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="project">Description</label>
-                        <textarea type="text" class="form-control" formControlName="description" placeholder="Description"></textarea>
+                        <label for="project">Server</label>
+                        <input type="text" class="form-control" formControlName="server" placeholder="Sever" />
 
-                        <label for="project">Created By</label>
-                        <textarea type="text" class="form-control" formControlName="createdBy" placeholder="Created By"></textarea>
+                        <label for="project">vCPU (Cores)</label>
+                        <input type="number" class="form-control" formControlName="vCpu" placeholder="vCPU" />
+                        
+                        <label for="project">RAM (GB)</label>
+                        <input type="number" class="form-control" formControlName="ram" placeholder="RAM" />
 
-                        <label for="project">Type</label>
-                        <!-- <textarea type="text" class="form-control" formControlName="type" placeholder="Prod/UAT"></textarea> -->
-                        <select class="custom-select" id="bTSelect" formControlName="type" placeholder="PROD/UAT">
-                            <option selected disabled>PROD/UAT</option>
-                            <option *ngFor="let type of typeList" [value]="type.item">{{type.item}}</option>
+                        <label for="project">Data Storage (GB)</label>
+                        <input type="number" class="form-control" formControlName="dataStorage" placeholder="Data Storage" />
+
+                        <label for="project">Prod Quantity</label>
+                        <input type="number" class="form-control" formControlName="prodQuantity" placeholder="Prod Quantity" />
+
+                        <label for="project">DR Quantity</label>
+                        <input type="number" class="form-control" formControlName="drQuantity" placeholder="DR Quantity" />
+
+                        <label for="project">UAT Quantity</label>
+                        <input type="number" class="form-control" formControlName="uatQuantity" placeholder="UAT Quantity" />
+
+                        <label for="project">SIT/DEV Quantity</label>
+                        <input type="number" class="form-control" formControlName="sitDevQuantity" placeholder="SIT/DEV Quantity" />
+
+                        <label for="project">Components</label>
+                        <select class="form-control" multiple formControlName="components">
+                            <option *ngFor="let comp of componentOptions" [value]="comp.id">{{comp.name}}</option>
                         </select>
-
-                        <label for="project">App Server</label>
-                        <textarea type="text" class="form-control" formControlName="appServer" placeholder="App Server"></textarea>
-
-                        <label for="project">DB Server</label>
-                        <textarea type="text" class="form-control" formControlName="dbServer" placeholder="DB Server"></textarea>
-
-                        <label for="project">MS Server</label>
-                        <textarea type="text" class="form-control" formControlName="msServer" placeholder="MS Server"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -114,27 +121,34 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="project">Description</label>
-                        <input type="text" class="form-control" formControlName="description" [value]="logicCon.description">
+                        <label for="project">Server</label>
+                        <input type="text" class="form-control" formControlName="server" placeholder="Sever" [value]="logicCon.server"/>
 
-                        <label for="project">Updated By</label>
-                        <input type="text" class="form-control" formControlName="createdBy" [value]="logicCon.createdBy">
+                        <label for="project">vCPU (Cores)</label>
+                        <input type="number" class="form-control" formControlName="vCpu" placeholder="vCPU" [value]="logicCon.vCpu" />
+                        
+                        <label for="project">RAM (GB)</label>
+                        <input type="number" class="form-control" formControlName="ram" placeholder="RAM" [value]="logicCon.ram" />
 
-                        <label for="project">Type</label>
-                        <!-- <input type="text" class="form-control" formControlName="type" [value]="logicCon.type"> -->
-                        <select class="custom-select" id="bTSelect" formControlName="type" [value]="logicCon.type">
-                            <option selected disabled>PROD/UAT</option>
-                            <option *ngFor="let type of typeList" [value]="type.item">{{type.item}}</option>
+                        <label for="project">Data Storage (GB)</label>
+                        <input type="number" class="form-control" formControlName="dataStorage" placeholder="Data Storage" [value]="logicCon.dataStorage" />
+
+                        <label for="project">Prod Quantity</label>
+                        <input type="number" class="form-control" formControlName="prodQuantity" placeholder="Prod Quantity" [value]="logicCon.prodQuantity" />
+
+                        <label for="project">DR Quantity</label>
+                        <input type="number" class="form-control" formControlName="drQuantity" placeholder="DR Quantity" [value]="logicCon.drQuantity" />
+
+                        <label for="project">UAT Quantity</label>
+                        <input type="number" class="form-control" formControlName="uatQuantity" placeholder="UAT Quantity" [value]="logicCon.uatQuantity" />
+
+                        <label for="project">SIT/DEV Quantity</label>
+                        <input type="number" class="form-control" formControlName="sitDevQuantity" placeholder="SIT/DEV Quantity" [value]="logicCon.sitDevQuantity" />
+
+                        <label for="project">Components</label>
+                        <select class="form-control" multiple formControlName="components">
+                            <option *ngFor="let comp of componentOptions" [value]="comp.id">{{comp.name}}</option>
                         </select>
-
-                        <label for="project">App Server</label>
-                        <input type="text" class="form-control" formControlName="appServer" [value]="logicCon.appServer">
-
-                        <label for="project">DB Server</label>
-                        <input type="text" class="form-control" formControlName="dbServer" [value]="logicCon.dbServer">
-
-                        <label for="project">MS Server</label>
-                        <input type="text" class="form-control" formControlName="msServer" [value]="logicCon.msServer">
                     </div>
 
                 </div>

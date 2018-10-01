@@ -1,15 +1,76 @@
-<br />
 <div class="row" style="padding-bottom:10px">
   <div class="col-md-12 ">
     <div class="col-md-9 pull-right">
-      <button type="button" id="btn-save" class="btn btn-outline-primary pull-right" (click)="onSave()">Save
-          <i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 10px"></i>
-        </button>
+      <button type="button" id="btn-save" class="btn btn-outline-primary pull-right" (click)="onSave()" style="margin-right: 10px;  margin-top: 10px">Save
+        <i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 10px"></i>
+      </button>
+      <button type="button" id="btn-save" class="btn btn-outline-primary pull-right" (click)="onAdd()" style="margin-right: 10px;  margin-top: 10px">Add
+        <i class="fa fa-plus-square" aria-hidden="true" style="margin-left: 10px"></i>
+      </button>
     </div>
   </div>
 </div>
 
 <div class="row">
+  <div class="col-sm-6">
+    <div class="card border-dark mb-3">
+      <p class="card-header">API Management Proxy Physical Box</p>
+      <table class="card-body table table-hover">
+        <tbody>
+          <tr *ngFor="let PB1 of APIObject">
+            <td scope="row">{{ PB1 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card border-dark mb-3">
+      <p class="card-header">Web Server Physical Box</p>
+      <table class="card-body table table-hover">
+        <tbody>
+          <tr *ngFor="let PB2 of WEBServerObject">
+            <td scope="row">{{ PB2 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card border-dark mb-3">
+      <p class="card-header">Application Server 1 Physical Box</p>
+      <table class="card-body table table-hover">
+        <tbody>
+          <tr *ngFor="let PB3 of APPServerObject1">
+            <td scope="row">{{ PB3 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card border-dark mb-3">
+      <p class="card-header">Docker Physical Box</p>
+      <table class="card-body table table-hover">
+        <tbody>
+          <tr *ngFor="let PB4 of DOCKERObject">
+            <td scope="row">
+              {{ PB4.DOCKEROb1 }}
+              {{ PB4.DOCKEROb2 }}
+              {{ PB4.DOCKEROb3 }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Old Code -->
+<!-- <div class="row">
   <div class="col-sm-6">
     <div class="card border-dark mb-3">
       <p class="card-header">Frontend Technologies</p>
@@ -102,4 +163,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

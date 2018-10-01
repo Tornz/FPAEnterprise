@@ -28,6 +28,23 @@ export class PhysicalContainerComponent implements OnInit {
   selectedReport: TechnologyItem[] = [];
   selectedStorage: TechnologyItem[] = [];
 
+  APIObject = ['OS', 'Docker', 'WSO2 API Manager', 'WSO2 Identity Server']
+  WEBServerObject = ['OS', 'NGINX', 'Angular', 'Docker']
+  APPServerObject1 = ['OS', 'Qlik Sense', 'Docker']
+  DOCKERObject = [{
+    DOCKEROb1: 'OS,',
+    DOCKEROb2: 'Private Registry,',
+    DOCKEROb3: 'Docker,'
+  },
+  {
+    DOCKEROb1: 'OS,',
+    DOCKEROb2: 'Build and Packing,',
+    DOCKEROb3: 'Docker,'
+  },
+  {
+    DOCKEROb1: 'OS,',
+    DOCKEROb2: 'NexusOSS Sonatype Artifacts Repository'
+  }]
   constructor(private techComponentServices: TechComponentServices) { }
 
   ngOnInit() {
@@ -147,5 +164,5 @@ export class PhysicalContainerComponent implements OnInit {
       this.selectedStorage.slice());
     this.techComponentServices.saveComponents(this.technologies);
   }
-
+  
 }

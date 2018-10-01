@@ -10,29 +10,39 @@ import { LogicalContainer } from '../model/logicalContainer.model';
 import { environment } from '../../environments/environment';
 @Injectable()
 export class LogicalContainerServices {
-    public logicalContainer = [];
-    logicCount = 1;
+    public logicalContainers = [
+        {id: 1, server:"API Management Proxy", vCpu: 4, ram: 4, dataStorage: 300, prodQuantity: 2, drQuantity: 1, uatQuantity: 1, sitDevQuantity: 1, totalQuantity: 5},
+        {id: 2, server:"Web Server", vCpu: 2, ram: 4, dataStorage: 100, prodQuantity: 2, drQuantity: 1, uatQuantity: 1, sitDevQuantity: 1, totalQuantity: 5},
+        {id: 3, server:"Application Server 1", vCpu: 4, ram: 16, dataStorage: 1000, prodQuantity: 1, drQuantity: 1, uatQuantity: 1, sitDevQuantity: 1, totalQuantity: 4},
+        {id: 4, server:"Application Server 2", vCpu: 2, ram: 8, dataStorage: 500, prodQuantity: 1, drQuantity: 1, uatQuantity: 1, sitDevQuantity: 1, totalQuantity: 4},
+        {id: 5, server:"Application Server 3", vCpu: 2, ram: 4, dataStorage: 500, prodQuantity: 1, drQuantity: 1, uatQuantity: 1, sitDevQuantity: 1, totalQuantity: 4},
+        {id: 6, server:"Micoservices Server", vCpu: 8, ram: 64, dataStorage: 2000, prodQuantity: 1, drQuantity: 1, uatQuantity: 1, sitDevQuantity: 1, totalQuantity: 4},
+        {id: 7, server:"Database Server", vCpu: 8, ram: 64, dataStorage: 2000, prodQuantity: 1, drQuantity: 1, uatQuantity: 1, sitDevQuantity: 1, totalQuantity: 4},
+        {id: 8, server:"App & Platform Monitoring", vCpu: 4, ram: 16, dataStorage: 1000, prodQuantity: 1, drQuantity: 1, uatQuantity: 1, sitDevQuantity: 1, totalQuantity: 4},
+        {id: 9, server:"Docker", vCpu: 4, ram: 4, dataStorage: 1000, prodQuantity: 1, drQuantity: 1, uatQuantity: 1, sitDevQuantity: 1, totalQuantity: 4},
+    ];
+    logicCount = this.logicalContainers.length + 1;
     constructor(
         private http: HttpClient) {
     }
 
-    getLogicalContainer() {
+    getLogicalContainers() {
         //NOTE:
         //CHANGE TO PROMISE OR ASYNC AWAIT FUNCTION CALL TO THE DB/ API CALL
         // return this.http.get<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
         // .toPromise();
-        return this.logicalContainer;
+        return this.logicalContainers;
     }
 
     // addBacklogperUser(id: any, data: any){
-    //     console.log("Data from logicalContainer", data)
-    //     for(var i in this.logicalContainer){
-    //         if(this.logicalContainer[i].id == id){
-    //             this.logicalContainer[i].description = data;
-    //             this.logicalContainer[i].dateCreated = new Date();
-    //             this.logicalContainer[i].dateUpdated = new Date();
-    //             this.logicalContainer[i].createdBy = data;
-    //             this.logicalContainer[i].updatedBy = data;
+    //     console.log("Data from logicalContainers", data)
+    //     for(var i in this.logicalContainers){
+    //         if(this.logicalContainers[i].id == id){
+    //             this.logicalContainers[i].description = data;
+    //             this.logicalContainers[i].dateCreated = new Date();
+    //             this.logicalContainers[i].dateUpdated = new Date();
+    //             this.logicalContainers[i].createdBy = data;
+    //             this.logicalContainers[i].updatedBy = data;
     //             return true;
     //         }
     //     }
@@ -46,7 +56,7 @@ export class LogicalContainerServices {
         // return this.http.post<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
         // .toPromise();
 
-        this.logicalContainer.push(data);
+        this.logicalContainers.push(data);
     }
 
     editLogicalContainer(id: any, data: any) {
@@ -57,16 +67,17 @@ export class LogicalContainerServices {
         // return this.http.post<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
         // .toPromise();
 
-        for(var i in this.logicalContainer){
-            if(this.logicalContainer[i].id == id){
-                this.logicalContainer[i].description = data.description;
-                this.logicalContainer[i].dateUpdated = new Date();
-                this.logicalContainer[i].createdBy = data.createdBy;
-                this.logicalContainer[i].updatedBy = data.updatedBy;
-                this.logicalContainer[i].type = data.type;
-                this.logicalContainer[i].appServer = data.appServer;
-                this.logicalContainer[i].dbServer = data.dbServer;
-                this.logicalContainer[i].msServer = data.msServer;
+        for(var i in this.logicalContainers){
+            if(this.logicalContainers[i].id == id){
+                this.logicalContainers[i].server = data.server;
+                this.logicalContainers[i].vCpu = data.vCpu;
+                this.logicalContainers[i].ram = data.ram;
+                this.logicalContainers[i].dataStorage = data.dataStorage;
+                this.logicalContainers[i].prodQuantity = data.prodQuantity;
+                this.logicalContainers[i].drQuantity = data.drQuantity;
+                this.logicalContainers[i].uatQuantity = data.uatQuantity;
+                this.logicalContainers[i].sitDevQuantity = data.sitDevQuantity;
+                this.logicalContainers[i].totalQuantity = data.totalQuantity;
                 return true;
             }
         }
@@ -77,10 +88,10 @@ export class LogicalContainerServices {
     }
 
     deleteLogicalContainer(id: any, data: any) {    
-        //for(var i in this.logicalContainer) {
-        let index = this.logicalContainer.indexOf(data, 0);
+        //for(var i in this.logicalContainers) {
+        let index = this.logicalContainers.indexOf(data, 0);
         if (index > -1) {
-           this.logicalContainer.splice(index, 1);           
+           this.logicalContainers.splice(index, 1);           
         }
     }
 

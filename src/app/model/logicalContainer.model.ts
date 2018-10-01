@@ -1,27 +1,31 @@
+import { ContainerComponent } from './container-component.model';
+
 export class LogicalContainer{
     id: number;
-    description: string;
-    dateCreated: Date;
-    dateUpdated: Date;
-    createdBy: string;
-    updatedBy: string;
-    type: string;
-    appServer: string;
-    dbServer: string;
-    msServer: string;
+    server: string;
+    vCpu: number;
+    ram: number;
+    dataStorage: number;
+    prodQuantity: number;
+    drQuantity: number;
+    uatQuantity: number;
+    sitDevQuantity: number;
+    totalQuantity: number;
+    components: ContainerComponent[];
 
-    constructor(id: number, description: string, dateCreated: Date, dateUpdated: Date, createdBy: string, 
-        updatedBy: string, type: string, appServer: string, dbServer: string, msServer: string) {
+    constructor(id: number, server: string, vCpu: number, ram: number, dataStorage: number, 
+        prodQuantity: number, drQuantity: number, uatQuantity: number, sitDevQuantity: number, totalQuantity: number, components: ContainerComponent[]) {
     
     this.id = id;
-    this.description = description;
-    this.dateCreated = dateCreated;
-    this.dateUpdated = dateUpdated;
-    this.createdBy = createdBy;
-    this.updatedBy = updatedBy;
-    this.type = type;
-    this.appServer = appServer;
-    this.dbServer = dbServer;
-    this.msServer = msServer;
+    this.server = server;
+    this.vCpu = vCpu;
+    this.ram = ram;
+    this.dataStorage = dataStorage;
+    this.prodQuantity = prodQuantity;
+    this.drQuantity = drQuantity;
+    this.uatQuantity = uatQuantity;
+    this.sitDevQuantity = sitDevQuantity;
+    this.totalQuantity = totalQuantity;
+    this.components = components;
     }
 }
