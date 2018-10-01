@@ -40,148 +40,151 @@ export class BackLogsComponent implements OnInit {
     ngOnInit() {
         //console.log("Id", this.data)
         // this.backlogs = this.backServices.getBacklog();  
-        if(this.data != null){
-            this.backlogs = this.data.backlog;
-        }else{
-               this.backlogs = this.backServices.getBacklog();  
-        }
+
+/*** START  ****/
+        // if(this.data != null){
+        //     this.backlogs = this.data.backlog;
+        // }else{
+        //        this.backlogs = this.backServices.getBacklog();  
+        // }
       
-        //console.log("Id", this.backlogs)
-        //this.backlogSubscription = this.backServices.backlogChanged
-        //    .subscribe((backlogs: Backlog[]) => {
-        //        this.backlogs = backlogs;                
-        //    });
-        this.frontendOption = this.assignOptionValue(this.techService.getComponents().frontend);
-        this.backendOption = this.assignOptionValue(this.techService.getComponents().backend);
-        this.storageOption = this.assignOptionValue(this.techService.getComponents().storage);
-        this.reportingOption = this.assignOptionValue(this.techService.getComponents().report);
-        console.log("onInit");
-        this.componentSubscription = this.techService.componentsChanged
-            .subscribe((componentList: TechComponents) => {
-                this.frontendOption = this.assignOptionValue(componentList.frontend);
-                this.backendOption = this.assignOptionValue(componentList.backend);
-                this.storageOption = this.assignOptionValue(componentList.storage);
-                this.reportingOption = this.assignOptionValue(componentList.report);
-                console.log("backlogs")
-                console.log(componentList);
-            });
+        // //console.log("Id", this.backlogs)
+        // //this.backlogSubscription = this.backServices.backlogChanged
+        // //    .subscribe((backlogs: Backlog[]) => {
+        // //        this.backlogs = backlogs;                
+        // //    });
+        // this.frontendOption = this.assignOptionValue(this.techService.getComponents().frontend);
+        // this.backendOption = this.assignOptionValue(this.techService.getComponents().backend);
+        // this.storageOption = this.assignOptionValue(this.techService.getComponents().storage);
+        // this.reportingOption = this.assignOptionValue(this.techService.getComponents().report);
+        // console.log("onInit");
+        // this.componentSubscription = this.techService.componentsChanged
+        //     .subscribe((componentList: TechComponents) => {
+        //         this.frontendOption = this.assignOptionValue(componentList.frontend);
+        //         this.backendOption = this.assignOptionValue(componentList.backend);
+        //         this.storageOption = this.assignOptionValue(componentList.storage);
+        //         this.reportingOption = this.assignOptionValue(componentList.report);
+        //         console.log("backlogs")
+        //         console.log(componentList);
+        //     });
 
 
-        this.selectOptions = {
-            placeholder: { id: '', text: 'Select Record' },
-            width: "100px",
-            name: 'empPosition'
-        }
-        this.EditRow(0);
+        // this.selectOptions = {
+        //     placeholder: { id: '', text: 'Select Record' },
+        //     width: "100px",
+        //     name: 'empPosition'
+        // }
+        // this.EditRow(0);
+/*** END  ****/
 
-        //const temp = this.backServices.getBacklog();
-        //$(document).ready(function () {
-        //    var data = [];
-        //    var mainHead = ['', '', 'ILF', '', '', 'ELF', '', '', 'EI', '', '', 'EO', '', '', 'EQ', '', '', ''];
-        //    var subData = ['Module', 'Description', 'RET', 'DET', 'Technology', 'RET', 'DET', 'Technology'
-        //        , 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', ''];
+        const temp = this.backServices.getBacklog();
+        $(document).ready(function () {
+           var data = [];
+           var mainHead = ['', '', 'ILF', '', '', 'ELF', '', '', 'EI', '', '', 'EO', '', '', 'EQ', '', '', ''];
+           var subData = ['Module', 'Description', 'RET', 'DET', 'Technology', 'RET', 'DET', 'Technology'
+               , 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'Reuse %'];
 
-        //    var values = temp;                 
-        //    data.push(mainHead);
-        //    data.push(subData);
+           var values = temp;                 
+           data.push(mainHead);
+           data.push(subData);
 
-        //    $.each(values, function (i) {        
-        //        var item = [values[i].module,values[i].description, values[i].ilf_ret,
-        //        values[i].ilf_det,
-        //        values[i].ilf_technology,
-        //        values[i].eif_ret,
-        //        values[i].eif_det,
-        //        values[i].eif_technology,
-        //        values[i].ei_ftr,
-        //        values[i].ei_det,
-        //        values[i].ei_technology,
-        //        values[i].eo_ftr,
-        //        values[i].eo_det,
-        //        values[i].eo_technology,
-        //        values[i].eq_ftr,
-        //        values[i].eq_det,
-        //        values[i].eq_technology,values[i].reusePercentage];                                  
-        //        data.push(item);
-        //    });
-
-
-        //    var technologies = ['XML', 'Java', 'JSON', 'NodeJS'];
-
-        //    var defColumn = [
-        //        {}, {}, {}, {}, { editor: 'select', selectOptions: technologies },
-        //        {}, {}, { editor: 'select', selectOptions: technologies },
-        //        {}, {}, { editor: 'select', selectOptions: technologies },
-        //        {}, {}, { editor: 'select', selectOptions: technologies },
-        //        {}, {}, { editor: 'select', selectOptions: technologies },  
-        //        { renderer: "html"}
-        //    ];
-        //    var container = document.getElementById('fpa-table');
-        //    var hot = new Handsontable(container, {
-        //        data: data,
-        //        columns: defColumn,
-        //        fixedRowsTop: 2,
-        //        stretchH: 'all',
-        //        rowHeaders: true,
-        //        colHeaders: true,
-        //        cells: function (row, col, prop) { return (row === 1 || row === 0) ? { readOnly: true } : { readOnly: false }; },
-        //        dropdownMenu: true,
-        //        contextMenu: true,
-        //        afterChange: log.bind(this, 'afterChange'),
-        //        afterRemoveRow: log.bind(this, 'removeRow'),
-        //        afterRemoveCol: log.bind(this, 'removeCol'),
-        //        afterCreateRow: log.bind(this, 'createRow'),
-        //        afterCreateCol: log.bind(this, 'createCol'),
-        //        mergeCells: [
-        //            { row: 0, col: 2, rowspan: 1, colspan: 3 },
-        //            { row: 0, col: 5, rowspan: 1, colspan: 3 },
-        //            { row: 0, col: 8, rowspan: 1, colspan: 3 },
-        //            { row: 0, col: 11, rowspan: 1, colspan: 3 },
-        //            { row: 0, col: 14, rowspan: 1, colspan: 3 }
-        //        ],
-        //        // className: "htCenter",
-        //        cell: [
-        //            { row: 0, col: 2, className: "htCenter" },
-        //            { row: 0, col: 5, className: "htCenter" },
-        //            { row: 0, col: 8, className: "htCenter" },
-        //            { row: 0, col: 11, className: "htCenter" },
-        //            { row: 0, col: 14, className: "htCenter" },
-        //            { row: 1, col: 2, className: "htCenter" },
-        //            { row: 1, col: 3, className: "htCenter" },
-        //            { row: 1, col: 5, className: "htCenter" },
-        //            { row: 1, col: 6, className: "htCenter" },
-        //            { row: 1, col: 8, className: "htCenter" },
-        //            { row: 1, col: 9, className: "htCenter" },
-        //            { row: 1, col: 11, className: "htCenter" },
-        //            { row: 1, col: 12, className: "htCenter" },
-        //            { row: 1, col: 14, className: "htCenter" },
-        //            { row: 1, col: 15, className: "htCenter" },
-        //            { row: 1, col: 17, className: "htCenter" }
-        //        ]
-        //    });
+           $.each(values, function (i) {        
+               var item = [values[i].module,values[i].description, values[i].ilf_ret,
+               values[i].ilf_det,
+               values[i].ilf_technology,
+               values[i].eif_ret,
+               values[i].eif_det,
+               values[i].eif_technology,
+               values[i].ei_ftr,
+               values[i].ei_det,
+               values[i].ei_technology,
+               values[i].eo_ftr,
+               values[i].eo_det,
+               values[i].eo_technology,
+               values[i].eq_ftr,
+               values[i].eq_det,
+               values[i].eq_technology,values[i].reusePercentage];                                  
+               data.push(item);
+           });
 
 
-        //    $("#btn-save").click(function () {
-        //        // alert( hot.countRows());
-        //        // alert( hot.countCols());
-        //        // alert(hot.getDataAtRow(3));
-        //        let rowCount = hot.countRows();
-        //        let colCount = hot.countCols();
-        //        alert(prepareData(rowCount, colCount));
-        //    });
+           var technologies = ['XML', 'Java', 'JSON', 'NodeJS'];
 
-        //    function prepareData(rowCount, colCount) {
-        //        var fpaArray = [];
-        //        for (var i = 2; i < rowCount; i++) {
-        //            var fpaObj = {};
-        //            for (var c = 0; c < colCount; c++) {
-        //                var objNotation = hot.getDataAtCell(0, c) + hot.getDataAtCell(1, c);
-        //            }
-        //            fpaArray.push(hot.getDataAtRow(i));
-        //        }
-        //        return JSON.stringify(fpaArray);
-        //    }
+           var defColumn = [
+               {}, {}, {}, {}, { editor: 'select', selectOptions: technologies },
+               {}, {}, { editor: 'select', selectOptions: technologies },
+               {}, {}, { editor: 'select', selectOptions: technologies },
+               {}, {}, { editor: 'select', selectOptions: technologies },
+               {}, {}, { editor: 'select', selectOptions: technologies },  
+               { renderer: "html"}
+           ];
+           var container = document.getElementById('fpa-table');
+           var hot = new Handsontable(container, {
+               data: data,
+               columns: defColumn,
+               fixedRowsTop: 2,
+               stretchH: 'all',
+               rowHeaders: true,
+               colHeaders: true,
+               cells: function (row, col, prop) { return (row === 1 || row === 0) ? { readOnly: true } : { readOnly: false }; },
+               dropdownMenu: true,
+               contextMenu: true,
+               afterChange: log.bind(this, 'afterChange'),
+               afterRemoveRow: log.bind(this, 'removeRow'),
+               afterRemoveCol: log.bind(this, 'removeCol'),
+               afterCreateRow: log.bind(this, 'createRow'),
+               afterCreateCol: log.bind(this, 'createCol'),
+               mergeCells: [
+                   { row: 0, col: 2, rowspan: 1, colspan: 3 },
+                   { row: 0, col: 5, rowspan: 1, colspan: 3 },
+                   { row: 0, col: 8, rowspan: 1, colspan: 3 },
+                   { row: 0, col: 11, rowspan: 1, colspan: 3 },
+                   { row: 0, col: 14, rowspan: 1, colspan: 3 }
+               ],
+               // className: "htCenter",
+               cell: [
+                   { row: 0, col: 2, className: "htCenter" },
+                   { row: 0, col: 5, className: "htCenter" },
+                   { row: 0, col: 8, className: "htCenter" },
+                   { row: 0, col: 11, className: "htCenter" },
+                   { row: 0, col: 14, className: "htCenter" },
+                   { row: 1, col: 2, className: "htCenter" },
+                   { row: 1, col: 3, className: "htCenter" },
+                   { row: 1, col: 5, className: "htCenter" },
+                   { row: 1, col: 6, className: "htCenter" },
+                   { row: 1, col: 8, className: "htCenter" },
+                   { row: 1, col: 9, className: "htCenter" },
+                   { row: 1, col: 11, className: "htCenter" },
+                   { row: 1, col: 12, className: "htCenter" },
+                   { row: 1, col: 14, className: "htCenter" },
+                   { row: 1, col: 15, className: "htCenter" },
+                   { row: 1, col: 17, className: "htCenter" }
+               ]
+           });
 
-        //}); // end of document ready
+
+           $("#btn-save").click(function () {
+               // alert( hot.countRows());
+               // alert( hot.countCols());
+               // alert(hot.getDataAtRow(3));
+               let rowCount = hot.countRows();
+               let colCount = hot.countCols();
+               alert(prepareData(rowCount, colCount));
+           });
+
+           function prepareData(rowCount, colCount) {
+               var fpaArray = [];
+               for (var i = 2; i < rowCount; i++) {
+                   var fpaObj = {};
+                   for (var c = 0; c < colCount; c++) {
+                       var objNotation = hot.getDataAtCell(0, c) + hot.getDataAtCell(1, c);
+                   }
+                   fpaArray.push(hot.getDataAtRow(i));
+               }
+               return JSON.stringify(fpaArray);
+           }
+
+        }); // end of document ready
 
     }
 
