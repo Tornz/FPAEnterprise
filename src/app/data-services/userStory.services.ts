@@ -19,11 +19,11 @@ export class UserStoryServices {
         userStory:"As a user, i can add items", 
         dateUpdated: new Date(), 
         dateCreated: new Date(), 
-        importance:"",
+        importance:"02 - Optional",
         storyPoints: 6,
-        conversation: "",
-        integration:"",
-        epic:"",
+        conversation: "This feature could potentially be on TP instead - to discuss with vendor on best solution",
+        integration:"Elements",
+        epic:"Incentive",
         backlog: []
         },
         {
@@ -32,11 +32,11 @@ export class UserStoryServices {
         userStory:"As a admin, i can manage users", 
         dateUpdated: new Date(), 
         dateCreated: new Date(), 
-        importance:"",
+        importance:"02 - Optional",
         storyPoints: 8,
-        conversation: "",
-        integration:"",
-        epic:"",
+        conversation: "Could be applied to Finance and Cluster officers and escalated to relevant parties based on duration outstanding",
+        integration:"Elements",
+        epic:"Incentive",
         backlog: []
         },
         {
@@ -45,11 +45,11 @@ export class UserStoryServices {
         userStory:"As a user, i can add products to the cart",
         dateUpdated: new Date(), 
         dateCreated:  new Date(),
-        importance:"",
+        importance:"01 - Mandatory",
         storyPoints: 4,
-        conversation: "",
-        integration:"",
-        epic:"",
+        conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
+        integration:"Elements",
+        epic:"Incentive",
         backlog: []
         }
     ];
