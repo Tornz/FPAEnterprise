@@ -18,9 +18,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let component of components | filter: 'name': searchString">
+        <tr *ngFor="let component of components | filter: 'name' : searchString">
           <td scope="row">{{ component.id }}</td>
           <td scope="row">{{ component.name }}</td>
+          <td scope="row">{{ component.softwareCategory }}</td>
+          <td scope="row">{{ component.recommendedVersion }}</td>
+          <td scope="row">{{ component.openSource }}</td>
+          <td scope="row">{{ component.license }}</td>
           <td scope="row">
             <button class="btn btn-outline-info" (click)="onModalOpen('edit', component)">Edit
               <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>
@@ -39,7 +43,6 @@
 
 <div class="modal" *ngIf="modal === 'add'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
   aria-labelledby="exampleModalLabel" aria-hidden="true">
-
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,8 +54,51 @@
       <form [formGroup]="componentForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()" ngNativeValidate>
         <div class="modal-body">
           <div class="form-group">
-            <label for="project">Name</label>
-            <textarea type="text" class="form-control" formControlName="name" placeholder="Component name" required></textarea>
+            <label for="name">Name</label>
+            <textarea 
+              type="text" 
+              class="form-control" 
+              formControlName="name" 
+              placeholder="Component name" 
+              id="name" 
+              required>
+            </textarea>
+
+            <label for="software-category">Software Category</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="softwareCategory"
+              placeholder="Software category"
+              id="software-category">
+            </textarea>
+
+            <label for="recommended-version">Recommended Version</label>
+            <textarea 
+              type="text" 
+              class="form-control" 
+              formControlName="recommendedVersion" 
+              placeholder="Recommended software" 
+              id="recommended-version">
+            </textarea>
+
+            <label for="open-source">Open Source</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="openSource"
+              placeholder="Open source"
+              id="open-source">
+            </textarea>
+
+            <label for="license">License</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="license"
+              placeholder="License"
+              id="license">
+            </textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -77,8 +123,51 @@
       <form [formGroup]="componentForm" (ngSubmit)="onSubmitEdit()" ngNativeValidate>
         <div class="modal-body">
           <div class="form-group">
-            <label for="project">Name</label>
-            <input type="text" class="form-control" formControlName="name" [ngModel]="selectedData.name" required />
+            <label for="name">Name</label>
+            <textarea 
+              type="text" 
+              class="form-control" 
+              formControlName="name" 
+              placeholder="Component name" 
+              id="name"
+              required>
+            </textarea>
+
+            <label for="software-category">Software Category</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="softwareCategory"
+              placeholder="Software category"
+              id="software-category">
+            </textarea>
+
+            <label for="recommended-version">Recommended Version</label>
+            <textarea 
+              type="text" 
+              class="form-control" 
+              formControlName="recommendedVersion" 
+              placeholder="Recommended software" 
+              id="recommended-version">
+            </textarea>
+
+            <label for="open-source">Open Source</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="openSource"
+              placeholder="Open source"
+              id="open-source">
+            </textarea>
+
+            <label for="license">License</label>
+            <textarea 
+              type="text"
+              class="form-control"
+              formControlName="license"
+              placeholder="License"
+              id="license">
+            </textarea>
           </div>
         </div>
         <div class="modal-footer">

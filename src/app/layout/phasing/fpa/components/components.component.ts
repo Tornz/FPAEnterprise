@@ -16,16 +16,25 @@ export class ComponentsComponent implements OnInit {
   tableHeaders = [
     { name: 'ID' },
     { name: 'Name' },
+    { name: 'Software Category'},
+    { name: 'Recommended Version'},
+    { name: 'Open Source'},
+    { name: 'License'},
     { name: 'Action'}
   ];
   display = 'none';
   modal: any;
   componentForm: FormGroup;
-  selectedData: ContainerComponent = new ContainerComponent(''); 
+  selectedData: ContainerComponent = new ContainerComponent('', '', '', false, ''); 
+  columnFilter: string = 'name';
 
   constructor(private componentService: ComponentServices, private form: FormBuilder) {
     this.componentForm = this.form.group({
-      'name': new FormControl(this.selectedData.name , Validators.required)
+      'name': new FormControl(this.selectedData.name , Validators.required),
+      'softwareCategory': new FormControl(this.selectedData.softwareCategory , Validators.required),
+      'recommendedVersion': new FormControl(this.selectedData.recommendedVersion , Validators.required),
+      'openSource': new FormControl(this.selectedData.openSource , Validators.required),
+      'license': new FormControl(this.selectedData.license , Validators.required)
     });
     }
 
@@ -42,19 +51,42 @@ export class ComponentsComponent implements OnInit {
   onModalOpen(modalName: string, selectedData: ContainerComponent) {
     this.modal = modalName;
     this.display = 'block';
-    this.selectedData = selectedData;
+    if(selectedData){
+      this.selectedData = selectedData;
+      this.componentForm = this.form.group({
+        'name': [this.selectedData.name , Validators.required],
+        'softwareCategory': [this.selectedData.softwareCategory , Validators.required],
+        'recommendedVersion': [this.selectedData.recommendedVersion , Validators.required],
+        'openSource': [this.selectedData.openSource , Validators.required],
+        'license': [this.selectedData.license , Validators.required]
+      });
+    } else {
+      this.selectedData = new ContainerComponent('', '', '', false, '')
+    }
   }
 
   onSubmitAdd() {
-    const componentName = this.componentForm.controls.name.value
-    this.componentService.createComponent(componentName);
+    const containerComponent = new ContainerComponent(
+      this.componentForm.controls.name.value,
+      this.componentForm.controls.softwareCategory.value,
+      this.componentForm.controls.recommendedVersion.value,
+      this.componentForm.controls.openSource.value,
+      this.componentForm.controls.license.value
+      );
+    this.componentService.createComponent(containerComponent);
     this.onModalClose();
   }
 
   onSubmitEdit() {
-    const componentName = this.componentForm.controls.name.value
-    this.selectedData.name = componentName;
-    this.componentService.saveComponent(this.selectedData);
+    let containerComponent = new ContainerComponent(
+      this.componentForm.controls.name.value,
+      this.componentForm.controls.softwareCategory.value,
+      this.componentForm.controls.recommendedVersion.value,
+      this.componentForm.controls.openSource.value,
+      this.componentForm.controls.license.value
+      );
+      containerComponent.id = this.selectedData.id;
+    this.componentService.saveComponent(containerComponent);
     this.onModalClose();
   }
 
