@@ -8,3 +8,50 @@
 .has-success{
     border:1px solid green
 }
+
+span {
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #0062cc;
+    border-bottom: 2px solid #0062cc;
+}
+
+.box {
+    padding: 10px 0px;
+}
+
+.box-part {
+    width: 109%;
+    height: 100%;
+    background: #FFF;
+    border-radius: 5px;
+    border: 2px solid;
+    border-color:#04427b;
+    padding: 10px 10px;
+    margin: 10px 0px;
+   
+}
+
+.text {
+    margin: 20px 0px;
+}
+
+.fa {
+    color: #4183D7;
+}
+p{
+    font-size:11px;
+    font-weight:bold;
+    cursor:pointer;
+}
+p:hover {
+    
+    color: #04427b;
+}
+.footer{
+    display: absolute;
+    position: 0px 5px 6px 0px
+}
