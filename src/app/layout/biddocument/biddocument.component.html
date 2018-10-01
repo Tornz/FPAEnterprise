@@ -1,23 +1,22 @@
 <div [@routerTransition]>
-    <!-- <app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header> -->
     <div class="form-group input-group col-4" style="padding-left: 0px;">
         <input type="text" class="form-control" placeholder="Search">
-        <!-- <input type="text" name="text" [(ngModel)]="text" id="form1" class="form-control"> -->
         <div class="input-group-append">
             <button class="btn btn-secondary" type="button">
                 <i class="fa fa-search"></i>
             </button>
         </div>
-        <div class="pl-2">
-            <!-- <button type="button" class="btn btn-primary" (click)="addProj()">New Project {{text}}</button> -->
-        </div>
     </div>
     <div class="row">
-        <div class="col col-sm-6 col-md-4 col-lg-3" *ngFor="let proj of projects">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick(proj)">
-                <p class="card-header" style="background-color: #cce5ff;">{{proj.projectName}}</p>
+        <div class="col col-sm-6 col-md-4 col-lg-3" *ngFor="let item of projDocs">
+            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick(item.projId)">
+                <p class="card-header" style="background-color: #cce5ff;">{{item.projName}}</p>
                 <div class="card-body">
-                    <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
+                    <p class="card-text">
+                        Files uploaded: {{ item.bidDocs.length || 'None' }}
+                        <span class="text-muted" *ngFor="let doc of item.bidDocs">
+                            <br/>{{doc.name}} - {{doc.description}}</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -29,7 +28,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{proj.projectName}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{projDoc.projName}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -38,18 +37,24 @@
                     <table class="card-body table table-hover table-bordered">
                         <thead class="card-header" style="background-color: #cce5ff;">
                             <tr>
+                                <th>Name</th>
                                 <th>Description</th>
-                                <th>Upload Date</th>
+                                <!-- <th>Upload Date</th> -->
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let file of fileUploads">
+                                <td>{{file.name}}</td>
                                 <td>{{file.description}}</td>
-                                <td>{{file.uploadDate}}</td>
+                                <!-- <td>{{file.uploadDate}}</td> -->
                                 <td>
-                                    <a type="button" class="btn btn-outline-info" [download]="file.name" [href]="file.file"><i class="fa fa-download"></i></a>
-                                    <button type="button" class="btn btn-outline-danger" (click)="deleteFile(file)"><i class="fa fa-trash"></i></button>
+                                    <a type="button" class="btn btn-outline-info" id="btn-dwnld-{{file.fileId}}" [download]="file.name" (click)="downloadFile(file.fileId)">
+                                        <i class="fa fa-download"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-outline-danger" (click)="deleteFile(file.fileId)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

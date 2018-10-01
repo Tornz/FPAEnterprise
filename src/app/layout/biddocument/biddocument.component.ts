@@ -6,6 +6,7 @@ import { Documents } from '../../model/documents.model';
 import * as $ from 'jquery';
 import { ProjectServices } from '../../data-services/project.services';
 import { Project } from '../../model/project.model';
+import * as JSZip from 'jszip';
 import { Subscription } from '../../../../node_modules/rxjs';
 
 @Component({
@@ -15,18 +16,19 @@ import { Subscription } from '../../../../node_modules/rxjs';
     animations: [routerTransition()]
 })
 export class BidDocumentComponent implements OnInit {
-    projects = {};
+    projDocs = [];
+    projects = [];
     bidDocuments = [];
     projSubscription: Subscription;
     docSubscription: Subscription;
 
     /* For Modal */
     display = 'none';
-    proj: Project = new Project();
+    projDoc: any = {};
+    fileUploads: any = [];
     $fileDesc: any;
     $fileInput: any;
     $fileName: any;
-    fileUploads: FileUpload[] = [];
 
     constructor(private projService: ProjectServices, private bidDocService: BidDocumentServices) { }
 
@@ -37,13 +39,9 @@ export class BidDocumentComponent implements OnInit {
         this.$fileName = $('input#fileName'); // input #fileName
 
         this.projSubscription = this.projService.projectChanged
-            .subscribe((project: Project[]) => {
-                this.projects = project;
-            });
-        this.docSubscription = this.bidDocService.bidDocsChanged
-            .subscribe((bidDocuments: Documents[]) => {
-                this.bidDocuments = bidDocuments;
-            });
+            .subscribe(() => { this.loadData() });
+        this.docSubscription = this.bidDocService.documentsChanged
+            .subscribe(() => { this.loadData() });
 
         // Change event listener for file selector
         this.$fileInput.change((e: any) => {
@@ -55,21 +53,29 @@ export class BidDocumentComponent implements OnInit {
     loadData() {
         this.projects = this.projService.getProjects();
         this.bidDocuments = this.bidDocService.getDocuments();
+        this.projDocs = [];
+
+        this.projects.forEach(proj => {
+            let docs = $.grep(this.bidDocuments, obj => { return obj.projectId == proj.id });
+            this.projDocs.push({
+                "projId": proj.id,
+                "projName": proj.projectName,
+                "bidDocs": docs
+            })
+        });
+
     }
 
-    cardClick(proj: Project) {
-        console.log(proj.id);
-        let doc = $.grep(this.bidDocuments, obj => { return obj.projectId == proj.id });
-
-        if (doc.length > 0)
-            this.fileUploads = doc[0].files;
-
-        this.proj = proj;
+    cardClick(projId: number) {
+        let projDocs = $.grep(this.projDocs, obj => { return obj.projId == projId });
+        this.projDoc = projDocs[0];
+        this.fileUploads = this.projDoc.bidDocs;
         this.display = 'block';
     }
 
     onCloseHandled() {
         this.display = 'none';
+        this.projDoc = {};
         this.fileUploads = [];
         this.resetFileInput();
     }
@@ -90,17 +96,11 @@ export class BidDocumentComponent implements OnInit {
         if (input.length > 0) {
             let file: any = input[0];
             getBase64(file).then((data: string) => {
-                console.log(data);
-                let newFile = new FileUpload(this.$fileName.val(), this.$fileDesc.val(), data, new Date().toLocaleString());
-                this.bidDocService.saveFile(this.proj.id, newFile);
-                var doc = $.grep(this.bidDocuments, obj => { return obj.projectId == this.proj.id });
-                if (doc.length > 0) {
-                    doc[0].files.push(newFile);
-                } else {
-                    this.bidDocuments.push(new Documents(this.proj.id, [newFile]));
-                }
-                this.cardClick(this.proj);
+                let newFile = new Documents(this.projDoc.projId, this.$fileName.val(), this.$fileDesc.val(), new Date().toLocaleString());
+                this.bidDocService.saveFile(newFile, data);
                 this.resetFileInput()
+                this.loadData();
+                this.cardClick(this.projDoc.projId);
             });
         }
 
@@ -114,16 +114,22 @@ export class BidDocumentComponent implements OnInit {
         }
     }
 
-    downloadFile() {
+    downloadAllFiles() {
+        // let zipFile: JSZip = new JSZip();
 
     }
 
-    deleteFile(file: FileUpload) {
-        this.bidDocService.deleteFile(this.proj.id, file);
-        let f = $.grep(this.fileUploads, obj => { return obj == file });
-        if (f.length > 0) {
-            let index = this.fileUploads.indexOf(f[0], 0);
-            this.fileUploads.splice(index, 1);
-        }
+    downloadFile(fileId: number) {
+       let data = this.bidDocService.getFile(fileId);
+       let $dwnld = $(`a#btn-dwnld-${fileId}`);
+       $dwnld.prop('href',data.file);
+       $dwnld.click();
+    }
+
+    deleteFile(fileId: number) {
+        this.bidDocService.deleteFile(fileId)
+        this.resetFileInput()
+        this.loadData();
+        this.cardClick(this.projDoc.projId);
     }
 }
