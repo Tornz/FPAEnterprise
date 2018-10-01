@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BacklogServices } from '../../data-services/backlog.services';
 import { TechComponentServices } from '../../data-services/techComponent.services';
 import { LogicalContainerServices } from '../../data-services/logicalContainer.services';
+import { PhysicalContainerComponent } from './fpa/physical-container/physical-container.component';
 
 @NgModule({
         imports: [CommonModule, PhasingRoutingModule, HotTableModule, FormsModule, ReactiveFormsModule, Select2Module, NgbModule.forRoot()],
@@ -29,7 +30,8 @@ import { LogicalContainerServices } from '../../data-services/logicalContainer.s
                 ImplementationComponent,
                 ComponentsComponent,
                 UserStoryComponent,
-                LogicalContainerComponent],
+                LogicalContainerComponent,
+                PhysicalContainerComponent],
         providers: [BacklogServices, UserStoryServices, TechComponentServices, LogicalContainerServices]
 })
 export class PhasingModule { }
