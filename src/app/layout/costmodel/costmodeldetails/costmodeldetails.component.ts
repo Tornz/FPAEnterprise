@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { routerTransition } from '../../../router.animations';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-costmodeldetails',
@@ -9,13 +10,16 @@ import { routerTransition } from '../../../router.animations';
     animations: [routerTransition()]
 })
 export class CostModelDetailsComponent implements OnInit {
-
-    constructor() {
-
+    projectName:string
+    constructor(private route: ActivatedRoute) {
+       
     }
-    ngOnInit() {
-        
-
+    ngOnInit() {        
+        this.route.queryParams
+            .subscribe((params) => {               
+                this.projectName = params.projectName;
+            });
+       
     }
 
   

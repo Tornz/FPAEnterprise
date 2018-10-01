@@ -14,47 +14,61 @@ export class ProjectServices {
     private project = [
         {
             id: 1,
-            projectName: "Project A",
-            description: "Description",
-            phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
+            projectName: "Smartics",
+            description: "Legacy system",
+            phases: [{phase:"Web Application", method: "Scrum"}],
             technology: "",
+            duration: 8,
             methodology: "Agile",
+            dateCreated: new Date(),
+            status:"Open",
             dateUpdated: new Date()
         },
         {
             id: 2,
-            projectName: "Project B",
-            description: "Description",
-            phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
+            projectName: "Epassport",
+            description: "Foreign affairs web application",
+            phases: [{phase:"Web Application", method: "Agile"},{phase:"Mobile Application", method: "Waterfall"}],
             technology: "",
-            methodology: "Agile",
+            duration: 3,
+            methodology: "Waterfall",
+            dateCreated: new Date(),
+            status:"Open",
             dateUpdated: new Date()
         },
         {
             id: 3,
-            projectName: "Project C",
-            description: "Description",
-            phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
+            projectName: "Asset Management System",
+            description: "Inventory system for company A",
+            phases: [{phase:"Web Application", method: "Waterfall"}],
             technology: "",
-            methodology: "Agile",
+            duration: 5,
+            methodology: "Waterfall",
+            dateCreated: new Date(),
+            status:"Open",
             dateUpdated: new Date()
         },
         {
             id: 4,
-            projectName: "Project D",
-            description: "Description",
-            phaseNumber: ["Web Application", "Mobile Application"],
+            projectName: "Insurance System",
+            description: "System for company B",
+            phases: [{phase:"Web Application", method: "Scrum"},{phase:"Mobile Application", method: "Waterfall"}],
             technology: "",
+            duration: 8,
             methodology: "Agile",
+            dateCreated: new Date(),
+            status:"Open",
             dateUpdated: new Date()
         },
         {
             id: 5,
-            projectName: "Project E",
-            description: "Description",
-            phaseNumber: ["Phase 1 : Web Application", "Phase 2: Mobile Application"],
+            projectName: "Student Portal",
+            description: "Subject and grade management system for company C",
+            phases: [{phase:"Web Application", method: "Scrum"}],
             technology: "",
-            methodology: "Agile",
+            duration: 9,
+            dateCreated: new Date(),
+            status:"Open",
             dateUpdated: new Date()
         }
     ];
@@ -96,7 +110,7 @@ export class ProjectServices {
             if(this.project[i].id == id){
                 this.project[i].projectName = data.projectName
                 this.project[i].description = data.description
-                this.project[i].phaseNumber = data.phaseNumber
+                this.project[i].phases = data.phaseNumber
                 this.project[i].technology = data.technology
                 this.project[i].methodology = data.methodology
                 this.project[i].dateUpdated = new Date();

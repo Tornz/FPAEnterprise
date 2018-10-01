@@ -1,13 +1,8 @@
-.card-header {
-    background-color:#cce5ff;
-}
-
-.fa-times:hover {
-    color: #007BFF;
-    background-color: white;
-    border-radius: 5px;
-}
-
-.selectedItems {
-    margin-top: 10px;
+.backdrop{ 
+    background-color:rgba(0,0,0,0.6);
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
 }

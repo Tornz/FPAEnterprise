@@ -19,17 +19,38 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BacklogServices } from '../../data-services/backlog.services';
 import { TechComponentServices } from '../../data-services/techComponent.services';
 import { LogicalContainerServices } from '../../data-services/logicalContainer.services';
+import { PhysicalContainerComponent } from './fpa/physical-container/physical-container.component';
+import { TableFilterPipe } from '../../shared/pipes/table-filter.pipe';
+import { ComponentServices } from '../../data-services/component.services';
 
 @NgModule({
-        imports: [CommonModule, PhasingRoutingModule, HotTableModule, FormsModule, ReactiveFormsModule, Select2Module, NgbModule.forRoot()],
-        declarations: [PhasingComponent,
+        imports: [
+                CommonModule,
+                PhasingRoutingModule,
+                HotTableModule,
+                FormsModule,
+                ReactiveFormsModule,
+                Select2Module,
+                NgbModule.forRoot(),
+        ],
+        declarations: [
+                PhasingComponent,
                 FPAComponent,
                 BackLogsComponent,
                 EstimationComponent,
                 ImplementationComponent,
                 ComponentsComponent,
                 UserStoryComponent,
-                LogicalContainerComponent],
-        providers: [BacklogServices, UserStoryServices, TechComponentServices, LogicalContainerServices]
+                LogicalContainerComponent,
+                PhysicalContainerComponent,
+                TableFilterPipe
+        ],
+        providers: [
+                BacklogServices,
+                UserStoryServices,
+                TechComponentServices,
+                LogicalContainerServices,
+                ComponentServices
+        ]
 })
 export class PhasingModule { }

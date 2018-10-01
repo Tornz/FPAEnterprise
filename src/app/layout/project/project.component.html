@@ -36,14 +36,29 @@
                     <th scope="row">{{data.id}}</th>
                     <th scope="row">{{data.projectName}}</th>
                     <th scope="row">{{data.description}}</th>
-                    <th scope="row">{{data.phaseNumber}}</th>
+                    <th scope="row">
+                       
+                        <ng-container *ngFor="let ph of data.phases; let i = index">
+                               <strong>Phase {{i+1}}:</strong> {{ph.phase}} <br>
+                               <strong>Methodology:</strong> {{ph.method}} <br>
+                        </ng-container>
+                      </th>
+                    <th scope="row">{{data.duration}} mos</th>
                     <!-- <th scope="row">{{data.technology}}</th> -->
-                    <th scope="row">{{data.methodology}}</th>
+                    <!-- <th scope="row">{{data.methodology}}</th> -->
                     <th scope="row">{{data.dateCreated | date:'mediumDate'}}</th>
                     <th scope="row">{{data.dateUpdated | date:'mediumDate'}}</th>
                     <th scope="row">
-                        <!-- <button type="button" class="btn btn-outline-success" (click)="editProj(data)">Edit</button> -->
+                            <!-- <!-- <button type="button" class="btn btn-outline-success" (click)="editProj(data)">Edit</button> -->
+                            {{data.status}}
+                          
                     </th>
+                    <th scope="row">
+                            
+                            <button type="button" class="btn btn-outline-success">Edit</button>
+                            <!-- {{data.status}} -->
+                         
+                        </th>
                     <!-- <td>Project1</td>
                     <td>Otto</td>
                     <td>@mdo</td> -->
@@ -171,12 +186,25 @@
                         <label for="description">Description</label>
                         <textarea type="text" class="form-control" formControlName="description" placeholder="Description"></textarea>
                     </div>
+                    <div class="form-group">
+                            <label for="description">Duration</label>
+                            <input  type="number" class="form-control" formControlName="duration" placeholder="Duration">
+                        </div>
                     <div class="form-group" formArrayName="phase">
                         <ng-container *ngFor="let ph of phase.controls; let i = index">
+                            <div [formGroupName]="i">
                             <label style="padding-right: 20px">Phase {{i+1}}</label><a style="color: red" (click)="deletePhase(i)">X</a>
-                         <input type="text" class="form-control" [formControlName]="i" placeholder="Phase Name">
+                         <input type="text" class="form-control" formControlName="phase" placeholder="Phase Name">
                        
-                        </ng-container><br>
+
+                         <label for="methodology">Methodology</label>
+                         <select class="custom-select" id="bTSelect" formControlName="method">
+
+                                 <option selected disabled>Choose Methodology</option>
+                                 <option *ngFor="let tech of method" [value]="tech.title" >{{tech.title}}</option>
+                               </select>
+                            </div>
+                        </ng-container><br><br>
                         <!-- <label for="phaseNo" style="padding-right: 20px">Add Phase</label> -->
                         <button type="button" class="btn btn-outline-primary" (click)="addPhase()">Add Phase</button>
                         <!-- <input type="number" class="form-control" formControlName="phaseNo" placeholder="Phase Number"> -->
@@ -186,12 +214,12 @@
                         <textarea type="text" class="form-control" formControlName="technology" placeholder="Technology"></textarea>
                     </div> -->
                     <div class="form-group">
-                        <label for="methodology">Methodology</label>
+                        <!-- <label for="methodology">Methodology</label>
                         <select class="custom-select" id="bTSelect" formControlName="methodology">
                             
                                 <option selected disabled>Choose Methodology</option>
                                 <option *ngFor="let tech of method" [value]="tech.title" >{{tech.title}}</option>
-                              </select>
+                              </select> -->
                         <!-- <textarea type="text" class="form-control" formControlName="methodology" placeholder="Methodology"></textarea> -->
                     </div>
 
@@ -228,10 +256,19 @@
                     </div>
                     <div class="form-group" formArrayName="phase">
                             <ng-container *ngFor="let ph of phase.controls; let i = index">
+                                <div [formGroupName]="i">
                                 <label style="padding-right: 20px">Phase {{i+1}}</label><a style="color: red" (click)="deletePhase(i)">X</a>
-                             <input type="text" class="form-control" [formControlName]="i" [value]="ph[i]" placeholder="Phase Name">
+                             <input type="text" class="form-control" formControlName="phase" [(ngModel)]="proj.phases[i].phase" placeholder="Phase Name">
                            
-                            </ng-container><br>
+    
+                             <label for="methodology">Methodology</label>
+                             <select class="custom-select" id="bTSelect" formControlName="method" [(ngModel)]="proj.phases[i].method">
+    
+                                     <option selected disabled>Choose Methodology</option>
+                                     <option *ngFor="let tech of method" [value]="tech.title"  >{{tech.title}}</option>
+                                   </select>
+                                </div>
+                            </ng-container><br><br>
                             <!-- <label for="phaseNo" style="padding-right: 20px">Add Phase</label> -->
                             <button type="button" class="btn btn-outline-primary" (click)="addPhase()">Add Phase</button>
                             <!-- <input type="number" class="form-control" formControlName="phaseNo" placeholder="Phase Number"> -->
@@ -240,10 +277,7 @@
                         <label for="technology">Technology</label>
                         <textarea type="text" class="form-control" formControlName="technology" [(ngModel)]="proj.technology" placeholder="Technology"></textarea>
                     </div> -->
-                    <div class="form-group">
-                        <label for="methodology">Methodology</label>
-                        <textarea type="text" class="form-control" formControlName="methodology" [(ngModel)]="proj.methodology" placeholder="Methodology"></textarea>
-                    </div>
+                   
 
                 </div>
                 <div class="modal-footer">

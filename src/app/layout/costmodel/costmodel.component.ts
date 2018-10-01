@@ -28,8 +28,8 @@ export class CostModelComponent implements OnInit {
         console.log("Project", this.project)
     }
 
-    gotoCostModelDetails() {
-        this.router.navigate(['/cmodel/costmodeldetails']);
+    gotoCostModelDetails(proj) {        
+        this.router.navigate(['/cmodel/costmodeldetails'], { queryParams: proj });
     }
    
 
