@@ -2,33 +2,39 @@
 <br />
 <ul class="nav nav-tabs">
     <li class="nav-item">
-        <a [class]="(activeTab==1) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(1)">User Backlog</a>
+        <a [class]="(activeTab==1) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(1)">Product Backlog</a>
     </li>
     <li class="nav-item">
         <a [class]="(activeTab==2) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(2)">Functions</a>
     </li>
-    <!-- <li class="nav-item">
-        <a [class]="(activeTab==2) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(2)">Estimation</a>
-    </li>
-    <li class="nav-item">
-        <a [class]="(activeTab==3) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(3)">Implementation</a>
-    </li> -->
-
     <li class="nav-item">
         <a [class]="(activeTab==3) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(3)">Components</a>
     </li>
     <li class="nav-item">
-        <a [class]="(activeTab==4) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(4)">Logical Container</a>
+        <a [class]="(activeTab==4) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(4)">Mapping</a>
     </li>
     <li class="nav-item">
-        <a [class]="(activeTab==5) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(5)">Physical Box</a>
+        <a [class]="(activeTab==5) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(5)">Software</a>
     </li>
+    <li class="nav-item">
+        <a [class]="(activeTab==6) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(6)">Hardware</a>
+    </li>
+    <li class="nav-item">
+        <a [class]="(activeTab==7) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(7)">Network</a>
+    </li>
+    <li class="nav-item">
+        <a [class]="(activeTab==8) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(8)">FPA</a>
+    </li>
+
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
+        <ng-template [ngIf]="activeTab==1">
+                <app-user [data]="data"></app-user>
+            </ng-template>
     <ng-template [ngIf]="activeTab==2">
-        <app-backlogs [data]="data"></app-backlogs>
+        <!-- <app-backlogs [data]="data"></app-backlogs> -->
     </ng-template>
     <!-- <ng-template [ngIf]="activeTab==2">
         <app-estimation></app-estimation>
@@ -36,16 +42,20 @@
     <!-- <ng-template [ngIf]="activeTab==3">
         <app-implementation></app-implementation>
     </ng-template> -->
-    <ng-template [ngIf]="activeTab==1">
-        <app-user [data]="data"></app-user>
-    </ng-template>
+   
     <ng-template [ngIf]="activeTab==3">
         <app-components></app-components>
     </ng-template>
     <ng-template [ngIf]="activeTab==4">
+            <app-mapping></app-mapping>
+        </ng-template>
+    <ng-template [ngIf]="activeTab==6">
         <app-logicalContainer></app-logicalContainer>
     </ng-template>
     <ng-template [ngIf]="activeTab==5">
         <app-physical-container></app-physical-container>
+    </ng-template>
+    <ng-template [ngIf]="activeTab==8">
+        <app-backlogs [data]="data"></app-backlogs>
     </ng-template>
 </div>

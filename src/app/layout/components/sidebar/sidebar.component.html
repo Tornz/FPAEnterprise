@@ -12,22 +12,23 @@
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>{{ 'Bid Documents' | translate }}</span>
         </a>
-        <a [routerLink]="['/phasing']" [routerLinkActive]="['router-link-active']" data-toggle="tooltip" data-placement="top" title="Project Phasing" class="list-group-item">
-            <i class="fa fa-fw fa-edit"></i>&nbsp;
-            <span>{{ 'Project Phasing' | translate }}</span>
-        </a>
         <a [routerLink]="['/sysb']" [routerLinkActive]="['router-link-active']" data-toggle="tooltip" data-placement="top" title="System Diagrams" class="list-group-item">
             <i class="fa fa-fw fa-desktop"></i>&nbsp;
             <span>{{ 'System Diagrams' | translate }}</span>
         </a>
+        <a [routerLink]="['/phasing']" [routerLinkActive]="['router-link-active']" data-toggle="tooltip" data-placement="top" title="Project Phasing" class="list-group-item">
+            <i class="fa fa-fw fa-edit"></i>&nbsp;
+            <span>{{ 'Project Phasing' | translate }}</span>
+        </a>
+      
         <a [routerLink]="['/cmodel']" [routerLinkActive]="['router-link-active']" data-toggle="tooltip" data-placement="top" title="Cost Model" class="list-group-item">
             <i class="fa fa-fw fa-wrench"></i>&nbsp;
             <span>{{ 'Cost Model' | translate }}</span>
         </a>
-        <a [routerLink]="['/reports']" [routerLinkActive]="['router-link-active']" data-toggle="tooltip" data-placement="top" title="Reports" class="list-group-item">
+        <!-- <a [routerLink]="['/reports']" [routerLinkActive]="['router-link-active']" data-toggle="tooltip" data-placement="top" title="Reports" class="list-group-item">
             <i class="fa fa-fw fa-th-list"></i>&nbsp;
             <span>{{ 'Reports' | translate }}</span>
-        </a>
+        </a> -->
         <!-- <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <i class="fa fa-plus"></i>&nbsp;

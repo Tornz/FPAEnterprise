@@ -22,6 +22,8 @@ import { LogicalContainerServices } from '../../data-services/logicalContainer.s
 import { PhysicalContainerComponent } from './fpa/physical-container/physical-container.component';
 import { TableFilterPipe } from '../../shared/pipes/table-filter.pipe';
 import { ComponentServices } from '../../data-services/component.services';
+import { MappingComponent } from './fpa/mapping/mapping.component'
+import { MappingServices} from '../../data-services/mapping.services'
 
 @NgModule({
         imports: [
@@ -36,6 +38,7 @@ import { ComponentServices } from '../../data-services/component.services';
         declarations: [
                 PhasingComponent,
                 FPAComponent,
+                MappingComponent,
                 BackLogsComponent,
                 EstimationComponent,
                 ImplementationComponent,
@@ -50,7 +53,8 @@ import { ComponentServices } from '../../data-services/component.services';
                 UserStoryServices,
                 TechComponentServices,
                 LogicalContainerServices,
-                ComponentServices
+                ComponentServices,
+                MappingServices
         ]
 })
 export class PhasingModule { }

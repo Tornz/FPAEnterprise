@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PageHeaderModule } from './../../shared';
+import { PageHeaderModule } from '../../shared';
 import { BidDocumentComponent } from './biddocument.component';
 import { BidDocumentRoutingModule } from './biddocument-routing.module';
 
