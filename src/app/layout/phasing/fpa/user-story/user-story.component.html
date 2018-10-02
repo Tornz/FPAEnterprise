@@ -29,8 +29,12 @@
         <hot-column data="storyPoints" title="Story Points"></hot-column>
         <hot-column data="dateCreated" title="Date Created" ></hot-column>
         <hot-column data="dateUpdated" title="Date Updated" ></hot-column>
+        <hot-column data="function" title="Functions" ></hot-column>
+        <hot-column [renderer]="html" title="Action" ></hot-column>
     </hot-table> -->
-        <div id="user-table" class="hot handsontable"></div>
+        <div id="user-table" class="hot handsontable">
+                
+        </div>
     </div>
 </div>
             <!-- <div class="box">
@@ -114,7 +118,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New User Story</h5>
+                <h5 class="modal-title" id="exampleModalLabel">New User Backlog</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -146,7 +150,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit User Story</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit User Backlog</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -155,7 +159,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="project">User Story Name</label>
+                        <label for="project">User Backlog Name</label>
                         <input type="text" class="form-control" formControlName="user" [value]="users.userStory">
                     </div>
 
