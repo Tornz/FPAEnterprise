@@ -42,17 +42,16 @@
     <!-- <ng-template [ngIf]="activeTab==3">
         <app-implementation></app-implementation>
     </ng-template> -->
-   
-    <ng-template [ngIf]="activeTab==3">
+    <ng-template [ngIf]="activeTab==4">
+        <app-mapping></app-mapping>
+    </ng-template>
+    <ng-template [ngIf]="activeTab==5">
         <app-components></app-components>
     </ng-template>
-    <ng-template [ngIf]="activeTab==4">
-            <app-mapping></app-mapping>
-        </ng-template>
     <ng-template [ngIf]="activeTab==6">
         <app-logicalContainer></app-logicalContainer>
     </ng-template>
-    <ng-template [ngIf]="activeTab==5">
+    <ng-template [ngIf]="activeTab==3">
         <app-physical-container></app-physical-container>
     </ng-template>
     <ng-template [ngIf]="activeTab==8">

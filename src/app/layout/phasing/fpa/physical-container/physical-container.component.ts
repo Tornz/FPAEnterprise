@@ -28,7 +28,12 @@ export class PhysicalContainerComponent implements OnInit {
   selectedReport: TechnologyItem[] = [];
   selectedStorage: TechnologyItem[] = [];
 
-  APIObject = ['OS', 'Docker', 'WSO2 API Manager', 'WSO2 Identity Server']
+  //APIObject = ['OS', 'Docker', 'WSO2 API Manager', 'WSO2 Identity Server']
+  APIObject = ['Content Management System', 'Customer Relationship Management', 'Advanced Analytics Presentation',
+               'Enterprise Integrator', 'SKL CTI Agents/Call Managers', 'SKB CTI Agents/Call Managers', 'SKL Analytics Results',
+               'SKB Analytic Results', 'Other .NET Modules', 'Log Manager', 'Search Engine', 'Source Code Repository',
+               'Configuration Management', 'Dockers Orchestration'
+              ];
   WEBServerObject = ['OS', 'NGINX', 'Angular', 'Docker']
   APPServerObject1 = ['OS', 'Qlik Sense', 'Docker']
   DOCKERObject = [{
