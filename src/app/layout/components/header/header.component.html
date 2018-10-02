@@ -67,6 +67,19 @@
             </li> -->
             <li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+                    <i class="fa fa-question-circle"></i> <b class="caret"></b><span class="sr-only">(current)</span>
+                </a>
+                <div class="dropdown-menu-right" style="top: 40px;left: 0px;width: 201px;" ngbDropdownMenu>
+                    <a class="dropdown-item" style="padding-left: 4px;" data="1" href="/src/app/files/Bid Management Plan_Yoki 201608.pdf" download="Bid Management Plan_Yoki 201608.pdf">
+                        {{ 'Bid Management Process' | translate }}
+                    </a>
+                    <a href="javascript:void(0)" class="dropdown-item" style="padding-left: 4px;" href="/src/app/files/Appendix C - FPA and Effort Estimation Phase 2 v0.3 (1).doc" download="Appendix C - FPA and Effort Estimation Phase 2 v0.3.doc">
+                        {{ 'FPA Guidelines' | translate }}
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" ngbDropdown>
+                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
                     <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span>
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu>
@@ -79,13 +92,13 @@
                     <a href="javascript:void(0)" class="dropdown-item">
                         {{ 'Mail' | translate }} <span class="badge badge-info"> 45</span>
                     </a>
-                    <li class="dropdown-divider"></li>
-                    <a href="javascript:void(0)" class="dropdown-item">
-                        {{ 'View All' | translate }}
-                    </a>
-                </div>
-            </li>
-            <!-- <li class="nav-item dropdown" ngbDropdown>
+            <li class="dropdown-divider"></li>
+            <a href="javascript:void(0)" class="dropdown-item">
+                {{ 'View All' | translate }}
+            </a>
+    </div>
+    </li>
+    <!-- <li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
                     <i class="fa fa-language"></i> {{ 'Language' | translate }} <b class="caret"></b>
                 </a>
@@ -116,25 +129,25 @@
                     </a>
                 </div>
             </li> -->
-            <li class="nav-item dropdown" ngbDropdown>
-                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                    <i class="fa fa-user"></i> John Doe <b class="caret"></b>
-                </a>
-                <div class="dropdown-menu-right" ngbDropdownMenu>
-                    <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}
-                    </a>
-                    <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}
-                    </a>
-                    <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}
-                    </a>
-                    <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
-                        <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
-                    </a>
-                </div>
-            </li>
-        </ul>
+    <li class="nav-item dropdown" ngbDropdown>
+        <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+            <i class="fa fa-user"></i> John Doe <b class="caret"></b>
+        </a>
+        <div class="dropdown-menu-right" ngbDropdownMenu>
+            <a class="dropdown-item" href="javascript:void(0)">
+                <i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}
+            </a>
+            <a class="dropdown-item" href="javascript:void(0)">
+                <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}
+            </a>
+            <a class="dropdown-item" href="javascript:void(0)">
+                <i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}
+            </a>
+            <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
+                <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
+            </a>
+        </div>
+    </li>
+    </ul>
     </div>
 </nav>
