@@ -1,0 +1,46 @@
+<br />
+<div [@routerTransition]>
+  <div class="form-group input-group col-4" style="padding-left: 0px;">
+    <!-- <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString">
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+    </div> -->
+    
+  </div>
+
+  <div class="card mb-3">
+    <table class="card-body table table-hover">
+      <thead class="card-header" style="background-color: #cce5ff;">
+        <tr>
+          <th *ngFor="let tableHeader of tableHeaders">{{ tableHeader.name }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let component of mappings" >
+          <td scope="row">{{ component.id }}</td>
+          <td scope="row">{{ component.businessReq }}</td>
+          <td scope="row">
+                <tr *ngFor="let func of component.function">
+                   <td style="border-top: none !important">
+                     <strong>{{func.func}}</strong><br>
+                     {{func.desc}}
+                   </td>
+                </tr>
+                
+                
+          </td>
+          <td scope="row">
+                <tr *ngFor="let comp of component.components">
+                        <td style="border-top: none !important">
+                         {{comp.item}}
+                        </td>
+                     </tr>
+            </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
