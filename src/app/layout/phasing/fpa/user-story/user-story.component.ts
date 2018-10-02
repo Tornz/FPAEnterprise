@@ -32,7 +32,7 @@ export class UserStoryComponent implements OnInit {
     }
 
     public cols = [{ header: 'Id' }, 
-    { header: 'User Story' }, 
+    { header: 'User Backlog' }, 
     { header: 'Date Created' },
     { header: 'Date Updated' }, 
     { header: 'Action' }]
@@ -46,7 +46,7 @@ export class UserStoryComponent implements OnInit {
         $(document).ready(function () {
            var data = [];
            var mainHead = [];
-           var subData = ['Id', 'Epic', 'User', 'User Story', 'Importance', 'Story Points', 'Conversation'
+           var subData = ['Id', 'Epic', 'User', 'User Backlog', 'Importance', 'Story Points', 'Conversation'
                , 'Integrations'];
 
            var values = temp;                 
@@ -54,7 +54,7 @@ export class UserStoryComponent implements OnInit {
         //    data.push(subData);
 
            $.each(values, function (i) {        
-               var item = [values[i].id,values[i].user, values[i].userStory,
+               var item = [values[i].id,values[i].title,values[i].user, values[i].userStory,
                values[i].epic,
                values[i].importance,
                values[i].storyPoints,
@@ -80,8 +80,8 @@ export class UserStoryComponent implements OnInit {
            var container = document.getElementById('user-table');
            var hot = new Handsontable(container, {
                data: data,
-               colHeaders: ['Id', 'User', 'User Story', 'Epic', 'Importance', 'Story Points', 'Conversation'
-               , 'Integrations','Date Created','Date Updated'],
+               colHeaders: ['Id','Title', 'User', 'User Backlog', 'Epic', 'Importance', 'Story Points', 'Conversation'
+               , 'Integrations','Date Created','Date Updated','Functions','Action'],
                fixedRowsTop: 2,
                stretchH: 'all',
                rowHeaders: true,
@@ -99,7 +99,6 @@ export class UserStoryComponent implements OnInit {
                 filters: true,
                 fixedRowsBottom: 2,
                 minSpareRows: 1,
-               
                // className: "htCenter",
               
            });
@@ -116,7 +115,7 @@ export class UserStoryComponent implements OnInit {
 
            function prepareData(rowCount, colCount) {
                var fpaArray = [];
-               for (var i = 2; i < rowCount; i++) {
+               for (var i = 0; i < rowCount; i++) {
                    var fpaObj = {};
                    for (var c = 0; c < colCount; c++) {
                        var objNotation = hot.getDataAtCell(0, c) + hot.getDataAtCell(1, c);

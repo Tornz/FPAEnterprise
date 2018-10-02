@@ -30,11 +30,11 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-        <ng-template [ngIf]="activeTab==1">
-                <app-user [data]="data"></app-user>
-            </ng-template>
+    <ng-template [ngIf]="activeTab==1">
+        <app-user [data]="data"></app-user>
+    </ng-template>
     <ng-template [ngIf]="activeTab==2">
-        <!-- <app-backlogs [data]="data"></app-backlogs> -->
+        <app-functions></app-functions>
     </ng-template>
     <!-- <ng-template [ngIf]="activeTab==2">
         <app-estimation></app-estimation>

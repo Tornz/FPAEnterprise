@@ -23,7 +23,8 @@ import { PhysicalContainerComponent } from './fpa/physical-container/physical-co
 import { TableFilterPipe } from '../../shared/pipes/table-filter.pipe';
 import { ComponentServices } from '../../data-services/component.services';
 import { MappingComponent } from './fpa/mapping/mapping.component'
-import { MappingServices} from '../../data-services/mapping.services'
+import { MappingServices} from '../../data-services/mapping.services';
+import { FunctionsComponent } from './fpa/functions/functions.component'
 
 @NgModule({
         imports: [
@@ -46,7 +47,8 @@ import { MappingServices} from '../../data-services/mapping.services'
                 UserStoryComponent,
                 LogicalContainerComponent,
                 PhysicalContainerComponent,
-                TableFilterPipe
+                TableFilterPipe,
+                FunctionsComponent
         ],
         providers: [
                 BacklogServices,

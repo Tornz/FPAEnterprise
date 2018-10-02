@@ -1,70 +1,70 @@
 <div [@routerTransition]>
     <div style="font-size:15px;font-weight:bold">{{projectName}}</div>
     <br />
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-sm table-responsive">
         <thead style="font-weight:bold;font-size:12px">
             <tr>
-                <td>ONSITE</td>
-                <td>ROLE</td>
-                <td>GRADE</td>
-                <td>MONTH</td>
-                <td>HEAD COUNT</td>
-                <td>PHASE 1</td>
-                <td>PHASE 2</td>
+                <td><strong>SITE</strong></td>
+                <td><strong>ROLE</strong></td>
+                <td><strong>STAFF NAME</strong></td>
+                <td><strong>GRADE</strong></td>
+                <td><strong>RATE (HKD)</strong></td>
+                <td colspan="4"><strong>PHASE 1</strong></td>
+                <td colspan="9"><strong>PHASE 2</strong></td>
+                <td colspan="7"><strong>PHASE 3</strong></td>
+                <td><strong>PHASE 1</strong></td>
+                <td><strong>PHASE 2</strong></td>
+                <td><strong>PHASE 3</strong></td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>OnSite</td>
-                <td>Business Analyst</td>
-                <td>i9-HK</td>
-                <td>1</td>
-                <td>1</td>
-                <td>100,000</td>
-                <td>100,000</td>
+            <tr *ngFor="let item of costModels; let i = index">
+                <td>{{item.site}}</td>
+                <td>{{item.role}}</td>
+                <td>{{item.staffName}}</td>
+                <td>{{item.grade}}</td>
+                <td style="text-align: right">{{item.rate | number}}</td>
+                <td style="text-align: center" *ngFor="let ph1 of item.headcounts[0]">{{ph1}}</td>
+                <td style="text-align: center" *ngFor="let ph2 of item.headcounts[1]">{{ph2}}</td>
+                <td style="text-align: center" *ngFor="let ph3 of item.headcounts[2]">{{ph3}}</td>
+                <td style="text-align: right">{{ph1Rate[i] | number}}</td>
+                <td style="text-align: right">{{ph2Rate[i] | number}}</td>
+                <td style="text-align: right">{{ph3Rate[i] | number}}</td>
+                <td></td>
             </tr>
             <tr>
-                <td>OnSite</td>
-                <td>Technical Architect</td>
-                <td>i9-HK</td>
-                <td>1</td>
-                <td>1</td>
-                <td>100,000</td>
-                <td>100,000</td>
+                <td colspan="4"></td>
+                <td style="text-align: right"><strong>TOTAL HC</strong></td>
+                <td colspan="4" style="text-align: center"><strong></strong></td>
+                <td colspan="9" style="text-align: center"><strong></strong></td>
+                <td colspan="7" style="text-align: center"><strong></strong></td>
+                <td style="text-align: right"><strong>{{ph1TotalRate | number}}</strong></td>
+                <td style="text-align: right"><strong>{{ph2TotalRate | number}}</strong></td>
+                <td style="text-align: right"><strong>{{ph3TotalRate | number}}</strong></td>
+                <td><strong>Total Costs (HKD)</strong></td>
             </tr>
             <tr>
-                <td>OnSite</td>
-                <td>UI/UX Designer</td>
-                <td>i9-HK</td>
-                <td>1</td>
-                <td>1</td>
-                <td>100,000</td>
-                <td>100,000</td>
+                <td colspan="4"></td>
+                <td style="text-align: right"><strong>TOTAL DEV</strong></td>
+                <td colspan="4" style="text-align: center"><strong></strong></td>
+                <td colspan="9" style="text-align: center"><strong></strong></td>
+                <td colspan="7" style="text-align: center"><strong></strong></td>
+                <td style="text-align: right"><strong>{{ph1TotalRate | number}}</strong></td>
+                <td style="text-align: right"><strong>{{ph2TotalRate | number}}</strong></td>
+                <td style="text-align: right"><strong>{{ph3TotalRate | number}}</strong></td>
+                <td><strong>ADM Costs (HKD)</strong></td>
             </tr>
             <tr>
-                <td>OnSite</td>
-                <td>Technical PM</td>
-                <td>i9-HK</td>
-                <td>3</td>
-                <td>1</td>
-                <td>100,000</td>
-                <td>100,000</td>
-            </tr>
-            <tr>
-                <td>OnSite</td>
-                <td>Programmer</td>
-                <td>i9-HK</td>
-                <td>4</td>
-                <td>1</td>
-                <td>100,000</td>
-                <td>100,000</td>
-            </tr>
-            <tr style="font-weight:bold">
-                <td colspan="4">Total</td>
-               
-                <td>8</td>
-                <td>500,000</td>
-                <td>500,000</td>
+                <td colspan="4"></td>
+                <td style="text-align: right"><strong>TOTAL MM</strong></td>
+                <td colspan="4" style="text-align: center"><strong></strong></td>
+                <td colspan="9" style="text-align: center"><strong></strong></td>
+                <td colspan="7" style="text-align: center"><strong></strong></td>
+                <td style="text-align: right"><strong>{{ph1TotalRate | number}}</strong></td>
+                <td style="text-align: right"><strong>{{ph2TotalRate | number}}</strong></td>
+                <td style="text-align: right"><strong>{{ph3TotalRate | number}}</strong></td>
+                <td><strong>Total Costs (USD)</strong></td>
             </tr>
         </tbody>
     </table>
