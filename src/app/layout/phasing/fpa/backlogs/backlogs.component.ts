@@ -82,7 +82,7 @@ export class BackLogsComponent implements OnInit {
            var data = [];
            var mainHead = ['', '', 'ILF', '', '', 'ELF', '', '', 'EI', '', '', 'EO', '', '', 'EQ', '', '', '', ''];
            var subData = ['Module', 'Description', 'RET', 'DET', 'Technology', 'RET', 'DET', 'Technology'
-               , 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'Reuse %', 'Adjusted Function Pt.'];
+               , 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'Reuse %', 'Adjusted FP.'];
 
            var values = temp;                 
            data.push(mainHead);
