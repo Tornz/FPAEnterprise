@@ -16,7 +16,8 @@ export class UserStoryServices {
         {
         id: 1, 
         user: "Customer",
-        userStory:"As a user, i can add items", 
+        title:"Mobile App /PC Web",
+        userStory:"Mobile App Registration", 
         dateUpdated: new Date(), 
         dateCreated: new Date(), 
         importance:"02 - Optional",
@@ -28,8 +29,9 @@ export class UserStoryServices {
         },
         {
         id: 2, 
+        title:"Mobile App /PC Web",
         user: "System Admin",
-        userStory:"As a admin, i can manage users", 
+        userStory:"PC web login requires mobile phone scanning code", 
         dateUpdated: new Date(), 
         dateCreated: new Date(), 
         importance:"02 - Optional",
@@ -41,8 +43,9 @@ export class UserStoryServices {
         },
         {
         id: 3, 
+        title:"Mobile App /PC Web",
         user: "IT Admin",
-        userStory:"As a user, i can add products to the cart",
+        userStory:"Landing/Welcome screen",
         dateUpdated: new Date(), 
         dateCreated:  new Date(),
         importance:"01 - Mandatory",

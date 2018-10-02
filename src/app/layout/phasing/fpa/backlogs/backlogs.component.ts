@@ -80,9 +80,9 @@ export class BackLogsComponent implements OnInit {
         const temp = this.backServices.getBacklog();
         $(document).ready(function () {
            var data = [];
-           var mainHead = ['', '', 'ILF', '', '', 'ELF', '', '', 'EI', '', '', 'EO', '', '', 'EQ', '', '', ''];
+           var mainHead = ['', '', 'ILF', '', '', 'ELF', '', '', 'EI', '', '', 'EO', '', '', 'EQ', '', '', '', ''];
            var subData = ['Module', 'Description', 'RET', 'DET', 'Technology', 'RET', 'DET', 'Technology'
-               , 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'Reuse %'];
+               , 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'Reuse %', 'Adjusted Function Pt.'];
 
            var values = temp;                 
            data.push(mainHead);
@@ -103,7 +103,9 @@ export class BackLogsComponent implements OnInit {
                values[i].eo_technology,
                values[i].eq_ftr,
                values[i].eq_det,
-               values[i].eq_technology,values[i].reusePercentage];                                  
+               values[i].eq_technology,
+               values[i].reusePercentage,
+               values[i].adjFunctionPoint];                                  
                data.push(item);
            });
 
@@ -115,7 +117,8 @@ export class BackLogsComponent implements OnInit {
                {}, {}, { editor: 'select', selectOptions: technologies },
                {}, {}, { editor: 'select', selectOptions: technologies },
                {}, {}, { editor: 'select', selectOptions: technologies },
-               {}, {}, { editor: 'select', selectOptions: technologies },  
+               {}, {}, { editor: 'select', selectOptions: technologies }, 
+               {}, 
                { renderer: "html"}
            ];
            var container = document.getElementById('fpa-table');
@@ -158,7 +161,8 @@ export class BackLogsComponent implements OnInit {
                    { row: 1, col: 12, className: "htCenter" },
                    { row: 1, col: 14, className: "htCenter" },
                    { row: 1, col: 15, className: "htCenter" },
-                   { row: 1, col: 17, className: "htCenter" }
+                   { row: 1, col: 17, className: "htCenter" },
+                   { row: 1, col: 18, className: "htCenter" }
                ]
            });
 
@@ -256,7 +260,7 @@ export class BackLogsComponent implements OnInit {
     }
     onAdd() {
         var count = this.backlogs.length ;
-        const newitem = new Backlog(0, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>',false);
+        const newitem = new Backlog(0, '', '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', 0, 0, '', '<a (click)="onFunction()">Function</a>', 0,false);
         this.backlogs.push(newitem);
         this.editRowID = count;
     }

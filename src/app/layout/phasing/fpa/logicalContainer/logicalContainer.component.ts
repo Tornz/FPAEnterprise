@@ -104,7 +104,18 @@ export class LogicalContainerComponent implements OnInit {
         this.logicCon = data
         this.modal = 'edit';
         this.display = 'block';
-        console.log("Edit Modal logicCon", this.logicCon);
+        this.logicalContainerForm = this.form.group({
+            // 'id': new FormControl('', Validators.required),
+            'server': new FormControl(data.server, Validators.required),
+            'vCpu': new FormControl(data.vCpu, Validators.required),
+            'ram': new FormControl(data.ram, Validators.required),
+            'dataStorage': new FormControl(data.dataStorage, Validators.required),
+            'prodQuantity': new FormControl(data.prodQuantity, Validators.required),
+            'drQuantity': new FormControl(data.drQuantity, Validators.required),
+            'uatQuantity': new FormControl(data.uatQuantity, Validators.required),
+            'sitDevQuantity': new FormControl(data.sitDevQuantity, Validators.required),
+            'components': new FormControl(data.components, Validators.required)
+        });
     }
 
     onEditLogicalContainer(data: any) {
@@ -124,7 +135,7 @@ export class LogicalContainerComponent implements OnInit {
             console.log("Edit Logical Container", data)
             this.fpaSrv.editLogicalContainer(this.logicCon.id, this.logicCon);
             console.log("EDIT id: " + this.logicCon.id);
-            console.log("EDIT logicCon: " + this.logicCon);
+            console.log("EDIT logicCon: ", this.logicCon);
             this.display = 'none';
             this.loadData();
         // } else {
