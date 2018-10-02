@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-    <div class="form-group input-group col-4" style="padding-left: 0px;">
+    <!-- <div class="form-group input-group col-4" style="padding-left: 0px;">
         <input type="text" class="form-control" placeholder="Search">
         <div class="input-group-append">
             <button class="btn btn-secondary" type="button">
@@ -39,7 +39,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <!-- <th>Upload Date</th> -->
+                                <th>Upload Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -47,7 +47,7 @@
                             <tr *ngFor="let file of fileUploads">
                                 <td>{{file.name}}</td>
                                 <td>{{file.description}}</td>
-                                <!-- <td>{{file.uploadDate}}</td> -->
+                                <td>{{file.uploadDate}}</td>
                                 <td>
                                     <a type="button" class="btn btn-outline-info" id="btn-dwnld-{{file.fileId}}" [download]="file.name" (click)="downloadFile(file.fileId)">
                                         <i class="fa fa-download"></i>
@@ -71,7 +71,7 @@
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="fileUpload"> Upload File </label>
-                                <input type="file" style="display: none" id="fileUpload">
+                                <input type="file" style="display: none" id="fileUpload" (change)="onChangeFile()">
                             </div>
                             <input type="text" class="form-control" id="fileName" placeholder='Choose a file...' (click)="selectFile()" onkeypress="return false;"
                             />
@@ -87,5 +87,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

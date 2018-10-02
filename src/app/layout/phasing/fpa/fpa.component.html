@@ -25,16 +25,30 @@
     <li class="nav-item">
         <a [class]="(activeTab==8) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(8)">FPA</a>
     </li>
+
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-    <ng-template [ngIf]="activeTab==1">
-        <app-user [data]="data"></app-user>
+        <ng-template [ngIf]="activeTab==1">
+                <app-user [data]="data"></app-user>
+            </ng-template>
+    <ng-template [ngIf]="activeTab==2">
+        <!-- <app-backlogs [data]="data"></app-backlogs> -->
     </ng-template>
-    <ng-template [ngIf]="activeTab==5">
+    <!-- <ng-template [ngIf]="activeTab==2">
+        <app-estimation></app-estimation>
+    </ng-template> -->
+    <!-- <ng-template [ngIf]="activeTab==3">
+        <app-implementation></app-implementation>
+    </ng-template> -->
+   
+    <ng-template [ngIf]="activeTab==3">
         <app-components></app-components>
     </ng-template>
+    <ng-template [ngIf]="activeTab==4">
+            <app-mapping></app-mapping>
+        </ng-template>
     <ng-template [ngIf]="activeTab==6">
         <app-logicalContainer></app-logicalContainer>
     </ng-template>
