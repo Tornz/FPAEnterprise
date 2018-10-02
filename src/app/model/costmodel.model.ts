@@ -6,24 +6,23 @@ export class Phases {
 
 export class CostModel {
     public id: number;
-    public onsite: string;
+    public site: string;
     public role: string;
-    public grade: number;
-    public month: number;
-    public headcount: string;
+    public staffName: string;
+    public grade: string;
+    public rate: number;
+    public headcounts: any;
     public phases:Phases[];
 
-    constructor(id: number, onsite: string, role: string, grade: number, month: number, headcount: string,
-        phases:Phases[]) {
-
+    constructor(id: number, site: string, role: string, staffName: string,
+        grade: string, rate: number, headcounts: Object[]) {
         this.id = id;
-        this.onsite = onsite;
+        this.site = site;
         this.role = role;
-        this.grade = grade;    
-        this.month = month;
-        this.headcount = headcount;
-        this.phases = phases;
-        
+        this.staffName = staffName;    
+        this.grade = grade;
+        this.rate = rate;
+        this.headcounts = headcounts.slice();
     }
 
 
