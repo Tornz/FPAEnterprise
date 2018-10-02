@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { BidDocumentServices } from '../../data-services/bidDocument.services';
-import { FileUpload } from '../../model/fileUpload.model';
 import { Documents } from '../../model/documents.model';
 import * as $ from 'jquery';
 import { ProjectServices } from '../../data-services/project.services';
-import { Project } from '../../model/project.model';
 import * as JSZip from 'jszip';
-import { Subscription } from '../../../../node_modules/rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-biddocument',
@@ -38,16 +36,10 @@ export class BidDocumentComponent implements OnInit {
         this.$fileInput = $('input#fileUpload'); // file input #fileUpload
         this.$fileName = $('input#fileName'); // input #fileName
 
-        this.projSubscription = this.projService.projectChanged
-            .subscribe(() => { this.loadData() });
-        this.docSubscription = this.bidDocService.documentsChanged
-            .subscribe(() => { this.loadData() });
-
-        // Change event listener for file selector
-        this.$fileInput.change((e: any) => {
-            //gets name of selected file
-            this.$fileName.val(e.target.files[0].name);
-        });
+        // this.projSubscription = this.projService.projectChanged
+        //     .subscribe(() => { this.loadData() });
+        // this.docSubscription = this.bidDocService.documentsChanged
+        //     .subscribe(() => { this.loadData() });
     }
 
     loadData() {
@@ -85,6 +77,10 @@ export class BidDocumentComponent implements OnInit {
         this.$fileInput.click();
     }
 
+    onChangeFile(){
+        this.$fileName.val(this.$fileInput[0].files[0].name);
+    }
+
     resetFileInput() {
         this.$fileDesc.val('');
         this.$fileName.val('');
@@ -116,7 +112,6 @@ export class BidDocumentComponent implements OnInit {
 
     downloadAllFiles() {
         // let zipFile: JSZip = new JSZip();
-
     }
 
     downloadFile(fileId: number) {

@@ -1,87 +1,22 @@
 <div [@routerTransition]>
-    <!-- <app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header> -->
     <div class="form-group input-group col-4" style="padding-left: 0px;">
         <input type="text" class="form-control" placeholder="Search">
-        <!-- <input type="text" name="text" [(ngModel)]="text" id="form1" class="form-control"> -->
         <div class="input-group-append">
-            <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-        </div>
-        <div class="pl-2">
-            <!-- <button type="button" class="btn btn-primary" (click)="addProj()">New Project {{text}}</button> -->
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick()">
-                <p class="card-header" style="background-color: #cce5ff;">Project A</p>
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Light card title</h5> -->
-                    <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick()">
-                <p class="card-header" style="background-color: #cce5ff;">Project B</p>
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Light card title</h5> -->
-                    <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick()">
-                <p class="card-header" style="background-color: #cce5ff;">Project C</p>
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Light card title</h5> -->
-                    <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick()">
-                <p class="card-header" style="background-color: #cce5ff;">Project D</p>
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Light card title</h5> -->
-                    <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
-                </div>
-            </div>
+            <button class="btn btn-secondary" type="button">
+                <i class="fa fa-search"></i>
+            </button>
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick()">
-                <p class="card-header" style="background-color: #cce5ff;">Project E</p>
+        <div class="col col-sm-6 col-md-4 col-lg-3" *ngFor="let item of projDocs">
+            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick(item.projId)">
+                <p class="card-header" style="background-color: #cce5ff;">{{item.projName}}</p>
                 <div class="card-body">
-                    <!-- <h5 class="card-title">Light card title</h5> -->
-                    <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick()">
-                <p class="card-header" style="background-color: #cce5ff;">Project F</p>
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Light card title</h5> -->
-                    <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick()">
-                <p class="card-header" style="background-color: #cce5ff;">Project G</p>
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Light card title</h5> -->
-                    <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-dark mb-3" style="max-width: 18rem;" (click)="cardClick()">
-                <p class="card-header" style="background-color: #cce5ff;">Project H</p>
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Light card title</h5> -->
-                    <p class="card-text">Files: Document 1, Document 2, Document 3, Document 4, Document 5,</p>
+                    <p class="card-text">
+                        Files uploaded: {{ item.sysDiagFiles.length || 'None' }}
+                        <span class="text-muted" *ngFor="let doc of item.sysDiagFiles">
+                            <br/>{{doc.name}} - {{doc.description}}</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -89,425 +24,67 @@
     <div class="backdrop" [ngStyle]="{'display':display}"></div>
 
     <div class="modal" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Project</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{projDoc.projName}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Title</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                        </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleFormControlFile1">Upload File</label>
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <table class="card-body table table-hover table-bordered">
+                        <thead class="card-header" style="background-color: #cce5ff;">
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <!-- <th>Upload Date</th> -->
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let file of fileUploads">
+                                <td>{{file.name}}</td>
+                                <td>{{file.description}}</td>
+                                <!-- <td>{{file.uploadDate}}</td> -->
+                                <td>
+                                    <a type="button" class="btn btn-outline-info" id="btn-dwnld-{{file.fileId}}" [download]="file.name" (click)="downloadFile(file.fileId)">
+                                        <i class="fa fa-download"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-outline-danger" (click)="deleteFile(file.fileId)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="card card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="fileDesc"> Description </label>
                             </div>
-                        </form>
-                        <table class="card-body table table-hover table-bordered">
-                            <thead class="card-header" style="background-color: #cce5ff;">
-                                <tr>
-                                    <th>File Name</th>
-                                    <th>Path</th>
-                                    <th>Upload Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>File 1</td>
-                                    <td>file://host/path</td>
-                                    <td>09/17/2018</td>
-                                    <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <td>File 2</td>
-                                    <td>file://host/path</td>
-                                    <td>09/17/2018</td>
-                                    <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <td>File 3</td>
-                                    <td>file://host/path</td>
-                                    <td>09/17/2018</td>
-                                    <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
-                                </tr>
-                                <!-- <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr> -->
-                            </tbody>
-                        </table>
-                    </form>
+                            <input type="text" class="form-control" id="fileDesc" placeholder="Description">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="fileUpload"> Upload File </label>
+                                <input type="file" style="display: none" id="fileUpload">
+                            </div>
+                            <input type="text" class="form-control" id="fileName" placeholder='Choose a file...' (click)="selectFile()" onkeypress="return false;"
+                            />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-warning" id="btn-reset" type="button" (click)="resetFileInput()">Reset</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
-                    <button type="button" class="btn btn-primary" (click)="onCloseHandled()">Save</button>
+                    <button type="button" class="btn btn-primary" (click)="saveFile()">Upload</button>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row" *ngIf="false">
-        <div class="col col-xl-6 col-lg-12">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Basic example
-                </div>
-                <div class="card-body table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Table head options</div>
-                <div class="card-body table-responsive">
-                    <table class="table">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead class="thead-default">
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Bordered table</div>
-                <div class="card-body table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@TwBootstrap</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Small table</div>
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col col-xl-6 col-lg-12">
-            <div class="card mb-3">
-                <div class="card-header">Inverse table</div>
-                <div class="card-body table-responsive">
-                    <table class="table table-inverse">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Striped Rows</div>
-                <div class="card-body table-responsive">
-                    <table class="table table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th>Page</th>
-                                <th>Visits</th>
-                                <th>% New Visits</th>
-                                <th>Revenue</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>/index.html</td>
-                                <td>1265</td>
-                                <td>32.3%</td>
-                                <td>$321.33</td>
-                            </tr>
-                            <tr>
-                                <td>/about.html</td>
-                                <td>261</td>
-                                <td>33.3%</td>
-                                <td>$234.12</td>
-                            </tr>
-                            <tr>
-                                <td>/sales.html</td>
-                                <td>665</td>
-                                <td>21.3%</td>
-                                <td>$16.34</td>
-                            </tr>
-                            <tr>
-                                <td>/blog.html</td>
-                                <td>9516</td>
-                                <td>89.3%</td>
-                                <td>$1644.43</td>
-                            </tr>
-                            <tr>
-                                <td>/404.html</td>
-                                <td>23</td>
-                                <td>34.3%</td>
-                                <td>$23.52</td>
-                            </tr>
-                            <tr>
-                                <td>/services.html</td>
-                                <td>421</td>
-                                <td>60.3%</td>
-                                <td>$724.32</td>
-                            </tr>
-                            <tr>
-                                <td>/blog/post.html</td>
-                                <td>1233</td>
-                                <td>93.2%</td>
-                                <td>$126.34</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Hoverable rows</div>
-                <table class="card-body table table-hover">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">Contextual classes</div>
-                <table class="card-body table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="table-active">
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr class="table-info">
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr class="table-warning">
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr class="table-danger">
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

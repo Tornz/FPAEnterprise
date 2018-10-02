@@ -71,7 +71,7 @@
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="fileUpload"> Upload File </label>
-                                <input type="file" style="display: none" id="fileUpload">
+                                <input type="file" style="display: none" id="fileUpload" (change)="onChangeFile()">
                             </div>
                             <input type="text" class="form-control" id="fileName" placeholder='Choose a file...' (click)="selectFile()" onkeypress="return false;"
                             />
