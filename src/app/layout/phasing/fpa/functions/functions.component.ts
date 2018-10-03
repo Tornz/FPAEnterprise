@@ -27,7 +27,7 @@ export class FunctionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.functionsList = this.functionsService.getFunctions();
+    this.loadData();
   }
 
   onModalOpen(modalName: string, selectedData: FunctionalDesc) {
@@ -37,8 +37,8 @@ export class FunctionsComponent implements OnInit {
     if (selectedData) {
       this.selectedData = selectedData;
       this.functionForm = this.form.group({
-        'id': [this.selectedData.id, Validators.required],
-        'functionDesc': [this.selectedData.functionDesc, Validators.required]
+        //'id': [this.selectedData.id, Validators.required],
+        'functionDesc': new FormControl(this.selectedData.functionDesc, Validators.required),
       });
     } else {
       this.selectedData = new FunctionalDesc(null, null);
@@ -47,11 +47,22 @@ export class FunctionsComponent implements OnInit {
 
   onSubmitAdd() {
     let newFunction = new FunctionalDesc(
-      this.functionForm.controls.name.value,
-      this.functionForm.controls.softwareCategory.value
+      this.functionsService.generateID(),
+      this.functionForm.controls.functionDesc.value
     );
     this.functionsService.saveFunction(newFunction);
+    this.loadData();
     this.onModalClose();
+  }
+
+  onSubmitEdit() {
+    this.functionsService.editFunction(new FunctionalDesc(this.selectedData.id, this.functionForm.controls.functionDesc.value));
+    this.loadData();
+    this.onModalClose();
+  }
+
+  loadData() {
+    this.functionsList = this.functionsService.getFunctions();
   }
 
   onModalClose() {

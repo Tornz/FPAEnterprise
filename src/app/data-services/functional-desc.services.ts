@@ -29,6 +29,19 @@ export class FunctionalDescService {
   }
 
   saveFunction(newFunction: FunctionalDesc) {
+    this.functionsList.push(newFunction);
+  }
 
+  editFunction(data: FunctionalDesc) {
+    for (var i in this.functionsList) {
+      if (this.functionsList[i].id == data.id) {
+        this.functionsList[i].functionDesc = data.functionDesc;
+        return true;
+      }
+    }
+  }
+
+  generateID() {
+    return this.functionsList.length + 1;
   }
 }
