@@ -25,7 +25,8 @@ export class UserStoryServices {
         conversation: "This feature could potentially be on TP instead - to discuss with vendor on best solution",
         integration:"Elements",
         epic:"Incentive",
-        backlog: []
+        backlog: [],
+        component: []
         },
         {
         id: 2, 
@@ -39,7 +40,8 @@ export class UserStoryServices {
         conversation: "Could be applied to Finance and Cluster officers and escalated to relevant parties based on duration outstanding",
         integration:"Elements",
         epic:"Incentive",
-        backlog: []
+        backlog: [],
+        component: []
         },
         {
         id: 3, 
@@ -53,7 +55,8 @@ export class UserStoryServices {
         conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
         integration:"Elements",
         epic:"Incentive",
-        backlog: []
+        backlog: [],
+        component: []
         }
     ];
     constructor(

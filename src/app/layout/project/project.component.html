@@ -37,28 +37,30 @@
                     <th scope="row">{{data.projectName}}</th>
                     <th scope="row">{{data.description}}</th>
                     <th scope="row">
-                       
+
                         <ng-container *ngFor="let ph of data.phases; let i = index">
-                               <strong>Phase {{i+1}}:</strong> {{ph.phase}} <br>
-                               <strong>Methodology:</strong> {{ph.method}} <br>
+                            <strong>Phase {{i+1}}:</strong> {{ph.phase}}
+                            <br>
+                            <strong>Methodology:</strong> {{ph.method}}
+                            <br>
                         </ng-container>
-                      </th>
+                    </th>
                     <th scope="row">{{data.duration}} mos</th>
                     <!-- <th scope="row">{{data.technology}}</th> -->
                     <!-- <th scope="row">{{data.methodology}}</th> -->
                     <th scope="row">{{data.dateCreated | date:'mediumDate'}}</th>
                     <th scope="row">{{data.dateUpdated | date:'mediumDate'}}</th>
                     <th scope="row">
-                            <!-- <!-- <button type="button" class="btn btn-outline-success" (click)="editProj(data)">Edit</button> -->
-                            {{data.status}}
-                          
+                        <!-- <!-- <button type="button" class="btn btn-outline-success" (click)="editProj(data)">Edit</button> -->
+                        {{data.status}}
+
                     </th>
                     <th scope="row">
-                            
-                            <button type="button" class="btn btn-outline-success">Edit</button>
-                            <!-- {{data.status}} -->
-                         
-                        </th>
+
+                        <button type="button" class="btn btn-outline-success">Edit</button>
+                        <!-- {{data.status}} -->
+
+                    </th>
                     <!-- <td>Project1</td>
                     <td>Otto</td>
                     <td>@mdo</td> -->
@@ -162,10 +164,104 @@
         </div>
     </div> -->
 </div>
+<!-- Large modal -->
 
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" *ngIf="modal == 'addQuestion'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">General System Characteristic</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="projectForm" (ngSubmit)="addQuestion()">
+                <div class="modal-body" style="height: 671px !important">
+                    <div class="row">
+                        <div class="form-group" id="roww">
+                            <label for="project">Data Communication</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Distributed Processing</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" id="roww">
+                            <label for="project">Performance</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Heavily Used Configuration</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" id="roww">
+                            <label for="project">Transaction Rate</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Online Data Entry</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                    </div>
+                    <div class="row">
 
-<div class="modal" *ngIf="modal == 'add'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        <div class="form-group" id="roww">
+                            <label for="project">End User Efficiency</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Online Update</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group" id="roww">
+                            <label for="project">Complex Processing</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Reusable Code</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" id="roww">
+                            <label for="project">Installation Ease</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Operational Ease</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" id="roww">
+                            <label for="project">Multiple Sites</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Ease of Change</label>
+                            <input type="number" class="form-control" formControlName="project">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                </div>
+              
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" *ngIf="modal == 'add'" style="overflow: auto !important" [ngStyle]="{'display':display}" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -175,7 +271,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form [formGroup]="projectForm" (ngSubmit)="addProject()">
+            <form [formGroup]="projectForm" (ngSubmit)="addProjQuest()">
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -187,41 +283,32 @@
                         <textarea type="text" class="form-control" formControlName="description" placeholder="Description"></textarea>
                     </div>
                     <div class="form-group">
-                            <label for="description">Duration</label>
-                            <input  type="number" class="form-control" formControlName="duration" placeholder="Duration">
-                        </div>
+                        <label for="description">Duration</label>
+                        <input type="number" class="form-control" formControlName="duration" placeholder="Duration">
+                    </div>
                     <div class="form-group" formArrayName="phase">
                         <ng-container *ngFor="let ph of phase.controls; let i = index">
                             <div [formGroupName]="i">
-                            <label style="padding-right: 20px">Phase {{i+1}}</label><a style="color: red" (click)="deletePhase(i)">X</a>
-                         <input type="text" class="form-control" formControlName="phase" placeholder="Phase Name">
-                       
+                                <label style="padding-right: 20px">Phase {{i+1}}</label>
+                                <a style="color: red" (click)="deletePhase(i)">X</a>
+                                <input type="text" class="form-control" formControlName="phase" placeholder="Phase Name">
 
-                         <label for="methodology">Methodology</label>
-                         <select class="custom-select" id="bTSelect" formControlName="method">
 
-                                 <option selected disabled>Choose Methodology</option>
-                                 <option *ngFor="let tech of method" [value]="tech.title" >{{tech.title}}</option>
-                               </select>
+                                <label for="methodology">Methodology</label>
+                                <select class="custom-select" id="bTSelect" formControlName="method">
+
+                                    <option selected disabled>Choose Methodology</option>
+                                    <option *ngFor="let tech of method" [value]="tech.title">{{tech.title}}</option>
+                                </select>
                             </div>
-                        </ng-container><br><br>
+                        </ng-container>
+                        <br>
+                        <br>
                         <!-- <label for="phaseNo" style="padding-right: 20px">Add Phase</label> -->
                         <button type="button" class="btn btn-outline-primary" (click)="addPhase()">Add Phase</button>
                         <!-- <input type="number" class="form-control" formControlName="phaseNo" placeholder="Phase Number"> -->
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="technology">Technology</label>
-                        <textarea type="text" class="form-control" formControlName="technology" placeholder="Technology"></textarea>
-                    </div> -->
-                    <div class="form-group">
-                        <!-- <label for="methodology">Methodology</label>
-                        <select class="custom-select" id="bTSelect" formControlName="methodology">
-                            
-                                <option selected disabled>Choose Methodology</option>
-                                <option *ngFor="let tech of method" [value]="tech.title" >{{tech.title}}</option>
-                              </select> -->
-                        <!-- <textarea type="text" class="form-control" formControlName="methodology" placeholder="Methodology"></textarea> -->
-                    </div>
+                   
 
                 </div>
                 <div class="modal-footer">
@@ -255,29 +342,32 @@
                         <textarea type="text" class="form-control" formControlName="description" [(ngModel)]="proj.description" placeholder="Description"></textarea>
                     </div>
                     <div class="form-group" formArrayName="phase">
-                            <ng-container *ngFor="let ph of phase.controls; let i = index">
-                                <div [formGroupName]="i">
-                                <label style="padding-right: 20px">Phase {{i+1}}</label><a style="color: red" (click)="deletePhase(i)">X</a>
-                             <input type="text" class="form-control" formControlName="phase" [(ngModel)]="proj.phases[i].phase" placeholder="Phase Name">
-                           
-    
-                             <label for="methodology">Methodology</label>
-                             <select class="custom-select" id="bTSelect" formControlName="method" [(ngModel)]="proj.phases[i].method">
-    
-                                     <option selected disabled>Choose Methodology</option>
-                                     <option *ngFor="let tech of method" [value]="tech.title"  >{{tech.title}}</option>
-                                   </select>
-                                </div>
-                            </ng-container><br><br>
-                            <!-- <label for="phaseNo" style="padding-right: 20px">Add Phase</label> -->
-                            <button type="button" class="btn btn-outline-primary" (click)="addPhase()">Add Phase</button>
-                            <!-- <input type="number" class="form-control" formControlName="phaseNo" placeholder="Phase Number"> -->
-                        </div>
+                        <ng-container *ngFor="let ph of phase.controls; let i = index">
+                            <div [formGroupName]="i">
+                                <label style="padding-right: 20px">Phase {{i+1}}</label>
+                                <a style="color: red" (click)="deletePhase(i)">X</a>
+                                <input type="text" class="form-control" formControlName="phase" [(ngModel)]="proj.phases[i].phase" placeholder="Phase Name">
+
+
+                                <label for="methodology">Methodology</label>
+                                <select class="custom-select" id="bTSelect" formControlName="method" [(ngModel)]="proj.phases[i].method">
+
+                                    <option selected disabled>Choose Methodology</option>
+                                    <option *ngFor="let tech of method" [value]="tech.title">{{tech.title}}</option>
+                                </select>
+                            </div>
+                        </ng-container>
+                        <br>
+                        <br>
+                        <!-- <label for="phaseNo" style="padding-right: 20px">Add Phase</label> -->
+                        <button type="button" class="btn btn-outline-primary" (click)="addPhase()">Add Phase</button>
+                        <!-- <input type="number" class="form-control" formControlName="phaseNo" placeholder="Phase Number"> -->
+                    </div>
                     <!-- <div class="form-group">
                         <label for="technology">Technology</label>
                         <textarea type="text" class="form-control" formControlName="technology" [(ngModel)]="proj.technology" placeholder="Technology"></textarea>
                     </div> -->
-                   
+
 
                 </div>
                 <div class="modal-footer">

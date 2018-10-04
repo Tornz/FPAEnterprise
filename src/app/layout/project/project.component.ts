@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import * as $ from 'jquery';
 
 import { routerTransition } from '../../router.animations';
 import { ProjectServices } from '../../data-services/project.services';
@@ -22,17 +23,26 @@ export class ProjectComponent implements OnInit {
     modal: any;
     // phase = [];
     projectSubscription: Subscription;
-    public cols = [{ header: 'Id' },
-    { header: 'Project Name' },
-    { header: 'Description' },
-    { header: 'Phases' },
-    { header: 'Project Duration' },
-    { header: 'Date Created' },
-    { header: 'Date Updated' },
-    { header: 'Status' },{ header: 'Action' }]
+   
+    cols = [
+        { header: 'Id', field: 'id' },
+    { header: 'Project Name', field: 'projectName' },
+    { header: 'Description', field: 'description' },
+    { header: 'Phases' , field: 'phases'},
+    { header: 'Project Duration', field: 'duration' },
+    { header: 'Date Created' , field: 'dateCreated'},
+    { header: 'Date Updated', field: 'dateUpdated' },
+    { header: 'Status', field: 'status' },{ header: 'Action', field: 'action' }]
+    transactions: {
+        date: Date,
+        label: string,
+        amount: number
+      }[];
+    cars: Car[];
+     
     method = [{id: 1, title:"Agile"},{id: 2, title:"Waterfall"},{id: 3, title:"Scrum"}]
     constructor(public projSrv: ProjectServices, private form: FormBuilder, private forms: FormBuilder) {
-
+      
         this.projectForm = this.form.group({
             'project': new FormControl('', Validators.required),
             'description': new FormControl('', Validators.required),
@@ -48,6 +58,7 @@ export class ProjectComponent implements OnInit {
     }
 
     ngOnInit() {
+      
         this.loadData();
         this.projectSubscription = this.projSrv.projectChanged
             .subscribe((project: any) => {
@@ -81,12 +92,24 @@ export class ProjectComponent implements OnInit {
             this.loadData();
         }
     }
+    addProjQuest() {
+        // this.proj = new Project;
+        this.display = 'block';
+        this.modal = 'addQuestion';
+       
+    }
 
     addProj() {
         this.proj = new Project;
         this.display = 'block';
         this.modal = 'add';
         this.projectForm.reset();
+    }
+
+    addQuestion(){
+        this.display = 'none';
+        // this.addProj()
+        this.addProject();
     }
 
     addProject() {
@@ -107,7 +130,7 @@ export class ProjectComponent implements OnInit {
         this.display = 'none';
         this.projectForm.reset();
         this.phase.reset();
-        this.loadData();
+       
     }
 
     createItem(): FormGroup{
@@ -147,4 +170,11 @@ export class ProjectComponent implements OnInit {
     saveProj(projectData) {
         console.log('data', projectData);
     }
+ 
+}
+export interface Car {
+    vin;
+    year;
+    brand;
+    color;
 }
