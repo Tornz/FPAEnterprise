@@ -33,6 +33,7 @@
         "bpmn-js-properties-panel": "^0.26.1",
         "chart.js": "^2.7.2",
         "core-js": "^2.5.5",
+        "draw2d": "^1.0.14",
         "font-awesome": "^4.7.0",
         "handsontable": "^5.0.2",
         "jquery": "^3.3.1",

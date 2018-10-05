@@ -19,6 +19,7 @@ export class FunctionsComponent implements OnInit {
   selectedData: FunctionalDesc;
   columnFilter: string = 'name';
   functionsList: FunctionalDesc[];
+  searchString: string = '';
 
   constructor(private functionsService: FunctionalDescService, private form: FormBuilder) {
     this.functionForm = this.form.group({
@@ -30,7 +31,7 @@ export class FunctionsComponent implements OnInit {
     this.loadData();
   }
 
-  onModalOpen(modalName: string, selectedData: FunctionalDesc) {
+  onModalOpen(modalName: string, selectedData?: FunctionalDesc) {
     this.modal = modalName;
     this.display = 'block';
     console.log('selectedData', selectedData);

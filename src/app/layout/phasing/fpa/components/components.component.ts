@@ -48,7 +48,7 @@ export class ComponentsComponent implements OnInit {
     );
   }
 
-  onModalOpen(modalName: string, selectedData: ContainerComponent) {
+  onModalOpen(modalName: string, selectedData?: ContainerComponent) {
     this.modal = modalName;
     this.display = 'block';
     if(selectedData){
