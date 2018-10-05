@@ -24,7 +24,4 @@ export class CostModel {
         this.rate = rate;
         this.headcounts = headcounts.slice();
     }
-
-
-
 }

@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 
 
 ;
-import { PageHeaderModule } from './../../shared';
+import { PageHeaderModule } from '../../shared';
 import { CostModelComponent } from './costmodel.component';
 import { CostModelRoutingModule } from './costmodel-routing.module';
 import { CostModelDetailsComponent } from './costmodeldetails/costmodeldetails.component';
-import { CostModelServices } from './../../data-services/costModel.services';
+import { CostModelServices } from '../../data-services/costModel.services';
 
 
 @NgModule({

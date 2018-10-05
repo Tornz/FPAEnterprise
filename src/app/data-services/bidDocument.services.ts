@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from "@angular/core";
 import { Documents } from "../model/documents.model";
 import { FileUpload } from "../model/fileUpload.model";
-import { Subject } from "../../../node_modules/rxjs";
+import { Subject } from "rxjs";
 import * as $ from 'jquery';
 
 
