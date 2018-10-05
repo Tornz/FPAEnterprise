@@ -3,8 +3,17 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ComponentServices } from '../../../../data-services/component.services';
 import { Mapping } from '../../../../model/mapping.model';
 import { routerTransition } from '../../../../router.animations';
-import { MappingServices} from '../../../../data-services/mapping.services'
-
+import { MappingServices } from '../../../../data-services/mapping.services'
+// import { TechComponentServices} from '../../../../data-services/component.services'
+import { ContainerComponent } from '../../../../model/container-component.model';
+import { UserStoryServices } from '../../../../data-services/userStory.services'
+import { BacklogServices } from '../../../../data-services/backlog.services'
+import { Select2OptionData } from 'ng2-select2';
+import { TechnologyItem } from '../../../../model/TechnolonogyItem.model';
+import { Backlog } from '../../../../model/backlog.model';
+import { TechComponentServices } from '../../../../data-services/techComponent.services';
+import { TechComponents } from '../../../../model/techComponents.model';
+import { FunctionsServices } from '../../../../data-services/functions.services';
 @Component({
   selector: 'app-mapping',
   templateUrl: './mapping.component.html',
@@ -14,20 +23,27 @@ import { MappingServices} from '../../../../data-services/mapping.services'
 export class MappingComponent implements OnInit {
   searchString: string;
   mappings = [];
+  selectedComp = [];
+  userStory = [];
+  backlogs: Backlog[] = [];
+  component = [];
+  function = [];
+  selectedFunc = [];
+  selectOptions = {};
   tableHeaders = [
     { name: 'ID' },
     { name: 'Business Requirement' },
-    { name: 'Functions'},
-    { name: 'Components'}
+    { name: 'Functions' },
+    { name: 'Components' }
   ];
 
   display = 'none';
   modal: any;
   componentForm: FormGroup;
-//   selectedData: ContainerComponent = new ContainerComponent('', '', '', false, ''); 
+  //   selectedData: ContainerComponent = new ContainerComponent('', '', '', false, ''); 
   columnFilter: string = 'name';
 
-  constructor(private mapping: MappingServices, private form: FormBuilder) {
+  constructor(private mapping: MappingServices, private func: FunctionsServices, private componentService: ComponentServices, private user: UserStoryServices, private form: FormBuilder) {
     // this.componentForm = this.form.group({
     //   'name': new FormControl(this.selectedData.name , Validators.required),
     //   'softwareCategory': new FormControl(this.selectedData.softwareCategory , Validators.required),
@@ -35,9 +51,13 @@ export class MappingComponent implements OnInit {
     //   'openSource': new FormControl(this.selectedData.openSource , Validators.required),
     //   'license': new FormControl(this.selectedData.license , Validators.required)
     // });
-    }
+  }
 
   ngOnInit() {
+    this.function = this.func.getFunctions();
+    this.userStory = this.user.getUserStory();
+    this.component = this.componentService.getComponents();
+    console.log("component", this.function)
     this.mappings = this.mapping.getMapping();
     // this.componentService.componentListChanged.subscribe(
     //   (componentList) => {
@@ -46,56 +66,64 @@ export class MappingComponent implements OnInit {
     //   }
     // );
   }
+  searchFromArray(arr: ContainerComponent[], option) {
+    return $.grep(arr, obj => { return obj.id == option });
+  }
+  addFT(id: any) {
+    let ct = $("#cTSelect option:selected");
+    if (ct.is(":enabled")) {
+      //   let tech = this.searchFromArray(this.component, ft.val());
 
-//   onModalOpen(modalName: string, selectedData: ContainerComponent) {
-//     this.modal = modalName;
-//     this.display = 'block';
-//     if(selectedData){
-//       this.selectedData = selectedData;
-//       this.componentForm = this.form.group({
-//         'name': [this.selectedData.name , Validators.required],
-//         'softwareCategory': [this.selectedData.softwareCategory , Validators.required],
-//         'recommendedVersion': [this.selectedData.recommendedVersion , Validators.required],
-//         'openSource': [this.selectedData.openSource , Validators.required],
-//         'license': [this.selectedData.license , Validators.required]
-//       });
-//     } else {
-//       this.selectedData = new ContainerComponent('', '', '', false, '')
-//     }
-//   }
+      this.userStory.forEach(i => {
+        if (i.id == id) {
+          console.log(i)
+          i.component.push(ct.text())
 
-//   onSubmitAdd() {
-//     const containerComponent = new ContainerComponent(
-//       this.componentForm.controls.name.value,
-//       this.componentForm.controls.softwareCategory.value,
-//       this.componentForm.controls.recommendedVersion.value,
-//       this.componentForm.controls.openSource.value,
-//       this.componentForm.controls.license.value
-//       );
-//     this.componentService.createComponent(containerComponent);
-//     this.onModalClose();
-//   }
+        }
+      })
+      this.sortTechItemArr(this.component);
+      ct.val('')
+    }
+  
+    console.log("yeah", this.userStory)
+  }
 
-//   onSubmitEdit() {
-//     let containerComponent = new ContainerComponent(
-//       this.componentForm.controls.name.value,
-//       this.componentForm.controls.softwareCategory.value,
-//       this.componentForm.controls.recommendedVersion.value,
-//       this.componentForm.controls.openSource.value,
-//       this.componentForm.controls.license.value
-//       );
-//       containerComponent.id = this.selectedData.id;
-//     this.componentService.saveComponent(containerComponent);
-//     this.onModalClose();
-//   }
+  addFunc(id: any) {
+    console.log("Id", id)
+    let ft = $("#fTSelect option:selected");
+    if (ft.is(":enabled")) {
+      //   let tech = this.searchFromArray(this.component, ft.val());
 
-//   onSubmitDelete(){
-//     this.componentService.deleteComponent(this.selectedData);
-//     this.onModalClose();
-//   }
+      this.userStory.forEach(i => {
+        if (i.id == id) {
+          console.log("", this.userStory)
+          i.backlog.push(ft.text())
 
-//   onModalClose() {
-//     this.display = 'none';
-//     this.componentForm.reset();
-//   }
+        }
+      })
+      ft.val('')
+      this.sortTechItemArr(this.function);
+
+
+
+    }
+    console.log("Fortune", this.userStory)
+  }
+
+  sortTechItemArr(techArr: TechnologyItem[]) {
+    techArr.sort(function (a, b) {
+      var x = a.description;
+      var y = b.description;
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
+
+  removeBT(component: any, id: any) {
+    component.component.splice(id)
+
+  }
+
+  removeFunc(functions: any, id: any) {
+    functions.backlog.splice(id)
+  }
 }

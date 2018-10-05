@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BacklogServices } from '../../data-services/backlog.services';
 import { TechComponentServices } from '../../data-services/techComponent.services';
 import { LogicalContainerServices } from '../../data-services/logicalContainer.services';
+import { FunctionsServices } from '../../data-services/functions.services';
 import { PhysicalContainerComponent } from './fpa/physical-container/physical-container.component';
 import { TableFilterPipe } from '../../shared/pipes/table-filter.pipe';
 import { ComponentServices } from '../../data-services/component.services';
@@ -56,6 +57,7 @@ import { FunctionsComponent } from './fpa/functions/functions.component'
                 TechComponentServices,
                 LogicalContainerServices,
                 ComponentServices,
+                FunctionsServices,
                 MappingServices
         ]
 })

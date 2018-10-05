@@ -9,22 +9,23 @@ export class ComponentServices {
     private components: ContainerComponent[] = [];
 
     constructor() {
-        this.createComponent(new ContainerComponent("OS", 'OS', 'Redhat 7.5', true, ''));
-        this.createComponent(new ContainerComponent("Docker", 'Virtualization', 'Docker', false, ''));
-        this.createComponent(new ContainerComponent("WSO2 API Manager", 'API Manager', 'WSO2', true, ''));
-        this.createComponent(new ContainerComponent("WSO2 Identity Server", '', '', false, ''));
-        this.createComponent(new ContainerComponent("NGINX", 'Web Server', 'nginx-1.15.4', true, ''));
-        this.createComponent(new ContainerComponent("Qlik Sense", '', '', false, '1 - PU 6 - AU'));
+        this.createComponent(new ContainerComponent("OS", 'Linux', 'Red Hat Enterprise Linux 7.5', false, 'Yes'));
+        this.createComponent(new ContainerComponent("Docker", 'Virtualization', 'Docker Enterprise Advanced Edition 2.0', false, 'Yes'));
+        this.createComponent(new ContainerComponent("WSO2 API Manager", 'API Manager', 'WSO2 API Manager - 2.1.0', true, 'No'));
+        this.createComponent(new ContainerComponent("WSO2 Identity Server", 'Identity Server', 'WSO2 Identity & Access Management - 5.5.0', true, 'No'));
+        this.createComponent(new ContainerComponent("NGINX", 'Web Server', 'NGINX-1.15.4', true, 'No'));
+        this.createComponent(new ContainerComponent("Angular", 'UI', 'Angular - 6.1.3', true, 'No'));
+        this.createComponent(new ContainerComponent("Qlik Sense", '', 'Qlik Sense - 3.2', false, '1 - PU 6 - AU'));
         this.createComponent(new ContainerComponent("Joomla", 'CMS', 'Joomla 3.8', true, 'Templates'));
-        this.createComponent(new ContainerComponent("Spring-Boot", 'Java Framework', 'Spring-Boot 2', true, ''));
-        this.createComponent(new ContainerComponent("Kibana", '', '', true, ''));
-        this.createComponent(new ContainerComponent("Elastic Search", '', '', true, ''));
-        this.createComponent(new ContainerComponent("Logstash", '', '', true, ''));
-        this.createComponent(new ContainerComponent("NexusOSS", '', '', true, ''));
-        this.createComponent(new ContainerComponent("Sonatype Artifacts", '', '', true, ''));
-        this.createComponent(new ContainerComponent("SuiteCRM", '', '', true, ''));
-        this.createComponent(new ContainerComponent("Oracle", '', '', false, ''));
-        this.createComponent(new ContainerComponent("Redis", '', '', false, ''));
+        this.createComponent(new ContainerComponent("Spring-Boot", 'Java Framework', 'Spring-Boot 2', true, 'No'));
+        this.createComponent(new ContainerComponent("EKL", 'Kibana', 'Kibana - 6.3.0', true, 'No'));
+        this.createComponent(new ContainerComponent("EKL", 'Elastic Search', 'Elastic Search - 6.3', true, 'No'));
+        this.createComponent(new ContainerComponent("EKL", 'Logstash', 'Logstash - 6.3', true, 'No'));
+        this.createComponent(new ContainerComponent("NexusOSS Sonatype Artifacts Repository", 'NexusOSS Sonatype', '', true, 'No'));
+        this.createComponent(new ContainerComponent("Oracle for Linux", 'DB', 'Oracle Database - 11g or above', false, 'Yes'));
+        this.createComponent(new ContainerComponent("Redis", 'Virtualization', '', true, 'No'));
+        this.createComponent(new ContainerComponent("Private Registry", 'Private Registry', '', true, 'No'));
+        this.createComponent(new ContainerComponent("Build and Packing", 'Build and Packing', 'Jerkins', true, 'No'));
     }
 
     createComponent(containerComponent: ContainerComponent) {
