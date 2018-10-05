@@ -11,67 +11,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class ProjectServices {
 
-    private project = [
-        {
-            id: 1,
-            projectName: "Smartics",
-            description: "Legacy system",
-            phases: [{phase:"Web Application", method: "Scrum"}],
-            technology: "",
-            duration: 8,
-            methodology: "Agile",
-            dateCreated: new Date(),
-            status:"Open",
-            dateUpdated: new Date()
-        },
-        {
-            id: 2,
-            projectName: "Epassport",
-            description: "Foreign affairs web application",
-            phases: [{phase:"Web Application", method: "Agile"},{phase:"Mobile Application", method: "Waterfall"}],
-            technology: "",
-            duration: 3,
-            methodology: "Waterfall",
-            dateCreated: new Date(),
-            status:"Open",
-            dateUpdated: new Date()
-        },
-        {
-            id: 3,
-            projectName: "Asset Management System",
-            description: "Inventory system for company A",
-            phases: [{phase:"Web Application", method: "Waterfall"}],
-            technology: "",
-            duration: 5,
-            methodology: "Waterfall",
-            dateCreated: new Date(),
-            status:"Open",
-            dateUpdated: new Date()
-        },
-        {
-            id: 4,
-            projectName: "Insurance System",
-            description: "System for company B",
-            phases: [{phase:"Web Application", method: "Scrum"},{phase:"Mobile Application", method: "Waterfall"}],
-            technology: "",
-            duration: 8,
-            methodology: "Agile",
-            dateCreated: new Date(),
-            status:"Open",
-            dateUpdated: new Date()
-        },
-        {
-            id: 5,
-            projectName: "Student Portal",
-            description: "Subject and grade management system for company C",
-            phases: [{phase:"Web Application", method: "Scrum"}],
-            technology: "",
-            duration: 9,
-            dateCreated: new Date(),
-            status:"Open",
-            dateUpdated: new Date()
-        }
-    ];
+    private project = [];
     
     projectChanged = new Subject<any>();
     constructor(
