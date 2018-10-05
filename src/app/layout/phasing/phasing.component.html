@@ -26,7 +26,7 @@
                                             <h4>{{proj.projectName}}</h4>
                                         </div>
                                         <ng-container *ngFor="let phase of proj.phases; let i = index">
-                                        <p (click)="onPhaseLoad(proj)">Phase {{i+1}} {{phase.phase}}</p>
+                                        <p (click)="onPhaseLoad(proj, phase.phase)">Phase {{i+1}} {{phase.phase}}</p>
                                         </ng-container>
                                    
                                     </div>
@@ -34,53 +34,6 @@
                             </div>
                         </div>
                         </ng-container>
-
-                        <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <div class="box-part">
-                                <div class="row">
-                                    <div class="col-md-3"><i class="fa fa-building fa-3x" aria-hidden="true"></i></div>
-                                    <div class="col-md-9">
-                                        <div class="title">
-                                            <h4>Project B</h4>
-                                        </div>
-                                        <p>Phase 1 Web Application</p>
-                                        <p>Phase 2 Mobile Integration</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <div class="box-part">
-                                <div class="row">
-                                    <div class="col-md-3"><i class="fa fa-building fa-3x" aria-hidden="true"></i></div>
-                                    <div class="col-md-9">
-                                        <div class="title">
-                                            <h4>Project C</h4>
-                                        </div>
-                                        <p>Phase 1 Web Application</p>
-                                        <p>Phase 2 Mobile Integration</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-
-                        <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <div class="box-part">
-                                <div class="row">
-                                    <div class="col-md-3"><i class="fa fa-building fa-3x" aria-hidden="true"></i></div>
-                                    <div class="col-md-9">
-                                        <div class="title">
-                                            <h4>Project D</h4>
-                                        </div>
-                                        <p>Phase 1 Web Application</p>
-                                        <p>Phase 2 Mobile Integration</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
                     </div>
                 </div>
             </div>

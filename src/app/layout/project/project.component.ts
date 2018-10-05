@@ -58,7 +58,7 @@ export class ProjectComponent implements OnInit {
     }
 
     ngOnInit() {
-      
+        localStorage.clear();
         this.loadData();
         this.projectSubscription = this.projSrv.projectChanged
             .subscribe((project: any) => {
