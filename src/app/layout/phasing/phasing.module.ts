@@ -25,7 +25,8 @@ import { TableFilterPipe } from '../../shared/pipes/table-filter.pipe';
 import { ComponentServices } from '../../data-services/component.services';
 import { MappingComponent } from './fpa/mapping/mapping.component'
 import { MappingServices} from '../../data-services/mapping.services';
-import { FunctionsComponent } from './fpa/functions/functions.component'
+import { FunctionsComponent } from './fpa/functions/functions.component';
+import { SoftwareCategoryComponent } from './fpa/software-component/software-component.component'
 
 @NgModule({
         imports: [
@@ -49,7 +50,8 @@ import { FunctionsComponent } from './fpa/functions/functions.component'
                 LogicalContainerComponent,
                 PhysicalContainerComponent,
                 TableFilterPipe,
-                FunctionsComponent
+                FunctionsComponent,
+                SoftwareCategoryComponent
         ],
         providers: [
                 BacklogServices,
