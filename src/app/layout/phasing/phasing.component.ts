@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { Router } from '@angular/router';
 import { ProjectServices } from '../../data-services/project.services'
-
+// import { LocalStorageService } from '@angular/local'
 
 
 @Component({
@@ -13,6 +13,8 @@ import { ProjectServices } from '../../data-services/project.services'
 })
 export class PhasingComponent implements OnInit {
     project: any;
+    localProject: any;
+    phaseNo: any;
     constructor(private router: Router, private proj: ProjectServices) {
 
     }
@@ -20,6 +22,7 @@ export class PhasingComponent implements OnInit {
     public tabler = [];
 
     ngOnInit() {
+        localStorage.clear();
         this.loadData();
     }
 
@@ -27,8 +30,11 @@ export class PhasingComponent implements OnInit {
         this.project = this.proj.getProjects();
         console.log("Project", this.project)
     }
-    onPhaseLoad(phase) {
-        this.router.navigate(['/phasing/fpa'], { queryParams: { phase: phase } });
-       
+    onPhaseLoad(project: any, phaseNo: any) {
+        
+        this.localProject = localStorage.setItem('project',JSON.stringify(project));
+        this.phaseNo = localStorage.setItem('phase',phaseNo);
+        this.router.navigate(['/phasing/fpa']);
+        
     }
 }

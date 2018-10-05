@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of functionsList | filter: 'name' : searchString">
+                <tr *ngFor="let data of functionsList | filter: 'functionDesc' : searchString">
                     <td scope="row">{{ data.id }}</td>
                     <td scope="row">{{ data.functionDesc }}</td>
                     <td scope="row">
