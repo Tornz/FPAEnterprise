@@ -3,10 +3,10 @@ import { SoftwareCategory } from '../model/software-category.model';
 import { ContainerComponent } from '../model/container-component.model';
 import { SoftwareComponent } from '../model/software-component.model';
 import { Subject } from "rxjs";
- @Injectable({
+@Injectable({
     providedIn: 'root'
 })
- export class SoftwareComponentService {
+export class SoftwareComponentService {
     private softwareList: ContainerComponent[] = [
         new ContainerComponent("Joomla", 1, "Content Management System", "Joomla - 3.8.11", true, "Apache"),
         new ContainerComponent("Wordpress", 1, "Content Management System", "v1.0.5", true, "Apache"),
@@ -21,7 +21,7 @@ import { Subject } from "rxjs";
         new ContainerComponent("Elastic Search", 8, "ELK", "elasticSearch - 6.3", true, "Apache"),
         new ContainerComponent("Kibana", 8, "ELK", "Kibana - 6.3.0", true, "Apache"),
     ];
-     private softwareCategoryList: SoftwareCategory[] = [
+    private softwareCategoryList: SoftwareCategory[] = [
         new SoftwareCategory(1, "Content Management System"),
         new SoftwareCategory(2, "Operating System"),
         new SoftwareCategory(3, "Virtualization"),
@@ -31,24 +31,34 @@ import { Subject } from "rxjs";
         new SoftwareCategory(7, "Database"),
         new SoftwareCategory(8, "ELK")
     ];
-     private softwareComponents: SoftwareComponent[] = [];
-     constructor() { }
-     getSoftwareList() {
+    private softwareComponents: SoftwareComponent[] = [
+        new SoftwareComponent(1, 7, "Docker", "Docker 1"),
+        new SoftwareComponent(2, 5, "NGINX", "Web Server 1"),
+        new SoftwareComponent(3, 2, "Redhat", "OS 1")
+    ];
+
+    constructor() { }
+    getSoftwareList() {
         return this.softwareList.slice();
     }
-     getSoftwareListForCategory(categoryID: number) {
+
+    getSoftwareListForCategory(categoryID: number) {
         return this.softwareList.filter(el => el.categoryID == categoryID);
     }
-     getSoftwareCategoryList() {
+
+    getSoftwareCategoryList() {
         return this.softwareCategoryList.slice();
     }
-     getSoftwareComponentList() {
+
+    getSoftwareComponentList() {
         return this.softwareComponents.slice();
     }
-     saveNewComponent(newComponent: SoftwareComponent) {
+
+    saveNewComponent(newComponent: SoftwareComponent) {
         this.softwareComponents.push(newComponent);
     }
-     editFunction(data: SoftwareComponent) {
+
+    editFunction(data: SoftwareComponent) {
         for (var i in this.softwareComponents) {
             if (this.softwareComponents[i].id == data.id) {
                 this.softwareComponents[i].softwareCategoryID = data.softwareCategoryID;
@@ -58,7 +68,13 @@ import { Subject } from "rxjs";
             }
         }
     }
-     generateID() {
+
+    generateID() {
         return this.softwareComponents.length + 1;
+    }
+
+    deleteSoftwareComponent(id: number) {
+        this.softwareComponents = this.softwareComponents.filter(s => s.id != id);
+        return true;
     }
 }
