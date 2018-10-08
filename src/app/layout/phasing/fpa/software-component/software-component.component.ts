@@ -51,6 +51,7 @@ export class SoftwareCategoryComponent implements OnInit {
         'softwareName': new FormControl(this.selectedData.softwareName, Validators.required),
         'componentName': new FormControl(this.selectedData.name, Validators.required)
       });
+      this.softwareList = this.softwareComponentService.getSoftwareListForCategory(this.selectedData.softwareCategoryID);
     } else {
       this.selectedData = new SoftwareComponent(null, null, null, null);
     }
