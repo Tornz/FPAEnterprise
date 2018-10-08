@@ -19,8 +19,8 @@ export class ComponentsComponent implements OnInit {
     { name: 'Software Category'},
     { name: 'Recommended Version'},
     { name: 'Open Source'},
-    { name: 'License'},
-    { name: 'Action'}
+    { name: 'License'}
+    //{ name: 'Action'}
   ];
   display = 'none';
   modal: any;
