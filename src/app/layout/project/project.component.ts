@@ -54,7 +54,7 @@ export class ProjectComponent implements OnInit {
         this.searchForm = this.forms.group({
             'search': new FormControl('', Validators.required)
         })
-        this.proj = new Project;
+        this.proj = new Project(null, null, null, null, null, null, null);
     }
 
     ngOnInit() {
@@ -100,7 +100,7 @@ export class ProjectComponent implements OnInit {
     }
 
     addProj() {
-        this.proj = new Project;
+        this.proj = new Project(null, null, null, null, null, null, null);
         this.display = 'block';
         this.modal = 'add';
         this.projectForm.reset();
@@ -115,7 +115,7 @@ export class ProjectComponent implements OnInit {
     addProject() {
 
         console.log("Project", this.phase.value);
-        this.proj.id = 1;
+        this.proj.id = this.project.length + 1;
         this.proj.dateCreated = new Date();
         this.proj.dateUpdated = new Date();
         this.proj.duration = this.projectForm.controls.duration.value;
