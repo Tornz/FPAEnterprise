@@ -9,7 +9,7 @@ export class Project{
     dateCreated: Date;
     dateUpdated: Date;
 
-    constructor (id: number, projectName: string, description: Text, phases: any[], duration: number, dateCreated: Date, dateUpdated: date) {
+    constructor (id: number, projectName: string, description: Text, phases: any[], duration: number, dateCreated: Date, dateUpdated: Date) {
         this.id = id;
         this.projectName = projectName;
         this.description = description;
