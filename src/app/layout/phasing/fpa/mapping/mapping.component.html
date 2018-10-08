@@ -23,7 +23,7 @@
         <div class="col-sm-8">
             <ng-container *ngFor="let comps of userStory">
                 <div class="card border-dark mb-3">
-                    <p class="card-header">Product Backlog {{comps.id}}</p>
+                    <p class="card-header">{{comps.userStory}}</p>
                     <table class="card-body table table-hover">
                         <tbody>
                             <tr>
@@ -34,60 +34,45 @@
                     </table>
                     <div style=" margin-left: 20px">
                         <div class="input-group">
-                                <select class="custom-select" id="cTSelect">
-                                  <option selected disabled>Select Components</option>
-                                  <option *ngFor="let comp of component" [value]="comp.name">{{comp.name}}</option>
-                                </select>
-                                <div class="input-group-append">
-                                  <button class="btn btn-outline-primary" type="button" (click)="addFT(comps.id)">Add</button>
-                                </div>
-                              </div>
-                              <div class="text-muted selectedItems">Selected Items:
-                                        <span class="badge badge-pill badge-primary" *ngFor="let techs of comps.component; let i = index;">
-                                                {{techs}}
-                                                <i class="fa fa-times" (click)="removeBT( comps,i)"></i>
-                                              </span>
-                                   
-                                  </div>
-                        <!-- <select2 style="width:100%"  [data]="component"
-                        [options]="selectOptions"
-                        [value]="1"
-                        (valueChanged)="ilfChanged($event,i)"></select2> -->
-                        <!-- <select placeholder="Select Component">
-                            <ng-container *ngFor="let comp of component">
-                                <option value="comp.id">{{comp.name}}</option>
-                            </ng-container>
+                            <select class="custom-select" id="fTSelect">
+                                <option selected disabled>Select Functions</option>
+                                <option *ngFor="let func of function" [value]="func.name">{{func.description}}</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button" (click)="addFunc(comps.id)">Add</button>
+                            </div>
+                        </div>
+                        <div class="text-muted selectedItems">Selected Items:
+                            <span class="badge badge-pill badge-primary" *ngFor="let techss of comps.backlog; let i = index;">
+                                {{techss}}
+                                <i class="fa fa-times" (click)="removeFunc(comps,i)"></i>
+                            </span>
+                        </div>
+                    </div>
 
-                        </select> -->
-                </div>
-                <div style=" margin-left: 20px">
+                    <div style=" margin-left: 20px">
                         <div class="input-group">
-                                <select class="custom-select" id="fTSelect">
-                                  <option selected disabled>Select Functions</option>
-                                  <option *ngFor="let func of function" [value]="func.name">{{func.description}}</option>
-                                </select>
-                                <div class="input-group-append">
-                                  <button class="btn btn-outline-primary" type="button" (click)="addFunc(comps.id)">Add</button>
-                                </div>
-                              </div>
-                              <div class="text-muted selectedItems">Selected Items:
-                                    <span class="badge badge-pill badge-primary" *ngFor="let techss of comps.backlog; let i = index;">
-                                      {{techss}}
-                                      <i class="fa fa-times" (click)="removeFunc(comps,i)"></i>
-                                    </span>
-                                  </div>
-                    <!-- <select placeholder="Select Component">
-                        <ng-container *ngFor="let comp of component">
-                            <option value="comp.id">{{comp.name}}</option>
-                        </ng-container>
+                            <select class="custom-select" id="cTSelect">
+                                <option selected disabled>Select Components</option>
+                                <option *ngFor="let comp of component" [value]="comp.name">{{comp.name}}</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button" (click)="addFT(comps.id)">Add</button>
+                            </div>
+                        </div>
+                        <div class="text-muted selectedItems">Selected Items:
+                            <span class="badge badge-pill badge-primary" *ngFor="let techs of comps.component; let i = index;">
+                                {{techs}}
+                                <i class="fa fa-times" (click)="removeBT( comps,i)"></i>
+                            </span>
 
-                    </select> -->
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
         </div>
     </div>
-    </ng-container>
-</div>
-</div>
-<!-- <div class="col-sm-12">
+    <!-- <div class="col-sm-12">
     <div class="col-sm-4">
         <div class="card border-dark mb-3">
             <p class="card-header">Components</p>
@@ -102,7 +87,7 @@
     </div>
 
 </div> -->
-<!-- <div class="card mb-3">
+    <!-- <div class="card mb-3">
     <table class="card-body table table-hover">
       <thead class="card-header" style="background-color: #cce5ff;">
         <tr>

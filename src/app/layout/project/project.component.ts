@@ -47,10 +47,10 @@ export class ProjectComponent implements OnInit {
             'project': new FormControl('', Validators.required),
             'description': new FormControl('', Validators.required),
             'phase': new FormArray([]),
-            'duration': new FormControl('',[Validators.required])
-            // 'technology': new FormControl('', Validators.required),
+            'duration': new FormControl('',[Validators.required]),
+            // 'method': new FormControl('', Validators.required),
         })
-
+        console.log("phase", this.projectForm.controls.phase.value)
         this.searchForm = this.forms.group({
             'search': new FormControl('', Validators.required)
         })
@@ -93,17 +93,24 @@ export class ProjectComponent implements OnInit {
         }
     }
     addProjQuest() {
+        console.log("phases", this.projectForm.controls.phase.value)
+        if(this.projectForm.valid){
         // this.proj = new Project;
         this.display = 'block';
         this.modal = 'addQuestion';
-       
+    }else{
+
+    }
     }
 
     addProj() {
-        this.proj = new Project(null, null, null, null, null, null, null);
-        this.display = 'block';
-        this.modal = 'add';
-        this.projectForm.reset();
+      
+            this.proj = new Project(null, null, null, null, null, null, null);
+            this.display = 'block';
+            this.modal = 'add';
+            this.projectForm.reset();
+       
+       
     }
 
     addQuestion(){
@@ -113,7 +120,7 @@ export class ProjectComponent implements OnInit {
     }
 
     addProject() {
-
+      
         console.log("Project", this.phase.value);
         this.proj.id = this.project.length + 1;
         this.proj.dateCreated = new Date();
@@ -130,6 +137,7 @@ export class ProjectComponent implements OnInit {
         this.display = 'none';
         this.projectForm.reset();
         this.phase.reset();
+  
        
     }
 
