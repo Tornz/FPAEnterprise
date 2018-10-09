@@ -271,41 +271,62 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form [formGroup]="projectForm" (ngSubmit)="addProjQuest()">
+            <form [formGroup]="projectForm" #myForm='ngForm' (ngSubmit)="addProjQuest()">
                 <div class="modal-body">
 
                     <div class="form-group">
                         <label for="project">Project Name</label>
                         <input type="text" class="form-control" formControlName="project" placeholder="Project Name">
+                        <p style="color: #df0c1f" *ngIf="!projectForm.controls.project.valid && myForm.submitted">
+                            <i class="fa fa-close"></i> This field is required
+                    </p>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea type="text" class="form-control" formControlName="description" placeholder="Description"></textarea>
+                        <p style="color: #df0c1f" *ngIf="!projectForm.controls.description.valid && myForm.submitted">
+                            <i class="fa fa-close"></i> This field is required
+                    </p>
                     </div>
                     <div class="form-group">
                         <label for="description">Duration</label>
                         <input type="number" class="form-control" formControlName="duration" placeholder="Duration">
+                        <p style="color: #df0c1f" *ngIf="!projectForm.controls.duration.valid && myForm.submitted">
+                            <i class="fa fa-close"></i> This field is required
+                    </p>
+
+                    <p style="color: #df0c1f" *ngIf="projectForm.controls.phase.value == 0 && myForm.submitted">
+                        <i class="fa fa-close"></i>  Please add a phase
+                    </p>
                     </div>
                     <div class="form-group" formArrayName="phase">
                         <ng-container *ngFor="let ph of phase.controls; let i = index">
                             <div [formGroupName]="i">
                                 <label style="padding-right: 20px">Phase {{i+1}}</label>
                                 <a style="color: red" (click)="deletePhase(i)">X</a>
-                                <input type="text" class="form-control" formControlName="phase" placeholder="Phase Name">
-
-
+                                <input type="text" class="form-control" required formControlName="phase" placeholder="Phase Name">
+                                <p style="color: #df0c1f" *ngIf="!projectForm.controls.phase.valid && myForm.submitted">
+                                    <i class="fa fa-close"></i> This field is required
+                                </p>
                                 <label for="methodology">Methodology</label>
                                 <select class="custom-select" id="bTSelect" formControlName="method">
 
                                     <option selected disabled>Choose Methodology</option>
                                     <option *ngFor="let tech of method" [value]="tech.title">{{tech.title}}</option>
                                 </select>
+                                <!-- <p style="color: #df0c1f" *ngIf="!projectForm.controls.method.valid && myForm.submitted">
+                                    <i class="fa fa-close"></i> This field is required
+                                </p> -->
                             </div>
+
                         </ng-container>
-                        <br>
-                        <br>
+                      
+                    
+                        <div class="form-group">
                         <!-- <label for="phaseNo" style="padding-right: 20px">Add Phase</label> -->
                         <button type="button" class="btn btn-outline-primary" (click)="addPhase()">Add Phase</button>
+                       
+                        </div>
                         <!-- <input type="number" class="form-control" formControlName="phaseNo" placeholder="Phase Number"> -->
                     </div>
                    

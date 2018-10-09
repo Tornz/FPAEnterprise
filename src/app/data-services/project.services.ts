@@ -11,7 +11,9 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class ProjectServices {
 
-    private project = [];
+    private project = [
+        new Project(1, "SKVip", null, [{phase: "Web Application", method: "Agile"}], 3, new Date(), new Date())
+    ];
     
     projectChanged = new Subject<any>();
     constructor(
@@ -51,8 +53,8 @@ export class ProjectServices {
                 this.project[i].projectName = data.projectName
                 this.project[i].description = data.description
                 this.project[i].phases = data.phaseNumber
-                this.project[i].technology = data.technology
-                this.project[i].methodology = data.methodology
+                // this.project[i].technology = data.technology
+                // this.project[i].methodology = data.methodology
                 this.project[i].dateUpdated = new Date();
                 return true;
             }

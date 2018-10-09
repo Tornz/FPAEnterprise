@@ -5,9 +5,9 @@
     <div class="input-group-append">
       <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
     </div>
-    <div class="pl-2">
+    <!--<div class="pl-2">
       <button type="button" class="btn btn-outline-primary" (click)="onModalOpen('add')">Add Software</button>
-    </div>
+    </div>-->
   </div>
 
   <div class="card mb-3">
@@ -25,14 +25,14 @@
           <td scope="row">{{ component.recommendedVersion }}</td>
           <td scope="row">{{ component.openSource }}</td>
           <td scope="row">{{ component.license }}</td>
-          <td scope="row">
+          <!--<td scope="row">
             <button class="btn btn-outline-info" (click)="onModalOpen('edit', component)">Edit
               <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>
             </button>&nbsp;
             <button class="btn btn-outline-danger" (click)="onModalOpen('delete', component)">Delete
               <i class="fa fa-trash-o fa-lg mypointer" aria-hidden="true"></i>
             </button>
-          </td>
+          </td>-->
         </tr>
       </tbody>
     </table>

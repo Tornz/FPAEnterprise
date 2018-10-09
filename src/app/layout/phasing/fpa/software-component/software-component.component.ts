@@ -1,45 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { routerTransition } from '../../../../router.animations';
- import { SoftwareCategory } from '../../../../model/software-category.model';
+import { SoftwareCategory } from '../../../../model/software-category.model';
 import { ContainerComponent } from '../../../../model/container-component.model';
 import { SoftwareComponent } from '../../../../model/software-component.model';
 import { SoftwareComponentService } from '../../../../data-services/software-component.services';
- @Component({
+@Component({
   selector: 'app-software-component',
   templateUrl: './software-component.component.html',
   styleUrls: ['./software-component.component.scss'],
   animations: [routerTransition()]
 })
- export class SoftwareCategoryComponent implements OnInit {
-   softwareListAll: ContainerComponent[];
+export class SoftwareCategoryComponent implements OnInit {
+  softwareListAll: ContainerComponent[];
   softwareList: ContainerComponent[];
   categoryList: SoftwareCategory[];
   softwareComponents: SoftwareComponent[];
-   display = 'none';
+  display = 'none';
   modal: any;
   softwareComponentForm: FormGroup;
   selectedData: SoftwareComponent;
   columnFilter: string = 'name';
-   constructor(private softwareComponentService: SoftwareComponentService, private form: FormBuilder) {
+  constructor(private softwareComponentService: SoftwareComponentService, private form: FormBuilder) {
     this.softwareComponentForm = this.form.group({
       'categoryID': new FormControl(null, Validators.required),
       'softwareName': new FormControl(null, Validators.required),
       'componentName': new FormControl(null, Validators.required)
     });
   }
-   ngOnInit() {
+  ngOnInit() {
     this.loadOptions();
     this.loadData();
   }
-   loadOptions() {
+  loadOptions() {
     this.softwareListAll = this.softwareComponentService.getSoftwareList();
     this.categoryList = this.softwareComponentService.getSoftwareCategoryList();
   }
-   loadData() {
+  loadData() {
     this.softwareComponents = this.softwareComponentService.getSoftwareComponentList();
   }
-   onModalOpen(modalName: string, selectedData: SoftwareComponent) {
+  onModalOpen(modalName: string, selectedData: SoftwareComponent) {
     this.modal = modalName;
     this.display = 'block';
     console.log('selectedData', selectedData);
@@ -51,11 +51,12 @@ import { SoftwareComponentService } from '../../../../data-services/software-com
         'softwareName': new FormControl(this.selectedData.softwareName, Validators.required),
         'componentName': new FormControl(this.selectedData.name, Validators.required)
       });
+      this.softwareList = this.softwareComponentService.getSoftwareListForCategory(this.selectedData.softwareCategoryID);
     } else {
       this.selectedData = new SoftwareComponent(null, null, null, null);
     }
   }
-   onSubmitAdd() {
+  onSubmitAdd() {
     let newSoftwareComponent = new SoftwareComponent(
       this.softwareComponentService.generateID(),
       this.softwareComponentForm.controls.categoryID.value,
@@ -67,7 +68,7 @@ import { SoftwareComponentService } from '../../../../data-services/software-com
     this.loadData();
     this.onModalClose();
   }
-   onSubmitEdit() {
+  onSubmitEdit() {
     this.softwareComponentService.editFunction(new SoftwareComponent(
       this.selectedData.id,
       this.softwareComponentForm.controls.categoryID.value,
@@ -77,11 +78,17 @@ import { SoftwareComponentService } from '../../../../data-services/software-com
     this.loadData();
     this.onModalClose();
   }
-   onCategoryChange(categoryID: number) {
+  onCategoryChange(categoryID: number) {
     this.softwareList = this.softwareComponentService.getSoftwareListForCategory(categoryID);
   }
-   onModalClose() {
+  onModalClose() {
     this.display = 'none';
     this.softwareComponentForm.reset();
+  }
+  onSubmitDelete() {
+    this.softwareComponentService.deleteSoftwareComponent(this.selectedData.id);
+    this.selectedData = null;
+    this.loadData();
+    this.onModalClose();
   }
 }

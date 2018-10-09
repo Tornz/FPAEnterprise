@@ -23,7 +23,7 @@
         <div class="col-sm-8">
             <ng-container *ngFor="let comps of userStory">
                 <div class="card border-dark mb-3">
-                    <p class="card-header">Product Backlog {{comps.id}}</p>
+                    <p class="card-header">{{comps.userStory}}</p>
                     <table class="card-body table table-hover">
                         <tbody>
                             <tr>
@@ -32,6 +32,24 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div style=" margin-left: 20px">
+                        <div class="input-group">
+                            <select class="custom-select" id="fTSelect">
+                                <option selected disabled>Select Functions</option>
+                                <option *ngFor="let func of function" [value]="func.name">{{func.description}}</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button" (click)="addFunc(comps.id)">Add</button>
+                            </div>
+                        </div>
+                        <div class="text-muted selectedItems">Selected Items:
+                            <span class="badge badge-pill badge-primary" *ngFor="let techss of comps.backlog; let i = index;">
+                                {{techss}}
+                                <i class="fa fa-times" (click)="removeFunc(comps,i)"></i>
+                            </span>
+                        </div>
+                    </div>
+
                     <div style=" margin-left: 20px">
                         <div class="input-group">
                             <select class="custom-select" id="cTSelect">
@@ -49,39 +67,6 @@
                             </span>
 
                         </div>
-                        <!-- <select2 style="width:100%"  [data]="component"
-                        [options]="selectOptions"
-                        [value]="1"
-                        (valueChanged)="ilfChanged($event,i)"></select2> -->
-                        <!-- <select placeholder="Select Component">
-                            <ng-container *ngFor="let comp of component">
-                                <option value="comp.id">{{comp.name}}</option>
-                            </ng-container>
-
-                        </select> -->
-                    </div>
-                    <div style=" margin-left: 20px">
-                        <div class="input-group">
-                            <select class="custom-select" id="fTSelect">
-                                <option selected disabled>Select Functions</option>
-                                <option *ngFor="let func of function" [value]="func.name">{{func.description}}</option>
-                            </select>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="button" (click)="addFunc(comps.id)">Add</button>
-                            </div>
-                        </div>
-                        <div class="text-muted selectedItems">Selected Items:
-                            <span class="badge badge-pill badge-primary" *ngFor="let techss of comps.backlog; let i = index;">
-                                {{techss}}
-                                <i class="fa fa-times" (click)="removeFunc(comps,i)"></i>
-                            </span>
-                        </div>
-                        <!-- <select placeholder="Select Component">
-                        <ng-container *ngFor="let comp of component">
-                            <option value="comp.id">{{comp.name}}</option>
-                        </ng-container>
-
-                    </select> -->
                     </div>
                 </div>
             </ng-container>
