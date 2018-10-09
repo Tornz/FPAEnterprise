@@ -14,16 +14,42 @@
         </div>
     </div>
 
-    <div class="card mb-3">
+    <div class="row">
+        <ng-container *ngFor="let item of logicalContainers | filter: 'server' : searchString">
+            <div class="col col-sm-6 col-md-4 col-lg-3">
+                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                    <p class="card-header" style="background-color: #cce5ff;">{{item.server}}</p>
+                    <div class="card-body text-muted">
+                        <small>
+                            <p><strong>ID:</strong> {{item.id}}</p>
+                            <p><strong>vCPU (Core):</strong> {{item.vCpu}}</p>
+                            <p><strong>RAM (GB):</strong> {{item.ram}}</p>
+                            <p><strong>Data Storage (GB):</strong> {{item.dataStorage}}</p>
+                            <p><strong>PRD (Qty.):</strong> {{item.prodQuantity}}</p>
+                            <p><strong>DR (Qty.):</strong> {{item.drQuantity}}</p>
+                            <p><strong>UAT (Qty.):</strong> {{item.uatQuantity}}</p>
+                            <p><strong>SIT/DEV (Qty.):</strong> {{item.sitDevQuantity}}</p>
+                            <p><strong>Total Qty.:</strong> {{item.totalQuantity}}</p>
+                        </small>
+                        <p>
+                            <button class="btn btn-outline-info" (click)="editLogicalContainer(item)">Edit
+                                <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-outline-danger" (click)="onDelete(item)">Delete
+                                <i class="fa fa-trash-o fa-lg mypointer" aria-hidden="true"></i>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- <div class="card mb-3">
         <table class="card-body table table-hover">
             <thead class="card-header" style="background-color: #cce5ff;">
                 <tr>
                     <th *ngFor="let data of cols">{{data.header}}</th>
-                    <!-- <th>Project Name</th>
-                        <th>Col</th>
-                        <th>Col</th>
-                        <th>Col</th>
-                        <th>Col</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -50,7 +76,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> -->
 </div>
 
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
@@ -74,7 +100,7 @@
 
                         <label for="project">vCPU (Cores)</label>
                         <input type="number" class="form-control" formControlName="vCpu" placeholder="vCPU" />
-                        
+
                         <label for="project">RAM (GB)</label>
                         <input type="number" class="form-control" formControlName="ram" placeholder="RAM" />
 
@@ -122,28 +148,33 @@
 
                     <div class="form-group">
                         <label for="project">Server</label>
-                        <input type="text" class="form-control" formControlName="server" placeholder="Sever" [value]="logicCon.server"/>
+                        <input type="text" class="form-control" formControlName="server" placeholder="Sever" [value]="logicCon.server" />
 
                         <label for="project">vCPU (Cores)</label>
                         <input type="number" class="form-control" formControlName="vCpu" placeholder="vCPU" [value]="logicCon.vCpu" />
-                        
+
                         <label for="project">RAM (GB)</label>
                         <input type="number" class="form-control" formControlName="ram" placeholder="RAM" [value]="logicCon.ram" />
 
                         <label for="project">Data Storage (GB)</label>
-                        <input type="number" class="form-control" formControlName="dataStorage" placeholder="Data Storage" [value]="logicCon.dataStorage" />
+                        <input type="number" class="form-control" formControlName="dataStorage" placeholder="Data Storage" [value]="logicCon.dataStorage"
+                        />
 
                         <label for="project">Prod Quantity</label>
-                        <input type="number" class="form-control" formControlName="prodQuantity" placeholder="Prod Quantity" [value]="logicCon.prodQuantity" />
+                        <input type="number" class="form-control" formControlName="prodQuantity" placeholder="Prod Quantity" [value]="logicCon.prodQuantity"
+                        />
 
                         <label for="project">DR Quantity</label>
-                        <input type="number" class="form-control" formControlName="drQuantity" placeholder="DR Quantity" [value]="logicCon.drQuantity" />
+                        <input type="number" class="form-control" formControlName="drQuantity" placeholder="DR Quantity" [value]="logicCon.drQuantity"
+                        />
 
                         <label for="project">UAT Quantity</label>
-                        <input type="number" class="form-control" formControlName="uatQuantity" placeholder="UAT Quantity" [value]="logicCon.uatQuantity" />
+                        <input type="number" class="form-control" formControlName="uatQuantity" placeholder="UAT Quantity" [value]="logicCon.uatQuantity"
+                        />
 
                         <label for="project">SIT/DEV Quantity</label>
-                        <input type="number" class="form-control" formControlName="sitDevQuantity" placeholder="SIT/DEV Quantity" [value]="logicCon.sitDevQuantity" />
+                        <input type="number" class="form-control" formControlName="sitDevQuantity" placeholder="SIT/DEV Quantity" [value]="logicCon.sitDevQuantity"
+                        />
 
                         <label for="project">Components</label>
                         <select class="form-control" multiple formControlName="components">
