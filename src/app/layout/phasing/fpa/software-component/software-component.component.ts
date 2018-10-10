@@ -21,6 +21,7 @@ export class SoftwareCategoryComponent implements OnInit {
   softwareComponentForm: FormGroup;
   selectedData: SoftwareComponent;
   columnFilter: string = 'name';
+  searchString: string = '';
   constructor(private softwareComponentService: SoftwareComponentService, private form: FormBuilder) {
     this.softwareComponentForm = this.form.group({
       'categoryID': new FormControl(null, Validators.required),
@@ -39,7 +40,7 @@ export class SoftwareCategoryComponent implements OnInit {
   loadData() {
     this.softwareComponents = this.softwareComponentService.getSoftwareComponentList();
   }
-  onModalOpen(modalName: string, selectedData: SoftwareComponent) {
+  onModalOpen(modalName: string, selectedData?: SoftwareComponent) {
     this.modal = modalName;
     this.display = 'block';
     console.log('selectedData', selectedData);

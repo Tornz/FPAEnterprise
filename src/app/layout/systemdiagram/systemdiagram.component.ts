@@ -4,6 +4,7 @@ import { SystemDiagramServices } from '../../data-services/systemDiagram.service
 import { Documents } from '../../model/documents.model';
 import * as $ from 'jquery';
 import { ProjectServices } from '../../data-services/project.services';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-systemdiagram',
@@ -20,17 +21,11 @@ export class SystemDiagramComponent {
     display = 'none';
     projDoc: any = {};
     projSysDiags: any = [];
-    $fileDesc: any;
-    $fileInput: any;
-    $fileName: any;
 
-    constructor(private projService: ProjectServices, private sysDiagService: SystemDiagramServices) { }
+    constructor(private router: Router, private projService: ProjectServices, private sysDiagService: SystemDiagramServices) { }
 
     ngOnInit() {
         this.loadData();
-        this.$fileDesc = $('input#fileDesc'); //input #fileDesc
-        this.$fileInput = $('input#fileUpload'); // file input #fileUpload
-        this.$fileName = $('input#fileName'); // input #fileName
     }
 
     loadData() {
@@ -43,7 +38,7 @@ export class SystemDiagramComponent {
             this.projDocs.push({
                 "projId": proj.id,
                 "projName": proj.projectName,
-                "bidDocs": docs
+                "sysDiags": docs
             })
         });
 
@@ -52,7 +47,7 @@ export class SystemDiagramComponent {
     cardClick(projId: number) {
         let projDocs = $.grep(this.projDocs, obj => { return obj.projId == projId });
         this.projDoc = projDocs[0];
-        this.projSysDiags = this.projDoc.bidDocs;
+        this.projSysDiags = this.projDoc.sysDiags;
         this.display = 'block';
     }
 
@@ -60,61 +55,41 @@ export class SystemDiagramComponent {
         this.display = 'none';
         this.projDoc = {};
         this.projSysDiags = [];
-        this.resetFileInput();
     }
 
-    selectFile() {
-        this.$fileName.blur();
-        this.$fileInput.click();
-    }
-
-    onChangeFile(){
-        this.$fileName.val(this.$fileInput[0].files[0].name);
-    }
-
-    resetFileInput() {
-        this.$fileDesc.val('');
-        this.$fileName.val('');
-        this.$fileInput.val('');
+    openDiagram(type: string, projId: number, diagId?: number) {
+        if (type === 'new')
+            this.router.navigate(['/sysb/editor', { type: type, projId: projId }]);
+        else if(type === 'view')
+        this.router.navigate(['/sysb/viewer', { projId: projId, diagId: diagId }]);
+        else if (type === 'edit')
+            this.router.navigate(['/sysb/editor', { type: type, projId: projId, diagId: diagId }]);
     }
 
     saveFile() {
-        let input: any = this.$fileInput[0].files;
-        if (input.length > 0) {
-            let file: any = input[0];
-            getBase64(file).then((data: string) => {
-                let newFile = new Documents(this.projDoc.projId, this.$fileName.val(), this.$fileDesc.val(), new Date().toLocaleString());
-                this.sysDiagService.saveFile(newFile, data);
-                this.resetFileInput()
-                this.loadData();
-                this.cardClick(this.projDoc.projId);
-            });
-        }
+        // let input: any = this.$fileInput[0].files;
+        // if (input.length > 0) {
+        //     let file: any = input[0];
+        //     getBase64(file).then((data: string) => {
+        //         let newFile = new Documents(this.projDoc.projId, this.$fileName.val(), this.$fileDesc.val(), new Date().toLocaleString());
+        //         this.sysDiagService.saveFile(newFile, data);
+        //         this.loadData();
+        //         this.cardClick(this.projDoc.projId);
+        //     });
+        // }
 
-        function getBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-            });
-        }
-    }
-
-    downloadAllFiles() {
-        // let zipFile: JSZip = new JSZip();
-    }
-
-    downloadFile(fileId: number) {
-       let data = this.sysDiagService.getFile(fileId);
-       let $dwnld = $(`a#btn-dwnld-${fileId}`);
-       $dwnld.prop('href',data.file);
-       $dwnld.click();
+        // function getBase64(file) {
+        //     return new Promise((resolve, reject) => {
+        //         const reader = new FileReader();
+        //         reader.readAsDataURL(file);
+        //         reader.onload = () => resolve(reader.result);
+        //         reader.onerror = error => reject(error);
+        //     });
+        // }
     }
 
     deleteFile(fileId: number) {
-        this.sysDiagService.deleteFile(fileId)
-        this.resetFileInput()
+        this.sysDiagService.deleteFile(fileId);
         this.loadData();
         this.cardClick(this.projDoc.projId);
     }
