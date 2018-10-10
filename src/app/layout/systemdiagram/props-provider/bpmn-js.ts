@@ -1,4 +1,5 @@
 import _Modeler from 'bpmn-js/lib/Modeler.js';
+import _Viewer from 'bpmn-js/lib/Viewer.js';
 import * as _PropertiesPanelModule from 'bpmn-js-properties-panel';
 import * as _BpmnPropertiesProvider from 'bpmn-js-properties-panel/lib/provider/bpmn';
 import * as _EntryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory';
@@ -16,6 +17,7 @@ export const InjectionNames = {
 };
 
 export const Modeler = _Modeler;
+export const Viewer = _Viewer;
 export const PropertiesPanelModule = _PropertiesPanelModule;
 export const EntryFactory = _EntryFactory;
 export const OriginalPaletteProvider = _PaletteProvider;

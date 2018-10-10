@@ -1,6 +1,4 @@
 <div [@routerTransition]>
-    <!-- <app-diagrameditor></app-diagrameditor> -->
-
     <div class="form-group input-group col-4" style="padding-left: 0px;">
         <input type="text" class="form-control" placeholder="Search">
         <div class="input-group-append">
@@ -15,8 +13,8 @@
                 <p class="card-header" style="background-color: #cce5ff;">{{item.projName}}</p>
                 <div class="card-body">
                     <p class="card-text">
-                        Files uploaded: {{ item.bidDocs.length || 'None' }}
-                        <span class="text-muted" *ngFor="let doc of item.bidDocs">
+                        Files: {{ item.sysDiags.length || 'None' }}
+                        <span class="text-muted" *ngFor="let doc of item.sysDiags">
                             <br/>{{doc.name}} - {{doc.description}}</span>
                     </p>
                 </div>
@@ -25,12 +23,11 @@
     </div>
     <div class="backdrop" [ngStyle]="{'display':display}"></div>
 
-    <div class="modal" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal" [ngStyle]="{'display':display}" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{projDoc.projName}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{projDoc.projName}} System Diagrams</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -41,7 +38,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <!-- <th>Upload Date</th> -->
+                                <!-- <th>Last Modified</th> -->
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -51,41 +48,23 @@
                                 <td>{{file.description}}</td>
                                 <!-- <td>{{file.uploadDate}}</td> -->
                                 <td>
-                                    <a type="button" class="btn btn-outline-info" id="btn-dwnld-{{file.fileId}}" [download]="file.name" (click)="downloadFile(file.fileId)">
-                                        <i class="fa fa-download"></i>
+                                    <a type="button" class="btn btn-outline-success" (click)="openDiagram('view',projDoc.projID,file.fileId)">
+                                        <i class="fa fa-eye"></i> View
+                                    </a>
+                                    <a type="button" class="btn btn-outline-info" (click)="openDiagram('edit',projDoc.projID,file.fileId)">
+                                        <i class="fa fa-edit"></i> Edit
                                     </a>
                                     <button type="button" class="btn btn-outline-danger" (click)="deleteFile(file.fileId)">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fa fa-trash"></i> Delete
                                     </button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-
-                    <div class="card card-body">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="fileDesc"> Description </label>
-                            </div>
-                            <input type="text" class="form-control" id="fileDesc" placeholder="Description">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="fileUpload"> Upload File </label>
-                                <input type="file" style="display: none" id="fileUpload" (change)="onChangeFile()">
-                            </div>
-                            <input type="text" class="form-control" id="fileName" placeholder='Choose a file...' (click)="selectFile()" onkeypress="return false;"
-                            />
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-warning" id="btn-reset" type="button" (click)="resetFileInput()">Reset</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="onCloseHandled()">Close</button>
-                    <button type="button" class="btn btn-primary" (click)="saveFile()">Upload</button>
+                    <button type="button" class="btn btn-primary" (click)="openDiagram('new',projDoc.projId)">Create New</button>
                 </div>
             </div>
         </div>
