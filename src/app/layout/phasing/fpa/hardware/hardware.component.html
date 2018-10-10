@@ -63,11 +63,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form [formGroup]="hardwareForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()">
+      <form [formGroup]="hardwareForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()" ngNativeValidate>
         <div class="modal-body">
           <div class="form-group">
             <label for="project">Server</label>
-            <input type="text" class="form-control" formControlName="server" placeholder="Sever" />
+            <input type="text" class="form-control" formControlName="server" placeholder="Sever" required />
 
             <label for="project">vCPU (Cores)</label>
             <input type="number" class="form-control" formControlName="vCpu" placeholder="vCPU" />
