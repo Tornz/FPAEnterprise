@@ -81,7 +81,7 @@ export class BackLogsComponent implements OnInit {
         $(document).ready(function () {
            var data = [];
            var mainHead = ['', '', 'ILF', '', '', 'ELF', '', '', 'EI', '', '', 'EO', '', '', 'EQ', '', '', '', ''];
-           var subData = ['Module', 'Description', 'RET', 'DET', 'Technology', 'RET', 'DET', 'Technology'
+           var subData = ['Module', 'Function', 'RET', 'DET', 'Technology', 'RET', 'DET', 'Technology'
                , 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'FTR', 'DET', 'Technology', 'Reuse %', 'Adjusted FP.'];
 
            var values = temp;                 
@@ -126,6 +126,7 @@ export class BackLogsComponent implements OnInit {
                data: data,
                columns: defColumn,
                fixedRowsTop: 2,
+               fixedColumnsLeft: 2,
                stretchH: 'all',
                rowHeaders: true,
                colHeaders: true,

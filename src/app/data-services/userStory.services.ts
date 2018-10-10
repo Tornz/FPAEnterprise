@@ -16,7 +16,9 @@ export class UserStoryServices {
             {
                 id: 1,
                 user: "Customer",
+                description: "",
                 title: "Mobile App /PC Web",
+                backlogCode: "MOB",
                 userStory: "Mobile App Registration",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -31,7 +33,9 @@ export class UserStoryServices {
             {
                 id: 2,
                 title: "Mobile App /PC Web",
+                backlogCode: "MOB",
                 user: "System Admin",
+                description: "",
                 userStory: "PC web login requires mobile phone scanning code",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -46,7 +50,9 @@ export class UserStoryServices {
             {
                 id: 3,
                 title: "Mobile App /PC Web",
+                backlogCode: "MOB",
                 user: "IT Admin",
+                description: "",
                 userStory: "Landing/Welcome screen",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -61,7 +67,9 @@ export class UserStoryServices {
             {
                 id: 4,
                 title: "Mobile App /PC Web",
+                backlogCode: "MOB",
                 user: "IT Admin",
+                description: "",
                 userStory: "Multi-screen synchronization",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -76,7 +84,9 @@ export class UserStoryServices {
             {
                 id: 5,
                 title: "Mobile App /PC Web",
+                backlogCode: "MOB",
                 user: "IT Admin",
+                description: "",
                 userStory: "Customer Service & Personal Assistant",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -91,7 +101,9 @@ export class UserStoryServices {
             {
                 id: 6,
                 title: "Mobile App /PC Web",
+                backlogCode: "MOB",
                 user: "IT Admin",
+                description: "",
                 userStory: "Premium Member Activity Recommendation",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -106,7 +118,9 @@ export class UserStoryServices {
             {
                 id: 7,
                 title: "Mobile App /PC Web",
+                backlogCode: "MOB",
                 user: "IT Admin",
+                description: "",
                 userStory: "Exclusive Financial Product Recommendation",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -121,7 +135,9 @@ export class UserStoryServices {
             {
                 id:8,
                 title: "Mobile App /PC Web",
+                backlogCode: "MOB",
                 user: "IT Admin",
+                description: "",
                 userStory: "Appointment of proprietary services",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -136,7 +152,9 @@ export class UserStoryServices {
             {
                 id:9,
                 title: "Mobile App /PC Web",
+                backlogCode: "MOB",
                 user: "IT Admin",
+                description: "",
                 userStory: "Trace code (Web analytics)",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -151,7 +169,9 @@ export class UserStoryServices {
             {
                 id:10,
                 title: "Target Marketing",
+                backlogCode: "TM",
                 user: "User",
+                description: "",
                 userStory: "Precision Marketing Platform",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -166,7 +186,9 @@ export class UserStoryServices {
             {
                 id:11,
                 title: "Target Marketing",
+                backlogCode: "TM",
                 user: "User",
+                description: "",
                 userStory: " Connect internal data warehousing and data marts",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -181,7 +203,9 @@ export class UserStoryServices {
             {
                 id:12,
                 title: "Artificial Intelligence",
+                backlogCode: "AI",
                 user: "IT Admin",
+                description: "",
                 userStory: " Customer Indicator Analysis",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -196,7 +220,9 @@ export class UserStoryServices {
             {
                 id:12,
                 title: "Artificial Intelligence",
+                backlogCode: "AI",
                 user: "IT Admin",
+                description: "",
                 userStory: "  Customer behaviour forecast",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -211,7 +237,9 @@ export class UserStoryServices {
             {
                 id:13,
                 title: "Artificial Intelligence",
+                backlogCode: "AI",
                 user: "IT Admin",
+                description: "",
                 userStory: "Analysis of social activities and overall economic trends",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),
@@ -226,7 +254,9 @@ export class UserStoryServices {
             {
                 id:13,
                 title: "Concierge Services",
+                backlogCode: "CI",
                 user: "Admin",
+                description: "",
                 userStory: "SKB serial unlimited card exclusive service line",
                 dateUpdated: new Date(),
                 dateCreated: new Date(),

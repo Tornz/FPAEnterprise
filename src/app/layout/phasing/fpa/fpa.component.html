@@ -2,39 +2,48 @@
 <br />
 <ul class="nav nav-tabs">
     <li class="nav-item">
-        <a [class]="(activeTab==1) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(1)">Product Backlog</a>
+        <a [class]="(activeTab==1) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(1)">Modules</a>
     </li>
     <li class="nav-item">
-        <a [class]="(activeTab==2) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(2)">Functions</a>
+        <a [class]="(activeTab==2) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(2)">Product Backlog</a>
     </li>
     <li class="nav-item">
-        <a [class]="(activeTab==3) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(3)">Components</a>
+        <a [class]="(activeTab==3) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(3)">Functions</a>
     </li>
     <li class="nav-item">
-        <a [class]="(activeTab==4) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(4)">Mapping</a>
+        <a [class]="(activeTab==4) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(4)">Components</a>
     </li>
     <li class="nav-item">
-        <a [class]="(activeTab==5) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(5)">Software</a>
+        <a [class]="(activeTab==5) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(5)">Mapping</a>
     </li>
     <li class="nav-item">
-        <a [class]="(activeTab==6) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(6)">Hardware</a>
+        <a [class]="(activeTab==6) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(6)">Software</a>
     </li>
     <li class="nav-item">
-        <a [class]="(activeTab==7) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(7)">Network</a>
+        <a [class]="(activeTab==7) ? 'nav-link active': 'nav-link'" data-toggle="tab" (click)="onTab(7)">Hardware</a>
     </li>
     <li class="nav-item">
-        <a [class]="(activeTab==8) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(8)">FPA</a>
+        <a [class]="(activeTab==8) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(8)">Network</a>
     </li>
-
+    <li class="nav-item">
+        <a [class]="(activeTab==9) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(9)">FPA</a>
+    </li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
     <ng-template [ngIf]="activeTab==1">
-        <app-user [data]="data"></app-user>
+        <app-modules></app-modules>
     </ng-template>
     <ng-template [ngIf]="activeTab==2">
+        <app-user [data]="data"></app-user>
+    </ng-template>
+    <ng-template [ngIf]="activeTab==3">
         <app-functions></app-functions>
+    </ng-template>
+    <ng-template [ngIf]="activeTab==4">
+        <!--<app-physical-container></app-physical-container>-->
+        <app-software-component></app-software-component>
     </ng-template>
     <!-- <ng-template [ngIf]="activeTab==2">
         <app-estimation></app-estimation>
@@ -42,20 +51,16 @@
     <!-- <ng-template [ngIf]="activeTab==3">
         <app-implementation></app-implementation>
     </ng-template> -->
-    <ng-template [ngIf]="activeTab==4">
+    <ng-template [ngIf]="activeTab==5">
         <app-mapping></app-mapping>
     </ng-template>
-    <ng-template [ngIf]="activeTab==5">
+    <ng-template [ngIf]="activeTab==6">
         <app-components></app-components>
     </ng-template>
-    <ng-template [ngIf]="activeTab==6">
-        <app-logicalContainer></app-logicalContainer>
+    <ng-template [ngIf]="activeTab==7">
+        <app-hardware></app-hardware>
     </ng-template>
-    <ng-template [ngIf]="activeTab==3">
-        <!--<app-physical-container></app-physical-container>-->
-        <app-software-component></app-software-component>
-    </ng-template>
-    <ng-template [ngIf]="activeTab==8">
+    <ng-template [ngIf]="activeTab==9">
         <app-backlogs [data]="data"></app-backlogs>
     </ng-template>
 </div>
