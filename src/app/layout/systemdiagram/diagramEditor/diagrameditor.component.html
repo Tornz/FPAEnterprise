@@ -1,11 +1,39 @@
-<!-- <button (click)="load()">Load
-    <i class="fa fa-folder-open"></i>
-</button> -->
-<button (click)="save()">Save
-    <i class="fa fa-save"></i>
-</button>
+<button class="btn btn-primary" (click)="save()">
+    <i class="fa fa-save"></i> Save</button>
+<button class="btn btn-secondary" (click)="back()">
+    <i class="fa fa-ban"></i> Cancel</button>
 
 <div class="modeler">
     <div id="canvas"></div>
     <div id="properties"></div>
+</div>
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<div class="modal" [ngStyle]="{'display':display}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Diagram</h5>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="fileDesc"> Name </label>
+                    </div>
+                    <input type="text" class="form-control" id="fileDesc" placeholder="Name">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="fileDesc"> Description </label>
+                    </div>
+                    <input type="text" class="form-control" id="fileDesc" placeholder="Description">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="back()">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="onCloseHandled()">Create</button>
+            </div>
+        </div>
+    </div>
 </div>

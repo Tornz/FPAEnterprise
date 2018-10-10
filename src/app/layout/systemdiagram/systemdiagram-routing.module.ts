@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SystemDiagramComponent } from './systemdiagram.component';
 import { DiagramEditorComponent } from './diagramEditor/diagrameditor.component';
+import { DiagramViewerComponent } from './diagramViewer/diagramViewer.component'
 
 const routes: Routes = [
     { path: '', component: SystemDiagramComponent },
-    { path: 'editor/:projId/:sysdiagId', component: DiagramEditorComponent }
+    { path: 'editor', component: DiagramEditorComponent },
+    { path: 'viewer', component: DiagramViewerComponent }
 ];
 
 @NgModule({
