@@ -26,7 +26,9 @@ import { ComponentServices } from '../../data-services/component.services';
 import { MappingComponent } from './fpa/mapping/mapping.component'
 import { MappingServices} from '../../data-services/mapping.services';
 import { FunctionsComponent } from './fpa/functions/functions.component';
-import { SoftwareCategoryComponent } from './fpa/software-component/software-component.component'
+import { SoftwareCategoryComponent } from './fpa/software-component/software-component.component';
+import { ModulesComponent } from './fpa/modules/modules.component'
+import { ModulesServices } from '../../data-services/modules.services';
 
 @NgModule({
         imports: [
@@ -51,7 +53,8 @@ import { SoftwareCategoryComponent } from './fpa/software-component/software-com
                 PhysicalContainerComponent,
                 TableFilterPipe,
                 FunctionsComponent,
-                SoftwareCategoryComponent
+                SoftwareCategoryComponent,
+                ModulesComponent
         ],
         providers: [
                 BacklogServices,
@@ -60,7 +63,8 @@ import { SoftwareCategoryComponent } from './fpa/software-component/software-com
                 LogicalContainerServices,
                 ComponentServices,
                 FunctionsServices,
-                MappingServices
+                MappingServices,
+                ModulesServices
         ]
 })
 export class PhasingModule { }
