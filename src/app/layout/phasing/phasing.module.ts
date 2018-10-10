@@ -1,3 +1,4 @@
+import { HardwareComponent } from './fpa/hardware/hardware.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -27,6 +28,7 @@ import { MappingComponent } from './fpa/mapping/mapping.component'
 import { MappingServices} from '../../data-services/mapping.services';
 import { FunctionsComponent } from './fpa/functions/functions.component';
 import { SoftwareCategoryComponent } from './fpa/software-component/software-component.component'
+import { HardwareService } from '../../data-services/hardware.services';
 
 @NgModule({
         imports: [
@@ -51,7 +53,8 @@ import { SoftwareCategoryComponent } from './fpa/software-component/software-com
                 PhysicalContainerComponent,
                 TableFilterPipe,
                 FunctionsComponent,
-                SoftwareCategoryComponent
+                SoftwareCategoryComponent,
+                HardwareComponent
         ],
         providers: [
                 BacklogServices,
@@ -60,7 +63,8 @@ import { SoftwareCategoryComponent } from './fpa/software-component/software-com
                 LogicalContainerServices,
                 ComponentServices,
                 FunctionsServices,
-                MappingServices
+                MappingServices,
+                HardwareService
         ]
 })
 export class PhasingModule { }

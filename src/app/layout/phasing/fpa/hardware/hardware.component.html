@@ -1,0 +1,142 @@
+<div [@routerTransition]>
+  <br />
+  <div class="form-group input-group col-4" style="padding-left: 10px;">
+    <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString">
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+    <div class="row-md-3" style="padding-left: 10px;">
+      <button type="button" id="btn-save" class="btn btn-outline-primary btn-fpa" (click)="onModalOpen('add')">Add
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <ng-container *ngFor="let hardware of hardwares | filter: 'server' : searchString">
+      <div class="col col-sm-6 col-md-4 col-lg-3">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <p class="card-header" style="background-color: #cce5ff;">{{hardware.server}}</p>
+          <div class="card-body text-muted">
+            <small>
+              <p><strong>ID:</strong> {{hardware.id}}</p>
+              <p><strong>vCPU (Core):</strong> {{hardware.vCpu}}</p>
+              <p><strong>RAM (GB):</strong> {{hardware.ram}}</p>
+              <p><strong>Data Storage (GB):</strong> {{hardware.dataStorage}}</p>
+              <p><strong>PRD (Qty.):</strong> {{hardware.prodQuantity}}</p>
+              <p><strong>DR (Qty.):</strong> {{hardware.drQuantity}}</p>
+              <p><strong>UAT (Qty.):</strong> {{hardware.uatQuantity}}</p>
+              <p><strong>SIT/DEV (Qty.):</strong> {{hardware.sitDevQuantity}}</p>
+              <p><strong>Total Qty.:</strong> {{hardware.totalQuantity}}</p>
+              <p><strong>Components:</strong>
+                <span class="badge badge-pill badge-primary" *ngFor="let component of hardware.components">
+                  {{component.name}}
+                </span></p>
+            </small>
+            <p>
+              <button class="btn btn-outline-info" (click)="onModalOpen('edit', hardware)">Edit
+                <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>
+              </button>&nbsp;
+              <button class="btn btn-outline-danger" (click)="onModalOpen('delete', hardware)">Delete
+                <i class="fa fa-trash-o fa-lg mypointer" aria-hidden="true"></i>
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<div class="modal" *ngIf="modal === 'add' || modal === 'edit'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="modal === 'add'">New Hardware</h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="modal === 'edit'">Edit Hardware</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onModalClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="hardwareForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="project">Server</label>
+            <input type="text" class="form-control" formControlName="server" placeholder="Sever" />
+
+            <label for="project">vCPU (Cores)</label>
+            <input type="number" class="form-control" formControlName="vCpu" placeholder="vCPU" />
+
+            <label for="project">RAM (GB)</label>
+            <input type="number" class="form-control" formControlName="ram" placeholder="RAM" />
+
+            <label for="project">Data Storage (GB)</label>
+            <input type="number" class="form-control" formControlName="dataStorage" placeholder="Data Storage" />
+
+            <label for="project">Prod Quantity</label>
+            <input type="number" class="form-control" formControlName="prodQuantity" placeholder="Prod Quantity" />
+
+            <label for="project">DR Quantity</label>
+            <input type="number" class="form-control" formControlName="drQuantity" placeholder="DR Quantity" />
+
+            <label for="project">UAT Quantity</label>
+            <input type="number" class="form-control" formControlName="uatQuantity" placeholder="UAT Quantity" />
+
+            <label for="project">SIT/DEV Quantity</label>
+            <input type="number" class="form-control" formControlName="sitDevQuantity" placeholder="SIT/DEV Quantity" />
+
+            <label for="project">Components</label>
+            <div>
+              <div class="input-group">
+                <select class="custom-select" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}"
+                  (ngModelChange)="optionChanged($event)">
+                  <option selected disabled>Select Functions</option>
+                  <option [ngValue]="component" *ngFor="let component of components">{{component.name}}</option>
+                </select>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary" type="button" (click)="addComponentToForm()">Add</button>
+                </div>
+              </div>
+              <div class="text-muted selectedItems">Selected Items:
+                <span class="badge badge-pill badge-primary" *ngFor="let selectedComponent of hardwareForm.get('components').value; let i = index;">
+                  {{selectedComponent.name}}
+                  <i class="fa fa-times remove-component-btn" (click)="removeComponentInForm(i)"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="onModalClose()">Close</button>
+          <button type="submit" class="btn btn-outline-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal" *ngIf="modal === 'delete'" [ngStyle]="{'display':display}" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Component</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onModalClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>Are you sure you want to delete '{{ selectedHardware.server }}'?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onModalClose()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="onDelete()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.backdrop{
+    background-color:rgba(0,0,0,0.6);
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+}
+
+.badge-pill {
+    margin-right: 1px;
+}
+
+.modal-body {
+    height: 450px;
+    overflow-y: auto;
+}
+
+.remove-component-btn {
+    cursor: pointer;
+}
