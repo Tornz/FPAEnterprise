@@ -48,12 +48,12 @@
                                 <td>{{file.description}}</td>
                                 <!-- <td>{{file.uploadDate}}</td> -->
                                 <td>
-                                    <a type="button" class="btn btn-outline-success" (click)="openDiagram('view',projDoc.projID,file.fileId)">
+                                    <button type="button" class="btn btn-outline-success" (click)="openDiagram('view',projDoc.projId,file.fileId)">
                                         <i class="fa fa-eye"></i> View
-                                    </a>
-                                    <a type="button" class="btn btn-outline-info" (click)="openDiagram('edit',projDoc.projID,file.fileId)">
+                                    </button>
+                                    <button type="button" class="btn btn-outline-info" (click)="openDiagram('edit',projDoc.projId,file.fileId)">
                                         <i class="fa fa-edit"></i> Edit
-                                    </a>
+                                    </button>
                                     <button type="button" class="btn btn-outline-danger" (click)="deleteFile(file.fileId)">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>

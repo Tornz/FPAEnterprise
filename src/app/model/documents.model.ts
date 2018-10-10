@@ -7,13 +7,15 @@ export class Documents {
     name: string;
     description: string;
     // path: string;
-    uploadDate: string;
+    lastModified: string;
 
-    constructor(projectId: number, fileName: string, description: string, uploadDate: string, fileId: number = 0) {
+    constructor(projectId: number, fileName: string, description: string,
+        lastModified: string = new Date().toLocaleString(), fileId: number = 0) {
+
         this.projectId = projectId;
         this.fileId = fileId;
         this.name = fileName;
         this.description = description;
-        this.uploadDate = uploadDate;
+        this.lastModified = lastModified;
     }
 }

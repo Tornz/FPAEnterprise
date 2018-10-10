@@ -1,16 +1,18 @@
-<button class="btn btn-primary" (click)="save()">
-    <i class="fa fa-save"></i> Save</button>
-<button class="btn btn-secondary" (click)="back()">
-    <i class="fa fa-ban"></i> Cancel</button>
+<div id="editor" style="display: none">
+    <button class="btn btn-secondary mx-1" (click)="back()">
+        <i class="fa fa-times"></i> Exit</button>
+    <button class="btn btn-primary mx-1" (click)="save()">
+        <i class="fa fa-save"></i> Save</button>
 
-<div class="modeler">
-    <div id="canvas"></div>
-    <div id="properties"></div>
+    <div class="modeler">
+        <div id="canvas"></div>
+        <div id="properties"></div>
+    </div>
 </div>
 
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
 
-<div class="modal" [ngStyle]="{'display':display}" tabindex="-1" role="dialog">
+<div class="modal" *ngIf="modal === 'create'" [ngStyle]="{'display':display}" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,20 +21,29 @@
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="fileDesc"> Name </label>
+                        <label class="input-group-text" for="diagName">Name
+                            <span class="text-danger">*</span>
+                        </label>
                     </div>
-                    <input type="text" class="form-control" id="fileDesc" placeholder="Name">
+                    <input type="text" class="form-control" id="diagName" placeholder="Name">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="fileDesc"> Description </label>
+                        <label class="input-group-text" for="diagDesc">Description</label>
                     </div>
-                    <input type="text" class="form-control" id="fileDesc" placeholder="Description">
+                    <input type="text" class="form-control" id="diagDesc" placeholder="Description">
                 </div>
+                <p id='diagNameWarn' class="text-danger my-0" style="display: none">
+                    <small>Diagram name is required!</small>
+                </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="back()">Cancel</button>
-                <button type="button" class="btn btn-primary" (click)="onCloseHandled()">Create</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="back()">
+                    <i class="fa fa-times"></i> Cancel
+                </button>
+                <button type="button" class="btn btn-primary" (click)="createNew()">
+                    <i class="fa fa-file"></i> Create
+                </button>
             </div>
         </div>
     </div>
