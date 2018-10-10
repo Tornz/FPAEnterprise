@@ -25,7 +25,9 @@
     <li class="nav-item">
         <a [class]="(activeTab==8) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(8)">FPA</a>
     </li>
-
+    <li class="nav-item">
+        <a [class]="(activeTab==9) ? 'nav-link active' : 'nav-link'" data-toggle="tab" (click)="onTab(9)">Modules</a>
+    </li>
 </ul>
 
 <!-- Tab panes -->
@@ -57,5 +59,8 @@
     </ng-template>
     <ng-template [ngIf]="activeTab==8">
         <app-backlogs [data]="data"></app-backlogs>
+    </ng-template>
+    <ng-template [ngIf]="activeTab==9">
+        <app-modules></app-modules>
     </ng-template>
 </div>
