@@ -13,7 +13,8 @@ import { TechnologyItem } from '../../../../model/TechnolonogyItem.model';
 import { Backlog } from '../../../../model/backlog.model';
 import { TechComponentServices } from '../../../../data-services/techComponent.services';
 import { TechComponents } from '../../../../model/techComponents.model';
-import { FunctionsServices } from '../../../../data-services/functions.services';
+import { FunctionalDescService } from '../../../../data-services/functional-desc.services';
+import * as _ from "lodash"
 @Component({
   selector: 'app-mapping',
   templateUrl: './mapping.component.html',
@@ -36,14 +37,14 @@ export class MappingComponent implements OnInit {
     { name: 'Functions' },
     { name: 'Components' }
   ];
-
+  newArray = [];
   display = 'none';
   modal: any;
   componentForm: FormGroup;
   //   selectedData: ContainerComponent = new ContainerComponent('', '', '', false, ''); 
   columnFilter: string = 'name';
 
-  constructor(private mapping: MappingServices, private func: FunctionsServices, private componentService: ComponentServices, private user: UserStoryServices, private form: FormBuilder) {
+  constructor(private mapping: MappingServices, private func: FunctionalDescService, private componentService: ComponentServices, private user: UserStoryServices, private form: FormBuilder) {
     // this.componentForm = this.form.group({
     //   'name': new FormControl(this.selectedData.name , Validators.required),
     //   'softwareCategory': new FormControl(this.selectedData.softwareCategory , Validators.required),
@@ -54,10 +55,30 @@ export class MappingComponent implements OnInit {
   }
 
   ngOnInit() {
+   
     this.function = this.func.getFunctions();
     this.userStory = this.user.getUserStory();
     this.component = this.componentService.getComponents();
-    console.log("component", this.function)
+    this.userStory.forEach(us => {
+      this.function.forEach(func => {
+        let codee
+        console.log("Digit or not", this.isDigit(us.id))
+        if(this.isDigit(us.id)){
+          codee = us.backlogCode + '0'+ us.id;
+        }else{
+          codee = us.backlogCode + us.id;
+        }
+        if(codee == func.code){
+          us.backlog.push(func)
+         
+        }
+      })
+    })
+    console.log("component", this.userStory)
+  //   let newArray =  _.map(this.userStory, function(item) {
+  //     return _.assign(item, _.find(this.function, ['code', item.backlogCode]));
+  // });
+    // console.log("MERGE aRRAY", newArray)
     this.mappings = this.mapping.getMapping();
     // this.componentService.componentListChanged.subscribe(
     //   (componentList) => {
@@ -65,6 +86,9 @@ export class MappingComponent implements OnInit {
     //     this.searchString = '';
     //   }
     // );
+  }
+  isDigit(val) {
+    return String(+val).charAt(0) == val;
   }
   searchFromArray(arr: ContainerComponent[], option) {
     return $.grep(arr, obj => { return obj.id == option });

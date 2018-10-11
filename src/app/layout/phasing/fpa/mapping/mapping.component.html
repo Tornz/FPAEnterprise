@@ -33,7 +33,12 @@
                         </tbody>
                     </table>
                     <div style=" margin-left: 20px">
-                        <div class="input-group">
+                      
+                        <ng-container *ngFor="let func of comps.backlog">
+                                <label><strong>Function/s list:</strong></label>
+                                <p>{{func.functionDesc}}</p>
+                        </ng-container>
+                        <!-- <div class="input-group">
                             <select class="custom-select" id="fTSelect">
                                 <option selected disabled>Select Functions</option>
                                 <option *ngFor="let func of function" [value]="func.name">{{func.description}}</option>
@@ -41,13 +46,8 @@
                             <div class="input-group-append">
                                 <button class="btn btn-outline-primary" type="button" (click)="addFunc(comps.id)">Add</button>
                             </div>
-                        </div>
-                        <div class="text-muted selectedItems">Selected Items:
-                            <span class="badge badge-pill badge-primary" *ngFor="let techss of comps.backlog; let i = index;">
-                                {{techss}}
-                                <i class="fa fa-times" (click)="removeFunc(comps,i)"></i>
-                            </span>
-                        </div>
+                        </div> -->
+                       
                     </div>
 
                     <div style=" margin-left: 20px">

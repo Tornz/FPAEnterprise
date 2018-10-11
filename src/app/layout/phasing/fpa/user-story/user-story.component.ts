@@ -62,7 +62,7 @@ export class UserStoryComponent implements OnInit {
                 select.push(modules[i].code);
             });
             $.each(values, function (i) {
-                var item = [values[i].id, "", values[i].description, values[i].userStory, values[i].user,
+                var item = [values[i].id, values[i].backlogCode, values[i].title, values[i].userStory, values[i].user,
                 values[i].epic,
                 values[i].importance,
                 values[i].storyPoints,
