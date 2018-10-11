@@ -22,7 +22,14 @@
           <td scope="row">{{ component.id }}</td>
           <td scope="row">{{ component.name }}</td>
           <td scope="row">{{ component.softwareCategory }}</td>
-          <td scope="row">{{ component.recommendedVersion }}</td>
+          <!--<td scope="row">{{ component.recommendedVersion }}</td>-->
+          <td>
+            <select class="form-control" readonly [(ngModel)]="component.recommendedVersion">
+              <option *ngFor="let s of component.versions" [value]="s.value">
+                  {{s.value}}
+              </option>
+            </select>
+          </td>
           <td scope="row">{{ component.openSource }}</td>
           <td scope="row">{{ component.license }}</td>
           <!--<td scope="row">

@@ -5,6 +5,8 @@ import { SoftwareCategory } from '../../../../model/software-category.model';
 import { ContainerComponent } from '../../../../model/container-component.model';
 import { SoftwareComponent } from '../../../../model/software-component.model';
 import { SoftwareComponentService } from '../../../../data-services/software-component.services';
+import { ComponentServices } from '../../../../data-services/component.services';
+
 @Component({
   selector: 'app-software-component',
   templateUrl: './software-component.component.html',
@@ -22,7 +24,7 @@ export class SoftwareCategoryComponent implements OnInit {
   selectedData: SoftwareComponent;
   columnFilter: string = 'name';
   searchString: string = '';
-  constructor(private softwareComponentService: SoftwareComponentService, private form: FormBuilder) {
+  constructor(private softwareComponentService: SoftwareComponentService, private componentService: ComponentServices, private form: FormBuilder) {
     this.softwareComponentForm = this.form.group({
       'categoryID': new FormControl(null, Validators.required),
       'softwareName': new FormControl(null, Validators.required),
@@ -34,7 +36,7 @@ export class SoftwareCategoryComponent implements OnInit {
     this.loadData();
   }
   loadOptions() {
-    this.softwareListAll = this.softwareComponentService.getSoftwareList();
+    this.softwareListAll = this.componentService.getComponents();
     this.categoryList = this.softwareComponentService.getSoftwareCategoryList();
   }
   loadData() {
@@ -52,7 +54,7 @@ export class SoftwareCategoryComponent implements OnInit {
         'softwareName': new FormControl(this.selectedData.softwareName, Validators.required),
         'componentName': new FormControl(this.selectedData.name, Validators.required)
       });
-      this.softwareList = this.softwareComponentService.getSoftwareListForCategory(this.selectedData.softwareCategoryID);
+      this.softwareList = this.componentService.getComponents().filter(el => el.categoryID == this.selectedData.softwareCategoryID);
     } else {
       this.selectedData = new SoftwareComponent(null, null, null, null);
     }

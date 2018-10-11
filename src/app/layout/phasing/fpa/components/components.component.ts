@@ -25,7 +25,7 @@ export class ComponentsComponent implements OnInit {
   display = 'none';
   modal: any;
   componentForm: FormGroup;
-  selectedData: ContainerComponent = new ContainerComponent('', null, '', '', false, ''); 
+  selectedData: ContainerComponent = new ContainerComponent('', null, '', '', false, '', []); 
   columnFilter: string = 'name';
 
   constructor(private componentService: ComponentServices, private form: FormBuilder) {
@@ -61,7 +61,7 @@ export class ComponentsComponent implements OnInit {
         'license': [this.selectedData.license , Validators.required]
       });
     } else {
-      this.selectedData = new ContainerComponent('', null, '', '', false, '')
+      this.selectedData = new ContainerComponent('', null, '', '', false, '', [])
     }
   }
 
@@ -72,7 +72,8 @@ export class ComponentsComponent implements OnInit {
       this.componentForm.controls.softwareCategory.value,
       this.componentForm.controls.recommendedVersion.value,
       this.componentForm.controls.openSource.value,
-      this.componentForm.controls.license.value
+      this.componentForm.controls.license.value,
+      []
       );
     this.componentService.createComponent(containerComponent);
     this.onModalClose();
@@ -85,7 +86,8 @@ export class ComponentsComponent implements OnInit {
       this.componentForm.controls.softwareCategory.value,
       this.componentForm.controls.recommendedVersion.value,
       this.componentForm.controls.openSource.value,
-      this.componentForm.controls.license.value
+      this.componentForm.controls.license.value,
+      []
       );
       containerComponent.id = this.selectedData.id;
     this.componentService.saveComponent(containerComponent);
