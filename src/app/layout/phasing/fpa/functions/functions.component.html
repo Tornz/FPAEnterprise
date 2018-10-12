@@ -17,7 +17,6 @@
                     <th>ID</th>
                     <th>Product Backlog Code</th>
                     <th>Function</th>
-                  
                     <th>Action</th>
                 </tr>
             </thead>
@@ -26,7 +25,7 @@
                     <td scope="row">{{ data.id }}</td>
                     <td scope="row">{{ data.code }}</td>
                     <td scope="row">{{ data.functionDesc }}</td>
-                   
+
                     <td scope="row">
                         <button class="btn btn-outline-info" (click)="onModalOpen('edit', data)">Edit
                             <i class="fa fa-edit fa-lg mypointer" aria-hidden="true"></i>
@@ -55,16 +54,16 @@
             </div>
             <form [formGroup]="functionForm" #myForm='ngForm' (ngSubmit)="onSubmitAdd()" ngNativeValidate>
                 <div class="modal-body">
-                        <div class="form-group">
-                                <label for="name">Product Backlog Code</label><br>
-                                <select formControlName="code" class="form-control" id="code" [(ngModel)]="selectedUserStory">
-                                    <option *ngFor="let user of backlog"  [ngValue]="user">{{user.backlogCode}}{{user.id}}</option>
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <label for="name">Product Backlog Code</label><br>
+                        <select formControlName="code" class="form-control" id="code" [(ngModel)]="selectedUserStory">
+                            <option *ngFor="let user of backlog" [ngValue]="user">{{user.backlogCode}}{{user.id}}</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="name">Function</label>
                         <textarea type="text" class="form-control" formControlName="functionDesc" placeholder="Function description"
-                            id="functionDesc" required >
+                            id="functionDesc" required>
                         </textarea>
                     </div>
                 </div>
@@ -92,7 +91,7 @@
                     <div class="form-group">
                         <label for="name">Function</label>
                         <textarea type="text" class="form-control" formControlName="functionDesc" placeholder="Function description"
-                            id="functionDesc" required >
+                            id="functionDesc" required>
                         </textarea>
                     </div>
                 </div>

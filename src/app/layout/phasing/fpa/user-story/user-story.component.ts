@@ -1,13 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { routerTransition } from '../../../../router.animations';
-import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { UserStoryServices } from '../../../../data-services/userStory.services'
 import { ModulesServices } from '../../../../data-services/modules.services'
 import { User } from '../../../../model/user.model'
 import { FPAComponent } from '../fpa.component'
 import * as $ from 'jquery';
-import { log } from 'util';
 import * as Handsontable from 'handsontable';
 
 @Component({
@@ -48,9 +46,6 @@ export class UserStoryComponent implements OnInit {
         console.log("Modules", modules)
         $(document).ready(function () {
             var data = [];
-            var mainHead = [];
-            var subData = ['Id', 'Epic', 'User', 'User Backlog', 'Importance', 'Story Points', 'Conversation'
-                , 'Integrations'];
 
             var values = temp;
             var select = [];
@@ -62,6 +57,14 @@ export class UserStoryComponent implements OnInit {
                 select.push(modules[i].code);
             });
             $.each(values, function (i) {
+                var flatFunction = "";
+                var separator = "";
+                $.each(values[i].backlog, function (j){
+                    if(values[i].backlog[j]){
+                        flatFunction = flatFunction + separator + values[i].backlog[j].functionDesc;
+                    }
+                    separator = ",";
+                })
                 var item = [values[i].id, values[i].backlogCode, values[i].title, values[i].userStory, values[i].user,
                 values[i].epic,
                 values[i].importance,
@@ -70,6 +73,7 @@ export class UserStoryComponent implements OnInit {
                 values[i].integration,
                 values[i].dateCreated,
                 values[i].dateUpdated,
+                flatFunction,
                 ]
               
                 data.push(item);
@@ -122,9 +126,7 @@ export class UserStoryComponent implements OnInit {
             function prepareData(rowCount, colCount) {
                 var fpaArray = [];
                 for (var i = 0; i < rowCount; i++) {
-                    var fpaObj = {};
                     for (var c = 0; c < colCount; c++) {
-                        var objNotation = hot.getDataAtCell(0, c) + hot.getDataAtCell(1, c);
                     }
                     data.push(hot.getDataAtRow(i));
                 }
@@ -142,8 +144,6 @@ export class UserStoryComponent implements OnInit {
     }
 
     onSave() {
-        const saveUser = this.userStory.filter(x => x.id == 0);
-        const editUser = this.userStory.filter(x => x.edited == true);
         this.fpaSrv.addUserStory(this.userStory)
     }
     loadData() {

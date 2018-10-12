@@ -11,7 +11,6 @@ import { User } from '../model/user.model';
 import { environment } from '../../environments/environment';
 @Injectable()
 export class UserStoryServices {
-    public functionListChanged = new EventEmitter<any[]>();
     public userStory =
         [
             {
@@ -28,8 +27,9 @@ export class UserStoryServices {
                 conversation: "This feature could potentially be on TP instead - to discuss with vendor on best solution",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [new FunctionalDesc(1,'MOB1', 'Mobile number + password authentication / fingerprint authentication', 1), 
-                new FunctionalDesc(2,'MOB2', 'ID card, policy number, premium payment account (credit card number) - choose one of three', 1)],
+                backlog: [
+                    new FunctionalDesc(1, 'MOB1', 'Mobile number + password authentication / fingerprint authentication', 1)
+                ],
                 component: []
             },
             {
@@ -46,7 +46,10 @@ export class UserStoryServices {
                 conversation: "Could be applied to Finance and Cluster officers and escalated to relevant parties based on duration outstanding",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: [
+                    new FunctionalDesc(2, 'MOB2', 'ID card, policy number, premium payment account (credit card number) - choose one of three', 2),
+                    new FunctionalDesc(3, 'MOB2', 'Campaigns (Product / Event / Marketing )', 2)
+                ],
                 component: []
             },
             {
@@ -63,7 +66,10 @@ export class UserStoryServices {
                 conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: [
+                    new FunctionalDesc(4, 'MOB3', 'ID card, policy number, premium payment account (credit card number) - choose one of three', 3),
+                    new FunctionalDesc(5, 'MOB3', 'Campaigns (Product / Event / Marketing )', 3)
+                ],
                 component: []
             },
             {
@@ -80,7 +86,9 @@ export class UserStoryServices {
                 conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: [
+                    new FunctionalDesc(6,'MOB4', 'Mobile,Pad,PC multi-screen synchronization', 6)
+                ],
                 component: []
             },
             {
@@ -97,79 +105,14 @@ export class UserStoryServices {
                 conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: 
+                    [new FunctionalDesc(7,'MOB5', 'Mobile,Pad,PC multi-screen synchronization', 7),
+                    new FunctionalDesc(8,'MOB5', 'Fingerprint authentication', 7)
+                ],
                 component: []
             },
             {
                 id: 6,
-                title: "Mobile App /PC Web",
-                backlogCode: "MOB",
-                user: "IT Admin",
-                description: "",
-                userStory: "Premium Member Activity Recommendation",
-                dateUpdated: new Date(),
-                dateCreated: new Date(),
-                importance: "01 - Mandatory",
-                storyPoints: 4,
-                conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
-                integration: "Elements",
-                epic: "Incentive",
-                backlog: [],
-                component: []
-            },
-            {
-                id: 7,
-                title: "Mobile App /PC Web",
-                backlogCode: "MOB",
-                user: "IT Admin",
-                description: "",
-                userStory: "Exclusive Financial Product Recommendation",
-                dateUpdated: new Date(),
-                dateCreated: new Date(),
-                importance: "01 - Mandatory",
-                storyPoints: 4,
-                conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
-                integration: "Elements",
-                epic: "Incentive",
-                backlog: [],
-                component: []
-            },
-            {
-                id:8,
-                title: "Mobile App /PC Web",
-                backlogCode: "MOB",
-                user: "IT Admin",
-                description: "",
-                userStory: "Appointment of proprietary services",
-                dateUpdated: new Date(),
-                dateCreated: new Date(),
-                importance: "01 - Mandatory",
-                storyPoints: 4,
-                conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
-                integration: "Elements",
-                epic: "Incentive",
-                backlog: [],
-                component: []
-            },
-            {
-                id:9,
-                title: "Mobile App /PC Web",
-                backlogCode: "MOB",
-                user: "IT Admin",
-                description: "",
-                userStory: "Trace code (Web analytics)",
-                dateUpdated: new Date(),
-                dateCreated: new Date(),
-                importance: "01 - Mandatory",
-                storyPoints: 4,
-                conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
-                integration: "Elements",
-                epic: "Incentive",
-                backlog: [],
-                component: []
-            },
-            {
-                id:10,
                 title: "Target Marketing",
                 backlogCode: "TM",
                 user: "User",
@@ -182,12 +125,14 @@ export class UserStoryServices {
                 conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [new FunctionalDesc(5,'TS1', 'Strategic alliance', 10),
-                new FunctionalDesc(6,'TS2', 'One-click concierge phone customer service', 10)],
+                backlog: [
+                    new FunctionalDesc(9, 'TM6', 'Strategic alliance', 10),
+                    new FunctionalDesc(10, 'TM6', 'One-click concierge phone customer service', 10)
+                ],
                 component: []
             },
             {
-                id:11,
+                id: 7,
                 title: "Target Marketing",
                 backlogCode: "TM",
                 user: "User",
@@ -200,11 +145,13 @@ export class UserStoryServices {
                 conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: [
+                    new FunctionalDesc(11,'TM7', 'Online CS Chabot', 7)
+                ],
                 component: []
             },
             {
-                id:12,
+                id: 8,
                 title: "Artificial Intelligence",
                 backlogCode: "AI",
                 user: "IT Admin",
@@ -217,28 +164,15 @@ export class UserStoryServices {
                 conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: [
+                    new FunctionalDesc(12,'AI8', 'Behaviour analysis', 8),
+                    new FunctionalDesc(13,'AI8', 'Loss of customer forecast', 8),
+                    new FunctionalDesc(14,'AI8', 'Behavioural characteristics', 8)
+                ],
                 component: []
             },
             {
-                id:12,
-                title: "Artificial Intelligence",
-                backlogCode: "AI",
-                user: "IT Admin",
-                description: "",
-                userStory: "  Customer behaviour forecast",
-                dateUpdated: new Date(),
-                dateCreated: new Date(),
-                importance: "01 - Mandatory",
-                storyPoints: 4,
-                conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
-                integration: "Elements",
-                epic: "Incentive",
-                backlog: [],
-                component: []
-            },
-            {
-                id:13,
+                id: 9,
                 title: "Artificial Intelligence",
                 backlogCode: "AI",
                 user: "IT Admin",
@@ -251,11 +185,13 @@ export class UserStoryServices {
                 conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: [
+                    new FunctionalDesc(15,'AI9', 'Big data collection (all behaviours on the app, including personal assistant activity tracks)', 9)
+                ],
                 component: []
             },
             {
-                id:13,
+                id: 10,
                 title: "Concierge Services",
                 backlogCode: "CI",
                 user: "Admin",
@@ -268,7 +204,10 @@ export class UserStoryServices {
                 conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: [
+                    new FunctionalDesc(15,'CI10', 'Loss of customer forecast', 10),
+                    new FunctionalDesc(16,'CI10', 'Strategic alliance', 10)
+                ],
                 component: []
             }
         ];
@@ -284,19 +223,33 @@ export class UserStoryServices {
         return this.userStory;
     }
 
-    getUserStoryById(backlogId: number){
+    getUserStoryById(backlogId: number) {
         let toBeUpdatedIndex = this.userStory.findIndex((userStoryItem) => userStoryItem.id === backlogId);
         return this.userStory[toBeUpdatedIndex];
     }
 
-    getAllFunctions(){
-    let functionList: FunctionalDesc[] = [];
+    getAllFunctions() {
+        let functionList: FunctionalDesc[] = [];
         this.userStory.forEach(
             (userStoryItem) => {
                 functionList.push(...userStoryItem.backlog);
             }
         )
-    return functionList;
+        return functionList;
+    }
+
+    getFunctionListCodeString(functionList: any[]) {
+        let functionCodeString: string = "";
+        let separator = "";
+        if (functionList !== null) {
+            functionList.forEach(
+                (functionItem) => {
+                    functionCodeString = functionCodeString + separator + functionItem.functionDesc;
+                    separator = ","
+                }
+            );
+        }
+        return functionCodeString
     }
 
     addBacklogperUser(id: any, data: any) {

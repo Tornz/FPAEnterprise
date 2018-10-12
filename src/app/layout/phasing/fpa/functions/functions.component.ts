@@ -47,7 +47,6 @@ export class FunctionsComponent implements OnInit {
     if (selectedData) {
       this.selectedData = selectedData;
       this.functionForm = this.form.group({
-        //'id': [this.selectedData.id, Validators.required],
         'functionDesc': new FormControl(this.selectedData.functionDesc, Validators.required),
         'code': new FormControl(this.selectedData.code,Validators.required)
       });
