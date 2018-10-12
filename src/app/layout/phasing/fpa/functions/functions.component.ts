@@ -31,13 +31,21 @@ export class FunctionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData();
+    this.functionsService.functionListChanged.subscribe(
+      (updatedFunctionList) => {
+        this.functionsList = updatedFunctionList;
+      }
+    )
+
+    this.backlog = this.userSrv.getUserStory();
+    this.functionsList = this.functionsService.getFunctions();
+
+    // this.loadData();
   }
 
   onModalOpen(modalName: string, selectedData?: FunctionalDesc) {
     this.modal = modalName;
     this.display = 'block';
-    console.log('selectedData', selectedData);
     if (selectedData) {
       this.selectedData = selectedData;
       this.functionForm = this.form.group({
@@ -57,13 +65,20 @@ export class FunctionsComponent implements OnInit {
       this.functionForm.controls.functionDesc.value
     );
     this.functionsService.saveFunction(newFunction);
-    this.loadData();
     this.onModalClose();
   }
 
   onSubmitEdit() {
-    this.functionsService.editFunction(new FunctionalDesc(this.selectedData.id, this.functionForm.controls.functionDesc.value, this.functionForm.controls.code.value));
-    this.loadData();
+    this.functionsService.editFunction(
+      new FunctionalDesc(this.selectedData.id, 
+                        this.functionForm.controls.code.value,
+                        this.functionForm.controls.functionDesc.value
+      ));
+    this.onModalClose();
+  }
+
+  onSubmitDelete(){
+    this.functionsService.deleteFunction(this.selectedData);
     this.onModalClose();
   }
 
@@ -75,6 +90,7 @@ export class FunctionsComponent implements OnInit {
   onModalClose() {
     this.display = 'none';
     this.functionForm.reset();
+    this.selectedData = new FunctionalDesc(null, null, null);
   }
 
 }

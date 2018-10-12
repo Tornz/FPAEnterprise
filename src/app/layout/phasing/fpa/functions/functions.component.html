@@ -58,10 +58,8 @@
                         <div class="form-group">
                                 <label for="name">Product Backlog Code</label><br>
                                 <select formControlName="code" class="form-control" id="code">
-                                    <option *ngFor="let user of backlog"  [value]="user.backlogCode">{{user.backlogCode}}{{user.id}}</option>
-                                    
+                                    <option *ngFor="let user of backlog"  [value]="user.backlogCode + user.id">{{user.backlogCode}}{{user.id}}</option>
                                 </select>
-                            
                             </div>
                     <div class="form-group">
                         <label for="name">Function</label>
@@ -118,7 +116,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h3>Are you sure you want to delete '{{ selectedData.name }}'?</h3>
+                <h3>Are you sure you want to delete '{{ selectedData.functionDesc }}'?</h3>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="onModalClose()">Cancel</button>
