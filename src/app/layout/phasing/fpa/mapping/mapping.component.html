@@ -1,123 +1,53 @@
 <br />
 <div [@routerTransition]>
     <div class="form-group input-group col-4" style="padding-left: 0px;">
-        <!-- <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString">
-    <div class="input-group-append">
-      <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-    </div> -->
-
+        <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString">
+        <div class="input-group-append">
+            <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+        </div>
     </div>
+
     <div class="col-sm-12" style="display: flex">
-        <!-- <div class="col-sm-4">
-            <div class="card border-dark mb-3">
-                <p class="card-header">Functions</p>
-                <table class="card-body table table-hover">
-                    <tbody>
-                        <tr *ngFor="let component of function">
-                            <td scope="row">{{ component.description }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> -->
         <div class="col-sm-8">
-            <ng-container *ngFor="let comps of userStory">
+            <ng-container *ngFor="let comps of userStory | filter: 'userStory' : searchString">
                 <div class="card border-dark mb-3">
                     <p class="card-header">{{comps.userStory}}</p>
                     <table class="card-body table table-hover">
                         <tbody>
                             <tr>
                                 <td scope="row">{{ comps.businessReq }}</td>
+                            </tr>
+                            <tr>
+                                <div style=" margin-left: 20px">
+                                    <label><strong>Function/s list:</strong></label>
+                                    <ng-container *ngFor="let func of comps.backlog;">
+                                        <p>{{func.code}} - {{func.functionDesc}}</p>
+                                    </ng-container>
+                                    <ng-container *ngIf="comps.backlog.length <= 0"><p>N/A</p></ng-container>
+                                </div>
+                                <div style=" margin-left: 20px">
+                                    <div class="input-group">
+                                        <select class="custom-select" [id]="'cTSelect-' + comps.id">
+                                            <option selected disabled>Select Components</option>
+                                            <option *ngFor="let comp of component" [value]="comp.name">{{comp.name}}</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" (click)="addFT(comps.id)">Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="text-muted selectedItems">Selected Items:
+                                        <span class="badge badge-pill badge-primary" *ngFor="let techs of comps.component; let i = index;">
+                                            {{techs}}
+                                            <i class="fa fa-times delete-badge-pill" (click)="removeBT( comps,i)"></i>
+                                        </span>
 
+                                    </div>
+                                </div>
                             </tr>
                         </tbody>
                     </table>
-                    <div style=" margin-left: 20px">
-                      
-                        <ng-container *ngFor="let func of comps.backlog">
-                                <label><strong>Function/s list:</strong></label>
-                                <p>{{func.functionDesc}}</p>
-                        </ng-container>
-                        <!-- <div class="input-group">
-                            <select class="custom-select" id="fTSelect">
-                                <option selected disabled>Select Functions</option>
-                                <option *ngFor="let func of function" [value]="func.name">{{func.description}}</option>
-                            </select>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="button" (click)="addFunc(comps.id)">Add</button>
-                            </div>
-                        </div> -->
-                       
-                    </div>
-
-                    <div style=" margin-left: 20px">
-                        <div class="input-group">
-                            <select class="custom-select" id="cTSelect">
-                                <option selected disabled>Select Components</option>
-                                <option *ngFor="let comp of component" [value]="comp.name">{{comp.name}}</option>
-                            </select>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="button" (click)="addFT(comps.id)">Add</button>
-                            </div>
-                        </div>
-                        <div class="text-muted selectedItems">Selected Items:
-                            <span class="badge badge-pill badge-primary" *ngFor="let techs of comps.component; let i = index;">
-                                {{techs}}
-                                <i class="fa fa-times" (click)="removeBT( comps,i)"></i>
-                            </span>
-
-                        </div>
-                    </div>
                 </div>
             </ng-container>
         </div>
     </div>
-    <!-- <div class="col-sm-12">
-    <div class="col-sm-4">
-        <div class="card border-dark mb-3">
-            <p class="card-header">Components</p>
-            <table class="card-body table table-hover">
-                <tbody>
-                    <tr *ngFor="let component of component">
-                        <td scope="row">{{ component.name }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div> -->
-    <!-- <div class="card mb-3">
-    <table class="card-body table table-hover">
-      <thead class="card-header" style="background-color: #cce5ff;">
-        <tr>
-          <th *ngFor="let tableHeader of tableHeaders">{{ tableHeader.name }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let component of mappings" >
-          <td scope="row">{{ component.id }}</td>
-          <td scope="row">{{ component.businessReq }}</td>
-          <td scope="row">
-                <tr *ngFor="let func of component.function">
-                   <td style="border-top: none !important">
-                     <strong>{{func.func}}</strong><br>
-                     {{func.desc}}
-                   </td>
-                </tr>
-                
-                
-          </td>
-          <td scope="row">
-                <tr *ngFor="let comp of component.components">
-                        <td style="border-top: none !important">
-                         {{comp.item}}
-                        </td>
-                     </tr>
-            </td>
-          
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
 </div>

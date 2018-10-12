@@ -59,7 +59,7 @@ export class FunctionsComponent implements OnInit {
   onSubmitAdd() {
     let newFunction = new FunctionalDesc(
       this.functionsService.generateID(),
-      this.selectedUserStory.code + this.selectedUserStory.id,
+      this.selectedUserStory.backlogCode + this.selectedUserStory.id,
       this.functionForm.controls.functionDesc.value,
       this.selectedUserStory.id
     );
