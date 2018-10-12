@@ -10,6 +10,7 @@ import { Backlog } from '../../../../model/backlog.model';
 import { UserStoryServices } from '../../../../data-services/userStory.services'
 import { TechComponentServices } from '../../../../data-services/techComponent.services';
 import { TechComponents } from '../../../../model/techComponents.model';
+import { cpus } from 'os';
 
 
 
@@ -130,7 +131,7 @@ export class BackLogsComponent implements OnInit {
                stretchH: 'all',
                rowHeaders: true,
                colHeaders: true,
-               cells: function (row, col, prop) { return (row === 1 || row === 0) ? { readOnly: true } : { readOnly: false }; },
+               cells: function (row, col, prop) { return ((row === 1 || row === 0) || (col === 0 || col === 1)) ? { readOnly: true } : { readOnly: false }; },
                dropdownMenu: true,
                contextMenu: true,
                afterChange: log.bind(this, 'afterChange'),
