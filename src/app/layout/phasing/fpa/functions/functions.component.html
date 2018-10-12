@@ -57,8 +57,8 @@
                 <div class="modal-body">
                         <div class="form-group">
                                 <label for="name">Product Backlog Code</label><br>
-                                <select formControlName="code" class="form-control" id="code">
-                                    <option *ngFor="let user of backlog"  [value]="user.backlogCode + user.id">{{user.backlogCode}}{{user.id}}</option>
+                                <select formControlName="code" class="form-control" id="code" [(ngModel)]="selectedUserStory">
+                                    <option *ngFor="let user of backlog"  [ngValue]="user">{{user.backlogCode}}{{user.id}}</option>
                                 </select>
                             </div>
                     <div class="form-group">

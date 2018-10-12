@@ -27,6 +27,7 @@ import { SoftwareCategoryComponent } from './fpa/software-component/software-com
 import { UserStoryComponent } from './fpa/user-story/user-story.component';
 import { PhasingRoutingModule } from './phasing-routing.module';
 import { PhasingComponent } from './phasing.component';
+import { FunctionalDescService } from '../../data-services/functional-desc.services';
 
 @NgModule({
         imports: [
@@ -62,7 +63,8 @@ import { PhasingComponent } from './phasing.component';
                 FunctionsServices,
                 MappingServices,
                 ModulesServices,
-                HardwareService
+                HardwareService,
+                FunctionalDescService
         ]
 })
 export class PhasingModule { }

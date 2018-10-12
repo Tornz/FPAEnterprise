@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { FunctionalDesc } from './../model/functionalDesc.model';
+import { Injectable, EventEmitter } from '@angular/core';
 
 
 import { HttpClient } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { User } from '../model/user.model';
 import { environment } from '../../environments/environment';
 @Injectable()
 export class UserStoryServices {
-
+    public functionListChanged = new EventEmitter<any[]>();
     public userStory =
         [
             {
@@ -27,7 +28,8 @@ export class UserStoryServices {
                 conversation: "This feature could potentially be on TP instead - to discuss with vendor on best solution",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: [new FunctionalDesc(1,'MOB1', 'Mobile number + password authentication / fingerprint authentication', 1), 
+                new FunctionalDesc(2,'MOB2', 'ID card, policy number, premium payment account (credit card number) - choose one of three', 1)],
                 component: []
             },
             {
@@ -180,7 +182,8 @@ export class UserStoryServices {
                 conversation: "Phase 1 of the project will involve the uploading of excel sheets for grant calculation",
                 integration: "Elements",
                 epic: "Incentive",
-                backlog: [],
+                backlog: [new FunctionalDesc(5,'TS1', 'Strategic alliance', 10),
+                new FunctionalDesc(6,'TS2', 'One-click concierge phone customer service', 10)],
                 component: []
             },
             {
@@ -279,6 +282,21 @@ export class UserStoryServices {
         // return this.http.get<Array<FunctionComponent>>(environment.REST_API_URL + 'coms')
         // .toPromise();
         return this.userStory;
+    }
+
+    getUserStoryById(backlogId: number){
+        let toBeUpdatedIndex = this.userStory.findIndex((userStoryItem) => userStoryItem.id === backlogId);
+        return this.userStory[toBeUpdatedIndex];
+    }
+
+    getAllFunctions(){
+    let functionList: FunctionalDesc[] = [];
+        this.userStory.forEach(
+            (userStoryItem) => {
+                functionList.push(...userStoryItem.backlog);
+            }
+        )
+    return functionList;
     }
 
     addBacklogperUser(id: any, data: any) {

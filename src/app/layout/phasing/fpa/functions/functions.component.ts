@@ -22,6 +22,7 @@ export class FunctionsComponent implements OnInit {
   columnFilter: string = 'name';
   functionsList: FunctionalDesc[];
   searchString: string = '';
+  selectedUserStory: any;
 
   constructor(private functionsService: FunctionalDescService, private form: FormBuilder, private userSrv: UserStoryServices) {
     this.functionForm = this.form.group({
@@ -36,11 +37,8 @@ export class FunctionsComponent implements OnInit {
         this.functionsList = updatedFunctionList;
       }
     )
-
     this.backlog = this.userSrv.getUserStory();
     this.functionsList = this.functionsService.getFunctions();
-
-    // this.loadData();
   }
 
   onModalOpen(modalName: string, selectedData?: FunctionalDesc) {
@@ -54,15 +52,16 @@ export class FunctionsComponent implements OnInit {
         'code': new FormControl(this.selectedData.code,Validators.required)
       });
     } else {
-      this.selectedData = new FunctionalDesc(null, null, null);
+      this.selectedData = new FunctionalDesc(null, null, null, null);
     }
   }
 
   onSubmitAdd() {
     let newFunction = new FunctionalDesc(
       this.functionsService.generateID(),
-      this.functionForm.controls.code.value,
-      this.functionForm.controls.functionDesc.value
+      this.selectedUserStory.code + this.selectedUserStory.id,
+      this.functionForm.controls.functionDesc.value,
+      this.selectedUserStory.id
     );
     this.functionsService.saveFunction(newFunction);
     this.onModalClose();
@@ -71,8 +70,9 @@ export class FunctionsComponent implements OnInit {
   onSubmitEdit() {
     this.functionsService.editFunction(
       new FunctionalDesc(this.selectedData.id, 
-                        this.functionForm.controls.code.value,
-                        this.functionForm.controls.functionDesc.value
+                        this.selectedData.code + this.selectedData.id,
+                        this.functionForm.controls.functionDesc.value,
+                        this.selectedData.id
       ));
     this.onModalClose();
   }
@@ -90,7 +90,7 @@ export class FunctionsComponent implements OnInit {
   onModalClose() {
     this.display = 'none';
     this.functionForm.reset();
-    this.selectedData = new FunctionalDesc(null, null, null);
+    this.selectedData = new FunctionalDesc(null, null, null, null);
   }
 
 }
